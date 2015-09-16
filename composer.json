@@ -19,7 +19,9 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "twbs/bootstrap": "~3.3",
         "symfony/twig-bundle": "~2.3",
-        "friendsofsymfony/user-bundle": "~2.0@dev"
+        "friendsofsymfony/user-bundle": "~2.0@dev",
+        "sonata-project/admin-bundle": "^2.3",
+        "sonata-project/doctrine-orm-admin-bundle": "^2.3"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
