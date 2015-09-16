@@ -1,0 +1,4 @@
+services:
+#    edu_speak.example:
+#        class: EduSpeakBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

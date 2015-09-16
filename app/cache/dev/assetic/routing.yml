@@ -1,0 +1,5 @@
+_assetic:
+    resource: .
+    type: assetic
+_app:
+    resource: /Users/vincentroma/Sites/eduspeak/app/config/routing_dev.yml

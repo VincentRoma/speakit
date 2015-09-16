@@ -1,0 +1,7 @@
+edu_speak:
+    resource: "@EduSpeakBundle/Resources/config/routing.yml"
+    prefix:   /
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
