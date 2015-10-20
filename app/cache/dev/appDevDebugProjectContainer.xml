@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
   <parameters>
-    <parameter key="kernel.root_dir">/Users/vincentroma/Sites/eduspeak/app</parameter>
+    <parameter key="kernel.root_dir">/Users/vincentroma/Documents/Code/eduspeak/app</parameter>
     <parameter key="kernel.environment">dev</parameter>
     <parameter key="kernel.debug">true</parameter>
     <parameter key="kernel.name">app</parameter>
-    <parameter key="kernel.cache_dir">/Users/vincentroma/Sites/eduspeak/app/cache/dev</parameter>
-    <parameter key="kernel.logs_dir">/Users/vincentroma/Sites/eduspeak/app/logs</parameter>
+    <parameter key="kernel.cache_dir">/Users/vincentroma/Documents/Code/eduspeak/app/cache/dev</parameter>
+    <parameter key="kernel.logs_dir">/Users/vincentroma/Documents/Code/eduspeak/app/logs</parameter>
     <parameter key="kernel.bundles" type="collection">
       <parameter key="FrameworkBundle">Symfony\Bundle\FrameworkBundle\FrameworkBundle</parameter>
       <parameter key="SecurityBundle">Symfony\Bundle\SecurityBundle\SecurityBundle</parameter>
@@ -24,6 +24,9 @@
       <parameter key="KnpMenuBundle">Knp\Bundle\MenuBundle\KnpMenuBundle</parameter>
       <parameter key="SonataDoctrineORMAdminBundle">Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle</parameter>
       <parameter key="SonataAdminBundle">Sonata\AdminBundle\SonataAdminBundle</parameter>
+      <parameter key="FOSRestBundle">FOS\RestBundle\FOSRestBundle</parameter>
+      <parameter key="JMSSerializerBundle">JMS\SerializerBundle\JMSSerializerBundle</parameter>
+      <parameter key="NelmioApiDocBundle">Nelmio\ApiDocBundle\NelmioApiDocBundle</parameter>
       <parameter key="DebugBundle">Symfony\Bundle\DebugBundle\DebugBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
       <parameter key="SensioDistributionBundle">Sensio\Bundle\DistributionBundle\SensioDistributionBundle</parameter>
@@ -109,7 +112,7 @@
     <parameter key="session.storage.options" type="collection">
       <parameter key="gc_probability">1</parameter>
     </parameter>
-    <parameter key="session.save_path">/Users/vincentroma/Sites/eduspeak/app/cache/dev/sessions</parameter>
+    <parameter key="session.save_path">/Users/vincentroma/Documents/Code/eduspeak/app/cache/dev/sessions</parameter>
     <parameter key="session.metadata.update_threshold">0</parameter>
     <parameter key="security.secure_random.class">Symfony\Component\Security\Core\Util\SecureRandom</parameter>
     <parameter key="form.resolved_type_factory.class">Symfony\Component\Form\ResolvedFormTypeFactory</parameter>
@@ -169,7 +172,7 @@
     <parameter key="data_collector.form.extractor.class">Symfony\Component\Form\Extension\DataCollector\FormDataExtractor</parameter>
     <parameter key="profiler_listener.only_exceptions">false</parameter>
     <parameter key="profiler_listener.only_master_requests">false</parameter>
-    <parameter key="profiler.storage.dsn">file:/Users/vincentroma/Sites/eduspeak/app/cache/dev/profiler</parameter>
+    <parameter key="profiler.storage.dsn">file:/Users/vincentroma/Documents/Code/eduspeak/app/cache/dev/profiler</parameter>
     <parameter key="profiler.storage.username"></parameter>
     <parameter key="profiler.storage.password"></parameter>
     <parameter key="profiler.storage.lifetime">86400</parameter>
@@ -193,18 +196,22 @@
     <parameter key="router.request_context.host">localhost</parameter>
     <parameter key="router.request_context.scheme">http</parameter>
     <parameter key="router.request_context.base_url"></parameter>
-    <parameter key="router.resource">/Users/vincentroma/Sites/eduspeak/app/cache/dev/assetic/routing.yml</parameter>
+    <parameter key="router.resource">/Users/vincentroma/Documents/Code/eduspeak/app/cache/dev/assetic/routing.yml</parameter>
     <parameter key="router.cache_class_prefix">appDev</parameter>
     <parameter key="request_listener.http_port">80</parameter>
     <parameter key="request_listener.https_port">443</parameter>
     <parameter key="annotations.reader.class">Doctrine\Common\Annotations\AnnotationReader</parameter>
     <parameter key="annotations.cached_reader.class">Doctrine\Common\Annotations\CachedReader</parameter>
     <parameter key="annotations.file_cache_reader.class">Doctrine\Common\Annotations\FileCacheReader</parameter>
+    <parameter key="serializer.class">Symfony\Component\Serializer\Serializer</parameter>
+    <parameter key="serializer.encoder.xml.class">Symfony\Component\Serializer\Encoder\XmlEncoder</parameter>
+    <parameter key="serializer.encoder.json.class">Symfony\Component\Serializer\Encoder\JsonEncoder</parameter>
+    <parameter key="serializer.mapping.cache.prefix"></parameter>
     <parameter key="debug.debug_handlers_listener.class">Symfony\Component\HttpKernel\EventListener\DebugHandlersListener</parameter>
     <parameter key="debug.stopwatch.class">Symfony\Component\Stopwatch\Stopwatch</parameter>
     <parameter key="debug.error_handler.throw_at">-1</parameter>
     <parameter key="debug.event_dispatcher.class">Symfony\Component\HttpKernel\Debug\TraceableEventDispatcher</parameter>
-    <parameter key="debug.container.dump">/Users/vincentroma/Sites/eduspeak/app/cache/dev/appDevDebugProjectContainer.xml</parameter>
+    <parameter key="debug.container.dump">/Users/vincentroma/Documents/Code/eduspeak/app/cache/dev/appDevDebugProjectContainer.xml</parameter>
     <parameter key="debug.controller_resolver.class">Symfony\Component\HttpKernel\Controller\TraceableControllerResolver</parameter>
     <parameter key="security.context.class">Symfony\Component\Security\Core\SecurityContext</parameter>
     <parameter key="security.user_checker.class">Symfony\Component\Security\Core\User\UserChecker</parameter>
@@ -392,7 +399,7 @@
     <parameter key="swiftmailer.mailer.default.transport.smtp.auth_mode">null</parameter>
     <parameter key="swiftmailer.mailer.default.transport.smtp.timeout">30</parameter>
     <parameter key="swiftmailer.mailer.default.transport.smtp.source_ip">null</parameter>
-    <parameter key="swiftmailer.spool.default.memory.path">/Users/vincentroma/Sites/eduspeak/app/cache/dev/swiftmailer/spool/default</parameter>
+    <parameter key="swiftmailer.spool.default.memory.path">/Users/vincentroma/Documents/Code/eduspeak/app/cache/dev/swiftmailer/spool/default</parameter>
     <parameter key="swiftmailer.mailer.default.spool.enabled">true</parameter>
     <parameter key="swiftmailer.mailer.default.plugin.impersonate">null</parameter>
     <parameter key="swiftmailer.mailer.default.single_address">null</parameter>
@@ -417,7 +424,7 @@
     <parameter key="assetic.worker.cache_busting.class">Assetic\Factory\Worker\CacheBustingWorker</parameter>
     <parameter key="assetic.value_supplier.class">Symfony\Bundle\AsseticBundle\DefaultValueSupplier</parameter>
     <parameter key="assetic.node.paths" type="collection"/>
-    <parameter key="assetic.cache_dir">/Users/vincentroma/Sites/eduspeak/app/cache/dev/assetic</parameter>
+    <parameter key="assetic.cache_dir">/Users/vincentroma/Documents/Code/eduspeak/app/cache/dev/assetic</parameter>
     <parameter key="assetic.bundles" type="collection"/>
     <parameter key="assetic.twig_extension.class">Symfony\Bundle\AsseticBundle\Twig\AsseticExtension</parameter>
     <parameter key="assetic.twig_formula_loader.class">Assetic\Extension\Twig\TwigFormulaLoader</parameter>
@@ -427,8 +434,8 @@
     <parameter key="assetic.debug">true</parameter>
     <parameter key="assetic.use_controller">true</parameter>
     <parameter key="assetic.enable_profiler">false</parameter>
-    <parameter key="assetic.read_from">/Users/vincentroma/Sites/eduspeak/app/../web</parameter>
-    <parameter key="assetic.write_to">/Users/vincentroma/Sites/eduspeak/app/../web</parameter>
+    <parameter key="assetic.read_from">/Users/vincentroma/Documents/Code/eduspeak/app/../web</parameter>
+    <parameter key="assetic.write_to">/Users/vincentroma/Documents/Code/eduspeak/app/../web</parameter>
     <parameter key="assetic.variables" type="collection"/>
     <parameter key="assetic.java.bin">/usr/bin/java</parameter>
     <parameter key="assetic.node.bin">/usr/local/bin/node</parameter>
@@ -540,7 +547,7 @@
     <parameter key="doctrine.orm.second_level_cache.cache_configuration.class">Doctrine\ORM\Cache\CacheConfiguration</parameter>
     <parameter key="doctrine.orm.second_level_cache.regions_configuration.class">Doctrine\ORM\Cache\RegionsConfiguration</parameter>
     <parameter key="doctrine.orm.auto_generate_proxy_classes">true</parameter>
-    <parameter key="doctrine.orm.proxy_dir">/Users/vincentroma/Sites/eduspeak/app/cache/dev/doctrine/orm/Proxies</parameter>
+    <parameter key="doctrine.orm.proxy_dir">/Users/vincentroma/Documents/Code/eduspeak/app/cache/dev/doctrine/orm/Proxies</parameter>
     <parameter key="doctrine.orm.proxy_namespace">Proxies</parameter>
     <parameter key="sensio_framework_extra.view.guesser.class">Sensio\Bundle\FrameworkExtraBundle\Templating\TemplateGuesser</parameter>
     <parameter key="sensio_framework_extra.controller.listener.class">Sensio\Bundle\FrameworkExtraBundle\EventListener\ControllerListener</parameter>
@@ -551,7 +558,6 @@
     <parameter key="sensio_framework_extra.converter.manager.class">Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\ParamConverterManager</parameter>
     <parameter key="sensio_framework_extra.converter.doctrine.class">Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\DoctrineParamConverter</parameter>
     <parameter key="sensio_framework_extra.converter.datetime.class">Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\DateTimeParamConverter</parameter>
-    <parameter key="sensio_framework_extra.view.listener.class">Sensio\Bundle\FrameworkExtraBundle\EventListener\TemplateListener</parameter>
     <parameter key="fos_user.backend_type_orm">true</parameter>
     <parameter key="fos_user.security.interactive_login_listener.class">FOS\UserBundle\EventListener\LastLoginListener</parameter>
     <parameter key="fos_user.security.login_manager.class">FOS\UserBundle\Security\LoginManager</parameter>
@@ -767,6 +773,145 @@
       <parameter key="instanceof" type="collection"/>
     </parameter>
     <parameter key="sonata.admin.configuration.filters.persist">false</parameter>
+    <parameter key="fos_rest.serializer.exclusion_strategy.version"></parameter>
+    <parameter key="fos_rest.serializer.exclusion_strategy.groups"></parameter>
+    <parameter key="fos_rest.view_handler.jsonp.callback_param"></parameter>
+    <parameter key="fos_rest.view.exception_wrapper_handler">FOS\RestBundle\View\ExceptionWrapperHandler</parameter>
+    <parameter key="fos_rest.view_handler.default.class">FOS\RestBundle\View\ViewHandler</parameter>
+    <parameter key="fos_rest.view_handler.jsonp.class">FOS\RestBundle\View\JsonpHandler</parameter>
+    <parameter key="fos_rest.serializer.exception_wrapper_serialize_handler.class">FOS\RestBundle\Serializer\ExceptionWrapperSerializeHandler</parameter>
+    <parameter key="fos_rest.routing.loader.controller.class">FOS\RestBundle\Routing\Loader\RestRouteLoader</parameter>
+    <parameter key="fos_rest.routing.loader.yaml_collection.class">FOS\RestBundle\Routing\Loader\RestYamlCollectionLoader</parameter>
+    <parameter key="fos_rest.routing.loader.xml_collection.class">FOS\RestBundle\Routing\Loader\RestXmlCollectionLoader</parameter>
+    <parameter key="fos_rest.routing.loader.processor.class">FOS\RestBundle\Routing\Loader\RestRouteProcessor</parameter>
+    <parameter key="fos_rest.routing.loader.reader.controller.class">FOS\RestBundle\Routing\Loader\Reader\RestControllerReader</parameter>
+    <parameter key="fos_rest.routing.loader.reader.action.class">FOS\RestBundle\Routing\Loader\Reader\RestActionReader</parameter>
+    <parameter key="fos_rest.format_negotiator.class">FOS\RestBundle\Util\FormatNegotiator</parameter>
+    <parameter key="fos_rest.inflector.class">FOS\RestBundle\Util\Inflector\DoctrineInflector</parameter>
+    <parameter key="fos_rest.request_matcher.class">Symfony\Component\HttpFoundation\RequestMatcher</parameter>
+    <parameter key="fos_rest.violation_formatter.class">FOS\RestBundle\Util\ViolationFormatter</parameter>
+    <parameter key="fos_rest.request.param_fetcher.class">FOS\RestBundle\Request\ParamFetcher</parameter>
+    <parameter key="fos_rest.request.param_fetcher.reader.class">FOS\RestBundle\Request\ParamReader</parameter>
+    <parameter key="fos_rest.cache_dir">/Users/vincentroma/Documents/Code/eduspeak/app/cache/dev/fos_rest</parameter>
+    <parameter key="fos_rest.routing.loader.default_format">json</parameter>
+    <parameter key="fos_rest.routing.loader.include_format">true</parameter>
+    <parameter key="fos_rest.serializer.serialize_null">false</parameter>
+    <parameter key="fos_rest.exception.codes" type="collection"/>
+    <parameter key="fos_rest.exception.messages" type="collection"/>
+    <parameter key="fos_rest.converter.request_body.validation_errors_argument">validationErrors</parameter>
+    <parameter key="fos_rest.mime_types" type="collection"/>
+    <parameter key="fos_rest.view_response_listener.class">FOS\RestBundle\EventListener\ViewResponseListener</parameter>
+    <parameter key="fos_rest.view_response_listener.force_view">false</parameter>
+    <parameter key="fos_rest.formats" type="collection">
+      <parameter key="json">false</parameter>
+      <parameter key="xml">false</parameter>
+      <parameter key="html">true</parameter>
+    </parameter>
+    <parameter key="fos_rest.force_redirects" type="collection">
+      <parameter key="html">302</parameter>
+    </parameter>
+    <parameter key="fos_rest.failed_validation">400</parameter>
+    <parameter key="fos_rest.empty_content">204</parameter>
+    <parameter key="fos_rest.serialize_null">false</parameter>
+    <parameter key="fos_rest.default_engine">twig</parameter>
+    <parameter key="fos_rest.normalizer.camel_keys.class">FOS\RestBundle\Normalizer\CamelKeysNormalizer</parameter>
+    <parameter key="fos_rest.decoder.json.class">FOS\RestBundle\Decoder\JsonDecoder</parameter>
+    <parameter key="fos_rest.decoder.jsontoform.class">FOS\RestBundle\Decoder\JsonToFormDecoder</parameter>
+    <parameter key="fos_rest.decoder.xml.class">FOS\RestBundle\Decoder\XmlDecoder</parameter>
+    <parameter key="fos_rest.decoder_provider.class">FOS\RestBundle\Decoder\ContainerDecoderProvider</parameter>
+    <parameter key="fos_rest.body_listener.class">FOS\RestBundle\EventListener\BodyListener</parameter>
+    <parameter key="fos_rest.throw_exception_on_unsupported_content_type">false</parameter>
+    <parameter key="fos_rest.body_default_format">null</parameter>
+    <parameter key="fos_rest.decoders" type="collection">
+      <parameter key="json">fos_rest.decoder.json</parameter>
+      <parameter key="xml">fos_rest.decoder.xml</parameter>
+    </parameter>
+    <parameter key="jms_serializer.metadata.file_locator.class">Metadata\Driver\FileLocator</parameter>
+    <parameter key="jms_serializer.metadata.annotation_driver.class">JMS\Serializer\Metadata\Driver\AnnotationDriver</parameter>
+    <parameter key="jms_serializer.metadata.chain_driver.class">Metadata\Driver\DriverChain</parameter>
+    <parameter key="jms_serializer.metadata.yaml_driver.class">JMS\Serializer\Metadata\Driver\YamlDriver</parameter>
+    <parameter key="jms_serializer.metadata.xml_driver.class">JMS\Serializer\Metadata\Driver\XmlDriver</parameter>
+    <parameter key="jms_serializer.metadata.php_driver.class">JMS\Serializer\Metadata\Driver\PhpDriver</parameter>
+    <parameter key="jms_serializer.metadata.doctrine_type_driver.class">JMS\Serializer\Metadata\Driver\DoctrineTypeDriver</parameter>
+    <parameter key="jms_serializer.metadata.doctrine_phpcr_type_driver.class">JMS\Serializer\Metadata\Driver\DoctrinePHPCRTypeDriver</parameter>
+    <parameter key="jms_serializer.metadata.lazy_loading_driver.class">Metadata\Driver\LazyLoadingDriver</parameter>
+    <parameter key="jms_serializer.metadata.metadata_factory.class">Metadata\MetadataFactory</parameter>
+    <parameter key="jms_serializer.metadata.cache.file_cache.class">Metadata\Cache\FileCache</parameter>
+    <parameter key="jms_serializer.event_dispatcher.class">JMS\Serializer\EventDispatcher\LazyEventDispatcher</parameter>
+    <parameter key="jms_serializer.camel_case_naming_strategy.class">JMS\Serializer\Naming\CamelCaseNamingStrategy</parameter>
+    <parameter key="jms_serializer.serialized_name_annotation_strategy.class">JMS\Serializer\Naming\SerializedNameAnnotationStrategy</parameter>
+    <parameter key="jms_serializer.cache_naming_strategy.class">JMS\Serializer\Naming\CacheNamingStrategy</parameter>
+    <parameter key="jms_serializer.doctrine_object_constructor.class">JMS\Serializer\Construction\DoctrineObjectConstructor</parameter>
+    <parameter key="jms_serializer.unserialize_object_constructor.class">JMS\Serializer\Construction\UnserializeObjectConstructor</parameter>
+    <parameter key="jms_serializer.version_exclusion_strategy.class">JMS\Serializer\Exclusion\VersionExclusionStrategy</parameter>
+    <parameter key="jms_serializer.serializer.class">JMS\Serializer\Serializer</parameter>
+    <parameter key="jms_serializer.twig_extension.class">JMS\Serializer\Twig\SerializerExtension</parameter>
+    <parameter key="jms_serializer.templating.helper.class">JMS\SerializerBundle\Templating\SerializerHelper</parameter>
+    <parameter key="jms_serializer.json_serialization_visitor.class">JMS\Serializer\JsonSerializationVisitor</parameter>
+    <parameter key="jms_serializer.json_serialization_visitor.options">0</parameter>
+    <parameter key="jms_serializer.json_deserialization_visitor.class">JMS\Serializer\JsonDeserializationVisitor</parameter>
+    <parameter key="jms_serializer.xml_serialization_visitor.class">JMS\Serializer\XmlSerializationVisitor</parameter>
+    <parameter key="jms_serializer.xml_deserialization_visitor.class">JMS\Serializer\XmlDeserializationVisitor</parameter>
+    <parameter key="jms_serializer.xml_deserialization_visitor.doctype_whitelist" type="collection"/>
+    <parameter key="jms_serializer.yaml_serialization_visitor.class">JMS\Serializer\YamlSerializationVisitor</parameter>
+    <parameter key="jms_serializer.handler_registry.class">JMS\Serializer\Handler\LazyHandlerRegistry</parameter>
+    <parameter key="jms_serializer.datetime_handler.class">JMS\Serializer\Handler\DateHandler</parameter>
+    <parameter key="jms_serializer.array_collection_handler.class">JMS\Serializer\Handler\ArrayCollectionHandler</parameter>
+    <parameter key="jms_serializer.php_collection_handler.class">JMS\Serializer\Handler\PhpCollectionHandler</parameter>
+    <parameter key="jms_serializer.form_error_handler.class">JMS\Serializer\Handler\FormErrorHandler</parameter>
+    <parameter key="jms_serializer.constraint_violation_handler.class">JMS\Serializer\Handler\ConstraintViolationHandler</parameter>
+    <parameter key="jms_serializer.doctrine_proxy_subscriber.class">JMS\Serializer\EventDispatcher\Subscriber\DoctrineProxySubscriber</parameter>
+    <parameter key="jms_serializer.stopwatch_subscriber.class">JMS\SerializerBundle\Serializer\StopwatchEventSubscriber</parameter>
+    <parameter key="nelmio_api_doc.motd.template">NelmioApiDocBundle::Components/motd.html.twig</parameter>
+    <parameter key="nelmio_api_doc.exclude_sections" type="collection"/>
+    <parameter key="nelmio_api_doc.default_sections_opened">true</parameter>
+    <parameter key="nelmio_api_doc.api_name">API documentation</parameter>
+    <parameter key="nelmio_api_doc.sandbox.enabled">true</parameter>
+    <parameter key="nelmio_api_doc.sandbox.endpoint">null</parameter>
+    <parameter key="nelmio_api_doc.sandbox.accept_type">null</parameter>
+    <parameter key="nelmio_api_doc.sandbox.body_format.formats" type="collection">
+      <parameter>form</parameter>
+      <parameter>json</parameter>
+    </parameter>
+    <parameter key="nelmio_api_doc.sandbox.body_format.default_format">form</parameter>
+    <parameter key="nelmio_api_doc.sandbox.request_format.method">format_param</parameter>
+    <parameter key="nelmio_api_doc.sandbox.request_format.default_format">json</parameter>
+    <parameter key="nelmio_api_doc.sandbox.request_format.formats" type="collection">
+      <parameter key="json">application/json</parameter>
+      <parameter key="xml">application/xml</parameter>
+    </parameter>
+    <parameter key="nelmio_api_doc.sandbox.entity_to_choice">true</parameter>
+    <parameter key="nelmio_api_doc.formatter.abstract_formatter.class">Nelmio\ApiDocBundle\Formatter\AbstractFormatter</parameter>
+    <parameter key="nelmio_api_doc.formatter.markdown_formatter.class">Nelmio\ApiDocBundle\Formatter\MarkdownFormatter</parameter>
+    <parameter key="nelmio_api_doc.formatter.simple_formatter.class">Nelmio\ApiDocBundle\Formatter\SimpleFormatter</parameter>
+    <parameter key="nelmio_api_doc.formatter.html_formatter.class">Nelmio\ApiDocBundle\Formatter\HtmlFormatter</parameter>
+    <parameter key="nelmio_api_doc.formatter.swagger_formatter.class">Nelmio\ApiDocBundle\Formatter\SwaggerFormatter</parameter>
+    <parameter key="nelmio_api_doc.sandbox.authentication">null</parameter>
+    <parameter key="nelmio_api_doc.extractor.api_doc_extractor.class">Nelmio\ApiDocBundle\Extractor\ApiDocExtractor</parameter>
+    <parameter key="nelmio_api_doc.form.extension.description_form_type_extension.class">Nelmio\ApiDocBundle\Form\Extension\DescriptionFormTypeExtension</parameter>
+    <parameter key="nelmio_api_doc.twig.extension.extra_markdown.class">Nelmio\ApiDocBundle\Twig\Extension\MarkdownExtension</parameter>
+    <parameter key="nelmio_api_doc.doc_comment_extractor.class">Nelmio\ApiDocBundle\Util\DocCommentExtractor</parameter>
+    <parameter key="nelmio_api_doc.extractor.handler.fos_rest.class">Nelmio\ApiDocBundle\Extractor\Handler\FosRestHandler</parameter>
+    <parameter key="nelmio_api_doc.extractor.handler.jms_security.class">Nelmio\ApiDocBundle\Extractor\Handler\JmsSecurityExtraHandler</parameter>
+    <parameter key="nelmio_api_doc.extractor.handler.sensio_framework_extra.class">Nelmio\ApiDocBundle\Extractor\Handler\SensioFrameworkExtraHandler</parameter>
+    <parameter key="nelmio_api_doc.extractor.handler.phpdoc.class">Nelmio\ApiDocBundle\Extractor\Handler\PhpDocHandler</parameter>
+    <parameter key="nelmio_api_doc.parser.collection_parser.class">Nelmio\ApiDocBundle\Parser\CollectionParser</parameter>
+    <parameter key="nelmio_api_doc.parser.form_errors_parser.class">Nelmio\ApiDocBundle\Parser\FormErrorsParser</parameter>
+    <parameter key="nelmio_api_doc.parser.json_serializable_parser.class">Nelmio\ApiDocBundle\Parser\JsonSerializableParser</parameter>
+    <parameter key="nelmio_api_doc.request_listener.parameter">_doc</parameter>
+    <parameter key="nelmio_api_doc.event_listener.request.class">Nelmio\ApiDocBundle\EventListener\RequestListener</parameter>
+    <parameter key="nelmio_api_doc.swagger.base_path">/api</parameter>
+    <parameter key="nelmio_api_doc.swagger.swagger_version">1.2</parameter>
+    <parameter key="nelmio_api_doc.swagger.api_version">0.1</parameter>
+    <parameter key="nelmio_api_doc.swagger.info" type="collection">
+      <parameter key="title">Symfony2</parameter>
+      <parameter key="description">My awesome Symfony2 app!</parameter>
+      <parameter key="TermsOfServiceUrl">null</parameter>
+      <parameter key="contact">null</parameter>
+      <parameter key="license">null</parameter>
+      <parameter key="licenseUrl">null</parameter>
+    </parameter>
+    <parameter key="nelmio_api_doc.swagger.model_naming_strategy">dot_notation</parameter>
     <parameter key="web_profiler.controller.profiler.class">Symfony\Bundle\WebProfilerBundle\Controller\ProfilerController</parameter>
     <parameter key="web_profiler.controller.router.class">Symfony\Bundle\WebProfilerBundle\Controller\RouterController</parameter>
     <parameter key="web_profiler.controller.exception.class">Symfony\Bundle\WebProfilerBundle\Controller\ExceptionController</parameter>
@@ -853,6 +998,9 @@
     <parameter key="console.command.ids" type="collection">
       <parameter>sensio_distribution.security_checker.command</parameter>
     </parameter>
+    <parameter key="nelmio_api_doc.parser.form_type_parser.class">Nelmio\ApiDocBundle\Parser\FormTypeParser</parameter>
+    <parameter key="nelmio_api_doc.parser.validation_parser.class">Nelmio\ApiDocBundle\Parser\ValidationParser</parameter>
+    <parameter key="nelmio_api_doc.parser.jms_metadata_parser.class">Nelmio\ApiDocBundle\Parser\JmsMetadataParser</parameter>
   </parameters>
   <services>
     <service id="sonata.admin.user" class="EduSpeakBundle\Admin\UserAdmin" scope="prototype">
@@ -1000,7 +1148,7 @@
               <service class="Symfony\Bundle\FrameworkBundle\CacheWarmer\TemplateFinder" public="false">
                 <argument type="service" id="kernel"/>
                 <argument type="service" id="templating.filename_parser"/>
-                <argument>/Users/vincentroma/Sites/eduspeak/app/Resources</argument>
+                <argument>/Users/vincentroma/Documents/Code/eduspeak/app/Resources</argument>
               </service>
             </argument>
             <argument type="service" id="templating.locator"/>
@@ -1042,7 +1190,7 @@
     <service id="filesystem" class="Symfony\Component\Filesystem\Filesystem"/>
     <service id="file_locator" class="Symfony\Component\HttpKernel\Config\FileLocator">
       <argument type="service" id="kernel"/>
-      <argument>/Users/vincentroma/Sites/eduspeak/app/Resources</argument>
+      <argument>/Users/vincentroma/Documents/Code/eduspeak/app/Resources</argument>
     </service>
     <service id="uri_signer" class="Symfony\Component\HttpKernel\UriSigner">
       <argument>228de499e2c307869dfa162ff92a994aca872474</argument>
@@ -1150,367 +1298,367 @@
         </argument>
       </argument>
       <argument type="collection">
-        <argument key="cache_dir">/Users/vincentroma/Sites/eduspeak/app/cache/dev/translations</argument>
+        <argument key="cache_dir">/Users/vincentroma/Documents/Code/eduspeak/app/cache/dev/translations</argument>
         <argument key="debug">true</argument>
         <argument key="resource_files" type="collection">
           <argument key="af" type="collection">
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.af.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.af.xlf</argument>
           </argument>
           <argument key="ar" type="collection">
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.ar.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.ar.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.ar.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.ar.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.ar.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/sonata-project/core-bundle/Resources/translations/SonataCoreBundle.ar.xliff</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/sonata-project/admin-bundle/Resources/translations/SonataAdminBundle.ar.xliff</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.ar.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.ar.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.ar.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.ar.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.ar.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/core-bundle/Resources/translations/SonataCoreBundle.ar.xliff</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/admin-bundle/Resources/translations/SonataAdminBundle.ar.xliff</argument>
           </argument>
           <argument key="az" type="collection">
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.az.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.az.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.az.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.az.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.az.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.az.xlf</argument>
           </argument>
           <argument key="bg" type="collection">
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.bg.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.bg.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.bg.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.bg.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.bg.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/sonata-project/core-bundle/Resources/translations/SonataCoreBundle.bg.xliff</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/sonata-project/admin-bundle/Resources/translations/SonataAdminBundle.bg.xliff</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.bg.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.bg.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.bg.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.bg.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.bg.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/core-bundle/Resources/translations/SonataCoreBundle.bg.xliff</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/admin-bundle/Resources/translations/SonataAdminBundle.bg.xliff</argument>
           </argument>
           <argument key="ca" type="collection">
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.ca.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.ca.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.ca.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.ca.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.ca.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/sonata-project/core-bundle/Resources/translations/SonataCoreBundle.ca.xliff</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/sonata-project/admin-bundle/Resources/translations/SonataAdminBundle.ca.xliff</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.ca.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.ca.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.ca.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.ca.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.ca.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/core-bundle/Resources/translations/SonataCoreBundle.ca.xliff</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/admin-bundle/Resources/translations/SonataAdminBundle.ca.xliff</argument>
           </argument>
           <argument key="cs" type="collection">
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.cs.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.cs.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.cs.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.cs.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.cs.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/sonata-project/core-bundle/Resources/translations/SonataCoreBundle.cs.xliff</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/sonata-project/admin-bundle/Resources/translations/SonataAdminBundle.cs.xliff</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.cs.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.cs.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.cs.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.cs.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.cs.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/core-bundle/Resources/translations/SonataCoreBundle.cs.xliff</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/admin-bundle/Resources/translations/SonataAdminBundle.cs.xliff</argument>
           </argument>
           <argument key="cy" type="collection">
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.cy.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.cy.xlf</argument>
           </argument>
           <argument key="da" type="collection">
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.da.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.da.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.da.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.da.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.da.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.da.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.da.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.da.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.da.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.da.yml</argument>
           </argument>
           <argument key="de" type="collection">
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.de.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.de.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.de.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.de.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.de.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/sonata-project/core-bundle/Resources/translations/SonataCoreBundle.de.xliff</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/sonata-project/admin-bundle/Resources/translations/SonataAdminBundle.de.xliff</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.de.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.de.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.de.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.de.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.de.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/core-bundle/Resources/translations/SonataCoreBundle.de.xliff</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/admin-bundle/Resources/translations/SonataAdminBundle.de.xliff</argument>
           </argument>
           <argument key="el" type="collection">
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.el.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.el.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.el.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.el.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.el.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.el.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.el.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.el.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.el.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.el.yml</argument>
           </argument>
           <argument key="en" type="collection">
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.en.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.en.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.en.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.en.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.en.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/sonata-project/core-bundle/Resources/translations/SonataCoreBundle.en.xliff</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/sonata-project/admin-bundle/Resources/translations/SonataAdminBundle.en.xliff</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.en.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.en.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.en.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.en.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.en.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/core-bundle/Resources/translations/SonataCoreBundle.en.xliff</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/admin-bundle/Resources/translations/SonataAdminBundle.en.xliff</argument>
           </argument>
           <argument key="es" type="collection">
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.es.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.es.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.es.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.es.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.es.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/sonata-project/core-bundle/Resources/translations/SonataCoreBundle.es.xliff</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/sonata-project/admin-bundle/Resources/translations/SonataAdminBundle.es.xliff</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.es.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.es.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.es.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.es.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.es.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/core-bundle/Resources/translations/SonataCoreBundle.es.xliff</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/admin-bundle/Resources/translations/SonataAdminBundle.es.xliff</argument>
           </argument>
           <argument key="et" type="collection">
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.et.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.et.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.et.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.et.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.et.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.et.yml</argument>
           </argument>
           <argument key="eu" type="collection">
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.eu.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.eu.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.eu.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.eu.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/sonata-project/core-bundle/Resources/translations/SonataCoreBundle.eu.xliff</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/sonata-project/admin-bundle/Resources/translations/SonataAdminBundle.eu.xliff</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.eu.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.eu.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.eu.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.eu.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/core-bundle/Resources/translations/SonataCoreBundle.eu.xliff</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/admin-bundle/Resources/translations/SonataAdminBundle.eu.xliff</argument>
           </argument>
           <argument key="fa" type="collection">
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.fa.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.fa.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.fa.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.fa.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.fa.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/sonata-project/core-bundle/Resources/translations/SonataCoreBundle.fa.xliff</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/sonata-project/admin-bundle/Resources/translations/SonataAdminBundle.fa.xliff</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.fa.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.fa.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.fa.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.fa.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.fa.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/core-bundle/Resources/translations/SonataCoreBundle.fa.xliff</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/admin-bundle/Resources/translations/SonataAdminBundle.fa.xliff</argument>
           </argument>
           <argument key="fi" type="collection">
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.fi.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.fi.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.fi.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.fi.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/sonata-project/core-bundle/Resources/translations/SonataCoreBundle.fi.xliff</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.fi.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.fi.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.fi.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.fi.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/core-bundle/Resources/translations/SonataCoreBundle.fi.xliff</argument>
           </argument>
           <argument key="fr" type="collection">
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.fr.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.fr.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.fr.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.fr.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.fr.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/src/EduSpeakBundle/Resources/translations/messages.fr.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/sonata-project/core-bundle/Resources/translations/SonataCoreBundle.fr.xliff</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/sonata-project/admin-bundle/Resources/translations/SonataAdminBundle.fr.xliff</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.fr.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.fr.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.fr.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.fr.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.fr.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/src/EduSpeakBundle/Resources/translations/messages.fr.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/core-bundle/Resources/translations/SonataCoreBundle.fr.xliff</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/admin-bundle/Resources/translations/SonataAdminBundle.fr.xliff</argument>
           </argument>
           <argument key="gl" type="collection">
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.gl.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.gl.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.gl.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.gl.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.gl.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.gl.xlf</argument>
           </argument>
           <argument key="he" type="collection">
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.he.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.he.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.he.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.he.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.he.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.he.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.he.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.he.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.he.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.he.yml</argument>
           </argument>
           <argument key="hr" type="collection">
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.hr.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.hr.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.hr.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.hr.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.hr.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/sonata-project/core-bundle/Resources/translations/SonataCoreBundle.hr.xliff</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/sonata-project/admin-bundle/Resources/translations/SonataAdminBundle.hr.xliff</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.hr.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.hr.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.hr.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.hr.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.hr.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/core-bundle/Resources/translations/SonataCoreBundle.hr.xliff</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/admin-bundle/Resources/translations/SonataAdminBundle.hr.xliff</argument>
           </argument>
           <argument key="hu" type="collection">
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.hu.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.hu.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.hu.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.hu.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.hu.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/sonata-project/core-bundle/Resources/translations/SonataCoreBundle.hu.xliff</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/sonata-project/admin-bundle/Resources/translations/SonataAdminBundle.hu.xliff</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.hu.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.hu.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.hu.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.hu.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.hu.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/core-bundle/Resources/translations/SonataCoreBundle.hu.xliff</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/admin-bundle/Resources/translations/SonataAdminBundle.hu.xliff</argument>
           </argument>
           <argument key="hy" type="collection">
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.hy.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.hy.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.hy.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.hy.xlf</argument>
           </argument>
           <argument key="id" type="collection">
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.id.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.id.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.id.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.id.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.id.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.id.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.id.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.id.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.id.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.id.yml</argument>
           </argument>
           <argument key="it" type="collection">
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.it.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.it.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.it.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.it.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.it.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/sonata-project/core-bundle/Resources/translations/SonataCoreBundle.it.xliff</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/sonata-project/admin-bundle/Resources/translations/SonataAdminBundle.it.xliff</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.it.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.it.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.it.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.it.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.it.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/core-bundle/Resources/translations/SonataCoreBundle.it.xliff</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/admin-bundle/Resources/translations/SonataAdminBundle.it.xliff</argument>
           </argument>
           <argument key="ja" type="collection">
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.ja.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.ja.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.ja.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.ja.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.ja.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/sonata-project/core-bundle/Resources/translations/SonataCoreBundle.ja.xliff</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/sonata-project/admin-bundle/Resources/translations/SonataAdminBundle.ja.xliff</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.ja.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.ja.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.ja.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.ja.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.ja.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/core-bundle/Resources/translations/SonataCoreBundle.ja.xliff</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/admin-bundle/Resources/translations/SonataAdminBundle.ja.xliff</argument>
           </argument>
           <argument key="lb" type="collection">
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.lb.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.lb.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.lb.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.lb.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/sonata-project/core-bundle/Resources/translations/SonataCoreBundle.lb.xliff</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/sonata-project/admin-bundle/Resources/translations/SonataAdminBundle.lb.xliff</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.lb.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.lb.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.lb.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.lb.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/core-bundle/Resources/translations/SonataCoreBundle.lb.xliff</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/admin-bundle/Resources/translations/SonataAdminBundle.lb.xliff</argument>
           </argument>
           <argument key="lt" type="collection">
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.lt.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.lt.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.lt.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.lt.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.lt.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/sonata-project/core-bundle/Resources/translations/SonataCoreBundle.lt.xliff</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/sonata-project/admin-bundle/Resources/translations/SonataAdminBundle.lt.xliff</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.lt.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.lt.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.lt.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.lt.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.lt.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/core-bundle/Resources/translations/SonataCoreBundle.lt.xliff</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/admin-bundle/Resources/translations/SonataAdminBundle.lt.xliff</argument>
           </argument>
           <argument key="mn" type="collection">
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.mn.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.mn.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.mn.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.mn.xlf</argument>
           </argument>
           <argument key="nb" type="collection">
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.nb.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.nb.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.nb.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.nb.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.nb.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.nb.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.nb.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.nb.yml</argument>
           </argument>
           <argument key="nl" type="collection">
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.nl.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.nl.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.nl.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.nl.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.nl.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/sonata-project/core-bundle/Resources/translations/SonataCoreBundle.nl.xliff</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/sonata-project/admin-bundle/Resources/translations/SonataAdminBundle.nl.xliff</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.nl.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.nl.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.nl.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.nl.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.nl.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/core-bundle/Resources/translations/SonataCoreBundle.nl.xliff</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/admin-bundle/Resources/translations/SonataAdminBundle.nl.xliff</argument>
           </argument>
           <argument key="no" type="collection">
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.no.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.no.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.no.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.no.xlf</argument>
           </argument>
           <argument key="pl" type="collection">
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.pl.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.pl.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.pl.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.pl.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.pl.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/sonata-project/core-bundle/Resources/translations/SonataCoreBundle.pl.xliff</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/sonata-project/admin-bundle/Resources/translations/SonataAdminBundle.pl.xliff</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.pl.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.pl.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.pl.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.pl.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.pl.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/core-bundle/Resources/translations/SonataCoreBundle.pl.xliff</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/admin-bundle/Resources/translations/SonataAdminBundle.pl.xliff</argument>
           </argument>
           <argument key="pt" type="collection">
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.pt.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.pt.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.pt.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.pt.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/sonata-project/core-bundle/Resources/translations/SonataCoreBundle.pt.xliff</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/sonata-project/admin-bundle/Resources/translations/SonataAdminBundle.pt.xliff</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.pt.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.pt.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.pt.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.pt.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/core-bundle/Resources/translations/SonataCoreBundle.pt.xliff</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/admin-bundle/Resources/translations/SonataAdminBundle.pt.xliff</argument>
           </argument>
           <argument key="pt_BR" type="collection">
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.pt_BR.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.pt_BR.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.pt_BR.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.pt_BR.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.pt_BR.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/sonata-project/core-bundle/Resources/translations/SonataCoreBundle.pt_BR.xliff</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/sonata-project/admin-bundle/Resources/translations/SonataAdminBundle.pt_BR.xliff</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.pt_BR.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.pt_BR.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.pt_BR.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.pt_BR.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.pt_BR.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/core-bundle/Resources/translations/SonataCoreBundle.pt_BR.xliff</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/admin-bundle/Resources/translations/SonataAdminBundle.pt_BR.xliff</argument>
           </argument>
           <argument key="ro" type="collection">
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.ro.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.ro.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.ro.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.ro.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.ro.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/sonata-project/core-bundle/Resources/translations/SonataCoreBundle.ro.xliff</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/sonata-project/admin-bundle/Resources/translations/SonataAdminBundle.ro.xliff</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.ro.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.ro.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.ro.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.ro.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.ro.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/core-bundle/Resources/translations/SonataCoreBundle.ro.xliff</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/admin-bundle/Resources/translations/SonataAdminBundle.ro.xliff</argument>
           </argument>
           <argument key="ru" type="collection">
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.ru.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.ru.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.ru.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.ru.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.ru.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/sonata-project/core-bundle/Resources/translations/SonataCoreBundle.ru.xliff</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/sonata-project/admin-bundle/Resources/translations/SonataAdminBundle.ru.xliff</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.ru.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.ru.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.ru.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.ru.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.ru.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/core-bundle/Resources/translations/SonataCoreBundle.ru.xliff</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/admin-bundle/Resources/translations/SonataAdminBundle.ru.xliff</argument>
           </argument>
           <argument key="sk" type="collection">
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.sk.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.sk.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.sk.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.sk.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.sk.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/sonata-project/core-bundle/Resources/translations/SonataCoreBundle.sk.xliff</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/sonata-project/admin-bundle/Resources/translations/SonataAdminBundle.sk.xliff</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.sk.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.sk.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.sk.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.sk.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.sk.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/core-bundle/Resources/translations/SonataCoreBundle.sk.xliff</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/admin-bundle/Resources/translations/SonataAdminBundle.sk.xliff</argument>
           </argument>
           <argument key="sl" type="collection">
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.sl.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.sl.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.sl.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.sl.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.sl.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/sonata-project/core-bundle/Resources/translations/SonataCoreBundle.sl.xliff</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/sonata-project/admin-bundle/Resources/translations/SonataAdminBundle.sl.xliff</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.sl.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.sl.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.sl.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.sl.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.sl.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/core-bundle/Resources/translations/SonataCoreBundle.sl.xliff</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/admin-bundle/Resources/translations/SonataAdminBundle.sl.xliff</argument>
           </argument>
           <argument key="sq" type="collection">
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.sq.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.sq.xlf</argument>
           </argument>
           <argument key="sr_Cyrl" type="collection">
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.sr_Cyrl.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.sr_Cyrl.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.sr_Cyrl.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.sr_Cyrl.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.sr_Cyrl.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.sr_Cyrl.xlf</argument>
           </argument>
           <argument key="sr_Latn" type="collection">
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.sr_Latn.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.sr_Latn.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.sr_Latn.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.sr_Latn.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.sr_Latn.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.sr_Latn.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.sr_Latn.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.sr_Latn.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.sr_Latn.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.sr_Latn.yml</argument>
           </argument>
           <argument key="sv" type="collection">
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.sv.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.sv.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.sv.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.sv.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.sv.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.sv.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.sv.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.sv.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.sv.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.sv.yml</argument>
           </argument>
           <argument key="th" type="collection">
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.th.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.th.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.th.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.th.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.th.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.th.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.th.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.th.yml</argument>
           </argument>
           <argument key="tr" type="collection">
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.tr.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.tr.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.tr.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.tr.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.tr.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.tr.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.tr.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.tr.yml</argument>
           </argument>
           <argument key="uk" type="collection">
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.uk.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.uk.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.uk.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.uk.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/sonata-project/core-bundle/Resources/translations/SonataCoreBundle.uk.xliff</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/sonata-project/admin-bundle/Resources/translations/SonataAdminBundle.uk.xliff</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.uk.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.uk.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.uk.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.uk.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/core-bundle/Resources/translations/SonataCoreBundle.uk.xliff</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/admin-bundle/Resources/translations/SonataAdminBundle.uk.xliff</argument>
           </argument>
           <argument key="vi" type="collection">
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.vi.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.vi.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.vi.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.vi.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.vi.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.vi.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.vi.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.vi.yml</argument>
           </argument>
           <argument key="zh_CN" type="collection">
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.zh_CN.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.zh_CN.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.zh_CN.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.zh_CN.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.zh_CN.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/sonata-project/core-bundle/Resources/translations/SonataCoreBundle.zh_CN.xliff</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/sonata-project/admin-bundle/Resources/translations/SonataAdminBundle.zh_CN.xliff</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.zh_CN.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.zh_CN.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.zh_CN.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.zh_CN.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.zh_CN.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/core-bundle/Resources/translations/SonataCoreBundle.zh_CN.xliff</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/admin-bundle/Resources/translations/SonataAdminBundle.zh_CN.xliff</argument>
           </argument>
           <argument key="zh_TW" type="collection">
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.zh_TW.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.zh_TW.xlf</argument>
           </argument>
           <argument key="lv" type="collection">
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.lv.xlf</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.lv.yml</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.lv.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/translations/validators.lv.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/FOSUserBundle.lv.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.lv.yml</argument>
           </argument>
           <argument key="pt_PT" type="collection">
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.pt_PT.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.pt_PT.xlf</argument>
           </argument>
           <argument key="ua" type="collection">
-            <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.ua.xlf</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Security/Core/Exception/../Resources/translations/security.ua.xlf</argument>
           </argument>
         </argument>
       </argument>
@@ -1726,7 +1874,7 @@
     </service>
     <service id="security.secure_random" class="Symfony\Component\Security\Core\Util\SecureRandom">
       <tag name="monolog.logger" channel="security"/>
-      <argument>/Users/vincentroma/Sites/eduspeak/app/cache/dev/secure_random.seed</argument>
+      <argument>/Users/vincentroma/Documents/Code/eduspeak/app/cache/dev/secure_random.seed</argument>
       <argument type="service" id="monolog.logger.security" on-invalid="ignore"/>
     </service>
     <service id="form.resolved_type_factory" class="Symfony\Component\Form\Extension\DataCollector\Proxy\ResolvedTypeFactoryDataCollectorProxy">
@@ -1814,6 +1962,7 @@
                 <argument>form.type_extension.form.data_collector</argument>
                 <argument>sonata.admin.form.extension.field</argument>
                 <argument>sonata.admin.form.extension.field.mopa</argument>
+                <argument>nelmio_api_doc.form.extension.description_form_type_extension</argument>
               </argument>
               <argument key="repeated" type="collection">
                 <argument>form.type_extension.repeated.validator</argument>
@@ -1996,7 +2145,7 @@
     <service id="templating.filename_parser" class="Symfony\Bundle\FrameworkBundle\Templating\TemplateFilenameParser"/>
     <service id="templating.locator" class="Symfony\Bundle\FrameworkBundle\Templating\Loader\TemplateLocator" public="false">
       <argument type="service" id="file_locator"/>
-      <argument>/Users/vincentroma/Sites/eduspeak/app/cache/dev</argument>
+      <argument>/Users/vincentroma/Documents/Code/eduspeak/app/cache/dev</argument>
     </service>
     <service id="templating.helper.assets" class="Symfony\Bundle\FrameworkBundle\Templating\Helper\AssetsHelper">
       <tag name="templating.helper" alias="assets"/>
@@ -2022,8 +2171,8 @@
       </call>
       <call method="addXmlMappings">
         <argument type="collection">
-          <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/config/validation.xml</argument>
-          <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/config/validation.xml</argument>
+          <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/config/validation.xml</argument>
+          <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/config/validation.xml</argument>
         </argument>
       </call>
       <call method="enableAnnotationMapping">
@@ -2044,7 +2193,7 @@
         </argument>
       </call>
       <call method="addXmlMapping">
-        <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/DependencyInjection/Compiler/../../Resources/config/storage-validation/orm.xml</argument>
+        <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/DependencyInjection/Compiler/../../Resources/config/storage-validation/orm.xml</argument>
       </call>
       <factory class="Symfony\Component\Validator\Validation" method="createValidatorBuilder"/>
     </service>
@@ -2081,7 +2230,7 @@
       <tag name="monolog.logger" channel="profiler"/>
       <argument type="service">
         <service class="Symfony\Component\HttpKernel\Profiler\FileProfilerStorage" public="false">
-          <argument>file:/Users/vincentroma/Sites/eduspeak/app/cache/dev/profiler</argument>
+          <argument>file:/Users/vincentroma/Documents/Code/eduspeak/app/cache/dev/profiler</argument>
           <argument></argument>
           <argument></argument>
           <argument>86400</argument>
@@ -2319,6 +2468,15 @@
           <call method="addLoader">
             <argument type="service" id="sonata.admin.route_loader"/>
           </call>
+          <call method="addLoader">
+            <argument type="service" id="fos_rest.routing.loader.controller"/>
+          </call>
+          <call method="addLoader">
+            <argument type="service" id="fos_rest.routing.loader.yaml_collection"/>
+          </call>
+          <call method="addLoader">
+            <argument type="service" id="fos_rest.routing.loader.xml_collection"/>
+          </call>
         </service>
       </argument>
     </service>
@@ -2386,6 +2544,38 @@
         <argument>kernel.request</argument>
         <argument type="collection">
           <argument>knp_menu.listener.voters</argument>
+          <argument>onKernelRequest</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListenerService">
+        <argument>kernel.controller</argument>
+        <argument type="collection">
+          <argument>fos_rest.view_response_listener</argument>
+          <argument>onKernelController</argument>
+        </argument>
+        <argument>-10</argument>
+      </call>
+      <call method="addListenerService">
+        <argument>kernel.view</argument>
+        <argument type="collection">
+          <argument>fos_rest.view_response_listener</argument>
+          <argument>onKernelView</argument>
+        </argument>
+        <argument>100</argument>
+      </call>
+      <call method="addListenerService">
+        <argument>kernel.request</argument>
+        <argument type="collection">
+          <argument>fos_rest.body_listener</argument>
+          <argument>onKernelRequest</argument>
+        </argument>
+        <argument>10</argument>
+      </call>
+      <call method="addListenerService">
+        <argument>kernel.request</argument>
+        <argument type="collection">
+          <argument>nelmio_api_doc.event_listener.request</argument>
           <argument>onKernelRequest</argument>
         </argument>
         <argument>0</argument>
@@ -2471,10 +2661,6 @@
         <argument>Sensio\Bundle\FrameworkExtraBundle\EventListener\ParamConverterListener</argument>
       </call>
       <call method="addSubscriberService">
-        <argument>sensio_framework_extra.view.listener</argument>
-        <argument>Sensio\Bundle\FrameworkExtraBundle\EventListener\TemplateListener</argument>
-      </call>
-      <call method="addSubscriberService">
         <argument>sensio_framework_extra.cache.listener</argument>
         <argument>Sensio\Bundle\FrameworkExtraBundle\EventListener\HttpCacheListener</argument>
       </call>
@@ -2542,7 +2728,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>55f9feb9e72f96.33135820</argument>
+            <argument>56262bc08d8116.69475383</argument>
           </service>
         </argument>
       </argument>
@@ -2825,7 +3011,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.token_storage"/>
-            <argument>55f9feb9e72f96.33135820</argument>
+            <argument>56262bc08d8116.69475383</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
             <argument type="service" id="security.authentication.manager"/>
           </service>
@@ -2928,7 +3114,7 @@
           <argument>form_div_layout.html.twig</argument>
         </argument>
         <argument key="autoescape">filename</argument>
-        <argument key="cache">/Users/vincentroma/Sites/eduspeak/app/cache/dev/twig</argument>
+        <argument key="cache">/Users/vincentroma/Documents/Code/eduspeak/app/cache/dev/twig</argument>
         <argument key="charset">UTF-8</argument>
         <argument key="paths" type="collection"/>
         <argument key="date" type="collection">
@@ -3002,7 +3188,7 @@
           <service class="Symfony\Bridge\Twig\Extension\CodeExtension" public="false">
             <tag name="twig.extension"/>
             <argument>null</argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/app</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/app</argument>
             <argument>UTF-8</argument>
           </service>
         </argument>
@@ -3146,6 +3332,17 @@
       </call>
       <call method="addExtension">
         <argument type="service">
+          <service class="JMS\Serializer\Twig\SerializerExtension" public="false">
+            <tag name="twig.extension"/>
+            <argument type="service" id="jms_serializer"/>
+          </service>
+        </argument>
+      </call>
+      <call method="addExtension">
+        <argument type="service" id="nelmio_api_doc.twig.extension.extra_markdown"/>
+      </call>
+      <call method="addExtension">
+        <argument type="service">
           <service class="Symfony\Bridge\Twig\Extension\DumpExtension" public="false">
             <tag name="twig.extension"/>
             <argument type="service" id="var_dumper.cloner"/>
@@ -3216,7 +3413,7 @@
       <argument>twig.controller.exception:showAction</argument>
     </service>
     <service id="monolog.handler.main" class="Monolog\Handler\StreamHandler">
-      <argument>/Users/vincentroma/Sites/eduspeak/app/logs/dev.log</argument>
+      <argument>/Users/vincentroma/Documents/Code/eduspeak/app/logs/dev.log</argument>
       <argument>100</argument>
       <argument>true</argument>
       <argument>null</argument>
@@ -3278,7 +3475,7 @@
             </argument>
             <argument type="service">
               <service class="Assetic\Cache\ConfigCache" public="false">
-                <argument>/Users/vincentroma/Sites/eduspeak/app/cache/dev/assetic/config</argument>
+                <argument>/Users/vincentroma/Documents/Code/eduspeak/app/cache/dev/assetic/config</argument>
               </service>
             </argument>
             <argument>true</argument>
@@ -3292,7 +3489,7 @@
             <tag name="assetic.formula_resource" loader="twig"/>
             <argument type="service" id="templating.loader"/>
             <argument></argument>
-            <argument>/Users/vincentroma/Sites/eduspeak/app/Resources/views</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/app/Resources/views</argument>
             <argument>/\.[^.]+\.twig$/</argument>
           </service>
         </argument>
@@ -3307,7 +3504,7 @@
           <factory service="service_container" method="getParameterBag"/>
         </service>
       </argument>
-      <argument>/Users/vincentroma/Sites/eduspeak/app/../web</argument>
+      <argument>/Users/vincentroma/Documents/Code/eduspeak/app/../web</argument>
       <argument>true</argument>
       <call method="addWorker">
         <argument type="service">
@@ -3324,7 +3521,7 @@
       <argument type="service" id="assetic.asset_manager"/>
       <argument type="service">
         <service class="Assetic\Cache\FilesystemCache" public="false">
-          <argument>/Users/vincentroma/Sites/eduspeak/app/cache/dev/assetic/assets</argument>
+          <argument>/Users/vincentroma/Documents/Code/eduspeak/app/cache/dev/assetic/assets</argument>
         </service>
       </argument>
       <argument>false</argument>
@@ -3421,17 +3618,17 @@
     </service>
     <service id="doctrine_cache.providers.doctrine.orm.default_metadata_cache" class="Doctrine\Common\Cache\ArrayCache">
       <call method="setNamespace">
-        <argument>sf2orm_default_48009b67dc49c80d24be1cee8ecb32011a4a5e1993b22933493857a6b4ed0638</argument>
+        <argument>sf2orm_default_00c22bf7d098f8affa52c06258b4f5e70397b8d7196b84640fc1ab06b814a297</argument>
       </call>
     </service>
     <service id="doctrine_cache.providers.doctrine.orm.default_result_cache" class="Doctrine\Common\Cache\ArrayCache">
       <call method="setNamespace">
-        <argument>sf2orm_default_48009b67dc49c80d24be1cee8ecb32011a4a5e1993b22933493857a6b4ed0638</argument>
+        <argument>sf2orm_default_00c22bf7d098f8affa52c06258b4f5e70397b8d7196b84640fc1ab06b814a297</argument>
       </call>
     </service>
     <service id="doctrine_cache.providers.doctrine.orm.default_query_cache" class="Doctrine\Common\Cache\ArrayCache">
       <call method="setNamespace">
-        <argument>sf2orm_default_48009b67dc49c80d24be1cee8ecb32011a4a5e1993b22933493857a6b4ed0638</argument>
+        <argument>sf2orm_default_00c22bf7d098f8affa52c06258b4f5e70397b8d7196b84640fc1ab06b814a297</argument>
       </call>
     </service>
     <service id="doctrine.orm.default_entity_listener_resolver" class="Doctrine\ORM\Mapping\DefaultEntityListenerResolver"/>
@@ -3468,7 +3665,7 @@
                     <service class="Doctrine\ORM\Mapping\Driver\AnnotationDriver" public="false">
                       <argument type="service" id="annotation_reader"/>
                       <argument type="collection">
-                        <argument>/Users/vincentroma/Sites/eduspeak/src/EduSpeakBundle/Entity</argument>
+                        <argument>/Users/vincentroma/Documents/Code/eduspeak/src/EduSpeakBundle/Entity</argument>
                       </argument>
                     </service>
                   </argument>
@@ -3480,7 +3677,7 @@
                       <argument type="service">
                         <service class="Doctrine\Common\Persistence\Mapping\Driver\SymfonyFileLocator">
                           <argument type="collection">
-                            <argument key="/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/config/doctrine-mapping">FOS\UserBundle\Model</argument>
+                            <argument key="/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/config/doctrine-mapping">FOS\UserBundle\Model</argument>
                           </argument>
                           <argument>.orm.xml</argument>
                         </service>
@@ -3493,7 +3690,7 @@
             </argument>
           </call>
           <call method="setProxyDir">
-            <argument>/Users/vincentroma/Sites/eduspeak/app/cache/dev/doctrine/orm/Proxies</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/app/cache/dev/doctrine/orm/Proxies</argument>
           </call>
           <call method="setProxyNamespace">
             <argument>Proxies</argument>
@@ -3555,10 +3752,6 @@
     </service>
     <service id="sensio_framework_extra.converter.datetime" class="Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\DateTimeParamConverter">
       <tag name="request.param_converter" converter="datetime"/>
-    </service>
-    <service id="sensio_framework_extra.view.listener" class="Sensio\Bundle\FrameworkExtraBundle\EventListener\TemplateListener">
-      <tag name="kernel.event_subscriber"/>
-      <argument type="service" id="service_container"/>
     </service>
     <service id="sensio_framework_extra.cache.listener" class="Sensio\Bundle\FrameworkExtraBundle\EventListener\HttpCacheListener">
       <tag name="kernel.event_subscriber"/>
@@ -4377,7 +4570,7 @@
       <argument type="service" id="sonata.admin.route.cache"/>
     </service>
     <service id="sonata.admin.route.cache" class="Sonata\AdminBundle\Route\RoutesCache">
-      <argument>/Users/vincentroma/Sites/eduspeak/app/cache/dev/sonata/admin</argument>
+      <argument>/Users/vincentroma/Documents/Code/eduspeak/app/cache/dev/sonata/admin</argument>
       <argument>true</argument>
     </service>
     <service id="sonata.admin.route.cache_warmup" class="Sonata\AdminBundle\Route\RoutesCacheWarmUp">
@@ -4404,6 +4597,636 @@
     <service id="sonata.admin.object.manipulator.acl.admin" class="Sonata\AdminBundle\Util\AdminObjectAclManipulator">
       <argument type="service" id="form.factory"/>
       <argument>Sonata\AdminBundle\Security\Acl\Permission\MaskBuilder</argument>
+    </service>
+    <service id="fos_rest.view.exception_wrapper_handler" class="FOS\RestBundle\View\ExceptionWrapperHandler"/>
+    <service id="fos_rest.serializer.exception_wrapper_serialize_handler" class="FOS\RestBundle\Serializer\ExceptionWrapperSerializeHandler">
+      <tag name="jms_serializer.subscribing_handler"/>
+    </service>
+    <service id="fos_rest.serializer.exception_wrapper_normalizer" class="FOS\RestBundle\Serializer\ExceptionWrapperNormalizer">
+      <tag name="serializer.normalizer"/>
+      <argument type="service" id="translator"/>
+    </service>
+    <service id="fos_rest.routing.loader.controller" class="FOS\RestBundle\Routing\Loader\RestRouteLoader">
+      <tag name="routing.loader"/>
+      <argument type="service" id="service_container"/>
+      <argument type="service" id="file_locator"/>
+      <argument type="service" id="controller_name_converter"/>
+      <argument type="service" id="fos_rest.routing.loader.reader.controller"/>
+      <argument>json</argument>
+    </service>
+    <service id="fos_rest.routing.loader.processor" class="FOS\RestBundle\Routing\Loader\RestRouteProcessor"/>
+    <service id="fos_rest.routing.loader.yaml_collection" class="FOS\RestBundle\Routing\Loader\RestYamlCollectionLoader">
+      <tag name="routing.loader"/>
+      <argument type="service" id="file_locator"/>
+      <argument type="service" id="fos_rest.routing.loader.processor"/>
+      <argument>true</argument>
+      <argument type="collection">
+        <argument key="json">false</argument>
+        <argument key="xml">false</argument>
+        <argument key="html">true</argument>
+      </argument>
+      <argument>json</argument>
+    </service>
+    <service id="fos_rest.routing.loader.xml_collection" class="FOS\RestBundle\Routing\Loader\RestXmlCollectionLoader">
+      <tag name="routing.loader"/>
+      <argument type="service" id="file_locator"/>
+      <argument type="service" id="fos_rest.routing.loader.processor"/>
+      <argument>true</argument>
+      <argument type="collection">
+        <argument key="json">false</argument>
+        <argument key="xml">false</argument>
+        <argument key="html">true</argument>
+      </argument>
+      <argument>json</argument>
+    </service>
+    <service id="fos_rest.routing.loader.reader.controller" class="FOS\RestBundle\Routing\Loader\Reader\RestControllerReader">
+      <argument type="service" id="fos_rest.routing.loader.reader.action"/>
+      <argument type="service" id="annotation_reader"/>
+    </service>
+    <service id="fos_rest.routing.loader.reader.action" class="FOS\RestBundle\Routing\Loader\Reader\RestActionReader">
+      <argument type="service" id="annotation_reader"/>
+      <argument type="service" id="fos_rest.request.param_fetcher.reader"/>
+      <argument type="service" id="fos_rest.inflector.doctrine"/>
+      <argument>true</argument>
+      <argument type="collection">
+        <argument key="json">false</argument>
+        <argument key="xml">false</argument>
+        <argument key="html">true</argument>
+      </argument>
+    </service>
+    <service id="fos_rest.format_negotiator" class="FOS\RestBundle\Util\FormatNegotiator"/>
+    <service id="fos_rest.exception_format_negotiator" class="FOS\RestBundle\Util\FormatNegotiator"/>
+    <service id="fos_rest.inflector.doctrine" class="FOS\RestBundle\Util\Inflector\DoctrineInflector"/>
+    <service id="fos_rest.violation_formatter" class="FOS\RestBundle\Util\ViolationFormatter"/>
+    <service id="fos_rest.request.param_fetcher" class="FOS\RestBundle\Request\ParamFetcher" scope="request">
+      <argument type="service" id="fos_rest.request.param_fetcher.reader"/>
+      <argument type="service" id="request"/>
+      <argument type="service" id="fos_rest.violation_formatter"/>
+      <argument type="service" id="validator" on-invalid="null"/>
+    </service>
+    <service id="fos_rest.request.param_fetcher.reader" class="FOS\RestBundle\Request\ParamReader">
+      <argument type="service" id="annotation_reader"/>
+    </service>
+    <service id="fos_rest.view_response_listener" class="FOS\RestBundle\EventListener\ViewResponseListener">
+      <tag name="kernel.event_listener" event="kernel.controller" method="onKernelController" priority="-10"/>
+      <tag name="kernel.event_listener" event="kernel.view" method="onKernelView" priority="100"/>
+      <argument type="service" id="service_container"/>
+    </service>
+    <service id="fos_rest.normalizer.camel_keys" class="FOS\RestBundle\Normalizer\CamelKeysNormalizer"/>
+    <service id="fos_rest.decoder.json" class="FOS\RestBundle\Decoder\JsonDecoder"/>
+    <service id="fos_rest.decoder.jsontoform" class="FOS\RestBundle\Decoder\JsonToFormDecoder"/>
+    <service id="fos_rest.decoder.xml" class="FOS\RestBundle\Decoder\XmlDecoder"/>
+    <service id="fos_rest.decoder_provider" class="FOS\RestBundle\Decoder\ContainerDecoderProvider">
+      <argument type="collection">
+        <argument key="json">fos_rest.decoder.json</argument>
+        <argument key="xml">fos_rest.decoder.xml</argument>
+      </argument>
+      <call method="setContainer">
+        <argument type="service" id="service_container"/>
+      </call>
+    </service>
+    <service id="fos_rest.body_listener" class="FOS\RestBundle\EventListener\BodyListener">
+      <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest" priority="10"/>
+      <argument type="service" id="fos_rest.decoder_provider"/>
+      <argument>false</argument>
+      <call method="setDefaultFormat">
+        <argument>null</argument>
+      </call>
+    </service>
+    <service id="jms_serializer.doctrine_proxy_subscriber" class="JMS\Serializer\EventDispatcher\Subscriber\DoctrineProxySubscriber">
+      <tag name="jms_serializer.event_subscriber"/>
+    </service>
+    <service id="jms_serializer.stopwatch_subscriber" class="JMS\SerializerBundle\Serializer\StopwatchEventSubscriber">
+      <tag name="jms_serializer.event_subscriber"/>
+      <argument type="service" id="debug.stopwatch"/>
+    </service>
+    <service id="jms_serializer.handler_registry" class="JMS\Serializer\Handler\LazyHandlerRegistry">
+      <argument type="service" id="service_container"/>
+      <argument type="collection">
+        <argument key="1" type="collection">
+          <argument key="FOS\RestBundle\Util\ExceptionWrapper" type="collection">
+            <argument key="json" type="collection">
+              <argument>fos_rest.serializer.exception_wrapper_serialize_handler</argument>
+              <argument>serializeToJson</argument>
+            </argument>
+            <argument key="xml" type="collection">
+              <argument>fos_rest.serializer.exception_wrapper_serialize_handler</argument>
+              <argument>serializeToXml</argument>
+            </argument>
+          </argument>
+          <argument key="DateTime" type="collection">
+            <argument key="json" type="collection">
+              <argument>jms_serializer.datetime_handler</argument>
+              <argument>serializeDateTime</argument>
+            </argument>
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.datetime_handler</argument>
+              <argument>serializeDateTime</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.datetime_handler</argument>
+              <argument>serializeDateTime</argument>
+            </argument>
+          </argument>
+          <argument key="DateInterval" type="collection">
+            <argument key="json" type="collection">
+              <argument>jms_serializer.datetime_handler</argument>
+              <argument>serializeDateInterval</argument>
+            </argument>
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.datetime_handler</argument>
+              <argument>serializeDateInterval</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.datetime_handler</argument>
+              <argument>serializeDateInterval</argument>
+            </argument>
+          </argument>
+          <argument key="ArrayCollection" type="collection">
+            <argument key="json" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>serializeCollection</argument>
+            </argument>
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>serializeCollection</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>serializeCollection</argument>
+            </argument>
+          </argument>
+          <argument key="Doctrine\Common\Collections\ArrayCollection" type="collection">
+            <argument key="json" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>serializeCollection</argument>
+            </argument>
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>serializeCollection</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>serializeCollection</argument>
+            </argument>
+          </argument>
+          <argument key="Doctrine\ORM\PersistentCollection" type="collection">
+            <argument key="json" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>serializeCollection</argument>
+            </argument>
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>serializeCollection</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>serializeCollection</argument>
+            </argument>
+          </argument>
+          <argument key="Doctrine\ODM\MongoDB\PersistentCollection" type="collection">
+            <argument key="json" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>serializeCollection</argument>
+            </argument>
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>serializeCollection</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>serializeCollection</argument>
+            </argument>
+          </argument>
+          <argument key="Doctrine\ODM\PHPCR\PersistentCollection" type="collection">
+            <argument key="json" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>serializeCollection</argument>
+            </argument>
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>serializeCollection</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>serializeCollection</argument>
+            </argument>
+          </argument>
+          <argument key="PhpCollection\Sequence" type="collection">
+            <argument key="json" type="collection">
+              <argument>jms_serializer.php_collection_handler</argument>
+              <argument>serializeSequence</argument>
+            </argument>
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.php_collection_handler</argument>
+              <argument>serializeSequence</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.php_collection_handler</argument>
+              <argument>serializeSequence</argument>
+            </argument>
+          </argument>
+          <argument key="PhpCollection\Map" type="collection">
+            <argument key="json" type="collection">
+              <argument>jms_serializer.php_collection_handler</argument>
+              <argument>serializeMap</argument>
+            </argument>
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.php_collection_handler</argument>
+              <argument>serializeMap</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.php_collection_handler</argument>
+              <argument>serializeMap</argument>
+            </argument>
+          </argument>
+          <argument key="Symfony\Component\Form\Form" type="collection">
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.form_error_handler</argument>
+              <argument>serializeFormToxml</argument>
+            </argument>
+            <argument key="json" type="collection">
+              <argument>jms_serializer.form_error_handler</argument>
+              <argument>serializeFormTojson</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.form_error_handler</argument>
+              <argument>serializeFormToyml</argument>
+            </argument>
+          </argument>
+          <argument key="Symfony\Component\Form\FormError" type="collection">
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.form_error_handler</argument>
+              <argument>serializeFormErrorToxml</argument>
+            </argument>
+            <argument key="json" type="collection">
+              <argument>jms_serializer.form_error_handler</argument>
+              <argument>serializeFormErrorTojson</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.form_error_handler</argument>
+              <argument>serializeFormErrorToyml</argument>
+            </argument>
+          </argument>
+          <argument key="Symfony\Component\Validator\ConstraintViolationList" type="collection">
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.constraint_violation_handler</argument>
+              <argument>serializeListToxml</argument>
+            </argument>
+            <argument key="json" type="collection">
+              <argument>jms_serializer.constraint_violation_handler</argument>
+              <argument>serializeListTojson</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.constraint_violation_handler</argument>
+              <argument>serializeListToyml</argument>
+            </argument>
+          </argument>
+          <argument key="Symfony\Component\Validator\ConstraintViolation" type="collection">
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.constraint_violation_handler</argument>
+              <argument>serializeViolationToxml</argument>
+            </argument>
+            <argument key="json" type="collection">
+              <argument>jms_serializer.constraint_violation_handler</argument>
+              <argument>serializeViolationTojson</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.constraint_violation_handler</argument>
+              <argument>serializeViolationToyml</argument>
+            </argument>
+          </argument>
+        </argument>
+        <argument key="2" type="collection">
+          <argument key="DateTime" type="collection">
+            <argument key="json" type="collection">
+              <argument>jms_serializer.datetime_handler</argument>
+              <argument>deserializeDateTimeFromjson</argument>
+            </argument>
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.datetime_handler</argument>
+              <argument>deserializeDateTimeFromxml</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.datetime_handler</argument>
+              <argument>deserializeDateTimeFromyml</argument>
+            </argument>
+          </argument>
+          <argument key="ArrayCollection" type="collection">
+            <argument key="json" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>deserializeCollection</argument>
+            </argument>
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>deserializeCollection</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>deserializeCollection</argument>
+            </argument>
+          </argument>
+          <argument key="Doctrine\Common\Collections\ArrayCollection" type="collection">
+            <argument key="json" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>deserializeCollection</argument>
+            </argument>
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>deserializeCollection</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>deserializeCollection</argument>
+            </argument>
+          </argument>
+          <argument key="Doctrine\ORM\PersistentCollection" type="collection">
+            <argument key="json" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>deserializeCollection</argument>
+            </argument>
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>deserializeCollection</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>deserializeCollection</argument>
+            </argument>
+          </argument>
+          <argument key="Doctrine\ODM\MongoDB\PersistentCollection" type="collection">
+            <argument key="json" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>deserializeCollection</argument>
+            </argument>
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>deserializeCollection</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>deserializeCollection</argument>
+            </argument>
+          </argument>
+          <argument key="Doctrine\ODM\PHPCR\PersistentCollection" type="collection">
+            <argument key="json" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>deserializeCollection</argument>
+            </argument>
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>deserializeCollection</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.array_collection_handler</argument>
+              <argument>deserializeCollection</argument>
+            </argument>
+          </argument>
+          <argument key="PhpCollection\Sequence" type="collection">
+            <argument key="json" type="collection">
+              <argument>jms_serializer.php_collection_handler</argument>
+              <argument>deserializeSequence</argument>
+            </argument>
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.php_collection_handler</argument>
+              <argument>deserializeSequence</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.php_collection_handler</argument>
+              <argument>deserializeSequence</argument>
+            </argument>
+          </argument>
+          <argument key="PhpCollection\Map" type="collection">
+            <argument key="json" type="collection">
+              <argument>jms_serializer.php_collection_handler</argument>
+              <argument>deserializeMap</argument>
+            </argument>
+            <argument key="xml" type="collection">
+              <argument>jms_serializer.php_collection_handler</argument>
+              <argument>deserializeMap</argument>
+            </argument>
+            <argument key="yml" type="collection">
+              <argument>jms_serializer.php_collection_handler</argument>
+              <argument>deserializeMap</argument>
+            </argument>
+          </argument>
+        </argument>
+      </argument>
+    </service>
+    <service id="jms_serializer.datetime_handler" class="JMS\Serializer\Handler\DateHandler">
+      <tag name="jms_serializer.subscribing_handler"/>
+      <argument>Y-m-d\TH:i:sO</argument>
+      <argument>Europe/Paris</argument>
+      <argument>true</argument>
+    </service>
+    <service id="jms_serializer.array_collection_handler" class="JMS\Serializer\Handler\ArrayCollectionHandler">
+      <tag name="jms_serializer.subscribing_handler"/>
+    </service>
+    <service id="jms_serializer.php_collection_handler" class="JMS\Serializer\Handler\PhpCollectionHandler">
+      <tag name="jms_serializer.subscribing_handler"/>
+    </service>
+    <service id="jms_serializer.form_error_handler" class="JMS\Serializer\Handler\FormErrorHandler">
+      <tag name="jms_serializer.subscribing_handler"/>
+      <argument type="service" id="translator"/>
+    </service>
+    <service id="jms_serializer.constraint_violation_handler" class="JMS\Serializer\Handler\ConstraintViolationHandler">
+      <tag name="jms_serializer.subscribing_handler"/>
+    </service>
+    <service id="jms_serializer.metadata_factory" class="Metadata\MetadataFactory" public="false">
+      <argument type="service">
+        <service class="Metadata\Driver\LazyLoadingDriver" public="false">
+          <argument type="service" id="service_container"/>
+          <argument>jms_serializer.metadata_driver</argument>
+        </service>
+      </argument>
+      <argument>Metadata\ClassHierarchyMetadata</argument>
+      <argument>true</argument>
+      <call method="setCache">
+        <argument type="service">
+          <service class="Metadata\Cache\FileCache" public="false">
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/app/cache/dev/jms_serializer</argument>
+          </service>
+        </argument>
+      </call>
+    </service>
+    <service id="jms_serializer.unserialize_object_constructor" class="JMS\Serializer\Construction\UnserializeObjectConstructor" public="false"/>
+    <service id="jms_serializer.templating.helper.serializer" class="JMS\SerializerBundle\Templating\SerializerHelper">
+      <tag name="templating.helper" alias="jms_serializer"/>
+      <argument type="service" id="jms_serializer"/>
+    </service>
+    <service id="jms_serializer.json_serialization_visitor" class="JMS\Serializer\JsonSerializationVisitor">
+      <tag name="jms_serializer.serialization_visitor" format="json"/>
+      <argument type="service" id="jms_serializer.naming_strategy"/>
+      <call method="setOptions">
+        <argument>0</argument>
+      </call>
+    </service>
+    <service id="jms_serializer.json_deserialization_visitor" class="JMS\Serializer\JsonDeserializationVisitor">
+      <tag name="jms_serializer.deserialization_visitor" format="json"/>
+      <argument type="service" id="jms_serializer.naming_strategy"/>
+      <argument type="service" id="jms_serializer.unserialize_object_constructor"/>
+    </service>
+    <service id="jms_serializer.xml_serialization_visitor" class="JMS\Serializer\XmlSerializationVisitor">
+      <tag name="jms_serializer.serialization_visitor" format="xml"/>
+      <argument type="service" id="jms_serializer.naming_strategy"/>
+    </service>
+    <service id="jms_serializer.xml_deserialization_visitor" class="JMS\Serializer\XmlDeserializationVisitor">
+      <tag name="jms_serializer.deserialization_visitor" format="xml"/>
+      <argument type="service" id="jms_serializer.naming_strategy"/>
+      <argument type="service" id="jms_serializer.unserialize_object_constructor"/>
+      <call method="setDoctypeWhitelist">
+        <argument type="collection"/>
+      </call>
+    </service>
+    <service id="jms_serializer.yaml_serialization_visitor" class="JMS\Serializer\YamlSerializationVisitor">
+      <tag name="jms_serializer.serialization_visitor" format="yml"/>
+      <argument type="service" id="jms_serializer.naming_strategy"/>
+    </service>
+    <service id="nelmio_api_doc.formatter.markdown_formatter" class="Nelmio\ApiDocBundle\Formatter\MarkdownFormatter"/>
+    <service id="nelmio_api_doc.formatter.simple_formatter" class="Nelmio\ApiDocBundle\Formatter\SimpleFormatter"/>
+    <service id="nelmio_api_doc.formatter.html_formatter" class="Nelmio\ApiDocBundle\Formatter\HtmlFormatter">
+      <call method="setTemplatingEngine">
+        <argument type="service" id="templating"/>
+      </call>
+      <call method="setMotdTemplate">
+        <argument>NelmioApiDocBundle::Components/motd.html.twig</argument>
+      </call>
+      <call method="setApiName">
+        <argument>API documentation</argument>
+      </call>
+      <call method="setEnableSandbox">
+        <argument>true</argument>
+      </call>
+      <call method="setEndpoint">
+        <argument>null</argument>
+      </call>
+      <call method="setRequestFormatMethod">
+        <argument>format_param</argument>
+      </call>
+      <call method="setRequestFormats">
+        <argument type="collection">
+          <argument key="json">application/json</argument>
+          <argument key="xml">application/xml</argument>
+        </argument>
+      </call>
+      <call method="setDefaultRequestFormat">
+        <argument>json</argument>
+      </call>
+      <call method="setAcceptType">
+        <argument>null</argument>
+      </call>
+      <call method="setBodyFormats">
+        <argument type="collection">
+          <argument>form</argument>
+          <argument>json</argument>
+        </argument>
+      </call>
+      <call method="setDefaultBodyFormat">
+        <argument>form</argument>
+      </call>
+      <call method="setAuthentication">
+        <argument>null</argument>
+      </call>
+      <call method="setDefaultSectionsOpened">
+        <argument>true</argument>
+      </call>
+    </service>
+    <service id="nelmio_api_doc.formatter.swagger_formatter" class="Nelmio\ApiDocBundle\Formatter\SwaggerFormatter">
+      <argument>dot_notation</argument>
+      <call method="setBasePath">
+        <argument>/api</argument>
+      </call>
+      <call method="setApiVersion">
+        <argument>0.1</argument>
+      </call>
+      <call method="setSwaggerVersion">
+        <argument>1.2</argument>
+      </call>
+      <call method="setInfo">
+        <argument type="collection">
+          <argument key="title">Symfony2</argument>
+          <argument key="description">My awesome Symfony2 app!</argument>
+          <argument key="TermsOfServiceUrl">null</argument>
+          <argument key="contact">null</argument>
+          <argument key="license">null</argument>
+          <argument key="licenseUrl">null</argument>
+        </argument>
+      </call>
+    </service>
+    <service id="nelmio_api_doc.doc_comment_extractor" class="Nelmio\ApiDocBundle\Util\DocCommentExtractor"/>
+    <service id="nelmio_api_doc.extractor.api_doc_extractor" class="Nelmio\ApiDocBundle\Extractor\ApiDocExtractor">
+      <argument type="service" id="service_container"/>
+      <argument type="service" id="router"/>
+      <argument type="service" id="annotation_reader"/>
+      <argument type="service" id="nelmio_api_doc.doc_comment_extractor"/>
+      <argument type="service">
+        <service class="Symfony\Bundle\FrameworkBundle\Controller\ControllerNameParser" public="false">
+          <argument type="service" id="kernel"/>
+        </service>
+      </argument>
+      <argument type="collection">
+        <argument type="service">
+          <service class="Nelmio\ApiDocBundle\Extractor\Handler\FosRestHandler" public="false">
+            <tag name="nelmio_api_doc.extractor.handler"/>
+          </service>
+        </argument>
+        <argument type="service">
+          <service class="Nelmio\ApiDocBundle\Extractor\Handler\JmsSecurityExtraHandler" public="false">
+            <tag name="nelmio_api_doc.extractor.handler"/>
+          </service>
+        </argument>
+        <argument type="service">
+          <service class="Nelmio\ApiDocBundle\Extractor\Handler\SensioFrameworkExtraHandler" public="false">
+            <tag name="nelmio_api_doc.extractor.handler"/>
+          </service>
+        </argument>
+        <argument type="service">
+          <service class="Nelmio\ApiDocBundle\Extractor\Handler\PhpDocHandler" public="false">
+            <tag name="nelmio_api_doc.extractor.handler"/>
+            <argument type="service" id="nelmio_api_doc.doc_comment_extractor"/>
+          </service>
+        </argument>
+      </argument>
+      <argument type="collection"/>
+      <call method="addParser">
+        <argument type="service" id="nelmio_api_doc.parser.json_serializable_parser"/>
+      </call>
+      <call method="addParser">
+        <argument type="service" id="nelmio_api_doc.parser.collection_parser"/>
+      </call>
+      <call method="addParser">
+        <argument type="service" id="nelmio_api_doc.parser.form_errors_parser"/>
+      </call>
+      <call method="addParser">
+        <argument type="service" id="nelmio_api_doc.parser.form_type_parser"/>
+      </call>
+      <call method="addParser">
+        <argument type="service" id="nelmio_api_doc.parser.validation_parser"/>
+      </call>
+      <call method="addParser">
+        <argument type="service" id="nelmio_api_doc.parser.jms_metadata_parser"/>
+      </call>
+    </service>
+    <service id="nelmio_api_doc.form.extension.description_form_type_extension" class="Nelmio\ApiDocBundle\Form\Extension\DescriptionFormTypeExtension">
+      <tag name="form.type_extension" alias="form"/>
+    </service>
+    <service id="nelmio_api_doc.twig.extension.extra_markdown" class="Nelmio\ApiDocBundle\Twig\Extension\MarkdownExtension">
+      <tag name="twig.extension"/>
+    </service>
+    <service id="nelmio_api_doc.parser.collection_parser" class="Nelmio\ApiDocBundle\Parser\CollectionParser">
+      <tag name="nelmio_api_doc.extractor.parser"/>
+    </service>
+    <service id="nelmio_api_doc.parser.form_errors_parser" class="Nelmio\ApiDocBundle\Parser\FormErrorsParser">
+      <tag name="nelmio_api_doc.extractor.parser"/>
+    </service>
+    <service id="nelmio_api_doc.parser.json_serializable_parser" class="Nelmio\ApiDocBundle\Parser\JsonSerializableParser">
+      <tag name="nelmio_api_doc.extractor.parser" priority="1"/>
+    </service>
+    <service id="nelmio_api_doc.event_listener.request" class="Nelmio\ApiDocBundle\EventListener\RequestListener">
+      <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest"/>
+      <argument type="service" id="nelmio_api_doc.extractor.api_doc_extractor"/>
+      <argument type="service" id="nelmio_api_doc.formatter.html_formatter"/>
+      <argument>_doc</argument>
     </service>
     <service id="data_collector.dump" class="Symfony\Component\HttpKernel\DataCollector\DumpDataCollector">
       <tag name="data_collector" id="dump" template="@Debug/Profiler/dump.html.twig"/>
@@ -4526,7 +5349,7 @@
       <argument>^/(app(_[\w]+)?\.php/)?_wdt</argument>
     </service>
     <service id="sensio_distribution.webconfigurator" class="Sensio\Bundle\DistributionBundle\Configurator\Configurator">
-      <argument>/Users/vincentroma/Sites/eduspeak/app</argument>
+      <argument>/Users/vincentroma/Documents/Code/eduspeak/app</argument>
       <call method="addStep">
         <argument type="service">
           <service class="Sensio\Bundle\DistributionBundle\Configurator\Step\DoctrineStep" public="false">
@@ -4673,8 +5496,23 @@
       <argument>100</argument>
       <argument>true</argument>
     </service>
+    <service id="nelmio_api_doc.parser.form_type_parser" class="Nelmio\ApiDocBundle\Parser\FormTypeParser">
+      <tag name="nelmio_api_doc.extractor.parser"/>
+      <argument type="service" id="form.factory"/>
+      <argument>true</argument>
+    </service>
+    <service id="nelmio_api_doc.parser.validation_parser" class="Nelmio\ApiDocBundle\Parser\ValidationParser">
+      <tag name="nelmio_api_doc.extractor.parser"/>
+      <argument type="service" id="validator"/>
+    </service>
+    <service id="nelmio_api_doc.parser.jms_metadata_parser" class="Nelmio\ApiDocBundle\Parser\JmsMetadataParser">
+      <tag name="nelmio_api_doc.extractor.parser"/>
+      <argument type="service" id="jms_serializer.metadata_factory"/>
+      <argument type="service" id="jms_serializer.naming_strategy"/>
+      <argument type="service" id="nelmio_api_doc.doc_comment_extractor"/>
+    </service>
     <service id="session.storage.filesystem" class="Symfony\Component\HttpFoundation\Session\Storage\MockFileSessionStorage">
-      <argument>/Users/vincentroma/Sites/eduspeak/app/cache/dev/sessions</argument>
+      <argument>/Users/vincentroma/Documents/Code/eduspeak/app/cache/dev/sessions</argument>
       <argument>MOCKSESSID</argument>
       <argument type="service" id="session.storage.metadata_bag"/>
     </service>
@@ -4698,9 +5536,9 @@
     <service id="router" class="Symfony\Bundle\FrameworkBundle\Routing\Router">
       <tag name="monolog.logger" channel="router"/>
       <argument type="service" id="service_container"/>
-      <argument>/Users/vincentroma/Sites/eduspeak/app/cache/dev/assetic/routing.yml</argument>
+      <argument>/Users/vincentroma/Documents/Code/eduspeak/app/cache/dev/assetic/routing.yml</argument>
       <argument type="collection">
-        <argument key="cache_dir">/Users/vincentroma/Sites/eduspeak/app/cache/dev</argument>
+        <argument key="cache_dir">/Users/vincentroma/Documents/Code/eduspeak/app/cache/dev</argument>
         <argument key="debug">true</argument>
         <argument key="generator_class">Symfony\Component\Routing\Generator\UrlGenerator</argument>
         <argument key="generator_base_class">Symfony\Component\Routing\Generator\UrlGenerator</argument>
@@ -4720,7 +5558,7 @@
       <argument type="service">
         <service class="Doctrine\Common\Annotations\AnnotationReader" public="false"/>
       </argument>
-      <argument>/Users/vincentroma/Sites/eduspeak/app/cache/dev/annotations</argument>
+      <argument>/Users/vincentroma/Documents/Code/eduspeak/app/cache/dev/annotations</argument>
       <argument>true</argument>
     </service>
     <service id="security.encoder_factory" class="Symfony\Component\Security\Core\Encoder\EncoderFactory">
@@ -4741,73 +5579,77 @@
       <argument type="service" id="templating.locator"/>
       <argument type="service" id="templating.name_parser"/>
       <call method="addPath">
-        <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/views</argument>
+        <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/views</argument>
         <argument>Framework</argument>
       </call>
       <call method="addPath">
-        <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Bundle/SecurityBundle/Resources/views</argument>
+        <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Bundle/SecurityBundle/Resources/views</argument>
         <argument>Security</argument>
       </call>
       <call method="addPath">
-        <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Bundle/TwigBundle/Resources/views</argument>
+        <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Bundle/TwigBundle/Resources/views</argument>
         <argument>Twig</argument>
       </call>
       <call method="addPath">
-        <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/swiftmailer-bundle/Resources/views</argument>
+        <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/swiftmailer-bundle/Resources/views</argument>
         <argument>Swiftmailer</argument>
       </call>
       <call method="addPath">
-        <argument>/Users/vincentroma/Sites/eduspeak/vendor/doctrine/doctrine-bundle/Resources/views</argument>
+        <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/doctrine/doctrine-bundle/Resources/views</argument>
         <argument>Doctrine</argument>
       </call>
       <call method="addPath">
-        <argument>/Users/vincentroma/Sites/eduspeak/app/Resources/FOSUserBundle/views</argument>
+        <argument>/Users/vincentroma/Documents/Code/eduspeak/app/Resources/FOSUserBundle/views</argument>
         <argument>FOSUser</argument>
       </call>
       <call method="addPath">
-        <argument>/Users/vincentroma/Sites/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/views</argument>
+        <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/views</argument>
         <argument>FOSUser</argument>
       </call>
       <call method="addPath">
-        <argument>/Users/vincentroma/Sites/eduspeak/src/EduSpeakBundle/Resources/views</argument>
+        <argument>/Users/vincentroma/Documents/Code/eduspeak/src/EduSpeakBundle/Resources/views</argument>
         <argument>EduSpeak</argument>
       </call>
       <call method="addPath">
-        <argument>/Users/vincentroma/Sites/eduspeak/vendor/sonata-project/core-bundle/Resources/views</argument>
+        <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/core-bundle/Resources/views</argument>
         <argument>SonataCore</argument>
       </call>
       <call method="addPath">
-        <argument>/Users/vincentroma/Sites/eduspeak/vendor/sonata-project/block-bundle/Resources/views</argument>
+        <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/block-bundle/Resources/views</argument>
         <argument>SonataBlock</argument>
       </call>
       <call method="addPath">
-        <argument>/Users/vincentroma/Sites/eduspeak/vendor/sonata-project/doctrine-orm-admin-bundle/Resources/views</argument>
+        <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/doctrine-orm-admin-bundle/Resources/views</argument>
         <argument>SonataDoctrineORMAdmin</argument>
       </call>
       <call method="addPath">
-        <argument>/Users/vincentroma/Sites/eduspeak/vendor/sonata-project/admin-bundle/Resources/views</argument>
+        <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/admin-bundle/Resources/views</argument>
         <argument>SonataAdmin</argument>
       </call>
       <call method="addPath">
-        <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Bundle/DebugBundle/Resources/views</argument>
+        <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/nelmio/api-doc-bundle/Nelmio/ApiDocBundle/Resources/views</argument>
+        <argument>NelmioApiDoc</argument>
+      </call>
+      <call method="addPath">
+        <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Bundle/DebugBundle/Resources/views</argument>
         <argument>Debug</argument>
       </call>
       <call method="addPath">
-        <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle/Resources/views</argument>
+        <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle/Resources/views</argument>
         <argument>WebProfiler</argument>
       </call>
       <call method="addPath">
-        <argument>/Users/vincentroma/Sites/eduspeak/vendor/sensio/distribution-bundle/Sensio/Bundle/DistributionBundle/Resources/views</argument>
+        <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sensio/distribution-bundle/Sensio/Bundle/DistributionBundle/Resources/views</argument>
         <argument>SensioDistribution</argument>
       </call>
       <call method="addPath">
-        <argument>/Users/vincentroma/Sites/eduspeak/app/Resources/views</argument>
+        <argument>/Users/vincentroma/Documents/Code/eduspeak/app/Resources/views</argument>
       </call>
       <call method="addPath">
-        <argument>/Users/vincentroma/Sites/eduspeak/vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form</argument>
+        <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form</argument>
       </call>
       <call method="addPath">
-        <argument>/Users/vincentroma/Sites/eduspeak/vendor/knplabs/knp-menu/src/Knp/Menu/Resources/views</argument>
+        <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/knplabs/knp-menu/src/Knp/Menu/Resources/views</argument>
       </call>
     </service>
     <service id="logger" class="Symfony\Bridge\Monolog\Logger">
@@ -4915,6 +5757,220 @@
       <argument>EduSpeakBundle\Entity\User</argument>
     </service>
     <service id="sonata.admin.security.handler" class="Sonata\AdminBundle\Security\Handler\NoopSecurityHandler"/>
+    <service id="fos_rest.view_handler" class="FOS\RestBundle\View\ViewHandler">
+      <argument type="collection">
+        <argument key="json">false</argument>
+        <argument key="xml">false</argument>
+        <argument key="html">true</argument>
+      </argument>
+      <argument>400</argument>
+      <argument>204</argument>
+      <argument>false</argument>
+      <argument type="collection">
+        <argument key="html">302</argument>
+      </argument>
+      <argument>twig</argument>
+      <call method="setExclusionStrategyGroups">
+        <argument></argument>
+      </call>
+      <call method="setExclusionStrategyVersion">
+        <argument></argument>
+      </call>
+      <call method="setSerializeNullStrategy">
+        <argument>false</argument>
+      </call>
+      <call method="setContainer">
+        <argument type="service" id="service_container"/>
+      </call>
+    </service>
+    <service id="jms_serializer.metadata_driver" class="JMS\Serializer\Metadata\Driver\DoctrineTypeDriver">
+      <argument type="service">
+        <service class="Metadata\Driver\DriverChain" public="false">
+          <argument type="collection">
+            <argument type="service">
+              <service class="JMS\Serializer\Metadata\Driver\YamlDriver" public="false">
+                <argument type="service">
+                  <service class="Metadata\Driver\FileLocator" public="false">
+                    <argument type="collection">
+                      <argument key="Symfony\Bundle\FrameworkBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\SecurityBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Bundle/SecurityBundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\TwigBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Bundle/TwigBundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\MonologBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/monolog-bundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\SwiftmailerBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/swiftmailer-bundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\AsseticBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/assetic-bundle/Resources/config/serializer</argument>
+                      <argument key="Doctrine\Bundle\DoctrineBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/doctrine/doctrine-bundle/Resources/config/serializer</argument>
+                      <argument key="Sensio\Bundle\FrameworkExtraBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/sensio/framework-extra-bundle/Resources/config/serializer</argument>
+                      <argument key="FOS\UserBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/config/serializer</argument>
+                      <argument key="AppBundle">/Users/vincentroma/Documents/Code/eduspeak/src/AppBundle/Resources/config/serializer</argument>
+                      <argument key="EduSpeakBundle">/Users/vincentroma/Documents/Code/eduspeak/src/EduSpeakBundle/Resources/config/serializer</argument>
+                      <argument key="Sonata\CoreBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/core-bundle/Resources/config/serializer</argument>
+                      <argument key="Sonata\BlockBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/block-bundle/Resources/config/serializer</argument>
+                      <argument key="Knp\Bundle\MenuBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/knplabs/knp-menu-bundle/Knp/Bundle/MenuBundle/Resources/config/serializer</argument>
+                      <argument key="Sonata\DoctrineORMAdminBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/doctrine-orm-admin-bundle/Resources/config/serializer</argument>
+                      <argument key="Sonata\AdminBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/admin-bundle/Resources/config/serializer</argument>
+                      <argument key="FOS\RestBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/rest-bundle/FOS/RestBundle/Resources/config/serializer</argument>
+                      <argument key="JMS\SerializerBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/jms/serializer-bundle/JMS/SerializerBundle/Resources/config/serializer</argument>
+                      <argument key="Nelmio\ApiDocBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/nelmio/api-doc-bundle/Nelmio/ApiDocBundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\DebugBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Bundle/DebugBundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\WebProfilerBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle/Resources/config/serializer</argument>
+                      <argument key="Sensio\Bundle\DistributionBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/sensio/distribution-bundle/Sensio/Bundle/DistributionBundle/Resources/config/serializer</argument>
+                      <argument key="Sensio\Bundle\GeneratorBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/sensio/generator-bundle/Sensio/Bundle/GeneratorBundle/Resources/config/serializer</argument>
+                    </argument>
+                  </service>
+                </argument>
+              </service>
+            </argument>
+            <argument type="service">
+              <service class="JMS\Serializer\Metadata\Driver\XmlDriver" public="false">
+                <argument type="service">
+                  <service class="Metadata\Driver\FileLocator" public="false">
+                    <argument type="collection">
+                      <argument key="Symfony\Bundle\FrameworkBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\SecurityBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Bundle/SecurityBundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\TwigBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Bundle/TwigBundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\MonologBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/monolog-bundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\SwiftmailerBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/swiftmailer-bundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\AsseticBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/assetic-bundle/Resources/config/serializer</argument>
+                      <argument key="Doctrine\Bundle\DoctrineBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/doctrine/doctrine-bundle/Resources/config/serializer</argument>
+                      <argument key="Sensio\Bundle\FrameworkExtraBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/sensio/framework-extra-bundle/Resources/config/serializer</argument>
+                      <argument key="FOS\UserBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/config/serializer</argument>
+                      <argument key="AppBundle">/Users/vincentroma/Documents/Code/eduspeak/src/AppBundle/Resources/config/serializer</argument>
+                      <argument key="EduSpeakBundle">/Users/vincentroma/Documents/Code/eduspeak/src/EduSpeakBundle/Resources/config/serializer</argument>
+                      <argument key="Sonata\CoreBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/core-bundle/Resources/config/serializer</argument>
+                      <argument key="Sonata\BlockBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/block-bundle/Resources/config/serializer</argument>
+                      <argument key="Knp\Bundle\MenuBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/knplabs/knp-menu-bundle/Knp/Bundle/MenuBundle/Resources/config/serializer</argument>
+                      <argument key="Sonata\DoctrineORMAdminBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/doctrine-orm-admin-bundle/Resources/config/serializer</argument>
+                      <argument key="Sonata\AdminBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/admin-bundle/Resources/config/serializer</argument>
+                      <argument key="FOS\RestBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/rest-bundle/FOS/RestBundle/Resources/config/serializer</argument>
+                      <argument key="JMS\SerializerBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/jms/serializer-bundle/JMS/SerializerBundle/Resources/config/serializer</argument>
+                      <argument key="Nelmio\ApiDocBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/nelmio/api-doc-bundle/Nelmio/ApiDocBundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\DebugBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Bundle/DebugBundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\WebProfilerBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle/Resources/config/serializer</argument>
+                      <argument key="Sensio\Bundle\DistributionBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/sensio/distribution-bundle/Sensio/Bundle/DistributionBundle/Resources/config/serializer</argument>
+                      <argument key="Sensio\Bundle\GeneratorBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/sensio/generator-bundle/Sensio/Bundle/GeneratorBundle/Resources/config/serializer</argument>
+                    </argument>
+                  </service>
+                </argument>
+              </service>
+            </argument>
+            <argument type="service">
+              <service class="JMS\Serializer\Metadata\Driver\PhpDriver" public="false">
+                <argument type="service">
+                  <service class="Metadata\Driver\FileLocator" public="false">
+                    <argument type="collection">
+                      <argument key="Symfony\Bundle\FrameworkBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\SecurityBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Bundle/SecurityBundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\TwigBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Bundle/TwigBundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\MonologBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/monolog-bundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\SwiftmailerBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/swiftmailer-bundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\AsseticBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/assetic-bundle/Resources/config/serializer</argument>
+                      <argument key="Doctrine\Bundle\DoctrineBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/doctrine/doctrine-bundle/Resources/config/serializer</argument>
+                      <argument key="Sensio\Bundle\FrameworkExtraBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/sensio/framework-extra-bundle/Resources/config/serializer</argument>
+                      <argument key="FOS\UserBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/config/serializer</argument>
+                      <argument key="AppBundle">/Users/vincentroma/Documents/Code/eduspeak/src/AppBundle/Resources/config/serializer</argument>
+                      <argument key="EduSpeakBundle">/Users/vincentroma/Documents/Code/eduspeak/src/EduSpeakBundle/Resources/config/serializer</argument>
+                      <argument key="Sonata\CoreBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/core-bundle/Resources/config/serializer</argument>
+                      <argument key="Sonata\BlockBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/block-bundle/Resources/config/serializer</argument>
+                      <argument key="Knp\Bundle\MenuBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/knplabs/knp-menu-bundle/Knp/Bundle/MenuBundle/Resources/config/serializer</argument>
+                      <argument key="Sonata\DoctrineORMAdminBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/doctrine-orm-admin-bundle/Resources/config/serializer</argument>
+                      <argument key="Sonata\AdminBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/admin-bundle/Resources/config/serializer</argument>
+                      <argument key="FOS\RestBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/rest-bundle/FOS/RestBundle/Resources/config/serializer</argument>
+                      <argument key="JMS\SerializerBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/jms/serializer-bundle/JMS/SerializerBundle/Resources/config/serializer</argument>
+                      <argument key="Nelmio\ApiDocBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/nelmio/api-doc-bundle/Nelmio/ApiDocBundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\DebugBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Bundle/DebugBundle/Resources/config/serializer</argument>
+                      <argument key="Symfony\Bundle\WebProfilerBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle/Resources/config/serializer</argument>
+                      <argument key="Sensio\Bundle\DistributionBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/sensio/distribution-bundle/Sensio/Bundle/DistributionBundle/Resources/config/serializer</argument>
+                      <argument key="Sensio\Bundle\GeneratorBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/sensio/generator-bundle/Sensio/Bundle/GeneratorBundle/Resources/config/serializer</argument>
+                    </argument>
+                  </service>
+                </argument>
+              </service>
+            </argument>
+            <argument type="service">
+              <service class="JMS\Serializer\Metadata\Driver\AnnotationDriver" public="false">
+                <argument type="service" id="annotation_reader"/>
+              </service>
+            </argument>
+          </argument>
+        </service>
+      </argument>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="jms_serializer.naming_strategy" class="JMS\Serializer\Naming\CacheNamingStrategy">
+      <argument type="service">
+        <service class="JMS\Serializer\Naming\SerializedNameAnnotationStrategy" public="false">
+          <argument type="service">
+            <service class="JMS\Serializer\Naming\CamelCaseNamingStrategy" public="false">
+              <argument>_</argument>
+              <argument>true</argument>
+            </service>
+          </argument>
+        </service>
+      </argument>
+    </service>
+    <service id="jms_serializer.object_constructor" class="JMS\Serializer\Construction\DoctrineObjectConstructor">
+      <argument type="service" id="doctrine"/>
+      <argument type="service" id="jms_serializer.unserialize_object_constructor"/>
+    </service>
+    <service id="jms_serializer" class="JMS\Serializer\Serializer">
+      <argument type="service" id="jms_serializer.metadata_factory"/>
+      <argument type="service" id="jms_serializer.handler_registry"/>
+      <argument type="service" id="jms_serializer.unserialize_object_constructor"/>
+      <argument type="service">
+        <service class="PhpCollection\Map">
+          <argument type="collection">
+            <argument key="json" type="service" id="jms_serializer.json_serialization_visitor"/>
+            <argument key="xml" type="service" id="jms_serializer.xml_serialization_visitor"/>
+            <argument key="yml" type="service" id="jms_serializer.yaml_serialization_visitor"/>
+          </argument>
+        </service>
+      </argument>
+      <argument type="service">
+        <service class="PhpCollection\Map">
+          <argument type="collection">
+            <argument key="json" type="service" id="jms_serializer.json_deserialization_visitor"/>
+            <argument key="xml" type="service" id="jms_serializer.xml_deserialization_visitor"/>
+          </argument>
+        </service>
+      </argument>
+      <argument type="service">
+        <service class="JMS\Serializer\EventDispatcher\LazyEventDispatcher" public="false">
+          <argument type="service" id="service_container"/>
+          <call method="setListeners">
+            <argument type="collection">
+              <argument key="serializer.pre_serialize" type="collection">
+                <argument type="collection">
+                  <argument type="collection">
+                    <argument>jms_serializer.stopwatch_subscriber</argument>
+                    <argument>onPreSerialize</argument>
+                  </argument>
+                  <argument>null</argument>
+                  <argument>null</argument>
+                </argument>
+                <argument type="collection">
+                  <argument type="collection">
+                    <argument>jms_serializer.doctrine_proxy_subscriber</argument>
+                    <argument>onPreSerialize</argument>
+                  </argument>
+                  <argument>null</argument>
+                  <argument>null</argument>
+                </argument>
+              </argument>
+              <argument key="serializer.post_serialize" type="collection">
+                <argument type="collection">
+                  <argument type="collection">
+                    <argument>jms_serializer.stopwatch_subscriber</argument>
+                    <argument>onPostSerialize</argument>
+                  </argument>
+                  <argument>null</argument>
+                  <argument>null</argument>
+                </argument>
+              </argument>
+            </argument>
+          </call>
+        </service>
+      </argument>
+    </service>
     <service id="knp_menu.menu_provider" class="Knp\Menu\Provider\ChainProvider">
       <argument type="collection">
         <argument type="service">
@@ -4951,7 +6007,13 @@
     <service id="sonata.block.context_manager" alias="sonata.block.context_manager.default"/>
     <service id="sonata.block.cache.handler" alias="sonata.block.cache.handler.default"/>
     <service id="sonata.block.renderer" alias="sonata.block.renderer.default"/>
+    <service id="fos_rest.router" alias="router"/>
+    <service id="fos_rest.templating" alias="templating"/>
+    <service id="fos_rest.exception_handler" alias="fos_rest.view.exception_wrapper_handler"/>
+    <service id="fos_rest.inflector" alias="fos_rest.inflector.doctrine"/>
+    <service id="serializer" alias="jms_serializer"/>
     <service id="sensio.distribution.webconfigurator" alias="sensio_distribution.webconfigurator"/>
     <service id="console.command.sensiolabs_security_command_securitycheckercommand" alias="sensio_distribution.security_checker.command"/>
+    <service id="fos_rest.serializer" alias="jms_serializer"/>
   </services>
 </container>
