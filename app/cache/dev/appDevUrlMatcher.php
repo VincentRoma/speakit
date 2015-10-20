@@ -428,7 +428,37 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 }
                 not_get_user:
 
+                // nelmio_api_doc_index
+                if (0 === strpos($pathinfo, '/api/doc') && preg_match('#^/api/doc(?:/(?P<view>[^/]++))?$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'nelmio_api_doc_index')), array (  '_controller' => 'Nelmio\\ApiDocBundle\\Controller\\ApiDocController::indexAction',  'view' => 'default',));
+                }
+
             }
+
+        }
+
+        if (0 === strpos($pathinfo, '/oauth/v2')) {
+            // fos_oauth_server_token
+            if ($pathinfo === '/oauth/v2/token') {
+                if (!in_array($this->context->getMethod(), array('GET', 'POST', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'POST', 'HEAD'));
+                    goto not_fos_oauth_server_token;
+                }
+
+                return array (  '_controller' => 'fos_oauth_server.controller.token:tokenAction',  '_route' => 'fos_oauth_server_token',);
+            }
+            not_fos_oauth_server_token:
+
+            // fos_oauth_server_authorize
+            if ($pathinfo === '/oauth/v2/auth') {
+                if (!in_array($this->context->getMethod(), array('GET', 'POST', 'HEAD'))) {
+                    $allow = array_merge($allow, array('GET', 'POST', 'HEAD'));
+                    goto not_fos_oauth_server_authorize;
+                }
+
+                return array (  '_controller' => 'FOS\\OAuthServerBundle\\Controller\\AuthorizeController::authorizeAction',  '_route' => 'fos_oauth_server_authorize',);
+            }
+            not_fos_oauth_server_authorize:
 
         }
 

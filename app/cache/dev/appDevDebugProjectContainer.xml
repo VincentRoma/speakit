@@ -25,6 +25,7 @@
       <parameter key="SonataDoctrineORMAdminBundle">Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle</parameter>
       <parameter key="SonataAdminBundle">Sonata\AdminBundle\SonataAdminBundle</parameter>
       <parameter key="FOSRestBundle">FOS\RestBundle\FOSRestBundle</parameter>
+      <parameter key="FOSOAuthServerBundle">FOS\OAuthServerBundle\FOSOAuthServerBundle</parameter>
       <parameter key="JMSSerializerBundle">JMS\SerializerBundle\JMSSerializerBundle</parameter>
       <parameter key="NelmioApiDocBundle">Nelmio\ApiDocBundle\NelmioApiDocBundle</parameter>
       <parameter key="DebugBundle">Symfony\Bundle\DebugBundle\DebugBundle</parameter>
@@ -564,7 +565,7 @@
     <parameter key="fos_user.resetting.email.template">FOSUserBundle:Resetting:email.txt.twig</parameter>
     <parameter key="fos_user.registration.confirmation.template">FOSUserBundle:Registration:email.txt.twig</parameter>
     <parameter key="fos_user.storage">orm</parameter>
-    <parameter key="fos_user.firewall_name">main</parameter>
+    <parameter key="fos_user.firewall_name">api</parameter>
     <parameter key="fos_user.model_manager_name">null</parameter>
     <parameter key="fos_user.model.user.class">EduSpeakBundle\Entity\User</parameter>
     <parameter key="fos_user.profile.form.type">fos_user_profile</parameter>
@@ -825,6 +826,23 @@
     <parameter key="fos_rest.decoders" type="collection">
       <parameter key="json">fos_rest.decoder.json</parameter>
       <parameter key="xml">fos_rest.decoder.xml</parameter>
+    </parameter>
+    <parameter key="fos_oauth_server.server.class">OAuth2\OAuth2</parameter>
+    <parameter key="fos_oauth_server.security.authentication.provider.class">FOS\OAuthServerBundle\Security\Authentication\Provider\OAuthProvider</parameter>
+    <parameter key="fos_oauth_server.security.authentication.listener.class">FOS\OAuthServerBundle\Security\Firewall\OAuthListener</parameter>
+    <parameter key="fos_oauth_server.security.entry_point.class">FOS\OAuthServerBundle\Security\EntryPoint\OAuthEntryPoint</parameter>
+    <parameter key="fos_oauth_server.server.options" type="collection"/>
+    <parameter key="fos_oauth_server.model_manager_name">null</parameter>
+    <parameter key="fos_oauth_server.model.client.class">EduSpeakBundle\Entity\Client</parameter>
+    <parameter key="fos_oauth_server.model.access_token.class">EduSpeakBundle\Entity\AccessToken</parameter>
+    <parameter key="fos_oauth_server.model.refresh_token.class">EduSpeakBundle\Entity\RefreshToken</parameter>
+    <parameter key="fos_oauth_server.model.auth_code.class">EduSpeakBundle\Entity\AuthCode</parameter>
+    <parameter key="fos_oauth_server.template.engine">twig</parameter>
+    <parameter key="fos_oauth_server.authorize.form.type">fos_oauth_server_authorize</parameter>
+    <parameter key="fos_oauth_server.authorize.form.name">fos_oauth_server_authorize_form</parameter>
+    <parameter key="fos_oauth_server.authorize.form.validation_groups" type="collection">
+      <parameter>Authorize</parameter>
+      <parameter>Default</parameter>
     </parameter>
     <parameter key="jms_serializer.metadata.file_locator.class">Metadata\Driver\FileLocator</parameter>
     <parameter key="jms_serializer.metadata.annotation_driver.class">JMS\Serializer\Metadata\Driver\AnnotationDriver</parameter>
@@ -1363,6 +1381,7 @@
             <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.de.yml</argument>
             <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/core-bundle/Resources/translations/SonataCoreBundle.de.xliff</argument>
             <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/admin-bundle/Resources/translations/SonataAdminBundle.de.xliff</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/oauth-server-bundle/FOS/OAuthServerBundle/Resources/translations/FOSOAuthServerBundle.de.yml</argument>
           </argument>
           <argument key="el" type="collection">
             <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.el.xlf</argument>
@@ -1379,6 +1398,7 @@
             <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.en.yml</argument>
             <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/core-bundle/Resources/translations/SonataCoreBundle.en.xliff</argument>
             <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/admin-bundle/Resources/translations/SonataAdminBundle.en.xliff</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/oauth-server-bundle/FOS/OAuthServerBundle/Resources/translations/FOSOAuthServerBundle.en.yml</argument>
           </argument>
           <argument key="es" type="collection">
             <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.es.xlf</argument>
@@ -1427,6 +1447,7 @@
             <argument>/Users/vincentroma/Documents/Code/eduspeak/src/EduSpeakBundle/Resources/translations/messages.fr.xlf</argument>
             <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/core-bundle/Resources/translations/SonataCoreBundle.fr.xliff</argument>
             <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/admin-bundle/Resources/translations/SonataAdminBundle.fr.xliff</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/oauth-server-bundle/FOS/OAuthServerBundle/Resources/translations/FOSOAuthServerBundle.fr.yml</argument>
           </argument>
           <argument key="gl" type="collection">
             <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.gl.xlf</argument>
@@ -1588,6 +1609,7 @@
             <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/translations/validators.sl.yml</argument>
             <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/core-bundle/Resources/translations/SonataCoreBundle.sl.xliff</argument>
             <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/admin-bundle/Resources/translations/SonataAdminBundle.sl.xliff</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/oauth-server-bundle/FOS/OAuthServerBundle/Resources/translations/FOSOAuthServerBundle.sl.yml</argument>
           </argument>
           <argument key="sq" type="collection">
             <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.sq.xlf</argument>
@@ -1953,6 +1975,7 @@
               <argument key="sonata_type_filter_date_range">sonata.admin.form.filter.type.daterange</argument>
               <argument key="sonata_type_filter_datetime">sonata.admin.form.filter.type.datetime</argument>
               <argument key="sonata_type_filter_datetime_range">sonata.admin.form.filter.type.datetime_range</argument>
+              <argument key="fos_oauth_server_authorize">fos_oauth_server.authorize.form.type</argument>
             </argument>
             <argument type="collection">
               <argument key="form" type="collection">
@@ -2173,6 +2196,7 @@
         <argument type="collection">
           <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Form/Resources/config/validation.xml</argument>
           <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/user-bundle/Resources/config/validation.xml</argument>
+          <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/oauth-server-bundle/FOS/OAuthServerBundle/Resources/config/validation.xml</argument>
         </argument>
       </call>
       <call method="enableAnnotationMapping">
@@ -2718,17 +2742,14 @@
     <service id="security.authentication.manager" class="Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager" public="false">
       <argument type="collection">
         <argument type="service">
-          <service class="Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider" public="false">
-            <argument type="service" id="fos_user.user_provider.username"/>
+          <service class="FOS\OAuthServerBundle\Security\Authentication\Provider\OAuthProvider" public="false">
+            <argument type="service">
+              <service class="FOS\UserBundle\Security\UserProvider" public="false">
+                <argument type="service" id="fos_user.user_manager"/>
+              </service>
+            </argument>
+            <argument type="service" id="fos_oauth_server.server"/>
             <argument type="service" id="security.user_checker"/>
-            <argument>main</argument>
-            <argument type="service" id="security.encoder_factory"/>
-            <argument>true</argument>
-          </service>
-        </argument>
-        <argument type="service">
-          <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>56262bc08d8116.69475383</argument>
           </service>
         </argument>
       </argument>
@@ -2740,9 +2761,6 @@
     <service id="security.authentication.trust_resolver" class="Symfony\Component\Security\Core\Authentication\AuthenticationTrustResolver" public="false">
       <argument>Symfony\Component\Security\Core\Authentication\Token\AnonymousToken</argument>
       <argument>Symfony\Component\Security\Core\Authentication\Token\RememberMeToken</argument>
-    </service>
-    <service id="security.authentication.session_strategy" class="Symfony\Component\Security\Http\Session\SessionAuthenticationStrategy" public="false">
-      <argument>migrate</argument>
     </service>
     <service id="security.user_checker" class="Symfony\Component\Security\Core\User\UserChecker" public="false"/>
     <service id="security.authentication_utils" class="Symfony\Component\Security\Http\Authentication\AuthenticationUtils">
@@ -2793,9 +2811,14 @@
         <service class="Symfony\Bundle\SecurityBundle\Security\FirewallMap" public="false">
           <argument type="service" id="service_container"/>
           <argument type="collection">
-            <argument key="security.firewall.map.context.main" type="service">
+            <argument key="security.firewall.map.context.oauth_token" type="service">
               <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
-                <argument>^/</argument>
+                <argument>^/oauth/v2/token</argument>
+              </service>
+            </argument>
+            <argument key="security.firewall.map.context.api" type="service">
+              <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+                <argument>^/api</argument>
               </service>
             </argument>
           </argument>
@@ -2807,13 +2830,6 @@
       <argument type="service" id="request_stack" on-invalid="null"/>
       <argument type="service" id="router" on-invalid="null"/>
       <argument type="service" id="security.token_storage" on-invalid="null"/>
-      <call method="registerListener">
-        <argument>main</argument>
-        <argument>/logout</argument>
-        <argument>logout</argument>
-        <argument>_csrf_token</argument>
-        <argument>null</argument>
-      </call>
     </service>
     <service id="security.validator.user_password" class="Symfony\Component\Security\Core\Validator\Constraints\UserPasswordValidator">
       <tag name="validator.constraint_validator" alias="security.validator.user_password"/>
@@ -2831,7 +2847,11 @@
       <tag name="templating.helper" alias="security"/>
       <argument type="service" id="security.authorization_checker" on-invalid="ignore"/>
     </service>
-    <service id="security.firewall.map.context.main" class="Symfony\Bundle\SecurityBundle\Security\FirewallContext">
+    <service id="security.firewall.map.context.oauth_token" class="Symfony\Bundle\SecurityBundle\Security\FirewallContext">
+      <argument type="collection"/>
+      <argument>null</argument>
+    </service>
+    <service id="security.firewall.map.context.api" class="Symfony\Bundle\SecurityBundle\Security\FirewallContext">
       <argument type="collection">
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\ChannelListener" public="false">
@@ -2882,6 +2902,17 @@
                   </argument>
                   <argument>null</argument>
                 </call>
+                <call method="add">
+                  <argument type="service">
+                    <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+                      <argument>^/api</argument>
+                    </service>
+                  </argument>
+                  <argument type="collection">
+                    <argument>IS_AUTHENTICATED_FULLY</argument>
+                  </argument>
+                  <argument>null</argument>
+                </call>
               </service>
             </argument>
             <argument type="service">
@@ -2894,126 +2925,10 @@
           </service>
         </argument>
         <argument type="service">
-          <service class="Symfony\Component\Security\Http\Firewall\ContextListener" public="false">
-            <argument type="service" id="security.token_storage"/>
-            <argument type="collection">
-              <argument type="service" id="fos_user.user_provider.username"/>
-            </argument>
-            <argument>main</argument>
-            <argument type="service" id="monolog.logger.security" on-invalid="null"/>
-            <argument type="service" id="debug.event_dispatcher" on-invalid="null"/>
-          </service>
-        </argument>
-        <argument type="service">
-          <service class="Symfony\Component\Security\Http\Firewall\LogoutListener" public="false">
-            <argument type="service" id="security.token_storage"/>
-            <argument type="service">
-              <service class="Symfony\Component\Security\Http\HttpUtils" public="false">
-                <argument type="service" id="router" on-invalid="null"/>
-                <argument type="service" id="router" on-invalid="null"/>
-              </service>
-            </argument>
-            <argument type="service">
-              <service class="Symfony\Component\Security\Http\Logout\DefaultLogoutSuccessHandler" public="false">
-                <argument type="service">
-                  <service class="Symfony\Component\Security\Http\HttpUtils" public="false">
-                    <argument type="service" id="router" on-invalid="null"/>
-                    <argument type="service" id="router" on-invalid="null"/>
-                  </service>
-                </argument>
-                <argument>/</argument>
-              </service>
-            </argument>
-            <argument type="collection">
-              <argument key="csrf_parameter">_csrf_token</argument>
-              <argument key="intention">logout</argument>
-              <argument key="logout_path">/logout</argument>
-            </argument>
-            <call method="addHandler">
-              <argument type="service">
-                <service class="Symfony\Component\Security\Http\Logout\SessionLogoutHandler" public="false"/>
-              </argument>
-            </call>
-          </service>
-        </argument>
-        <argument type="service">
-          <service class="Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener" public="false">
-            <tag name="security.remember_me_aware" id="main" provider="security.user.provider.concrete.fos_userbundle"/>
-            <argument type="service" id="security.token_storage"/>
+          <service class="FOS\OAuthServerBundle\Security\Firewall\OAuthListener" public="false">
+            <argument type="service" id="security.context"/>
             <argument type="service" id="security.authentication.manager"/>
-            <argument type="service" id="security.authentication.session_strategy"/>
-            <argument type="service">
-              <service class="Symfony\Component\Security\Http\HttpUtils" public="false">
-                <argument type="service" id="router" on-invalid="null"/>
-                <argument type="service" id="router" on-invalid="null"/>
-              </service>
-            </argument>
-            <argument>main</argument>
-            <argument type="service">
-              <service class="Symfony\Component\Security\Http\Authentication\DefaultAuthenticationSuccessHandler" public="false">
-                <argument type="service">
-                  <service class="Symfony\Component\Security\Http\HttpUtils" public="false">
-                    <argument type="service" id="router" on-invalid="null"/>
-                    <argument type="service" id="router" on-invalid="null"/>
-                  </service>
-                </argument>
-                <argument type="collection"/>
-                <call method="setOptions">
-                  <argument type="collection">
-                    <argument key="always_use_default_target_path">false</argument>
-                    <argument key="default_target_path">/</argument>
-                    <argument key="login_path">/login</argument>
-                    <argument key="target_path_parameter">_target_path</argument>
-                    <argument key="use_referer">false</argument>
-                  </argument>
-                </call>
-                <call method="setProviderKey">
-                  <argument>main</argument>
-                </call>
-              </service>
-            </argument>
-            <argument type="service">
-              <service class="Symfony\Component\Security\Http\Authentication\DefaultAuthenticationFailureHandler" public="false">
-                <argument type="service" id="http_kernel"/>
-                <argument type="service">
-                  <service class="Symfony\Component\Security\Http\HttpUtils" public="false">
-                    <argument type="service" id="router" on-invalid="null"/>
-                    <argument type="service" id="router" on-invalid="null"/>
-                  </service>
-                </argument>
-                <argument type="collection"/>
-                <argument type="service" id="monolog.logger.security" on-invalid="null"/>
-                <call method="setOptions">
-                  <argument type="collection">
-                    <argument key="login_path">/login</argument>
-                    <argument key="failure_path">null</argument>
-                    <argument key="failure_forward">false</argument>
-                    <argument key="failure_path_parameter">_failure_path</argument>
-                  </argument>
-                </call>
-              </service>
-            </argument>
-            <argument type="collection">
-              <argument key="check_path">/login_check</argument>
-              <argument key="use_forward">false</argument>
-              <argument key="require_previous_session">true</argument>
-              <argument key="username_parameter">_username</argument>
-              <argument key="password_parameter">_password</argument>
-              <argument key="csrf_parameter">_csrf_token</argument>
-              <argument key="intention">authenticate</argument>
-              <argument key="post_only">true</argument>
-            </argument>
-            <argument type="service" id="monolog.logger.security" on-invalid="null"/>
-            <argument type="service" id="debug.event_dispatcher" on-invalid="null"/>
-            <argument type="service" id="security.csrf.token_manager"/>
-          </service>
-        </argument>
-        <argument type="service">
-          <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
-            <argument type="service" id="security.token_storage"/>
-            <argument>56262bc08d8116.69475383</argument>
-            <argument type="service" id="monolog.logger.security" on-invalid="null"/>
-            <argument type="service" id="security.authentication.manager"/>
+            <argument type="service" id="fos_oauth_server.server"/>
           </service>
         </argument>
         <argument type="service">
@@ -3067,6 +2982,17 @@
                   </argument>
                   <argument>null</argument>
                 </call>
+                <call method="add">
+                  <argument type="service">
+                    <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+                      <argument>^/api</argument>
+                    </service>
+                  </argument>
+                  <argument type="collection">
+                    <argument>IS_AUTHENTICATED_FULLY</argument>
+                  </argument>
+                  <argument>null</argument>
+                </call>
               </service>
             </argument>
             <argument type="service" id="security.authentication.manager"/>
@@ -3083,24 +3009,16 @@
               <argument type="service" id="router" on-invalid="null"/>
             </service>
           </argument>
-          <argument>main</argument>
+          <argument>api</argument>
           <argument type="service">
-            <service class="Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint" public="false">
-              <argument type="service" id="http_kernel"/>
-              <argument type="service">
-                <service class="Symfony\Component\Security\Http\HttpUtils" public="false">
-                  <argument type="service" id="router" on-invalid="null"/>
-                  <argument type="service" id="router" on-invalid="null"/>
-                </service>
-              </argument>
-              <argument>/login</argument>
-              <argument>false</argument>
+            <service class="FOS\OAuthServerBundle\Security\EntryPoint\OAuthEntryPoint" public="false">
+              <argument type="service" id="fos_oauth_server.server"/>
             </service>
           </argument>
           <argument>null</argument>
           <argument>null</argument>
           <argument type="service" id="monolog.logger.security" on-invalid="null"/>
-          <argument>false</argument>
+          <argument>true</argument>
         </service>
       </argument>
     </service>
@@ -3646,6 +3564,7 @@
           <call method="setEntityNamespaces">
             <argument type="collection">
               <argument key="EduSpeakBundle">EduSpeakBundle\Entity</argument>
+              <argument key="FOSOAuthServerBundle">FOS\OAuthServerBundle\Entity</argument>
             </argument>
           </call>
           <call method="setMetadataCacheImpl">
@@ -3670,6 +3589,19 @@
                     </service>
                   </argument>
                   <argument>EduSpeakBundle\Entity</argument>
+                </call>
+                <call method="addDriver">
+                  <argument type="service">
+                    <service class="Doctrine\ORM\Mapping\Driver\SimplifiedXmlDriver" public="false">
+                      <argument type="collection">
+                        <argument key="/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/oauth-server-bundle/FOS/OAuthServerBundle/Resources/config/doctrine">FOS\OAuthServerBundle\Entity</argument>
+                      </argument>
+                      <call method="setGlobalBasename">
+                        <argument>mapping</argument>
+                      </call>
+                    </service>
+                  </argument>
+                  <argument>FOS\OAuthServerBundle\Entity</argument>
                 </call>
                 <call method="addDriver">
                   <argument type="service">
@@ -3774,11 +3706,12 @@
     <service id="fos_user.security.login_manager" class="FOS\UserBundle\Security\LoginManager">
       <argument type="service" id="security.token_storage"/>
       <argument type="service" id="security.user_checker"/>
-      <argument type="service" id="security.authentication.session_strategy"/>
+      <argument type="service">
+        <service class="Symfony\Component\Security\Http\Session\SessionAuthenticationStrategy" public="false">
+          <argument>migrate</argument>
+        </service>
+      </argument>
       <argument type="service" id="service_container"/>
-    </service>
-    <service id="fos_user.user_provider.username" class="FOS\UserBundle\Security\UserProvider" public="false">
-      <argument type="service" id="fos_user.user_manager"/>
     </service>
     <service id="fos_user.util.user_manipulator" class="FOS\UserBundle\Util\UserManipulator">
       <argument type="service" id="fos_user.user_manager"/>
@@ -3786,7 +3719,7 @@
     <service id="fos_user.listener.authentication" class="FOS\UserBundle\EventListener\AuthenticationListener">
       <tag name="kernel.event_subscriber"/>
       <argument type="service" id="fos_user.security.login_manager"/>
-      <argument>main</argument>
+      <argument>api</argument>
     </service>
     <service id="fos_user.listener.flash" class="FOS\UserBundle\EventListener\FlashListener">
       <tag name="kernel.event_subscriber"/>
@@ -4693,6 +4626,50 @@
         <argument>null</argument>
       </call>
     </service>
+    <service id="fos_oauth_server.client_manager.default" class="FOS\OAuthServerBundle\Entity\ClientManager">
+      <argument type="service" id="fos_oauth_server.entity_manager"/>
+      <argument>EduSpeakBundle\Entity\Client</argument>
+    </service>
+    <service id="fos_oauth_server.access_token_manager.default" class="FOS\OAuthServerBundle\Entity\AccessTokenManager">
+      <argument type="service" id="fos_oauth_server.entity_manager"/>
+      <argument>EduSpeakBundle\Entity\AccessToken</argument>
+    </service>
+    <service id="fos_oauth_server.refresh_token_manager.default" class="FOS\OAuthServerBundle\Entity\RefreshTokenManager">
+      <argument type="service" id="fos_oauth_server.entity_manager"/>
+      <argument>EduSpeakBundle\Entity\RefreshToken</argument>
+    </service>
+    <service id="fos_oauth_server.auth_code_manager.default" class="FOS\OAuthServerBundle\Entity\AuthCodeManager">
+      <argument type="service" id="fos_oauth_server.entity_manager"/>
+      <argument>EduSpeakBundle\Entity\AuthCode</argument>
+    </service>
+    <service id="fos_oauth_server.entity_manager" class="Doctrine\ORM\EntityManager" factory-method="getManager" factory-service="doctrine" public="false">
+      <argument>null</argument>
+    </service>
+    <service id="fos_oauth_server.server" class="OAuth2\OAuth2">
+      <argument type="service" id="fos_oauth_server.storage"/>
+      <argument type="collection"/>
+    </service>
+    <service id="fos_oauth_server.controller.token" class="FOS\OAuthServerBundle\Controller\TokenController">
+      <argument type="service" id="fos_oauth_server.server"/>
+    </service>
+    <service id="fos_oauth_server.authorize.form" class="Symfony\Component\Form\Form" factory-method="createNamed" factory-service="form.factory">
+      <argument>fos_oauth_server_authorize_form</argument>
+      <argument>fos_oauth_server_authorize</argument>
+      <argument>null</argument>
+      <argument type="collection">
+        <argument key="validation_groups" type="collection">
+          <argument>Authorize</argument>
+          <argument>Default</argument>
+        </argument>
+      </argument>
+    </service>
+    <service id="fos_oauth_server.authorize.form.type" class="FOS\OAuthServerBundle\Form\Type\AuthorizeFormType">
+      <tag name="form.type" alias="fos_oauth_server_authorize"/>
+    </service>
+    <service id="fos_oauth_server.authorize.form.handler.default" class="FOS\OAuthServerBundle\Form\Handler\AuthorizeFormHandler" scope="request">
+      <argument type="service" id="fos_oauth_server.authorize.form"/>
+      <argument type="service" id="request"/>
+    </service>
     <service id="jms_serializer.doctrine_proxy_subscriber" class="JMS\Serializer\EventDispatcher\Subscriber\DoctrineProxySubscriber">
       <tag name="jms_serializer.event_subscriber"/>
     </service>
@@ -5564,9 +5541,11 @@
     <service id="security.encoder_factory" class="Symfony\Component\Security\Core\Encoder\EncoderFactory">
       <argument type="collection">
         <argument key="FOS\UserBundle\Model\UserInterface" type="collection">
-          <argument key="class">%security.encoder.bcrypt.class%</argument>
+          <argument key="class">%security.encoder.digest.class%</argument>
           <argument key="arguments" type="collection">
-            <argument>13</argument>
+            <argument>sha512</argument>
+            <argument>true</argument>
+            <argument>5000</argument>
           </argument>
         </argument>
       </argument>
@@ -5625,6 +5604,10 @@
       <call method="addPath">
         <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/admin-bundle/Resources/views</argument>
         <argument>SonataAdmin</argument>
+      </call>
+      <call method="addPath">
+        <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/oauth-server-bundle/FOS/OAuthServerBundle/Resources/views</argument>
+        <argument>FOSOAuthServer</argument>
       </call>
       <call method="addPath">
         <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/nelmio/api-doc-bundle/Nelmio/ApiDocBundle/Resources/views</argument>
@@ -5783,6 +5766,14 @@
         <argument type="service" id="service_container"/>
       </call>
     </service>
+    <service id="fos_oauth_server.storage" class="FOS\OAuthServerBundle\Storage\OAuthStorage">
+      <argument type="service" id="fos_oauth_server.client_manager.default"/>
+      <argument type="service" id="fos_oauth_server.access_token_manager.default"/>
+      <argument type="service" id="fos_oauth_server.refresh_token_manager.default"/>
+      <argument type="service" id="fos_oauth_server.auth_code_manager.default"/>
+      <argument type="service" id="fos_user.user_manager" on-invalid="null"/>
+      <argument type="service" id="security.encoder_factory"/>
+    </service>
     <service id="jms_serializer.metadata_driver" class="JMS\Serializer\Metadata\Driver\DoctrineTypeDriver">
       <argument type="service">
         <service class="Metadata\Driver\DriverChain" public="false">
@@ -5809,6 +5800,7 @@
                       <argument key="Sonata\DoctrineORMAdminBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/doctrine-orm-admin-bundle/Resources/config/serializer</argument>
                       <argument key="Sonata\AdminBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/admin-bundle/Resources/config/serializer</argument>
                       <argument key="FOS\RestBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/rest-bundle/FOS/RestBundle/Resources/config/serializer</argument>
+                      <argument key="FOS\OAuthServerBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/oauth-server-bundle/FOS/OAuthServerBundle/Resources/config/serializer</argument>
                       <argument key="JMS\SerializerBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/jms/serializer-bundle/JMS/SerializerBundle/Resources/config/serializer</argument>
                       <argument key="Nelmio\ApiDocBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/nelmio/api-doc-bundle/Nelmio/ApiDocBundle/Resources/config/serializer</argument>
                       <argument key="Symfony\Bundle\DebugBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Bundle/DebugBundle/Resources/config/serializer</argument>
@@ -5842,6 +5834,7 @@
                       <argument key="Sonata\DoctrineORMAdminBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/doctrine-orm-admin-bundle/Resources/config/serializer</argument>
                       <argument key="Sonata\AdminBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/admin-bundle/Resources/config/serializer</argument>
                       <argument key="FOS\RestBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/rest-bundle/FOS/RestBundle/Resources/config/serializer</argument>
+                      <argument key="FOS\OAuthServerBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/oauth-server-bundle/FOS/OAuthServerBundle/Resources/config/serializer</argument>
                       <argument key="JMS\SerializerBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/jms/serializer-bundle/JMS/SerializerBundle/Resources/config/serializer</argument>
                       <argument key="Nelmio\ApiDocBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/nelmio/api-doc-bundle/Nelmio/ApiDocBundle/Resources/config/serializer</argument>
                       <argument key="Symfony\Bundle\DebugBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Bundle/DebugBundle/Resources/config/serializer</argument>
@@ -5875,6 +5868,7 @@
                       <argument key="Sonata\DoctrineORMAdminBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/doctrine-orm-admin-bundle/Resources/config/serializer</argument>
                       <argument key="Sonata\AdminBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/admin-bundle/Resources/config/serializer</argument>
                       <argument key="FOS\RestBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/rest-bundle/FOS/RestBundle/Resources/config/serializer</argument>
+                      <argument key="FOS\OAuthServerBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/oauth-server-bundle/FOS/OAuthServerBundle/Resources/config/serializer</argument>
                       <argument key="JMS\SerializerBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/jms/serializer-bundle/JMS/SerializerBundle/Resources/config/serializer</argument>
                       <argument key="Nelmio\ApiDocBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/nelmio/api-doc-bundle/Nelmio/ApiDocBundle/Resources/config/serializer</argument>
                       <argument key="Symfony\Bundle\DebugBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Bundle/DebugBundle/Resources/config/serializer</argument>
@@ -6011,6 +6005,11 @@
     <service id="fos_rest.templating" alias="templating"/>
     <service id="fos_rest.exception_handler" alias="fos_rest.view.exception_wrapper_handler"/>
     <service id="fos_rest.inflector" alias="fos_rest.inflector.doctrine"/>
+    <service id="fos_oauth_server.client_manager" alias="fos_oauth_server.client_manager.default"/>
+    <service id="fos_oauth_server.access_token_manager" alias="fos_oauth_server.access_token_manager.default"/>
+    <service id="fos_oauth_server.refresh_token_manager" alias="fos_oauth_server.refresh_token_manager.default"/>
+    <service id="fos_oauth_server.auth_code_manager" alias="fos_oauth_server.auth_code_manager.default"/>
+    <service id="fos_oauth_server.authorize.form.handler" alias="fos_oauth_server.authorize.form.handler.default"/>
     <service id="serializer" alias="jms_serializer"/>
     <service id="sensio.distribution.webconfigurator" alias="sensio_distribution.webconfigurator"/>
     <service id="console.command.sensiolabs_security_command_securitycheckercommand" alias="sensio_distribution.security_checker.command"/>
