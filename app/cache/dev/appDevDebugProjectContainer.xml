@@ -28,6 +28,7 @@
       <parameter key="FOSOAuthServerBundle">FOS\OAuthServerBundle\FOSOAuthServerBundle</parameter>
       <parameter key="JMSSerializerBundle">JMS\SerializerBundle\JMSSerializerBundle</parameter>
       <parameter key="NelmioApiDocBundle">Nelmio\ApiDocBundle\NelmioApiDocBundle</parameter>
+      <parameter key="NelmioCorsBundle">Nelmio\CorsBundle\NelmioCorsBundle</parameter>
       <parameter key="DebugBundle">Symfony\Bundle\DebugBundle\DebugBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
       <parameter key="SensioDistributionBundle">Sensio\Bundle\DistributionBundle\SensioDistributionBundle</parameter>
@@ -930,6 +931,53 @@
       <parameter key="licenseUrl">null</parameter>
     </parameter>
     <parameter key="nelmio_api_doc.swagger.model_naming_strategy">dot_notation</parameter>
+    <parameter key="nelmio_cors.defaults" type="collection">
+      <parameter key="allow_origin" type="collection"/>
+      <parameter key="allow_credentials">false</parameter>
+      <parameter key="allow_headers" type="collection"/>
+      <parameter key="expose_headers" type="collection"/>
+      <parameter key="allow_methods" type="collection"/>
+      <parameter key="max_age">0</parameter>
+      <parameter key="hosts" type="collection"/>
+      <parameter key="origin_regex">false</parameter>
+    </parameter>
+    <parameter key="nelmio_cors.map" type="collection">
+      <parameter key="^/api/" type="collection">
+        <parameter key="allow_origin">true</parameter>
+        <parameter key="allow_headers" type="collection">
+          <parameter>x-custom-auth</parameter>
+        </parameter>
+        <parameter key="allow_methods" type="collection">
+          <parameter>POST</parameter>
+          <parameter>PUT</parameter>
+          <parameter>GET</parameter>
+          <parameter>DELETE</parameter>
+        </parameter>
+        <parameter key="max_age">3600</parameter>
+      </parameter>
+      <parameter key="^/" type="collection">
+        <parameter key="origin_regex">true</parameter>
+        <parameter key="allow_origin" type="collection">
+          <parameter>^http://localhost:[0-9]+</parameter>
+        </parameter>
+        <parameter key="allow_headers" type="collection">
+          <parameter>x-custom-auth</parameter>
+        </parameter>
+        <parameter key="allow_methods" type="collection">
+          <parameter>POST</parameter>
+          <parameter>PUT</parameter>
+          <parameter>GET</parameter>
+          <parameter>DELETE</parameter>
+        </parameter>
+        <parameter key="max_age">3600</parameter>
+        <parameter key="hosts" type="collection">
+          <parameter>^api\.</parameter>
+        </parameter>
+      </parameter>
+    </parameter>
+    <parameter key="nelmio_cors.cors_listener.class">Nelmio\CorsBundle\EventListener\CorsListener</parameter>
+    <parameter key="nelmio_cors.options_resolver.class">Nelmio\CorsBundle\Options\Resolver</parameter>
+    <parameter key="nelmio_cors.options_provider.config.class">Nelmio\CorsBundle\Options\ConfigProvider</parameter>
     <parameter key="web_profiler.controller.profiler.class">Symfony\Bundle\WebProfilerBundle\Controller\ProfilerController</parameter>
     <parameter key="web_profiler.controller.router.class">Symfony\Bundle\WebProfilerBundle\Controller\RouterController</parameter>
     <parameter key="web_profiler.controller.exception.class">Symfony\Bundle\WebProfilerBundle\Controller\ExceptionController</parameter>
@@ -2603,6 +2651,14 @@
           <argument>onKernelRequest</argument>
         </argument>
         <argument>0</argument>
+      </call>
+      <call method="addListenerService">
+        <argument>kernel.request</argument>
+        <argument type="collection">
+          <argument>nelmio_cors.cors_listener</argument>
+          <argument>onKernelRequest</argument>
+        </argument>
+        <argument>10000</argument>
       </call>
       <call method="addSubscriberService">
         <argument>response_listener</argument>
@@ -5205,6 +5261,64 @@
       <argument type="service" id="nelmio_api_doc.formatter.html_formatter"/>
       <argument>_doc</argument>
     </service>
+    <service id="nelmio_cors.cors_listener" class="Nelmio\CorsBundle\EventListener\CorsListener">
+      <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest" priority="10000"/>
+      <argument type="service" id="debug.event_dispatcher"/>
+      <argument type="service">
+        <service class="Nelmio\CorsBundle\Options\Resolver" public="false">
+          <argument type="collection">
+            <argument type="service" id="nelmio_cors.options_provider.config"/>
+          </argument>
+        </service>
+      </argument>
+    </service>
+    <service id="nelmio_cors.options_provider.config" class="Nelmio\CorsBundle\Options\ConfigProvider">
+      <tag name="nelmio_cors.options_provider" priority="-1"/>
+      <argument type="collection">
+        <argument key="^/api/" type="collection">
+          <argument key="allow_origin">true</argument>
+          <argument key="allow_headers" type="collection">
+            <argument>x-custom-auth</argument>
+          </argument>
+          <argument key="allow_methods" type="collection">
+            <argument>POST</argument>
+            <argument>PUT</argument>
+            <argument>GET</argument>
+            <argument>DELETE</argument>
+          </argument>
+          <argument key="max_age">3600</argument>
+        </argument>
+        <argument key="^/" type="collection">
+          <argument key="origin_regex">true</argument>
+          <argument key="allow_origin" type="collection">
+            <argument>^http://localhost:[0-9]+</argument>
+          </argument>
+          <argument key="allow_headers" type="collection">
+            <argument>x-custom-auth</argument>
+          </argument>
+          <argument key="allow_methods" type="collection">
+            <argument>POST</argument>
+            <argument>PUT</argument>
+            <argument>GET</argument>
+            <argument>DELETE</argument>
+          </argument>
+          <argument key="max_age">3600</argument>
+          <argument key="hosts" type="collection">
+            <argument>^api\.</argument>
+          </argument>
+        </argument>
+      </argument>
+      <argument type="collection">
+        <argument key="allow_origin" type="collection"/>
+        <argument key="allow_credentials">false</argument>
+        <argument key="allow_headers" type="collection"/>
+        <argument key="expose_headers" type="collection"/>
+        <argument key="allow_methods" type="collection"/>
+        <argument key="max_age">0</argument>
+        <argument key="hosts" type="collection"/>
+        <argument key="origin_regex">false</argument>
+      </argument>
+    </service>
     <service id="data_collector.dump" class="Symfony\Component\HttpKernel\DataCollector\DumpDataCollector">
       <tag name="data_collector" id="dump" template="@Debug/Profiler/dump.html.twig"/>
       <argument type="service" id="debug.stopwatch" on-invalid="ignore"/>
@@ -5803,6 +5917,7 @@
                       <argument key="FOS\OAuthServerBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/oauth-server-bundle/FOS/OAuthServerBundle/Resources/config/serializer</argument>
                       <argument key="JMS\SerializerBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/jms/serializer-bundle/JMS/SerializerBundle/Resources/config/serializer</argument>
                       <argument key="Nelmio\ApiDocBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/nelmio/api-doc-bundle/Nelmio/ApiDocBundle/Resources/config/serializer</argument>
+                      <argument key="Nelmio\CorsBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/nelmio/cors-bundle/Nelmio/CorsBundle/Resources/config/serializer</argument>
                       <argument key="Symfony\Bundle\DebugBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Bundle/DebugBundle/Resources/config/serializer</argument>
                       <argument key="Symfony\Bundle\WebProfilerBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle/Resources/config/serializer</argument>
                       <argument key="Sensio\Bundle\DistributionBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/sensio/distribution-bundle/Sensio/Bundle/DistributionBundle/Resources/config/serializer</argument>
@@ -5837,6 +5952,7 @@
                       <argument key="FOS\OAuthServerBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/oauth-server-bundle/FOS/OAuthServerBundle/Resources/config/serializer</argument>
                       <argument key="JMS\SerializerBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/jms/serializer-bundle/JMS/SerializerBundle/Resources/config/serializer</argument>
                       <argument key="Nelmio\ApiDocBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/nelmio/api-doc-bundle/Nelmio/ApiDocBundle/Resources/config/serializer</argument>
+                      <argument key="Nelmio\CorsBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/nelmio/cors-bundle/Nelmio/CorsBundle/Resources/config/serializer</argument>
                       <argument key="Symfony\Bundle\DebugBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Bundle/DebugBundle/Resources/config/serializer</argument>
                       <argument key="Symfony\Bundle\WebProfilerBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle/Resources/config/serializer</argument>
                       <argument key="Sensio\Bundle\DistributionBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/sensio/distribution-bundle/Sensio/Bundle/DistributionBundle/Resources/config/serializer</argument>
@@ -5871,6 +5987,7 @@
                       <argument key="FOS\OAuthServerBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/oauth-server-bundle/FOS/OAuthServerBundle/Resources/config/serializer</argument>
                       <argument key="JMS\SerializerBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/jms/serializer-bundle/JMS/SerializerBundle/Resources/config/serializer</argument>
                       <argument key="Nelmio\ApiDocBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/nelmio/api-doc-bundle/Nelmio/ApiDocBundle/Resources/config/serializer</argument>
+                      <argument key="Nelmio\CorsBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/nelmio/cors-bundle/Nelmio/CorsBundle/Resources/config/serializer</argument>
                       <argument key="Symfony\Bundle\DebugBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Bundle/DebugBundle/Resources/config/serializer</argument>
                       <argument key="Symfony\Bundle\WebProfilerBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle/Resources/config/serializer</argument>
                       <argument key="Sensio\Bundle\DistributionBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/sensio/distribution-bundle/Sensio/Bundle/DistributionBundle/Resources/config/serializer</argument>
