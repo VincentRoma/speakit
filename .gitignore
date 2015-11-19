@@ -21,6 +21,9 @@ var/logs/*
 # Assets and user uploads
 /web/bundles/
 /web/uploads/
+/web/front/dist/
+/web/front/node_modules/
+/web/front/bower_components/
 
 # PHPUnit
 /app/phpunit.xml
