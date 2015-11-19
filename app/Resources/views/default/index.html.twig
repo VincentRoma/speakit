@@ -4,8 +4,15 @@
 <div class="row welcome-panel">
     <div class="col-md-6 col-md-offset-3">
         <h1>Pratiquez comme si vous y étiez</h1>
-        <a class="btn btn-default btn-edu" href="#" role="button">Login</a>
-        <a class="btn btn-default btn-edu-invert" href="#" role="button">Register</a>
+        {% if app.security.token is not null and is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+            <a class="btn btn-default btn-edu" href="{{ path('fos_user_security_logout') }}">
+                {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+            </a>
+        {% else %}
+            <a class="btn btn-default btn-edu" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+            <a class="btn btn-default btn-edu-invert" href="/register" role="button">Register</a>
+        {% endif %}
     </div>
 </div>
 <div class="row">

@@ -2,7 +2,7 @@
 # http://symfony.com/doc/current/book/security.html
 security:
     encoders:
-        FOS\UserBundle\Model\UserInterface: sha512
+        FOS\UserBundle\Model\UserInterface: bcrypt
 
     role_hierarchy:
         ROLE_ADMIN:       ROLE_USER
@@ -13,62 +13,61 @@ security:
             id: fos_user.user_provider.username
 
     firewalls:
-        oauth_token:                                   # Everyone can access the access token URL.
-            pattern: ^/oauth/v2/token
-            security: false
-        api:
-            pattern: ^/api                             # All URLs are protected
-            fos_oauth: true                            # OAuth2 protected resource
-            stateless: true                            # Do no set session cookies
-            anonymous: false
+        main:
+            pattern: ^/
+            form_login:
+                provider: fos_userbundle
+                csrf_provider: security.csrf.token_manager # Use form.csrf_provider instead for Symfony <2.4
+
+            logout:       true
+            anonymous:    true
 
     access_control:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, role: ROLE_ADMIN }
-        - { path: ^/api, roles: [ IS_AUTHENTICATED_FULLY ] }
 
-security:
-    encoders:
-        EduSpeakBundle\Entity\User:
-            algorithm:        sha1
-            encode_as_base64: false
-            iterations:       1
-
-    role_hierarchy:
-        ROLE_ADMIN:       ROLE_USER
-        ROLE_SUPER_ADMIN: ROLE_ADMIN
-
-    providers:
-        user_provider:
-            id: platform.user.provider
-
-
-    firewalls:
-        dev:
-            pattern:  ^/(_(profiler|wdt)|css|images|js)/
-            security: false
-
-        oauth_token:
-            pattern:    ^/oauth/v2/token
-            security:   false
-
-        oauth_authorize:
-            pattern:    ^/oauth/v2/auth
-            form_login:
-                provider: user_provider
-                check_path: _security_check
-                login_path: _demo_login
-            anonymous: true
-
-        api:
-            pattern:    ^/api
-            fos_oauth:  true
-            stateless:  true
-
-    access_control:
-        # You can omit this if /api can be accessed both authenticated and anonymously
-        - { path: ^/api, roles: [ IS_AUTHENTICATED_FULLY ] }
-        - { path: ^/admin/, roles: ROLE_ADMIN }
-        #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+# security:
+#     encoders:
+#         EduSpeakBundle\Entity\User:
+#             algorithm:        sha1
+#             encode_as_base64: false
+#             iterations:       1
+#
+#     role_hierarchy:
+#         ROLE_ADMIN:       ROLE_USER
+#         ROLE_SUPER_ADMIN: ROLE_ADMIN
+#
+#     providers:
+#         user_provider:
+#             id: platform.user.provider
+#
+#
+#     firewalls:
+#         dev:
+#             pattern:  ^/(_(profiler|wdt)|css|images|js)/
+#             security: false
+#
+#         oauth_token:
+#             pattern:    ^/oauth/v2/token
+#             security:   false
+#
+#         oauth_authorize:
+#             pattern:    ^/oauth/v2/auth
+#             form_login:
+#                 provider: user_provider
+#                 check_path: _security_check
+#                 login_path: _demo_login
+#             anonymous: true
+#
+#         api:
+#             pattern:    ^/api
+#             fos_oauth:  true
+#             stateless:  true
+#
+#     access_control:
+#         # You can omit this if /api can be accessed both authenticated and anonymously
+#         - { path: ^/api, roles: [ IS_AUTHENTICATED_FULLY ] }
+#         - { path: ^/admin/, roles: ROLE_ADMIN }
+#         #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
