@@ -11,7 +11,7 @@
             </a>
         {% else %}
             <a class="btn btn-default btn-edu" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
-            <a class="btn btn-default btn-edu-invert" href="/register" role="button">Register</a>
+            <a class="btn btn-default btn-edu-invert" href="{{ path('fos_user_registration_register') }}" role="button">Register</a>
         {% endif %}
     </div>
 </div>
