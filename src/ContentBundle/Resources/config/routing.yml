@@ -1,0 +1,3 @@
+content_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: ContentBundle:Default:index }

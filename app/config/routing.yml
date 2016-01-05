@@ -1,3 +1,15 @@
+content:
+    resource: "@ContentBundle/Resources/config/routing.yml"
+    prefix:   /
+
+geo:
+    resource: "@GeoBundle/Resources/config/routing.yml"
+    prefix:   /
+
+chat:
+    resource: "@ChatBundle/Resources/config/routing.yml"
+    prefix:   /
+
 edu_speak:
     resource: "@EduSpeakBundle/Resources/config/routing.yml"
     prefix:   /

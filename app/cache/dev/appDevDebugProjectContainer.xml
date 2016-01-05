@@ -29,6 +29,8 @@
       <parameter key="JMSSerializerBundle">JMS\SerializerBundle\JMSSerializerBundle</parameter>
       <parameter key="NelmioApiDocBundle">Nelmio\ApiDocBundle\NelmioApiDocBundle</parameter>
       <parameter key="NelmioCorsBundle">Nelmio\CorsBundle\NelmioCorsBundle</parameter>
+      <parameter key="ChatBundle">ChatBundle\ChatBundle</parameter>
+      <parameter key="GeoBundle">GeoBundle\GeoBundle</parameter>
       <parameter key="DebugBundle">Symfony\Bundle\DebugBundle\DebugBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
       <parameter key="SensioDistributionBundle">Sensio\Bundle\DistributionBundle\SensioDistributionBundle</parameter>
@@ -1496,6 +1498,7 @@
             <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/core-bundle/Resources/translations/SonataCoreBundle.fr.xliff</argument>
             <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/sonata-project/admin-bundle/Resources/translations/SonataAdminBundle.fr.xliff</argument>
             <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/friendsofsymfony/oauth-server-bundle/FOS/OAuthServerBundle/Resources/translations/FOSOAuthServerBundle.fr.yml</argument>
+            <argument>/Users/vincentroma/Documents/Code/eduspeak/src/ChatBundle/Resources/translations/messages.fr.xlf</argument>
           </argument>
           <argument key="gl" type="collection">
             <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Component/Validator/Resources/translations/validators.gl.xlf</argument>
@@ -2808,7 +2811,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>564e03741b5c58.95499791</argument>
+            <argument>568bd5186718b8.30554084</argument>
           </service>
         </argument>
       </argument>
@@ -3091,7 +3094,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.token_storage"/>
-            <argument>564e03741b5c58.95499791</argument>
+            <argument>568bd5186718b8.30554084</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
             <argument type="service" id="security.authentication.manager"/>
           </service>
@@ -5831,6 +5834,14 @@
         <argument>NelmioApiDoc</argument>
       </call>
       <call method="addPath">
+        <argument>/Users/vincentroma/Documents/Code/eduspeak/src/ChatBundle/Resources/views</argument>
+        <argument>Chat</argument>
+      </call>
+      <call method="addPath">
+        <argument>/Users/vincentroma/Documents/Code/eduspeak/src/GeoBundle/Resources/views</argument>
+        <argument>Geo</argument>
+      </call>
+      <call method="addPath">
         <argument>/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Bundle/DebugBundle/Resources/views</argument>
         <argument>Debug</argument>
       </call>
@@ -6021,6 +6032,8 @@
                       <argument key="JMS\SerializerBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/jms/serializer-bundle/JMS/SerializerBundle/Resources/config/serializer</argument>
                       <argument key="Nelmio\ApiDocBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/nelmio/api-doc-bundle/Nelmio/ApiDocBundle/Resources/config/serializer</argument>
                       <argument key="Nelmio\CorsBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/nelmio/cors-bundle/Nelmio/CorsBundle/Resources/config/serializer</argument>
+                      <argument key="ChatBundle">/Users/vincentroma/Documents/Code/eduspeak/src/ChatBundle/Resources/config/serializer</argument>
+                      <argument key="GeoBundle">/Users/vincentroma/Documents/Code/eduspeak/src/GeoBundle/Resources/config/serializer</argument>
                       <argument key="Symfony\Bundle\DebugBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Bundle/DebugBundle/Resources/config/serializer</argument>
                       <argument key="Symfony\Bundle\WebProfilerBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle/Resources/config/serializer</argument>
                       <argument key="Sensio\Bundle\DistributionBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/sensio/distribution-bundle/Sensio/Bundle/DistributionBundle/Resources/config/serializer</argument>
@@ -6056,6 +6069,8 @@
                       <argument key="JMS\SerializerBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/jms/serializer-bundle/JMS/SerializerBundle/Resources/config/serializer</argument>
                       <argument key="Nelmio\ApiDocBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/nelmio/api-doc-bundle/Nelmio/ApiDocBundle/Resources/config/serializer</argument>
                       <argument key="Nelmio\CorsBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/nelmio/cors-bundle/Nelmio/CorsBundle/Resources/config/serializer</argument>
+                      <argument key="ChatBundle">/Users/vincentroma/Documents/Code/eduspeak/src/ChatBundle/Resources/config/serializer</argument>
+                      <argument key="GeoBundle">/Users/vincentroma/Documents/Code/eduspeak/src/GeoBundle/Resources/config/serializer</argument>
                       <argument key="Symfony\Bundle\DebugBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Bundle/DebugBundle/Resources/config/serializer</argument>
                       <argument key="Symfony\Bundle\WebProfilerBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle/Resources/config/serializer</argument>
                       <argument key="Sensio\Bundle\DistributionBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/sensio/distribution-bundle/Sensio/Bundle/DistributionBundle/Resources/config/serializer</argument>
@@ -6091,6 +6106,8 @@
                       <argument key="JMS\SerializerBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/jms/serializer-bundle/JMS/SerializerBundle/Resources/config/serializer</argument>
                       <argument key="Nelmio\ApiDocBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/nelmio/api-doc-bundle/Nelmio/ApiDocBundle/Resources/config/serializer</argument>
                       <argument key="Nelmio\CorsBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/nelmio/cors-bundle/Nelmio/CorsBundle/Resources/config/serializer</argument>
+                      <argument key="ChatBundle">/Users/vincentroma/Documents/Code/eduspeak/src/ChatBundle/Resources/config/serializer</argument>
+                      <argument key="GeoBundle">/Users/vincentroma/Documents/Code/eduspeak/src/GeoBundle/Resources/config/serializer</argument>
                       <argument key="Symfony\Bundle\DebugBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Bundle/DebugBundle/Resources/config/serializer</argument>
                       <argument key="Symfony\Bundle\WebProfilerBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle/Resources/config/serializer</argument>
                       <argument key="Sensio\Bundle\DistributionBundle">/Users/vincentroma/Documents/Code/eduspeak/vendor/sensio/distribution-bundle/Sensio/Bundle/DistributionBundle/Resources/config/serializer</argument>
