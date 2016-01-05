@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 EduSpeak
 ========================
 
@@ -67,3 +68,6 @@ Enjoy!
 [11]: https://symfony.com/doc/2.7/cookbook/logging/monolog.html
 [12]: https://symfony.com/doc/2.7/cookbook/assetic/asset_management.html
 [13]: https://symfony.com/doc/2.7/bundles/SensioGeneratorBundle/index.html
+=======
+# speakit
+>>>>>>> 66b79d3264f656c6f216c12aa6b80ea67f8331a2
