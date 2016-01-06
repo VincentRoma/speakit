@@ -30,7 +30,8 @@ dependencies:
 
 # Running your tests
 test:
-  phpunit -c app/
+  override:
+    - phpunit -c app/
   
 # Deploying your code to your web servers
 # https://circleci.com/docs/configuration#deployment
