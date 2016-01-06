@@ -29,7 +29,9 @@ dependencies:
 #    - mysql -u ubuntu symfony2_standard_template < src/craft/storage/backups/craft.sql
 
 # Running your tests
-
+test:
+  phpunit -c app/
+  
 # Deploying your code to your web servers
 # https://circleci.com/docs/configuration#deployment
 # deployment:
