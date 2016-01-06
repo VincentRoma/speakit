@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: Kevin
  * Date: 06/01/2016
- * Time: 11:41
+ * Time: 14:22
  */
 
 namespace GeoBundle\Entity;
@@ -12,9 +12,9 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="city")
+ * @ORM\Table(name="language")
  */
-class City
+class Language
 {
     /**
      * @ORM\Column(type="integer")
@@ -29,19 +29,13 @@ class City
     protected $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Country", inversedBy="cities")
-     * @ORM\JoinColumn(name="id_country", referencedColumnName="id")
+     * @ORM\OneToMany(targetEntity="UserLanguage", mappedBy="language")
      */
-    protected $country;
-
-    /**
-     * @ORM\OneToMany(targetEntity="User", mappedBy="city")
-     */
-    protected $users;
+    protected $userlanguages;
 
     public function __construct()
     {
-        $this->users = new ArrayCollection();
+        $this->userlanguages = new ArrayCollection();
     }
 
     /**
@@ -77,53 +71,36 @@ class City
     }
 
     /**
-     * @return $country
-     */
-    public function getCountry()
-    {
-        return $this->country;
-    }
-
-    /**
-     * @param $country
-     */
-    public function setCountry($country)
-    {
-        $this->country = $country;
-    }
-
-    /**
-     * Add user
+     * Add userlanguage
      *
-     * @param $user
+     * @param $userlanguage
      *
-     * @return City
+     * @return Language
      */
-    public function addUser(User $user)
+    public function addUserlanguage(Userlanguage $userlanguage)
     {
-        $this->users[] = $user;
+        $this->userlanguages[] = $userlanguage;
 
         return $this;
     }
 
     /**
-     * Remove user
+     * Remove userlanguage
      *
-     * @param $user
+     * @param $userlanguage
      */
-    public function removeUser(User $user)
+    public function removeUserlanguage(Userlanguage $userlanguage)
     {
-        $this->users->removeElement($user);
+        $this->userlanguages->removeElement($userlanguage);
     }
 
     /**
-     * Get users
+     * Get userlanguages
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getUsers()
+    public function getUserlanguages()
     {
-        return $this->users;
+        return $this->userlanguages;
     }
 }
-

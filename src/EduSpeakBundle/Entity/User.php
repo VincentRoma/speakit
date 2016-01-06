@@ -28,15 +28,59 @@ class User extends BaseUser
     protected $id;
 
     /**
+     * @ORM\ManyToOne(targetEntity="City", inversedBy="users")
+     * @ORM\JoinColumn(name="id_city", referencedColumnName="id")
+     */
+    protected $city;
+
+    /**
      * @ORM\ManyToMany(targetEntity="ChatBundle\Entity\Discussion", inversedBy="participants")
      * @ORM\JoinTable(name="participants_discussions")
      */
     protected $discussions;
 
+    /**
+     * @ORM\OneToMany(targetEntity="UserLanguage", mappedBy="user")
+     */
+    protected $userlanguages;
+
     public function __construct()
     {
         parent::__construct();
         $this->discussions = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->userlanguages = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * @return $id
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return $city
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * @param $city
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
     }
 
     /**
@@ -71,5 +115,39 @@ class User extends BaseUser
     public function getDiscussions()
     {
         return $this->discussions;
+    }
+
+    /**
+     * Add userlanguage
+     *
+     * @param $userlanguage
+     *
+     * @return Language
+     */
+    public function addUserlanguage(Userlanguage $userlanguage)
+    {
+        $this->userlanguages[] = $userlanguage;
+
+        return $this;
+    }
+
+    /**
+     * Remove userlanguage
+     *
+     * @param $userlanguage
+     */
+    public function removeUserlanguage(Userlanguage $userlanguage)
+    {
+        $this->userlanguages->removeElement($userlanguage);
+    }
+
+    /**
+     * Get userlanguages
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUserlanguages()
+    {
+        return $this->userlanguages;
     }
 }
