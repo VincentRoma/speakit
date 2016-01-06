@@ -1,10 +1,65 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h2>Chat participants</h2>
-    <ul>
-        {% for participant in discussion.participants %}
-            <li>{{ participant.username }}</li>
-        {% endfor %}
-    </ul>
+    {{ ws_client() }}
+    <div class="row">
+        <div class="col-md-2 participants">
+            <h2>Participants</h2>
+            <ul>
+                {% for participant in discussion.participants %}
+                    <li>
+                       {{ participant.username }}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col-md-10">
+            <div class="panel panel-default panel-chat">
+                <div class="panel-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10 col-md-offset-2">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Type text...">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button">Send!</button>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        var websocket = WS.connect("ws://127.0.0.1:8080");
+        websocket.on("socket/connect", function(session){
+            session.subscribe("acme/channel", function(uri, payload){
+                console.log("Received message", payload.msg);
+            });
+            session.call("sample/sum", {"term1": 2, "term2": 5}).then(
+                    function(result)
+                    {
+                        console.log("RPC Valid!", result);
+                    },
+                    function(error, desc)
+                    {
+                        console.log("RPC Error", error, desc);
+                    }
+            );
+            session.publish("acme/channel", {msg: "This is a message!"});
+            session.publish("acme/channel", {msg: "I'm leaving, I will not see the next message"});
+            session.unsubscribe("acme/channel");
+            session.publish("acme/channel", {msg: "I won't see this"});
+            session.subscribe("acme/channel", function(uri, payload){
+                console.log("Received message", payload.msg);
+            });
+            session.publish("acme/channel", {msg: "I'm back!"});
+        });
+        websocket.on("socket/disconnect", function(error){
+            //error provides us with some insight into the disconnection: error.reason and error.code
+            console.log("Disconnected for " + error.reason + " with code " + error.code);
+        });
+    </script>
 {%  endblock %}
