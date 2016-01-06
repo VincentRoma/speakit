@@ -23,6 +23,7 @@ class Country
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+
     /**
      * @ORM\Column(type="string", length=100)
      */
@@ -39,7 +40,7 @@ class Country
     }
 
     /**
-     * @return mixed
+     * @return $id
      */
     public function getId()
     {
@@ -47,7 +48,7 @@ class Country
     }
 
     /**
-     * @param mixed $id
+     * @param $id
      */
     public function setId($id)
     {
@@ -55,7 +56,7 @@ class Country
     }
 
     /**
-     * @return mixed
+     * @return $name
      */
     public function getName()
     {
@@ -63,7 +64,7 @@ class Country
     }
 
     /**
-     * @param mixed $name
+     * @param $name
      */
     public function setName($name)
     {
@@ -71,18 +72,36 @@ class Country
     }
 
     /**
-     * @return mixed
+     * Add participant
+     *
+     * @param $city
+     *
+     * @return Country
      */
-    public function getProducts()
+    public function addCity(City $city)
     {
-        return $this->products;
+        $this->cities[] = $city;
+
+        return $this;
     }
 
     /**
-     * @param mixed $products
+     * Remove city
+     *
+     * @param $city
      */
-    public function setProducts($products)
+    public function removeCity(City $city)
     {
-        $this->products = $products;
+        $this->cities->removeElement($city);
+    }
+
+    /**
+     * Get cities
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCities()
+    {
+        return $this->cities;
     }
 }

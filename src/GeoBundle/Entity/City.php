@@ -22,6 +22,7 @@ class City
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+
     /**
      * @ORM\Column(type="string", length=100)
      */
@@ -29,12 +30,12 @@ class City
 
     /**
      * @ORM\ManyToOne(targetEntity="Country", inversedBy="cities")
-     * @ORM\JoinColumn(name="country_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="id_country", referencedColumnName="id")
      */
     protected $country;
 
     /**
-     * @return mixed
+     * @return $id
      */
     public function getId()
     {
@@ -42,7 +43,7 @@ class City
     }
 
     /**
-     * @param mixed $id
+     * @param $id
      */
     public function setId($id)
     {
@@ -50,7 +51,7 @@ class City
     }
 
     /**
-     * @return mixed
+     * @return $name
      */
     public function getName()
     {
@@ -58,7 +59,7 @@ class City
     }
 
     /**
-     * @param mixed $name
+     * @param $name
      */
     public function setName($name)
     {
@@ -66,7 +67,7 @@ class City
     }
 
     /**
-     * @return mixed
+     * @return $country
      */
     public function getCountry()
     {
@@ -74,7 +75,7 @@ class City
     }
 
     /**
-     * @param mixed $country
+     * @param $country
      */
     public function setCountry($country)
     {
