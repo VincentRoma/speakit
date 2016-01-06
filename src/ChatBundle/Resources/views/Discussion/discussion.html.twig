@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h2>Chat participants</h2>
+    <ul>
+        {% for participant in discussion.participants %}
+            <li>{{ participant.username }}</li>
+        {% endfor %}
+    </ul>
+{%  endblock %}
