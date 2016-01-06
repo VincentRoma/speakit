@@ -1,13 +1,13 @@
 <?php
 
-// src/ChatBundle/Entity/Discussion.php
 namespace ChatBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 use EduSpeakBundle\Entity\User as User;
 
 /**
- * @ORM\Entity(repositoryClass="ChatBundle\Entity\DiscussionRepository")
+ * @ORM\Entity
  * @ORM\Table(name="discussion")
  */
 class Discussion
@@ -19,14 +19,13 @@ class Discussion
      */
     protected $id;
 
-
     /**
      * @ORM\OneToMany(targetEntity="Session", mappedBy="discussion")
      */
     protected $sessions;
 
     /**
-     * @ORM\ManyToMany(targetEntity="EduSpeakBundle\Entity\User", mappedBy="discussions")
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="discussions")
      */
     protected $participants;
 
@@ -35,8 +34,8 @@ class Discussion
      */
     public function __construct()
     {
-        $this->participants = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->sessions = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->participants = new ArrayCollection();
+        $this->sessions = new ArrayCollection();
     }
 
     /**
@@ -53,7 +52,7 @@ class Discussion
     /**
      * Add session
      *
-     * @param \ChatBundle\Entity\Session $session
+     * @param $session
      *
      * @return Discussion
      */
@@ -67,7 +66,7 @@ class Discussion
     /**
      * Remove session
      *
-     * @param \ChatBundle\Entity\Session $session
+     * @param $session
      */
     public function removeSession(Session $session)
     {
@@ -87,7 +86,7 @@ class Discussion
     /**
      * Add participant
      *
-     * @param User $participant
+     * @param $participant
      *
      * @return Discussion
      */
@@ -100,7 +99,7 @@ class Discussion
     /**
      * Remove participant
      *
-     * @param User $participant
+     * @param $participant
      */
     public function removeParticipant(User $participant)
     {

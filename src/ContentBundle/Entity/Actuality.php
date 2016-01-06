@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Adrien
- * Date: 06/01/2016
- * Time: 12:39
- */
 
 namespace ContentBundle\Entity;
 
@@ -36,7 +30,7 @@ class Actuality
     protected $link;
 
     /**
-     * @ORM\ManyToMany(targetEntity="EduSpeakBundle\Entity\User", mappedBy="actualities")
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="actualities")
      */
     protected $actuality_users;
 
