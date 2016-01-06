@@ -7,6 +7,7 @@
  */
 
 namespace EduSpeakBundle\Entity;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
@@ -22,13 +23,13 @@ class Friendship
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="\ChatBundle\Entity\User", inversedBy="friendships")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="friendships")
      * @ORM\JoinColumn(name="id_user1", referencedColumnName="id")
      */
     protected $user1;
 
     /**
-     * @ORM\ManyToOne(targetEntity="\ChatBundle\Entity\User", inversedBy="friendships")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="friendships")
      * @ORM\JoinColumn(name="id_user2", referencedColumnName="id")
      */
     protected $user2;
