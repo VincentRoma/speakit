@@ -29,17 +29,6 @@ dependencies:
 #    - mysql -u ubuntu symfony2_standard_template < src/craft/storage/backups/craft.sql
 
 # Running your tests
-# https://circleci.com/docs/configuration#running-your-tests
-test:
-  # commands run before CircleCI's inferred commands
-  pre:
-    # Handled automatically by CircleCI
-    # - npm install
-    # - bundle install
-    - bower install
-    - grunt build --target=dist
-    - composer install -d dist --prefer-source --no-interaction --optimize-autoloader
-    - composer install -d src --prefer-source --no-interaction --optimize-autoloader
 
 # Deploying your code to your web servers
 # https://circleci.com/docs/configuration#deployment
