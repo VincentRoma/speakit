@@ -19,13 +19,13 @@ class Friendship
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="friendships")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="honor")
      * @ORM\JoinColumn(name="id_user1", referencedColumnName="id")
      */
     protected $user1;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="friendships")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="friend")
      * @ORM\JoinColumn(name="id_user2", referencedColumnName="id")
      */
     protected $user2;

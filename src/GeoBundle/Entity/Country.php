@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Kevin
- * Date: 06/01/2016
- * Time: 12:39
- */
 
 namespace GeoBundle\Entity;
 
