@@ -17,6 +17,13 @@ use Doctrine\ORM\Mapping as ORM;
 class UserLanguage
 {
     /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+    
+    /**
      * @ORM\ManyToOne(targetEntity="EduSpeakBundle\Entity\User", inversedBy="userlanguages")
      * @ORM\JoinColumn(name="id_user", referencedColumnName="id")
      */

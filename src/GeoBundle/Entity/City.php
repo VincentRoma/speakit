@@ -35,7 +35,7 @@ class City
     protected $country;
 
     /**
-     * @ORM\OneToMany(targetEntity="User", mappedBy="city")
+     * @ORM\OneToMany(targetEntity="EduSpeakBundle\Entity\User", mappedBy="city")
      */
     protected $users;
 

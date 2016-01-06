@@ -4,6 +4,9 @@
 namespace EduSpeakBundle\Entity;
 
 use ChatBundle\Entity\Discussion as Discussion;
+use GeoBundle\Entity\City as City;
+use GeoBundle\Entity\UserLanguage as UserLanguage;
+use GeoBundle\Entity\Language as Language;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation\ExclusionPolicy;
@@ -28,7 +31,7 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="City", inversedBy="users")
+     * @ORM\ManyToOne(targetEntity="GeoBundle\Entity\City", inversedBy="users")
      * @ORM\JoinColumn(name="id_city", referencedColumnName="id")
      */
     protected $city;
@@ -40,7 +43,7 @@ class User extends BaseUser
     protected $discussions;
 
     /**
-     * @ORM\OneToMany(targetEntity="UserLanguage", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="GeoBundle\Entity\UserLanguage", mappedBy="user")
      */
     protected $userlanguages;
 
