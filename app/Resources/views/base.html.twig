@@ -15,17 +15,51 @@
     </head>
     <body>
         <div class="container">
-            <div class="row edu-nav">
-                <div class="col-md-12">
-                    <img class="eduspeak-logo" src="" />
-                    <h1>Speak It</h1>
+            {% if app.security.token is not null and is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                <div class="row">
+                    <nav class="navbar navbar-default">
+                        <div class="container-fluid">
+                            <!-- Brand and toggle get grouped for better mobile display -->
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                                <a class="navbar-brand" href="/">Speak It</a>
+                            </div>
+                            <!-- Collect the nav links, forms, and other content for toggling -->
+                            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ app.user.username }}<span class="caret"></span></a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="{{ path('fos_user_profile_show') }}">My Profile</a></li>
+                                            <li><a href="{{ path('chat_list') }}">Discussions</a></li>
+                                            <li><a href="#">Contacts</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a></li>
+                                </ul>
+                            </div><!-- /.navbar-collapse -->
+                        </div><!-- /.container-fluid -->
+                    </nav>
                 </div>
-            </div>
+            {% else %}
+                <div class="row edu-nav">
+                    <div class="col-md-12">
+                        <img class="eduspeak-logo" src="" />
+                        <h1><a class="home-link" href="/">Speak It</a></h1>
+                    </div>
+                </div>
+            {% endif %}
+
             {% block body %}{% endblock %}
             {% block javascripts %}{% endblock %}
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <!-- Latest compiled and minified JavaScript -->
-        <script src="{{ asset('front/dist/js/bootstrap.js') }}"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     </body>
 </html>

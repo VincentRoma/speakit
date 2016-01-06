@@ -2,13 +2,11 @@
 
 {% block body %}
 <div class="row welcome-panel">
+{# <img src="{{ asset('image/londres.jpeg') }}"> #}
     <div class="col-md-6 col-md-offset-3">
         <h1>Pratiquez comme si vous y étiez</h1>
         {% if app.security.token is not null and is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-            {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
-            <a class="btn btn-default btn-edu" href="{{ path('fos_user_security_logout') }}">
-                {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-            </a>
+            <h4>Welcome {{  app.user.username }}</h4>
         {% else %}
             <a class="btn btn-default btn-edu" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
             <a class="btn btn-default btn-edu-invert" href="{{ path('fos_user_registration_register') }}" role="button">Register</a>

@@ -1,3 +1,15 @@
 chat_homepage:
-    path:     /hello/{name}
+    path:     /
     defaults: { _controller: ChatBundle:Default:index }
+
+chat_list:
+    path:     /list
+    defaults: { _controller: ChatBundle:Discussion:show }
+
+chat_create:
+    path:     /start/{id}
+    defaults: { _controller: ChatBundle:Discussion:create }
+
+chat_display:
+    path:     /{id}
+    defaults: { _controller: ChatBundle:Discussion:display }
