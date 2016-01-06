@@ -21,13 +21,6 @@ dependencies:
   pre:
     - mysql -u ubuntu -e "Create database eduspeak"
   # commands run after CircleCI's inferred commands
-  post:
-    - a2ensite dist.vhost.conf
-    - cp config/apache/src.vhost.conf /etc/apache2/sites-available
-    - a2ensite src.vhost.conf
-    - a2enmod rewrite
-    - a2enmod headers
-    - sudo service apache2 restart
 
 # Preparing the databases for your tests
 # https://circleci.com/docs/configuration#database-setup
