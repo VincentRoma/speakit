@@ -72,7 +72,7 @@ class Country
     }
 
     /**
-     * Add participant
+     * Add city
      *
      * @param $city
      *

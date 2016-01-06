@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Adrien
- * Date: 06/01/2016
- * Time: 12:39
- */
 
 namespace ContentBundle\Entity;
 
@@ -31,7 +25,7 @@ class Interest
     protected $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity="EduSpeakBundle\Entity\User", mappedBy="interests")
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="interests")
      */
     protected $interested_users;
 

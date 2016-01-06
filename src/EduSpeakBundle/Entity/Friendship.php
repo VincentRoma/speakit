@@ -1,13 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Adrien
- * Date: 06/01/2016
- * Time: 13:58
- */
 
 namespace EduSpeakBundle\Entity;
+
 use Doctrine\ORM\Mapping as ORM;
+use \DateTime;
 
 /**
  * @ORM\Entity
@@ -129,7 +125,7 @@ class Friendship
      */
     public function __construct()
     {
-        $this->addedAt = new \DateTime();
+        $this->addedAt = new DateTime();
         $this->accepted = false;
     }
 }
