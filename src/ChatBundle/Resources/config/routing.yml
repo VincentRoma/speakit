@@ -9,3 +9,7 @@ chat_list:
 chat_create:
     path:     /start/{id}
     defaults: { _controller: ChatBundle:Discussion:create }
+
+chat_display:
+    path:     /{id}
+    defaults: { _controller: ChatBundle:Discussion:display }
