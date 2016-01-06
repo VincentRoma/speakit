@@ -1,0 +1,30 @@
+<?php
+
+// src/ChatBundle/Entity/Discussion.php
+namespace ChatBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="discussion")
+ */
+class Discussion
+{
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\OneToMany(targetEntity="User", mappedBy="discussion")
+     */
+    protected $participants;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Session", mappedBy="discussion")
+     */
+    protected $sessions;
+}
