@@ -1,3 +1,64 @@
+# The machine section enables you to configure the virtual machine that runs your tests.
+# https://circleci.com/docs/configuration#machine-configuration
 machine:
   php:
     version: 5.5.11
+  node:
+    version: 0.10.28
+  services:
+     - rabbitmq-server
+  hosts:
+    local.symfony2-standard-template: 127.0.0.1
+
+# Checking out and cloning your git repo
+# https://circleci.com/docs/configuration#code-checkout-from-github
+# checkout:
+
+# Setting up your project's language-specific dependencies
+# https://circleci.com/docs/configuration#project-specific-dependencies
+dependencies:
+  # commands run before CircleCI's inferred commands
+  pre:
+    - mysql -u ubuntu -e "Create database eduspeak"
+    - cp config/php/php.ini ~/.phpenv/versions/$(phpenv global)/etc/conf.d/
+  # commands run after CircleCI's inferred commands
+  post:
+    - cp config/apache/dist.vhost.conf /etc/apache2/sites-available
+    - a2ensite dist.vhost.conf
+    - cp config/apache/src.vhost.conf /etc/apache2/sites-available
+    - a2ensite src.vhost.conf
+    - a2enmod rewrite
+    - a2enmod headers
+    - sudo service apache2 restart
+
+# Preparing the databases for your tests
+# https://circleci.com/docs/configuration#database-setup
+# database:
+#  override:
+#    - mysql -u ubuntu symfony2_standard_template < src/craft/storage/backups/craft.sql
+
+# Running your tests
+# https://circleci.com/docs/configuration#running-your-tests
+test:
+  # commands run before CircleCI's inferred commands
+  pre:
+    # Handled automatically by CircleCI
+    # - npm install
+    # - bundle install
+    - bower install
+    - grunt build --target=dist
+    - composer install -d dist --prefer-source --no-interaction --optimize-autoloader
+    - composer install -d src --prefer-source --no-interaction --optimize-autoloader
+
+# Deploying your code to your web servers
+# https://circleci.com/docs/configuration#deployment
+# deployment:
+#   production:
+#     branch: master
+#     commands:
+#       - git config --global user.email "team@newism.com.au"
+#       - git config --global user.name "newism-newbot"
+#       - git add ./dist -A
+#       - git commit -m "Build by Newbot via CircleCI"
+#       - git push origin master
+#       - cap production deploy
