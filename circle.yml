@@ -22,7 +22,6 @@ dependencies:
     - mysql -u ubuntu -e "Create database eduspeak"
   # commands run after CircleCI's inferred commands
   post:
-    - cp config/apache/dist.vhost.conf /etc/apache2/sites-available
     - a2ensite dist.vhost.conf
     - cp config/apache/src.vhost.conf /etc/apache2/sites-available
     - a2ensite src.vhost.conf
