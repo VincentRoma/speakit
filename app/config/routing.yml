@@ -8,7 +8,7 @@ geo:
 
 chat:
     resource: "@ChatBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /discussion
 
 edu_speak:
     resource: "@EduSpeakBundle/Resources/config/routing.yml"

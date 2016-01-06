@@ -4,9 +4,10 @@
 namespace ChatBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use EduSpeakBundle\Entity\User as User;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="ChatBundle\Entity\DiscussionRepository")
  * @ORM\Table(name="discussion")
  */
 class Discussion
@@ -18,15 +19,17 @@ class Discussion
      */
     protected $id;
 
-    /**
-     * @ORM\OneToMany(targetEntity="EduSpeakBundle\Entity\User", mappedBy="discussion")
-     */
-    protected $participants;
 
     /**
      * @ORM\OneToMany(targetEntity="Session", mappedBy="discussion")
      */
     protected $sessions;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="EduSpeakBundle\Entity\User", mappedBy="discussions")
+     */
+    protected $participants;
+
     /**
      * Constructor
      */
@@ -46,39 +49,6 @@ class Discussion
         return $this->id;
     }
 
-    /**
-     * Add participant
-     *
-     * @param \ChatBundle\Entity\User $participant
-     *
-     * @return Discussion
-     */
-    public function addParticipant(\ChatBundle\Entity\User $participant)
-    {
-        $this->participants[] = $participant;
-
-        return $this;
-    }
-
-    /**
-     * Remove participant
-     *
-     * @param \ChatBundle\Entity\User $participant
-     */
-    public function removeParticipant(\ChatBundle\Entity\User $participant)
-    {
-        $this->participants->removeElement($participant);
-    }
-
-    /**
-     * Get participants
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getParticipants()
-    {
-        return $this->participants;
-    }
 
     /**
      * Add session
@@ -87,7 +57,7 @@ class Discussion
      *
      * @return Discussion
      */
-    public function addSession(\ChatBundle\Entity\Session $session)
+    public function addSession(Session $session)
     {
         $this->sessions[] = $session;
 
@@ -99,7 +69,7 @@ class Discussion
      *
      * @param \ChatBundle\Entity\Session $session
      */
-    public function removeSession(\ChatBundle\Entity\Session $session)
+    public function removeSession(Session $session)
     {
         $this->sessions->removeElement($session);
     }
@@ -112,5 +82,38 @@ class Discussion
     public function getSessions()
     {
         return $this->sessions;
+    }
+
+    /**
+     * Add participant
+     *
+     * @param User $participant
+     *
+     * @return Discussion
+     */
+    public function addParticipant(User $participant)
+    {
+        $this->participants->add($participant);
+        return $this;
+    }
+
+    /**
+     * Remove participant
+     *
+     * @param User $participant
+     */
+    public function removeParticipant(User $participant)
+    {
+        $this->participants->removeElement($participant);
+    }
+
+    /**
+     * Get participants
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getParticipants()
+    {
+        return $this->participants;
     }
 }
