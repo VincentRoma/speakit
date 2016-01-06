@@ -35,12 +35,12 @@ class Friendship
     protected $user2;
 
     /**
-     * @ORM\Column(type="datetime", name="$added_at")
+     * @ORM\Column(type="datetime", name="added_at")
      */
     protected $addedAt;
 
     /**
-     * @ORM\Column(type="boolean", name="$accepted")
+     * @ORM\Column(type="boolean", name="accepted")
      */
     protected $accepted;
 
