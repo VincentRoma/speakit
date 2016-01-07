@@ -4,7 +4,6 @@
 namespace EduSpeakBundle\Entity;
 
 use ChatBundle\Entity\Discussion as Discussion;
-use GeoBundle\Entity\City as City;
 use GeoBundle\Entity\UserLanguage as UserLanguage;
 use GeoBundle\Entity\Language as Language;
 use FOS\UserBundle\Model\User as BaseUser;

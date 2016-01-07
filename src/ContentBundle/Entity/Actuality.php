@@ -30,7 +30,7 @@ class Actuality
     protected $link;
 
     /**
-     * @ORM\ManyToMany(targetEntity="User", mappedBy="actualities")
+     * @ORM\ManyToMany(targetEntity="EduSpeakBundle\Entity\User", mappedBy="actualities")
      */
     protected $actuality_users;
 

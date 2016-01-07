@@ -25,7 +25,7 @@ class Interest
     protected $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity="User", mappedBy="interests")
+     * @ORM\ManyToMany(targetEntity="EduSpeakBundle\Entity\User", mappedBy="interests")
      */
     protected $interested_users;
 

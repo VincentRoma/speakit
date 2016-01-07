@@ -25,7 +25,7 @@ class Discussion
     protected $sessions;
 
     /**
-     * @ORM\ManyToMany(targetEntity="User", mappedBy="discussions")
+     * @ORM\ManyToMany(targetEntity="EduSpeakBundle\Entity\User", mappedBy="discussions")
      */
     protected $participants;
 
