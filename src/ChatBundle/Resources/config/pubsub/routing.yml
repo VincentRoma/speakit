@@ -1,0 +1,12 @@
+chat_rpc:
+    channel: sample/{method}
+    handler:
+        callback: 'chat.rpc' #related to the getName() or your RPC service
+    requirements:
+        method:
+            pattern: "[a-z_]+" #accept all valid regex, don't put delimiters !
+
+chat_topic:
+    channel: chat/channel
+    handler:
+        callback: 'chat.topic'
