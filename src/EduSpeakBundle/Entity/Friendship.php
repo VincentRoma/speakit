@@ -3,6 +3,8 @@
 namespace EduSpeakBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use \DateTime;
 
 /**
@@ -19,16 +21,9 @@ class Friendship
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="friendships")
-     * @ORM\JoinColumn(name="id_user1", referencedColumnName="id")
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="friendships")
      */
-    protected $user1;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="friendships")
-     * @ORM\JoinColumn(name="id_user2", referencedColumnName="id")
-     */
-    protected $user2;
+    protected $friends;
 
     /**
      * @ORM\Column(type="datetime", name="added_at")
@@ -41,7 +36,25 @@ class Friendship
     protected $accepted;
 
     /**
-     * @return $id
+     * @ORM\Column(type="boolean", name="blocked")
+     */
+    protected $blocked;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->friends = new ArrayCollection();
+        $this->addedAt = new DateTime();
+        $this->accepted = false;
+        $this->blocked = false;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
      */
     public function getId()
     {
@@ -49,47 +62,9 @@ class Friendship
     }
 
     /**
-     * @param $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
-    /**
-     * @return $user1
-     */
-    public function getUser1()
-    {
-        return $this->user1;
-    }
-
-    /**
-     * @param $user1
-     */
-    public function setUser1($user1)
-    {
-        $this->user1 = $user1;
-    }
-
-    /**
-     * @return $user2
-     */
-    public function getUser2()
-    {
-        return $this->user2;
-    }
-
-    /**
-     * @param $user2
-     */
-    public function setUser2($user2)
-    {
-        $this->user2 = $user2;
-    }
-
-    /**
-     * @return $addedAt
+     * Get added at
+     *
+     * @return datetime
      */
     public function getAddedAt()
     {
@@ -97,15 +72,9 @@ class Friendship
     }
 
     /**
-     * @param $addedAt
-     */
-    public function setAddedAt($addedAt)
-    {
-        $this->addedAt = $addedAt;
-    }
-
-    /**
-     * @return $accepted
+     * Get accepted
+     *
+     * @return boolean
      */
     public function getAccepted()
     {
@@ -113,7 +82,9 @@ class Friendship
     }
 
     /**
-     * @param $accepted
+     * Set accepted
+     *
+     * @param boolean $accepted
      */
     public function setAccepted($accepted)
     {
@@ -121,11 +92,74 @@ class Friendship
     }
 
     /**
-     * Constructor
+     * Get blocked
+     *
+     * @return boolean
      */
-    public function __construct()
+    public function getBlocked()
     {
-        $this->addedAt = new DateTime();
-        $this->accepted = false;
+        return $this->accepted;
+    }
+
+    /**
+     * Set blocked
+     *
+     * @param boolean $blocked
+     */
+    public function setBlocked($blocked)
+    {
+        $this->blocked = $blocked;
+    }
+
+    /**
+     * Add friend
+     *
+     * @param User $friend
+     *
+     * @return Friendship
+     */
+    public function addFriend(User $friend)
+    {
+        if (!$this->hasFriend($friend)) {
+            $this->friends->add($friend);
+        }
+        return $this;
+    }
+
+    /**
+     * Remove friend
+     *
+     * @param User $friend
+     *
+     * @return Friendship
+     */
+    public function removeFriend(User $friend)
+    {
+        if ($this->hasFriend($friend)) {
+            $this->friends->removeElement($friend);
+        }
+        return $this;
+    }
+
+    /**
+     * Get friends
+     *
+     * @return Collection User
+     */
+    public function getFriends()
+    {
+        return $this->friends;
+    }
+
+    /**
+     * Has friend
+     *
+     * @param User $friend
+     *
+     * @return boolean
+     */
+    public function hasFriend(User $friend)
+    {
+        return $this->friends->contains($friend);
     }
 }
