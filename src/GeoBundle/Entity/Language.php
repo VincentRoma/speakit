@@ -1,14 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Kevin
- * Date: 06/01/2016
- * Time: 14:22
- */
 
 namespace GeoBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * @ORM\Entity
@@ -31,15 +27,20 @@ class Language
     /**
      * @ORM\OneToMany(targetEntity="UserLanguage", mappedBy="language")
      */
-    protected $userlanguages;
+    protected $userLanguages;
 
+    /**
+     * Constructor
+     */
     public function __construct()
     {
-        $this->userlanguages = new ArrayCollection();
+        $this->userLanguages = new ArrayCollection();
     }
 
     /**
-     * @return $id
+     * Get id
+     *
+     * @return integer
      */
     public function getId()
     {
@@ -47,15 +48,9 @@ class Language
     }
 
     /**
-     * @param $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
-    /**
-     * @return $name
+     * Get name
+     *
+     * @return string
      */
     public function getName()
     {
@@ -63,7 +58,9 @@ class Language
     }
 
     /**
-     * @param $name
+     * Set name
+     *
+     * @param string $name
      */
     public function setName($name)
     {
@@ -71,36 +68,54 @@ class Language
     }
 
     /**
-     * Add userlanguage
+     * Add userLanguage
      *
-     * @param $userlanguage
+     * @param UserLanguage $userLanguage
      *
      * @return Language
      */
-    public function addUserlanguage(Userlanguage $userlanguage)
+    public function addUserLanguage(UserLanguage $userLanguage)
     {
-        $this->userlanguages[] = $userlanguage;
-
+        if (!$this->hasUserLanguage($userLanguage)) {
+            $this->userLanguages->add($userLanguage);
+        }
         return $this;
     }
 
     /**
-     * Remove userlanguage
+     * Remove userLanguage
      *
-     * @param $userlanguage
+     * @param UserLanguage $userLanguage
+     *
+     * @return Language
      */
-    public function removeUserlanguage(Userlanguage $userlanguage)
+    public function removeUserLanguage(UserLanguage $userLanguage)
     {
-        $this->userlanguages->removeElement($userlanguage);
+        if ($this->hasUserLanguage($userLanguage)) {
+            $this->userLanguages->removeElement($userLanguage);
+        }
+        return $this;
     }
 
     /**
-     * Get userlanguages
+     * Get userLanguages
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Collection UserLanguage
      */
-    public function getUserlanguages()
+    public function getUserLanguages()
     {
-        return $this->userlanguages;
+        return $this->userLanguages;
+    }
+
+    /**
+     * Has userLanguage
+     *
+     * @param UserLanguage $userLanguage
+     *
+     * @return boolean
+     */
+    public function hasUserLanguage(UserLanguage $userLanguage)
+    {
+        return $this->userLanguages->contains($userLanguage);
     }
 }

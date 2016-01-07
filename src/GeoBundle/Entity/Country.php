@@ -4,6 +4,7 @@ namespace GeoBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * @ORM\Entity
@@ -28,13 +29,18 @@ class Country
      */
     protected $cities;
 
+    /**
+     * Constructor
+     */
     public function __construct()
     {
         $this->cities = new ArrayCollection();
     }
 
     /**
-     * @return $id
+     * Get id
+     *
+     * @return integer
      */
     public function getId()
     {
@@ -42,15 +48,9 @@ class Country
     }
 
     /**
-     * @param $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
-    /**
-     * @return $name
+     * Get name
+     *
+     * @return string
      */
     public function getName()
     {
@@ -58,7 +58,9 @@ class Country
     }
 
     /**
-     * @param $name
+     * Set name
+     *
+     * @param string $name
      */
     public function setName($name)
     {
@@ -68,34 +70,52 @@ class Country
     /**
      * Add city
      *
-     * @param $city
+     * @param City $city
      *
      * @return Country
      */
     public function addCity(City $city)
     {
-        $this->cities[] = $city;
-
+        if (!$this->hasCity($city)) {
+            $this->cities->add($city);
+        }
         return $this;
     }
 
     /**
      * Remove city
      *
-     * @param $city
+     * @param City $city
+     *
+     * @return Country
      */
     public function removeCity(City $city)
     {
-        $this->cities->removeElement($city);
+        if ($this->hasCity($city)) {
+            $this->cities->removeElement($city);
+        }
+        return $this;
     }
 
     /**
      * Get cities
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Collection City
      */
     public function getCities()
     {
         return $this->cities;
+    }
+
+    /**
+     * Has city
+     *
+     * @param City $city
+     *
+     * @return boolean
+     */
+    public function hasCity(City $city)
+    {
+        return $this->cities->contains($city);
     }
 }

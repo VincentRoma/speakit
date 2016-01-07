@@ -1,14 +1,11 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Kevin
- * Date: 06/01/2016
- * Time: 11:41
- */
 
 namespace GeoBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use EduSpeakBundle\Entity\User as User;
 
 /**
  * @ORM\Entity
@@ -30,22 +27,27 @@ class City
 
     /**
      * @ORM\ManyToOne(targetEntity="Country", inversedBy="cities")
-     * @ORM\JoinColumn(name="id_country", referencedColumnName="id")
+     * @ORM\JoinColumn(name="country_id", referencedColumnName="id")
      */
     protected $country;
 
     /**
-     * @ORM\OneToMany(targetEntity="User", mappedBy="city")
+     * @ORM\OneToMany(targetEntity="EduSpeakBundle\Entity\User", mappedBy="city")
      */
-    protected $users;
+    protected $residents;
 
+    /**
+     * Constructor
+     */
     public function __construct()
     {
-        $this->users = new ArrayCollection();
+        $this->residents = new ArrayCollection();
     }
 
     /**
-     * @return $id
+     * Get id
+     *
+     * @return integer
      */
     public function getId()
     {
@@ -53,15 +55,9 @@ class City
     }
 
     /**
-     * @param $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
-    /**
-     * @return $name
+     * Get name
+     *
+     * @return string
      */
     public function getName()
     {
@@ -69,7 +65,9 @@ class City
     }
 
     /**
-     * @param $name
+     * Set name
+     *
+     * @param string $name
      */
     public function setName($name)
     {
@@ -77,7 +75,9 @@ class City
     }
 
     /**
-     * @return $country
+     * Get country
+     *
+     * @return Country
      */
     public function getCountry()
     {
@@ -85,45 +85,65 @@ class City
     }
 
     /**
-     * @param $country
+     * Set country
+     *
+     * @param Country $country
      */
-    public function setCountry($country)
+    public function setCountry(Country $country)
     {
         $this->country = $country;
     }
 
     /**
-     * Add user
+     * Add resident
      *
-     * @param $user
+     * @param User $resident
      *
      * @return City
      */
-    public function addUser(User $user)
+    public function addResident(User $resident)
     {
-        $this->users[] = $user;
-
+        if (!$this->hasResident($resident)) {
+            $this->residents->add($resident);
+        }
         return $this;
     }
 
     /**
-     * Remove user
+     * Remove resident
      *
-     * @param $user
+     * @param User $resident
+     *
+     * @return City
      */
-    public function removeUser(User $user)
+    public function removeResident(User $resident)
     {
-        $this->users->removeElement($user);
+        if ($this->hasResident($resident)) {
+            $this->residents->removeElement($resident);
+        }
+        return $this;
     }
 
     /**
-     * Get users
+     * Get residents
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Collection User
      */
-    public function getUsers()
+    public function getResidents()
     {
-        return $this->users;
+        return $this->residents;
+    }
+
+    /**
+     * Has resident
+     *
+     * @param User $resident
+     *
+     * @return boolean
+     */
+    public function hasResident(User $resident)
+    {
+        return $this->residents->contains($resident);
     }
 }
 
