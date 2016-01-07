@@ -1,11 +1,14 @@
 <?php
-// src/EduSpeakBundle/Entity/User.php
 
 namespace EduSpeakBundle\Entity;
 
-use ChatBundle\Entity\Discussion as Discussion;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use GeoBundle\Entity\City as City;
 use GeoBundle\Entity\UserLanguage as UserLanguage;
-use GeoBundle\Entity\Language as Language;
+use ChatBundle\Entity\Discussion as Discussion;
+use ContentBundle\Entity\Interest as Interest;
+use ContentBundle\Entity\Actuality as Actuality;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation\ExclusionPolicy;
@@ -30,31 +33,57 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="GeoBundle\Entity\City", inversedBy="users")
-     * @ORM\JoinColumn(name="id_city", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="GeoBundle\Entity\City", inversedBy="residents")
+     * @ORM\JoinColumn(name="city_id", referencedColumnName="id")
      */
     protected $city;
 
     /**
      * @ORM\ManyToMany(targetEntity="ChatBundle\Entity\Discussion", inversedBy="participants")
-     * @ORM\JoinTable(name="participants_discussions")
+     * @ORM\JoinTable(name="users_discussions")
      */
     protected $discussions;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Friendship", inversedBy="friends")
+     * @ORM\JoinTable(name="users_friends")
+     */
+    protected $friendships;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="ContentBundle\Entity\Interest", inversedBy="interested_users")
+     * @ORM\JoinTable(name="users_interests")
+     */
+    protected $interests;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="ContentBundle\Entity\Actuality", inversedBy="actuality_users")
+     * @ORM\JoinTable(name="users_actualities")
+     */
+    protected $actualities;
+
+    /**
      * @ORM\OneToMany(targetEntity="GeoBundle\Entity\UserLanguage", mappedBy="user")
      */
-    protected $userlanguages;
+    protected $userLanguages;
 
+    /**
+     * Constructor
+     */
     public function __construct()
     {
         parent::__construct();
-        $this->discussions = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->userlanguages = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->discussions = new ArrayCollection();
+        $this->friendships = new ArrayCollection();
+        $this->actualities = new ArrayCollection();
+        $this->interests = new ArrayCollection();
+        $this->userLanguages = new ArrayCollection();
     }
 
     /**
-     * @return $id
+     * Get id
+     *
+     * @return integer
      */
     public function getId()
     {
@@ -62,15 +91,9 @@ class User extends BaseUser
     }
 
     /**
-     * @param $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
-    /**
-     * @return $city
+     * Get city
+     *
+     * @return City
      */
     public function getCity()
     {
@@ -78,13 +101,223 @@ class User extends BaseUser
     }
 
     /**
-     * @param $city
+     * Set city
+     *
+     * @param City $city
      */
-    public function setCity($city)
+    public function setCity(City $city)
     {
         $this->city = $city;
     }
 
+    /**
+     * Add userLanguage
+     *
+     * @param UserLanguage $userLanguage
+     *
+     * @return User
+     */
+    public function addUserLanguage(UserLanguage $userLanguage)
+    {
+        if (!$this->hasUserLanguage($userLanguage)) {
+            $this->userLanguages->add($userLanguage);
+        }
+        return $this;
+    }
+
+    /**
+     * Remove userLanguage
+     *
+     * @param UserLanguage $userLanguage
+     *
+     * @return User
+     */
+    public function removeUserLanguage(UserLanguage $userLanguage)
+    {
+        if ($this->hasUserLanguage($userLanguage)) {
+            $this->userLanguages->removeElement($userLanguage);
+        }
+        return $this;
+    }
+
+    /**
+     * Get userLanguages
+     *
+     * @return Collection UserLanguage
+     */
+    public function getUserLanguages()
+    {
+        return $this->userLanguages;
+    }
+
+    /**
+     * Has userLanguage
+     *
+     * @param UserLanguage $userLanguage
+     *
+     * @return boolean
+     */
+    public function hasUserLanguage(UserLanguage $userLanguage)
+    {
+        return $this->userLanguages->contains($userLanguage);
+    }
+
+    /**
+     * Add interest
+     *
+     * @param Interest $interest
+     *
+     * @return User
+     */
+    public function addInterest(Interest $interest)
+    {
+        if (!$this->hasInterest($interest)) {
+            $this->interests->add($interest);
+        }
+        return $this;
+    }
+
+    /**
+     * Remove interest
+     *
+     * @param Interest $interest
+     *
+     * @return User
+     */
+    public function removeInterest(Interest $interest)
+    {
+        if ($this->hasInterest($interest)) {
+            $this->interests->removeElement($interest);
+        }
+        return $this;
+    }
+
+    /**
+     * Get interests
+     *
+     * @return Collection Interest
+     */
+    public function getInterests()
+    {
+        return $this->interests;
+    }
+
+    /**
+     * Has interest
+     *
+     * @param Interest $interest
+     *
+     * @return boolean
+     */
+    public function hasInterest(Interest $interest)
+    {
+        return $this->interests->contains($interest);
+    }
+
+    /**
+     * Add actuality
+     *
+     * @param Actuality $actuality
+     *
+     * @return User
+     */
+    public function addActuality(Actuality $actuality)
+    {
+        if (!$this->hasActuality($actuality)) {
+            $this->actualities->add($actuality);
+        }
+        return $this;
+    }
+
+    /**
+     * Remove actuality
+     *
+     * @param Actuality $actuality
+     *
+     * @return User
+     */
+    public function removeActuality(Actuality $actuality)
+    {
+        if ($this->hasActuality($actuality)) {
+            $this->actualities->removeElement($actuality);
+        }
+        return $this;
+    }
+
+    /**
+     * Get actualities
+     *
+     * @return Collection Actuality
+     */
+    public function getActualities()
+    {
+        return $this->actualities;
+    }
+
+    /**
+     * Has actuality
+     *
+     * @param Actuality $actuality
+     *
+     * @return boolean
+     */
+    public function hasActuality(Actuality $actuality)
+    {
+        return $this->actualities->contains($actuality);
+    }
+
+    /**
+     * Add friendship
+     *
+     * @param Friendship $friendship
+     *
+     * @return User
+     */
+    public function addFriendship(Friendship $friendship)
+    {
+        if (!$this->hasFriendship($friendship)) {
+            $this->friendships->add($friendship);
+        }
+        return $this;
+    }
+
+    /**
+     * Remove friendship
+     *
+     * @param Friendship $friendship
+     *
+     * @return User
+     */
+    public function removeFriendship(Friendship $friendship)
+    {
+        if ($this->hasFriendship($friendship)) {
+            $this->friendships->removeElement($friendship);
+        }
+        return $this;
+    }
+
+    /**
+     * Get friendships
+     *
+     * @return Collection Friendship
+     */
+    public function getFriendships()
+    {
+        return $this->friendships;
+    }
+
+    /**
+     * Has friendship
+     *
+     * @param Friendship $friendship
+     *
+     * @return boolean
+     */
+    public function hasFriendship(Friendship $friendship)
+    {
+        return $this->friendships->contains($friendship);
+    }
+    
     /**
      * Add discussion
      *
@@ -94,8 +327,9 @@ class User extends BaseUser
      */
     public function addDiscussion(Discussion $discussion)
     {
-        $this->discussions->add($discussion);
-
+        if (!$this->hasDiscussion($discussion)) {
+            $this->discussions->add($discussion);
+        }
         return $this;
     }
 
@@ -103,16 +337,21 @@ class User extends BaseUser
      * Remove discussion
      *
      * @param Discussion $discussion
+     *
+     * @return User
      */
     public function removeDiscussion(Discussion $discussion)
     {
-        $this->discussions->removeElement($discussion);
+        if ($this->hasDiscussion($discussion)) {
+            $this->discussions->removeElement($discussion);
+        }
+        return $this;
     }
 
     /**
      * Get discussions
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Collection Discussion
      */
     public function getDiscussions()
     {
@@ -120,36 +359,14 @@ class User extends BaseUser
     }
 
     /**
-     * Add userlanguage
+     * Has discussion
      *
-     * @param $userlanguage
+     * @param Discussion $discussion
      *
-     * @return Language
+     * @return boolean
      */
-    public function addUserlanguage(Userlanguage $userlanguage)
+    public function hasDiscussion(Discussion $discussion)
     {
-        $this->userlanguages[] = $userlanguage;
-
-        return $this;
-    }
-
-    /**
-     * Remove userlanguage
-     *
-     * @param $userlanguage
-     */
-    public function removeUserlanguage(Userlanguage $userlanguage)
-    {
-        $this->userlanguages->removeElement($userlanguage);
-    }
-
-    /**
-     * Get userlanguages
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getUserlanguages()
-    {
-        return $this->userlanguages;
+        return $this->discussions->contains($discussion);
     }
 }

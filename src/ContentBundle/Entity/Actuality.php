@@ -4,6 +4,7 @@ namespace ContentBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use EduSpeakBundle\Entity\User as User;
 
 /**
@@ -34,13 +35,18 @@ class Actuality
      */
     protected $actuality_users;
 
+    /**
+     * Constructor
+     */
     public function __construct()
     {
         $this->actuality_users = new ArrayCollection();
     }
 
     /**
-     * @return $id
+     * Get id
+     *
+     * @return integer
      */
     public function getId()
     {
@@ -48,15 +54,9 @@ class Actuality
     }
 
     /**
-     * @param $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
-    /**
-     * @return $name
+     * Get name
+     *
+     * @return string
      */
     public function getName()
     {
@@ -64,7 +64,9 @@ class Actuality
     }
 
     /**
-     * @param $name
+     * Set name
+     *
+     * @param string $name
      */
     public function setName($name)
     {
@@ -72,7 +74,9 @@ class Actuality
     }
 
     /**
-     * @return $link
+     * Get link
+     *
+     * @return string
      */
     public function getLink()
     {
@@ -80,7 +84,9 @@ class Actuality
     }
 
     /**
-     * @param $link
+     * Set link
+     *
+     * @param string $link
      */
     public function setLink($link)
     {
@@ -90,34 +96,52 @@ class Actuality
     /**
      * Add actuality user
      *
-     * @param $actuality_user
+     * @param User $actuality_user
      *
      * @return Actuality
      */
     public function addActualityUser(User $actuality_user)
     {
-        $this->actuality_users[] = $actuality_user;
-
+        if (!$this->hasActualityUser($actuality_user)) {
+            $this->actuality_users->add($actuality_user);
+        }
         return $this;
     }
 
     /**
      * Remove actuality user
      *
-     * @param $actuality_user
+     * @param User $actuality_user
+     *
+     * @return Actuality
      */
     public function removeActualityUser(User $actuality_user)
     {
-        $this->actuality_users->removeElement($actuality_user);
+        if ($this->hasActualityUser($actuality_user)) {
+            $this->actuality_users->removeElement($actuality_user);
+        }
+        return $this;
     }
 
     /**
      * Get actuality users
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Collection User
      */
     public function getActualityUsers()
     {
         return $this->actuality_users;
+    }
+
+    /**
+     * Has actuality user
+     *
+     * @param User $actuality_user
+     *
+     * @return boolean
+     */
+    public function hasActualityUser(User $actuality_user)
+    {
+        return $this->actuality_users->contains($actuality_user);
     }
 }

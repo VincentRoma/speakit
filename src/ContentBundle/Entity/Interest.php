@@ -4,6 +4,7 @@ namespace ContentBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use EduSpeakBundle\Entity\User as User;
 
 /**
@@ -29,13 +30,18 @@ class Interest
      */
     protected $interested_users;
 
+    /**
+     * Constructor
+     */
     public function __construct()
     {
         $this->interested_users = new ArrayCollection();
     }
 
     /**
-     * @return $id
+     * Get id
+     *
+     * @return integer
      */
     public function getId()
     {
@@ -43,15 +49,9 @@ class Interest
     }
 
     /**
-     * @param $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
-    /**
-     * @return $name
+     * Get name
+     *
+     * @return string
      */
     public function getName()
     {
@@ -59,7 +59,9 @@ class Interest
     }
 
     /**
-     * @param $name
+     * Set name
+     *
+     * @param string $name
      */
     public function setName($name)
     {
@@ -69,34 +71,52 @@ class Interest
     /**
      * Add interested user
      *
-     * @param $interested_user
+     * @param User $interested_user
      *
      * @return Interest
      */
     public function addInterestedUser(User $interested_user)
     {
-        $this->interested_users[] = $interested_user;
-
+        if (!$this->hasInterestedUser($interested_user)) {
+            $this->interested_users->add($interested_user);
+        }
         return $this;
     }
 
     /**
      * Remove interested user
      *
-     * @param $interested_user
+     * @param User $interested_user
+     *
+     * @return Interest
      */
     public function removeInterestedUser(User $interested_user)
     {
-        $this->interested_users->removeElement($interested_user);
+        if ($this->hasInterestedUser($interested_user)) {
+            $this->interested_users->removeElement($interested_user);
+        }
+        return $this;
     }
 
     /**
      * Get interested users
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Collection User
      */
     public function getInterestedUsers()
     {
         return $this->interested_users;
+    }
+
+    /**
+     * Has interested user
+     *
+     * @param User $interested_user
+     *
+     * @return boolean
+     */
+    public function hasInterestedUser(User $interested_user)
+    {
+        return $this->interested_users->contains($interested_user);
     }
 }

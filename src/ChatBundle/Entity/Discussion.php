@@ -4,6 +4,7 @@ namespace ChatBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use EduSpeakBundle\Entity\User as User;
 
 /**
@@ -48,35 +49,40 @@ class Discussion
         return $this->id;
     }
 
-
     /**
      * Add session
      *
-     * @param $session
+     * @param Session $session
      *
      * @return Discussion
      */
     public function addSession(Session $session)
     {
-        $this->sessions[] = $session;
-
+        if (!$this->hasSession($session)) {
+            $this->sessions->add($session);
+        }
         return $this;
     }
 
     /**
      * Remove session
      *
-     * @param $session
+     * @param Session $session
+     *
+     * @return Discussion
      */
     public function removeSession(Session $session)
     {
-        $this->sessions->removeElement($session);
+        if ($this->hasSession($session)) {
+            $this->sessions->removeElement($session);
+        }
+        return $this;
     }
 
     /**
      * Get sessions
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Collection Session
      */
     public function getSessions()
     {
@@ -84,35 +90,66 @@ class Discussion
     }
 
     /**
+     * Has session
+     *
+     * @param Session $session
+     *
+     * @return boolean
+     */
+    public function hasSession(Session $session)
+    {
+        return $this->sessions->contains($session);
+    }
+
+    /**
      * Add participant
      *
-     * @param $participant
+     * @param User $participant
      *
      * @return Discussion
      */
     public function addParticipant(User $participant)
     {
-        $this->participants->add($participant);
+        if (!$this->hasParticipant($participant)) {
+            $this->participants->add($participant);
+        }
         return $this;
     }
 
     /**
      * Remove participant
      *
-     * @param $participant
+     * @param User $participant
+     *
+     * @return Discussion
      */
     public function removeParticipant(User $participant)
     {
-        $this->participants->removeElement($participant);
+        if ($this->hasParticipant($participant)) {
+            $this->participants->removeElement($participant);
+        }
+        return $this;
     }
 
     /**
      * Get participants
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Collection User
      */
     public function getParticipants()
     {
         return $this->participants;
+    }
+
+    /**
+     * Has participant
+     *
+     * @param User $participant
+     *
+     * @return boolean
+     */
+    public function hasParticipant(User $participant)
+    {
+        return $this->participants->contains($participant);
     }
 }
