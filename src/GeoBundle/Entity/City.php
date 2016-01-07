@@ -146,4 +146,3 @@ class City
         return $this->residents->contains($resident);
     }
 }
-
