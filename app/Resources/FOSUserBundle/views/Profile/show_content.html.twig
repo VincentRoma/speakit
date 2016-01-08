@@ -1,6 +1,6 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-<div class="fos_user_user_show">
+<div class="fos_user_user_show edu-profile">
     <div class="page-header">
         <h1>Welcome {{ user.username }}</h1>
     </div>
@@ -21,6 +21,57 @@
                     <h3 class="panel-title">Active Discussions</h3>
                 </div>
                 <div class="panel-body">
+                    <ul>
+                        {% for discussion in discussions %}
+                            <li>
+                                discussion n°{{ loop.index }}
+                                {% for participant in discussion.participants %}
+                                    {% if participant.username != app.user.username %}
+                                        with {{ participant.username }}
+                                    {% endif %}
+                                {% endfor %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    <a href="{{ path('chat_list') }}">See all discussions</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Friends</h3>
+                </div>
+                <div class="panel-body">
+                    <ul>
+                        {% for friendship in friendships %}
+                            <li>
+                                friend n°{{ loop.index }}
+                                {% for friend in friendship.friends %}
+                                    {% if friend.username != app.user.username %}
+                                        : {{ friend.username }}
+                                    {% endif %}
+                                {% endfor %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    <a href="{{ path('chat_list') }}">See all discussions</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Interests</h3>
+                </div>
+                <div class="panel-body">
+                    <ul>
+                        {% for interest in interests %}
+                            <li>
+                                {{ interest.name }}
+                            </li>
+                        {% endfor %}
+                    </ul>
                     <a href="{{ path('chat_list') }}">See all discussions</a>
                 </div>
             </div>
