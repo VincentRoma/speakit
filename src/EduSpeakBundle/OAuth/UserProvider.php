@@ -87,6 +87,7 @@ class UserProvider extends FOSUBUserProvider
     {
         $providerName = $response->getResourceOwner()->getName();
         $providerNameSetter = 'set'.ucfirst($providerName).'Id';
+        $user->setFacebookPicture($response->getProfilePicture());
         $user->$providerNameSetter($response->getUsername());
         return $user;
     }
