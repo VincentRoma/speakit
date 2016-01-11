@@ -1,8 +1,50 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+
+{# Slideshow #}
+<div id="myCarousel" class="row carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+    <li data-target="#myCarousel" data-slide-to="3"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    <div class="item active">
+      <img class="img-responsive center-block" src="{{ asset('image/londres.jpeg') }}" alt="Londres">
+      <div class="carousel-caption">
+        {% if app.security.token is not null and is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            <h4>Welcome {{  app.user.username }}</h4>
+        {% else %}
+            <a class="btn btn-default btn-edu" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+            <a class="btn btn-default btn-edu-invert" href="{{ path('fos_user_registration_register') }}" role="button">Register</a>
+        {% endif %}
+        <p>pratiquez comme si vous y étiez</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <img class="img-responsive center-block" src="{{ asset('image/paris.jpg') }}" alt="Paris">
+    </div>
+
+    <div class="item">
+      <img class="img-responsive center-block" src="{{ asset('image/Berlin.jpg') }}" alt="Berlin">
+    </div>
+
+    <div class="item">
+      <img class="img-responsive center-block" src="{{ asset('image/newyork.jpg') }}" alt="NewYork"Ò>
+      </div>
+  </div>
+
+</div>
+{# Fin Slideshow #}
 <div class="row welcome-panel">
 {# <img src="{{ asset('image/londres.jpeg') }}"> #}
+
     <div class="col-md-6 col-md-offset-3">
         <h1>Pratiquez comme si vous y étiez</h1>
         {% if app.security.token is not null and is_granted("IS_AUTHENTICATED_REMEMBERED") %}
