@@ -5,6 +5,7 @@ namespace GeoBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use ContentBundle\Entity\Image as Image;
 
 /**
  * @ORM\Entity
@@ -23,6 +24,11 @@ class Language
      * @ORM\Column(type="string", length=100)
      */
     protected $name;
+
+    /**
+     * @ORM\OneToOne(targetEntity="ContentBundle\Entity\Image")
+     */
+    private $flag;
 
     /**
      * @ORM\OneToMany(targetEntity="UserLanguage", mappedBy="language")
@@ -65,6 +71,26 @@ class Language
     public function setName($name)
     {
         $this->name = $name;
+    }
+
+    /**
+     * Get flag
+     *
+     * @return Image
+     */
+    public function getFlag()
+    {
+        return $this->flag;
+    }
+
+    /**
+     * Set flag
+     *
+     * @param Image $flag
+     */
+    public function setFlag(Image $flag)
+    {
+        $this->flag = $flag;
     }
 
     /**
