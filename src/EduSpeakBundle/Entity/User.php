@@ -19,12 +19,12 @@ use JMS\Serializer\Annotation\VirtualProperty;
 /**
  * @ORM\Entity
  * @ORM\Table(name="users")
- * @ExclusionPolicy("all")
  * @ORM\AttributeOverrides({
  *      @ORM\AttributeOverride(name="email", column=@ORM\Column(type="string", name="email", length=255, unique=false, nullable=true)),
  *      @ORM\AttributeOverride(name="emailCanonical", column=@ORM\Column(type="string", name="email_canonical", length=255, unique=false, nullable=true)),
  *      @ORM\AttributeOverride(name="password", column=@ORM\Column(type="string", name="password", length=255, unique=false, nullable=true))
  * })
+ * @ExclusionPolicy("all")
  */
 class User extends BaseUser
 {
@@ -75,6 +75,11 @@ class User extends BaseUser
      * @ORM\Column(type="integer")
      */
     protected $facebookId;
+
+    /**
+     * @ORM\Column(type="string", name="facebook_picture", length=255, unique=false, nullable=true)
+     */
+    protected $facebook_picture;
 
     /**
      * Constructor
@@ -401,5 +406,29 @@ class User extends BaseUser
     public function getFacebookId()
     {
         return $this->facebookId;
+    }
+
+    /**
+     * Set facebookPicture
+     *
+     * @param string $facebookPicture
+     *
+     * @return User
+     */
+    public function setFacebookPicture($facebookPicture)
+    {
+        $this->facebook_picture = $facebookPicture;
+
+        return $this;
+    }
+
+    /**
+     * Get facebookPicture
+     *
+     * @return string
+     */
+    public function getFacebookPicture()
+    {
+        return $this->facebook_picture;
     }
 }

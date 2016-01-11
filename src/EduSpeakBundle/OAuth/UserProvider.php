@@ -63,6 +63,9 @@ class UserProvider extends FOSUBUserProvider
             $user->setEmail($email);
         }
 
+        $facebook_picture = $response->getProfilePicture();
+        $user->setFacebookPicture($facebook_picture);
+
         if (null === $this->userManager->findUserByUsername($response->getNickname())) {
             $user->setUsername($response->getNickname());
         }
