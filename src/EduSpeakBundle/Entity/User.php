@@ -19,8 +19,12 @@ use JMS\Serializer\Annotation\VirtualProperty;
 /**
  * @ORM\Entity
  * @ORM\Table(name="users")
- *
  * @ExclusionPolicy("all")
+ * @ORM\AttributeOverrides({
+ *      @ORM\AttributeOverride(name="email", column=@ORM\Column(type="string", name="email", length=255, unique=false, nullable=true)),
+ *      @ORM\AttributeOverride(name="emailCanonical", column=@ORM\Column(type="string", name="email_canonical", length=255, unique=false, nullable=true)),
+ *      @ORM\AttributeOverride(name="password", column=@ORM\Column(type="string", name="password", length=255, unique=false, nullable=true))
+ * })
  */
 class User extends BaseUser
 {
@@ -66,6 +70,11 @@ class User extends BaseUser
      * @ORM\OneToMany(targetEntity="GeoBundle\Entity\UserLanguage", mappedBy="user")
      */
     protected $userLanguages;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $facebookId;
 
     /**
      * Constructor
@@ -368,5 +377,29 @@ class User extends BaseUser
     public function hasDiscussion(Discussion $discussion)
     {
         return $this->discussions->contains($discussion);
+    }
+
+    /**
+     * Set facebookId
+     *
+     * @param integer $facebookId
+     *
+     * @return User
+     */
+    public function setFacebookId($facebookId)
+    {
+        $this->facebookId = $facebookId;
+
+        return $this;
+    }
+
+    /**
+     * Get facebookId
+     *
+     * @return integer
+     */
+    public function getFacebookId()
+    {
+        return $this->facebookId;
     }
 }

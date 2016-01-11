@@ -10,3 +10,6 @@ parameters:
     mailer_user: null
     mailer_password: null
     secret: 228de499e2c307869dfa162ff92a994aca872474
+
+    oauth.facebook.id: "1304756836217376"
+    oauth.facebook.secret: "c6ae1d57a7aa64293008d10e5c7972d5"
