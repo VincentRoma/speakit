@@ -30,6 +30,16 @@ class Country
     protected $cities;
 
     /**
+     * To String
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->name;
+    }
+
+    /**
      * Constructor
      */
     public function __construct()
