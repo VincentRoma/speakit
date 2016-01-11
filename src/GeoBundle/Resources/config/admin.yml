@@ -10,12 +10,22 @@ services:
         calls:
             - [ setTranslationDomain, [GeoBundle]]
     sonata.admin.city:
-            class: GeoBundle\Admin\CityAdmin
-            tags:
-                - { name: sonata.admin, manager_type: orm, group: "Geo", label: "City" }
-            arguments:
-                - ~
-                - GeoBundle\Entity\City
-                - ~
-            calls:
-                - [ setTranslationDomain, [GeoBundle]]
+        class: GeoBundle\Admin\CityAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Geo", label: "City" }
+        arguments:
+            - ~
+            - GeoBundle\Entity\City
+            - ~
+        calls:
+            - [ setTranslationDomain, [GeoBundle]]
+    sonata.admin.language:
+        class: GeoBundle\Admin\LanguageAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Geo", label: "Language" }
+        arguments:
+            - ~
+            - GeoBundle\Entity\Language
+            - ~
+        calls:
+            - [ setTranslationDomain, [GeoBundle]]
