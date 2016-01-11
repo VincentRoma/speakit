@@ -16,7 +16,9 @@
         <div class="col-md-10">
             <div class="panel panel-default panel-chat">
                 <div class="panel-body">
+                    <ul id="chat_room">
 
+                    </ul>
                 </div>
             </div>
         </div>
@@ -24,9 +26,9 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-2">
             <div class="input-group">
-                <input type="text" class="form-control" placeholder="Type text...">
+                <input type="text" class="form-control" id="chat_input" placeholder="Type text...">
                 <span class="input-group-btn">
-                    <button class="btn btn-default" type="button">Send!</button>
+                    <button class="btn btn-default" id="btn_send" type="submit">Send!</button>
                 </span>
             </div>
         </div>
@@ -35,27 +37,24 @@
     <script type="text/javascript">
         var websocket = WS.connect("ws://127.0.0.1:8080");
         websocket.on("socket/connect", function(session){
-            session.subscribe("acme/channel", function(uri, payload){
-                console.log("Received message", payload.msg);
+            var insert_message = function(message){
+                if(message.msg) {
+                    $("#chat_room").append('<li class="alert alert-info">' + message.msg + '</li>');
+                }else{
+                    $("#chat_room").append('<li class="alert alert-warning">' + message + '</li>');
+                }
+            };
+            session.subscribe("chat/channel", function(uri, payload){
+                insert_message(payload.msg);
+                console.log(payload)
             });
-            session.call("sample/sum", {"term1": 2, "term2": 5}).then(
-                    function(result)
-                    {
-                        console.log("RPC Valid!", result);
-                    },
-                    function(error, desc)
-                    {
-                        console.log("RPC Error", error, desc);
-                    }
-            );
-            session.publish("acme/channel", {msg: "This is a message!"});
-            session.publish("acme/channel", {msg: "I'm leaving, I will not see the next message"});
-            session.unsubscribe("acme/channel");
-            session.publish("acme/channel", {msg: "I won't see this"});
-            session.subscribe("acme/channel", function(uri, payload){
-                console.log("Received message", payload.msg);
+            var send_message= function(message){
+                session.publish("chat/channel", {msg: message});
+            };
+            $("#btn_send").click(function(){
+                send_message($("#chat_input").val());
+                $("#chat_input").val('');
             });
-            session.publish("acme/channel", {msg: "I'm back!"});
         });
         websocket.on("socket/disconnect", function(error){
             //error provides us with some insight into the disconnection: error.reason and error.code
