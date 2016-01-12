@@ -19,12 +19,8 @@ use JMS\Serializer\Annotation\VirtualProperty;
 /**
  * @ORM\Entity
  * @ORM\Table(name="users")
- * @ORM\AttributeOverrides({
- *      @ORM\AttributeOverride(name="email", column=@ORM\Column(type="string", name="email", length=255, unique=false, nullable=true)),
- *      @ORM\AttributeOverride(name="emailCanonical", column=@ORM\Column(type="string", name="email_canonical", length=255, unique=false, nullable=true)),
- *      @ORM\AttributeOverride(name="password", column=@ORM\Column(type="string", name="password", length=255, unique=false, nullable=true))
- * })
  * @ExclusionPolicy("all")
+ * @ORM\Entity(repositoryClass="EduSpeakBundle\Entity\UserRepository")
  */
 class User extends BaseUser
 {
@@ -82,6 +78,11 @@ class User extends BaseUser
     protected $facebook_picture;
 
     /**
+     * @ORM\OneToMany(targetEntity="Expertise", mappedBy="expert")
+     */
+    protected $expertises;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -92,6 +93,7 @@ class User extends BaseUser
         $this->actualities = new ArrayCollection();
         $this->interests = new ArrayCollection();
         $this->userLanguages = new ArrayCollection();
+        $this->expertises = new ArrayCollection();
     }
 
     /**
@@ -331,7 +333,7 @@ class User extends BaseUser
     {
         return $this->friendships->contains($friendship);
     }
-    
+
     /**
      * Add discussion
      *
@@ -430,5 +432,39 @@ class User extends BaseUser
     public function getFacebookPicture()
     {
         return $this->facebook_picture;
+    }
+
+    /**
+     * Add expertise
+     *
+     * @param \EduSpeakBundle\Entity\Expertise $expertise
+     *
+     * @return User
+     */
+    public function addExpertise(\EduSpeakBundle\Entity\Expertise $expertise)
+    {
+        $this->expertises[] = $expertise;
+
+        return $this;
+    }
+
+    /**
+     * Remove expertise
+     *
+     * @param \EduSpeakBundle\Entity\Expertise $expertise
+     */
+    public function removeExpertise(\EduSpeakBundle\Entity\Expertise $expertise)
+    {
+        $this->expertises->removeElement($expertise);
+    }
+
+    /**
+     * Get expertises
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getExpertises()
+    {
+        return $this->expertises;
     }
 }

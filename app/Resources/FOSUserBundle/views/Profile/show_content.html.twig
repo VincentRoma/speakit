@@ -6,6 +6,7 @@
         <h1 class="user-name">{{ user.username }}</h1>
     </div>
     <div class="row">
+        {% if user.email %}
         <div class="col-md-6 col-md-offset-3">
             <div class="panel panel-primary">
                 <div class="panel-heading">
@@ -16,6 +17,8 @@
                 </div>
             </div>
         </div>
+        {% endif %}
+        {% if discussions|length > 0 %}
         <div class="col-md-6 col-md-offset-3">
             <div class="panel panel-primary">
                 <div class="panel-heading">
@@ -38,6 +41,8 @@
                 </div>
             </div>
         </div>
+        {% endif %}
+        {% if friendships|length > 0 %}
         <div class="col-md-6 col-md-offset-3">
             <div class="panel panel-primary">
                 <div class="panel-heading">
@@ -60,6 +65,8 @@
                 </div>
             </div>
         </div>
+        {% endif %}
+        {% if interests|length > 0 %}
         <div class="col-md-6 col-md-offset-3">
             <div class="panel panel-primary">
                 <div class="panel-heading">
@@ -77,5 +84,6 @@
                 </div>
             </div>
         </div>
+        {% endif %}
     </div>
 </div>

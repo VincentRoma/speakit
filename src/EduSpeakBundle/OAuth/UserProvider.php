@@ -26,7 +26,7 @@ class UserProvider extends FOSUBUserProvider
         try {
             return parent::loadUserByOAuthUserResponse($response);
         } catch (UsernameNotFoundException $e) {
-            if (null === $user = $this->userManager->findUserByEmail($response->getEmail())) {
+            if (null === $user = $this->userManager->findUserByFacebookId($response->getFacebookId())) {
                 return $this->createUserByOAuthUserResponse($response);
             }
 
