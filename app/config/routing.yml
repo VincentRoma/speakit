@@ -10,10 +10,6 @@ chat:
     resource: "@ChatBundle/Resources/config/routing.yml"
     prefix:   /discussion
 
-edu_speak:
-    resource: "@EduSpeakBundle/Resources/config/routing.yml"
-    prefix:   /
-
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
@@ -68,3 +64,7 @@ hwi_oauth_redirect:
 
 facebook_login:
     pattern: /login/check-facebook
+
+edu_speak:
+    resource: "@EduSpeakBundle/Resources/config/routing.yml"
+    prefix:   /

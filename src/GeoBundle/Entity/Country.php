@@ -32,6 +32,12 @@ class Country extends EduAbstract
     protected $cities;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Language", inversedBy="countries")
+     * @ORM\JoinColumn(name="language_id", referencedColumnName="id")
+     */
+    protected $language;
+
+    /**
      * To String
      *
      * @return string
