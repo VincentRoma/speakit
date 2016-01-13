@@ -4,12 +4,14 @@
 namespace ChatBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use EduSpeakBundle\Entity\EduAbstract as EduAbstract;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="session")
+ * @ORM\HasLifecycleCallbacks
  */
-class Session
+class Session extends EduAbstract
 {
     /**
      * @ORM\Column(type="integer")
@@ -19,9 +21,15 @@ class Session
     protected $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="Message", mappedBy="session")
+     * @ORM\OneToMany(targetEntity="ChatBundle\Entity\Message", mappedBy="session")
      */
     protected $messages;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Discussion", inversedBy="discussion")
+     * @ORM\JoinColumn(name="session_id", referencedColumnName="id")
+     */
+    protected $discussion;
 
     /**
      * Constructor
@@ -29,6 +37,7 @@ class Session
     public function __construct()
     {
         $this->messages = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->discussion = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -73,5 +82,29 @@ class Session
     public function getMessages()
     {
         return $this->messages;
+    }
+
+    /**
+     * Set discussion
+     *
+     * @param \ChatBundle\Entity\Discussion $discussion
+     *
+     * @return Session
+     */
+    public function setDiscussion(\ChatBundle\Entity\Discussion $discussion = null)
+    {
+        $this->discussion = $discussion;
+
+        return $this;
+    }
+
+    /**
+     * Get discussion
+     *
+     * @return \ChatBundle\Entity\Discussion
+     */
+    public function getDiscussion()
+    {
+        return $this->discussion;
     }
 }

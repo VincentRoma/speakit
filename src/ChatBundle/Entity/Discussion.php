@@ -6,12 +6,14 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use EduSpeakBundle\Entity\User as User;
+use EduSpeakBundle\Entity\EduAbstract as EduAbstract;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="discussion")
+ * @ORM\HasLifecycleCallbacks
  */
-class Discussion
+class Discussion extends EduAbstract
 {
     /**
      * @ORM\Column(type="integer")
@@ -21,7 +23,7 @@ class Discussion
     protected $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="Session", mappedBy="discussion")
+     * @ORM\OneToMany(targetEntity="ChatBundle\Entity\Session", mappedBy="discussion")
      */
     protected $sessions;
 
@@ -29,6 +31,13 @@ class Discussion
      * @ORM\ManyToMany(targetEntity="EduSpeakBundle\Entity\User", mappedBy="discussions")
      */
     protected $participants;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="GeoBundle\Entity\City", inversedBy="discussions")
+     * @ORM\JoinColumn(name="city_id", referencedColumnName="id")
+     */
+    protected $city;
+
 
     /**
      * Constructor
@@ -151,5 +160,29 @@ class Discussion
     public function hasParticipant(User $participant)
     {
         return $this->participants->contains($participant);
+    }
+
+    /**
+     * Set city
+     *
+     * @param \GeoBundle\Entity\City $city
+     *
+     * @return Discussion
+     */
+    public function setCity(\GeoBundle\Entity\City $city = null)
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * Get city
+     *
+     * @return \GeoBundle\Entity\City
+     */
+    public function getCity()
+    {
+        return $this->city;
     }
 }

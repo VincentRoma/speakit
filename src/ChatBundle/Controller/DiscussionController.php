@@ -19,7 +19,7 @@ class DiscussionController extends Controller
         // Get requested user
         $em = $this->getDoctrine()->getManager();
         $invited = $em->getRepository('EduSpeakBundle:User')->findOneById($id);
-        if($invited){
+        if($invited && $user){
             $discussion = false;
             // Check for existing discussion
             foreach($user->getDiscussions() as $d){
