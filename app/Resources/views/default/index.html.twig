@@ -54,21 +54,19 @@
       </div>
 
       <div id="BodyPageAcceuilLogge" class="row">
-        {#
         {#*** Pour chaque langues de l'utilisateur connecté ***#}
-        {% for %}
-        $em = $this->getDoctrine()->getManager();
-        $invited = $em->getRepository('EduSpeakBundle:User')->findOneById($id);
+      {#{% for %}#}
+      {#  $em = $this->getDoctrine()->getManager();#}
+      {#  $invited = $em->getRepository('EduSpeakBundle:User')->findOneById($id);#}
           <div class="col-md-2">
             {#**** Pour chaque Pays de langues précédent****#}
-            {% for %}
+            {# {% for %}#}
               <a href="#" class="thumbnail">
                 <img src="..." alt="...">
               </a>
-            {% endfor %}
+            {# {% endfor %}#}
           </div>
-        {% endfor %}
-        #}
+      {#   {% endfor %}#}
 
       </div>
 
