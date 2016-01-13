@@ -1,3 +1,7 @@
+edu_speak_profil:
+    path:     /user/{id}
+    defaults: { _controller: EduSpeakBundle:Default:profil }
+
 edu_speak_homepage:
     path:     /
     defaults: { _controller: EduSpeakBundle:Default:index }
