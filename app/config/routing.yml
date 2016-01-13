@@ -1,10 +1,10 @@
 content:
     resource: "@ContentBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /content
 
 geo:
     resource: "@GeoBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /geo
 
 chat:
     resource: "@ChatBundle/Resources/config/routing.yml"

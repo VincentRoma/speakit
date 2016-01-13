@@ -15,4 +15,14 @@ class UserRepository extends EntityRepository
             ->setParameters(array('id'=>$id))
             ->getResult();
     }
+
+    public function findUsersExceptMe($id)
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT u FROM EduSpeakBundle:User u WHERE u.id<>:id'
+            )
+            ->setParameters(array('id'=>$id))
+            ->getResult();
+    }
 }

@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-2 participants">
+            <h2>Friends</h2>
+            <ul>
+                {% for friend in friends %}
+                    <li>
+                       {{ friend.username }} <a href="{{path('chat_display',{'id':friend.id})}}">Discuss</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{%  endblock %}

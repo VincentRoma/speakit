@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-2 participants">
+            <h2>Matched Persons</h2>
+            <ul>
+                {% for matchedUser in matchedUsers %}
+                    <li>
+                       {{ matchedUser.username }} <a href="{{path('chat_create',{'id':matchedUser.id})}}">Discuss</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{%  endblock %}
