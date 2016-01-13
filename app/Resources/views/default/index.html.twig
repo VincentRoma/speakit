@@ -16,57 +16,29 @@
   <div class="carousel-inner" role="listbox">
     <div class="item active">
       <img class="img-responsive center-block" src="{{ asset('image/londres.jpeg') }}" alt="Londres">
-      <div class="carousel-caption">
-        {% if app.security.token is not null and is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-            <h4>Welcome {{  app.user.username }}</h4>
-        {% else %}
-            <a class="btn btn-default btn-edu" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
-            <a class="btn btn-default btn-edu-invert" href="{{ path('fos_user_registration_register') }}" role="button">Register</a>
-        {% endif %}
-        <p>pratiquez comme si vous y étiez</p>
-      </div>
     </div>
 
     <div class="item">
       <img class="img-responsive center-block" src="{{ asset('image/paris.jpg') }}" alt="Paris">
-      <div class="carousel-caption">
-        {% if app.security.token is not null and is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-            <h4>Welcome {{  app.user.username }}</h4>
-        {% else %}
-            <a class="btn btn-default btn-edu" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
-            <a class="btn btn-default btn-edu-invert" href="{{ path('fos_user_registration_register') }}" role="button">Register</a>
-        {% endif %}
-        <p>pratiquez comme si vous y étiez</p>
-      </div>
     </div>
 
     <div class="item">
       <img class="img-responsive center-block" src="{{ asset('image/Berlin.jpg') }}" alt="Berlin">
-      <div class="carousel-caption">
-        {% if app.security.token is not null and is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-            <h4>Welcome {{  app.user.username }}</h4>
-        {% else %}
-            <a class="btn btn-default btn-edu" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
-            <a class="btn btn-default btn-edu-invert" href="{{ path('fos_user_registration_register') }}" role="button">Register</a>
-        {% endif %}
-        <p>pratiquez comme si vous y étiez</p>
-      </div>
     </div>
 
     <div class="item">
       <img class="img-responsive center-block" src="{{ asset('image/newyork.jpg') }}" alt="NewYork"Ò>
-      <div class="carousel-caption">
-        {% if app.security.token is not null and is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-            <h4>Welcome {{  app.user.username }}</h4>
-        {% else %}
-            <a class="btn btn-default btn-edu" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
-            <a class="btn btn-default btn-edu-invert" href="{{ path('fos_user_registration_register') }}" role="button">Register</a>
-        {% endif %}
-        <p>pratiquez comme si vous y étiez</p>
-      </div>
       </div>
   </div>
-
+  <div class="carousel-caption">
+    {% if app.security.token is not null and is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        <h4>Welcome {{  app.user.username }}</h4>
+    {% else %}
+        <a class="btn btn-default btn-edu" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+        <a class="btn btn-default btn-edu-invert" href="{{ path('fos_user_registration_register') }}" role="button">Register</a>
+    {% endif %}
+    <p>pratiquez comme si vous y étiez</p>
+  </div>
 </div>
 {# Fin Slideshow #}
 <div class="row welcome-panel">
