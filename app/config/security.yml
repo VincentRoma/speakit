@@ -26,8 +26,8 @@ security:
             oauth:
                 resource_owners:
                     facebook: "/login/check-facebook"
-                login_path: /connect
-                failure_path: /connect
+                login_path: /login
+                failure_path: /login
                 oauth_user_provider:
                     service: eduspeak.oauth.user_provider
             logout: true

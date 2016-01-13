@@ -67,10 +67,12 @@ class User extends BaseUser
      */
     protected $userLanguages;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    protected $facebookId;
+    /** @ORM\Column(name="facebook_id", type="string", length=255, nullable=true) */
+    protected $facebook_id;
+
+    /** @ORM\Column(name="facebook_access_token", type="string", length=255, nullable=true) */
+    protected $facebook_access_token;
+
 
     /**
      * @ORM\Column(type="string", name="facebook_picture", length=255, unique=false, nullable=true)
@@ -466,5 +468,29 @@ class User extends BaseUser
     public function getExpertises()
     {
         return $this->expertises;
+    }
+
+    /**
+     * Set facebookAccessToken
+     *
+     * @param string $facebookAccessToken
+     *
+     * @return User
+     */
+    public function setFacebookAccessToken($facebookAccessToken)
+    {
+        $this->facebook_access_token = $facebookAccessToken;
+
+        return $this;
+    }
+
+    /**
+     * Get facebookAccessToken
+     *
+     * @return string
+     */
+    public function getFacebookAccessToken()
+    {
+        return $this->facebook_access_token;
     }
 }
