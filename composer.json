@@ -27,7 +27,14 @@
         "nelmio/api-doc-bundle": "@dev",
         "friendsofsymfony/oauth-server-bundle": "^1.4",
         "nelmio/cors-bundle": "^1.4",
-        "gos/web-socket-bundle": "^1.6"
+        "gos/web-socket-bundle": "^1.6",
+        "hwi/oauth-bundle": "0.4.*@dev",
+        "sonata-project/media-bundle": "^2.3",
+        "doctrine/phpcr-odm": "1.2.*",
+        "doctrine/phpcr-bundle": "1.2.*",
+        "doctrine/dbal":"*",
+        "jackalope/jackalope":"1.2.*",
+        "jackalope/jackalope-doctrine-dbal":"1.2.*"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
