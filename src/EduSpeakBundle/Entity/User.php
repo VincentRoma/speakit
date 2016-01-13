@@ -317,7 +317,7 @@ class User extends BaseUser
     {
         return $this->friendships->contains($friendship);
     }
-    
+
     /**
      * Add discussion
      *

@@ -2,7 +2,7 @@ edu_speak_homepage:
     path:     /
     defaults: { _controller: EduSpeakBundle:Default:index }
 
-edu_speek_User:
+edu_speak_user:
     type: rest
     prefix: /v1
     resource: "EduSpeakBundle\Controller\UserController"
