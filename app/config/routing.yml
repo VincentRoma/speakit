@@ -1,3 +1,11 @@
+content:
+    resource: "@ContentBundle/Resources/config/routing.yml"
+    prefix:   /content
+
+geo:
+    resource: "@GeoBundle/Resources/config/routing.yml"
+    prefix:   /geo
+
 chat:
     resource: "@ChatBundle/Resources/config/routing.yml"
     prefix:   /discussion
@@ -59,12 +67,4 @@ facebook_login:
 
 edu_speak:
     resource: "@EduSpeakBundle/Resources/config/routing.yml"
-    prefix:   /
-
-content:
-    resource: "@ContentBundle/Resources/config/routing.yml"
-    prefix:   /
-
-geo:
-    resource: "@GeoBundle/Resources/config/routing.yml"
     prefix:   /

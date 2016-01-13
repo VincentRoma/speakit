@@ -4,7 +4,6 @@ namespace ChatBundle\Controller;
 
 use ChatBundle\Entity\Discussion;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Response;
 
 class DiscussionController extends Controller
 {
@@ -52,8 +51,6 @@ class DiscussionController extends Controller
 
     public function showAction()
     {
-        //$em = $this->getDoctrine()->getManager();
-        //$user = $em->getRepository('EduSpeakBundle:User')->find($usr->getId());
         $user = $this->getUser();
         $discussions = $user->getDiscussions()->toArray();
         return $this->render('ChatBundle:Discussion:discussions.html.twig', array('discussions' => $discussions));
