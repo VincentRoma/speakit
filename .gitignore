@@ -37,6 +37,7 @@ var/logs/*
 /web/uploads/
 
 /web/front/dist/
+/web/front/docs/
 /web/front/node_modules/
 /web/front/bower_components/
 
