@@ -2,9 +2,24 @@
 // Variables
 // --------------------------------------------------
 
-@eduspeak-base:         #FF5050;
 @full-width:            100%;
 @full-height:           100%;
+@mid-width:             50%;
+@mid-height:            50%;
+
+//== Sizes
+//
+
+@size-px-5:             5px;
+@size-px-10:            10px;
+@size-px-15:            15px;
+@size-px-20:            20px;
+@size-px-25:            25px;
+@size-px-30:            30px;
+@size-px-35:            35px;
+@size-px-40:            40px;
+@size-px-45:            45px;
+@size-px-50:            50px;
 
 //== Colors
 //
@@ -25,6 +40,11 @@
 
 @gray-border:           #dce0e0 solid 1px;
 
+//## Site colors
+
+@eduspeak-base-pink:    #FF5050;
+@eduspeak-base-purple:  #76114B;
+
 
 //== Scaffolding
 //
@@ -33,7 +53,8 @@
 //** Background color for `<body>`.
 @body-bg:               #fff;
 //** Global text color on `<body>`.
-@text-color:            @gray-dark;
+@panel-title-color:     @gray-dark;
+@text-color:            @gray;
 
 //** Global textual link color.
 @link-color:            @brand-primary;
@@ -363,7 +384,7 @@
 
 // Basics of a navbar
 @navbar-height:                    50px;
-@navbar-margin-bottom:             @line-height-computed;
+@navbar-margin-bottom:             0;
 @navbar-border-radius:             @border-radius-base;
 @navbar-padding-horizontal:        floor((@grid-gutter-width / 2));
 @navbar-padding-vertical:          ((@navbar-height - @line-height-computed) / 2);
