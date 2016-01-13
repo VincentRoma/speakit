@@ -27,6 +27,7 @@ class AppKernel extends Kernel
             new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
             new Doctrine\Bundle\PHPCRBundle\DoctrinePHPCRBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+            new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
             //...
 
             // If you haven't already, add the storage bundle

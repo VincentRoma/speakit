@@ -6,12 +6,14 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use EduSpeakBundle\Entity\User as User;
+use EduSpeakBundle\Entity\EduAbstract as EduAbstract;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="city")
+ * @ORM\HasLifecycleCallbacks
  */
-class City
+class City extends EduAbstract
 {
     /**
      * @ORM\Column(type="integer")
@@ -35,6 +37,11 @@ class City
      * @ORM\OneToMany(targetEntity="EduSpeakBundle\Entity\User", mappedBy="city")
      */
     protected $residents;
+
+    /**
+     * @ORM\OneToMany(targetEntity="ChatBundle\Entity\Discussion", mappedBy="city")
+     */
+    protected $discussions;
 
     /**
      * Constructor
@@ -144,5 +151,39 @@ class City
     public function hasResident(User $resident)
     {
         return $this->residents->contains($resident);
+    }
+
+    /**
+     * Add discussion
+     *
+     * @param \ChatBundle\Entity\Discussion $discussion
+     *
+     * @return City
+     */
+    public function addDiscussion(\ChatBundle\Entity\Discussion $discussion)
+    {
+        $this->discussions[] = $discussion;
+
+        return $this;
+    }
+
+    /**
+     * Remove discussion
+     *
+     * @param \ChatBundle\Entity\Discussion $discussion
+     */
+    public function removeDiscussion(\ChatBundle\Entity\Discussion $discussion)
+    {
+        $this->discussions->removeElement($discussion);
+    }
+
+    /**
+     * Get discussions
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDiscussions()
+    {
+        return $this->discussions;
     }
 }

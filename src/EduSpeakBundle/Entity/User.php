@@ -19,8 +19,8 @@ use JMS\Serializer\Annotation\VirtualProperty;
 /**
  * @ORM\Entity
  * @ORM\Table(name="users")
- *
  * @ExclusionPolicy("all")
+ * @ORM\Entity(repositoryClass="EduSpeakBundle\Entity\UserRepository")
  */
 class User extends BaseUser
 {
@@ -67,6 +67,23 @@ class User extends BaseUser
      */
     protected $userLanguages;
 
+    /** @ORM\Column(name="facebook_id", type="string", length=255, nullable=true) */
+    protected $facebook_id;
+
+    /** @ORM\Column(name="facebook_access_token", type="string", length=255, nullable=true) */
+    protected $facebook_access_token;
+
+
+    /**
+     * @ORM\Column(type="string", name="facebook_picture", length=255, unique=false, nullable=true)
+     */
+    protected $facebook_picture;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Expertise", mappedBy="expert")
+     */
+    protected $expertises;
+
     /**
      * Constructor
      */
@@ -78,6 +95,7 @@ class User extends BaseUser
         $this->actualities = new ArrayCollection();
         $this->interests = new ArrayCollection();
         $this->userLanguages = new ArrayCollection();
+        $this->expertises = new ArrayCollection();
     }
 
     /**
@@ -368,5 +386,111 @@ class User extends BaseUser
     public function hasDiscussion(Discussion $discussion)
     {
         return $this->discussions->contains($discussion);
+    }
+
+    /**
+     * Set facebookId
+     *
+     * @param integer $facebookId
+     *
+     * @return User
+     */
+    public function setFacebookId($facebookId)
+    {
+        $this->facebookId = $facebookId;
+
+        return $this;
+    }
+
+    /**
+     * Get facebookId
+     *
+     * @return integer
+     */
+    public function getFacebookId()
+    {
+        return $this->facebookId;
+    }
+
+    /**
+     * Set facebookPicture
+     *
+     * @param string $facebookPicture
+     *
+     * @return User
+     */
+    public function setFacebookPicture($facebookPicture)
+    {
+        $this->facebook_picture = $facebookPicture;
+
+        return $this;
+    }
+
+    /**
+     * Get facebookPicture
+     *
+     * @return string
+     */
+    public function getFacebookPicture()
+    {
+        return $this->facebook_picture;
+    }
+
+    /**
+     * Add expertise
+     *
+     * @param \EduSpeakBundle\Entity\Expertise $expertise
+     *
+     * @return User
+     */
+    public function addExpertise(\EduSpeakBundle\Entity\Expertise $expertise)
+    {
+        $this->expertises[] = $expertise;
+
+        return $this;
+    }
+
+    /**
+     * Remove expertise
+     *
+     * @param \EduSpeakBundle\Entity\Expertise $expertise
+     */
+    public function removeExpertise(\EduSpeakBundle\Entity\Expertise $expertise)
+    {
+        $this->expertises->removeElement($expertise);
+    }
+
+    /**
+     * Get expertises
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getExpertises()
+    {
+        return $this->expertises;
+    }
+
+    /**
+     * Set facebookAccessToken
+     *
+     * @param string $facebookAccessToken
+     *
+     * @return User
+     */
+    public function setFacebookAccessToken($facebookAccessToken)
+    {
+        $this->facebook_access_token = $facebookAccessToken;
+
+        return $this;
+    }
+
+    /**
+     * Get facebookAccessToken
+     *
+     * @return string
+     */
+    public function getFacebookAccessToken()
+    {
+        return $this->facebook_access_token;
     }
 }

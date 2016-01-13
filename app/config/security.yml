@@ -16,11 +16,22 @@ security:
         main:
             pattern: ^/
             form_login:
-                provider: fos_userbundle
-                csrf_provider: security.csrf.token_manager # Use form.csrf_provider instead for Symfony <2.4
+               provider: fos_userbundle
+               csrf_provider: security.csrf.token_manager # Use form.csrf_provider instead for Symfony <2.4
 
-            logout:       true
-            anonymous:    true
+        #   logout:       true
+        #   anonymous:    true
+            context: user
+            pattern: /.*
+            oauth:
+                resource_owners:
+                    facebook: "/login/check-facebook"
+                login_path: /login
+                failure_path: /login
+                oauth_user_provider:
+                    service: eduspeak.oauth.user_provider
+            logout: true
+            anonymous: true
 
     access_control:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
@@ -28,7 +39,6 @@ security:
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, role: ROLE_ADMIN }
         - { path: ^/(.+), role: ROLE_USER }
-        - { path: ^/$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
 
 # security:
 #     encoders:
