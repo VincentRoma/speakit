@@ -6,12 +6,14 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use \DateTime;
+use EduSpeakBundle\Entity\EduAbstract as EduAbstract;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="friendship")
+ * @ORM\HasLifecycleCallbacks
  */
-class Friendship
+class Friendship extends EduAbstract
 {
     /**
      * @ORM\Column(type="integer")
@@ -161,5 +163,19 @@ class Friendship
     public function hasFriend(User $friend)
     {
         return $this->friends->contains($friend);
+    }
+
+    /**
+     * Set addedAt
+     *
+     * @param \DateTime $addedAt
+     *
+     * @return Friendship
+     */
+    public function setAddedAt($addedAt)
+    {
+        $this->addedAt = $addedAt;
+
+        return $this;
     }
 }

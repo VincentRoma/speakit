@@ -65,12 +65,38 @@ class ProfileController extends BaseController
         if (null !== $event->getResponse()) {
             return $event->getResponse();
         }
+        //
+        // /** @var $formFactory \FOS\UserBundle\Form\Factory\FactoryInterface */
+        // $formFactory = $this->get('fos_user.profile.form.factory');
+        //
+        // $form = $formFactory->createForm();
+        // $form->setData($user);
+        //
+        // $form->handleRequest($request);
+        //
+        // if ($form->isValid()) {
+        //     /** @var $userManager \FOS\UserBundle\Model\UserManagerInterface */
+        //     $userManager = $this->get('fos_user.user_manager');
+        //
+        //     $event = new FormEvent($form, $request);
+        //     $dispatcher->dispatch(FOSUserEvents::PROFILE_EDIT_SUCCESS, $event);
+        //
+        //     $userManager->updateUser($user);
+        //
+        //     if (null === $response = $event->getResponse()) {
+        //         $url = $this->generateUrl('fos_user_profile_show');
+        //         $response = new RedirectResponse($url);
+        //     }
+        //
+        //     $dispatcher->dispatch(FOSUserEvents::PROFILE_EDIT_COMPLETED, new FilterUserResponseEvent($user, $request, $response));
+        //
+        //     return $response;
+        // }
 
-        /** @var $formFactory \FOS\UserBundle\Form\Factory\FactoryInterface */
-        $formFactory = $this->get('fos_user.profile.form.factory');
-
-        $form = $formFactory->createForm();
-        $form->setData($user);
+        $form = $this->createFormBuilder($user)
+            ->add('username', 'text')
+            ->add('email', 'text')
+            ->getForm();
 
         $form->handleRequest($request);
 

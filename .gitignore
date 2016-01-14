@@ -20,7 +20,6 @@ var/logs/*
 !var/logs/.gitkeep
 
 # Parameters
-/app/config/parameters.yml
 /app/config/parameters.ini
 
 # Managed by Composer
@@ -38,6 +37,7 @@ var/logs/*
 /web/uploads/
 
 /web/front/dist/
+/web/front/docs/
 /web/front/node_modules/
 /web/front/bower_components/
 

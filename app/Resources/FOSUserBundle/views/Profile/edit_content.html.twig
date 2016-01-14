@@ -1,0 +1,127 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div id="edu-profile" class="fos_user_user_edit full-height">
+    <div id="edu-profile-row" class="row full-height">
+        <div id="edu-profile-section-up" class="col-md-12 mid-height">
+            <div id="edu-profile-general" class="col-md-2 full-height">
+                <div class="panel panel-primary full-height">
+                    <div class="panel-heading">
+                        <input type="text" name="username">Name : {{ user.username }}</input>
+                    </div>
+                    <div class="panel-body">
+                        <img src="{{ asset('image/kevin_lebre_big.jpg') }}" alt="Profil" />
+                        <div>
+                            <i class="fa fa-envelope-o fa-2x col-md-6"></i>
+                            <i class="fa fa-user-plus fa-2x col-md-6"></i>
+                        </div>
+                        <button type="button" class="btn btn-default btn-xs col-md-12 btn-edu">Modifier mon profil</button>
+                    </div>
+                </div>
+            </div>
+            <div id="edu-profile-languages" class="col-md-10 full-height">
+                <div id="edu-profile-languages-mylanguage" class="col-md-2 full-height">
+                    <div class="panel panel-primary full-height">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Je parle :</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div>
+                                <img src="{{ asset('image/kevin_lebre_small.jpg') }}" alt="Français" />
+                                <button type="button" class="btn btn-default btn-xs">Français</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="edu-profile-languages-wantedlanguages" class="col-md-10 full-height">
+                    <div class="panel panel-primary full-height">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Je veux parler :</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-md-2">
+                                <img src="{{ asset('image/kevin_lebre_small.jpg') }}" alt="Anglais" />
+                                <button type="button" class="btn btn-default btn-xs">Anglais</button>
+                            </div>
+                            <div class="col-md-2">
+                                <img src="{{ asset('image/kevin_lebre_small.jpg') }}" alt="Espagnol" />
+                                <button type="button" class="btn btn-default btn-xs">Espagnol</button>
+                            </div>
+                            <div class="col-md-2">
+                                <img src="{{ asset('image/kevin_lebre_small.jpg') }}" alt="Italien" />
+                                <button type="button" class="btn btn-default btn-xs">Italien</button>
+                            </div>
+                            <div class="col-md-2">
+                                <img src="{{ asset('image/kevin_lebre_small.jpg') }}" alt="Allemand" />
+                                <button type="button" class="btn btn-default btn-xs">Allemand</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="edu-profile-section-down" class="col-md-12 mid-height">
+            <div id="edu-profile-infos-left" class="col-md-4 full-height">
+                <div class="panel panel-primary">
+                    <div class="panel-heading col-md-6">
+                        <h3 class="panel-title">Age :</h3>
+                    </div>
+                    <div class="panel-body col-md-6">
+                        <input type="text" name="age">23</input>
+                    </div>
+                </div>
+                <div class="panel panel-primary">
+                    <div class="panel-heading col-md-6">
+                        <h3 class="panel-title">Ville :</h3>
+                    </div>
+                    <div class="panel-body col-md-6">
+                        <input type="text" name="city">Paris</input>
+                    </div>
+                </div>
+                <div class="panel panel-primary">
+                    <div class="panel-heading col-md-6">
+                        <h3 class="panel-title">Pays :</h3>
+                    </div>
+                    <div class="panel-body col-md-6">
+                        <input type="text" name="country">France</input>
+                    </div>
+                </div>
+            </div>
+            <div id="edu-profile-infos-mid" class="col-md-4 full-height">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Description :</h3>
+                    </div>
+                    <div class="panel-body">
+                        <textarea rows="4" cols="50">Venu de Paris, j’aime plein de choses, viens faire connaissance en français ou en anglais !</textarea>
+                    </div>
+                </div>
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Centres d’Intérêts :</h3>
+                    </div>
+                    <div class="panel-body">
+                        <input type="text" name="country">Voyages, photos, sports, nouvelles technologies</input>
+                    </div>
+                </div>
+            </div>
+            <div id="edu-profile-infos-right" class="col-md-4 full-height">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Mes trophées :</h3>
+                    </div>
+                    <div class="panel-body">
+
+                    </div>
+                </div>
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Mes comptes :</h3>
+                    </div>
+                    <div class="panel-body">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -6,12 +6,14 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use ContentBundle\Entity\Image as Image;
+use EduSpeakBundle\Entity\EduAbstract as EduAbstract;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="language")
+ * @ORM\HasLifecycleCallbacks
  */
-class Language
+class Language extends EduAbstract
 {
     /**
      * @ORM\Column(type="integer")
@@ -34,6 +36,11 @@ class Language
      * @ORM\OneToMany(targetEntity="UserLanguage", mappedBy="language")
      */
     protected $userLanguages;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Country", mappedBy="language")
+     */
+    protected $countries;
 
     /**
      * Constructor
