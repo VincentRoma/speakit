@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "0ca6b9f8e10abd6272cf125a3351b004",
-    "content-hash": "e074e50037491eed4779414fcb33cff1",
+    "hash": "a32db1e28cdf97eb0e5f19e6d5865e85",
+    "content-hash": "11cf1be1d2caadc26cb16b214736691b",
     "packages": [
         {
             "name": "cocur/slugify",

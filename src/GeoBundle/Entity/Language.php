@@ -5,7 +5,7 @@ namespace GeoBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use ContentBundle\Entity\Image as Image;
+use Application\Sonata\MediaBundle\Entity\Media as Media;
 use EduSpeakBundle\Entity\EduAbstract as EduAbstract;
 
 /**
@@ -28,7 +28,7 @@ class Language extends EduAbstract
     protected $name;
 
     /**
-     * @ORM\OneToOne(targetEntity="ContentBundle\Entity\Image")
+     * @ORM\OneToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media")
      */
     private $flag;
 
@@ -41,6 +41,16 @@ class Language extends EduAbstract
      * @ORM\OneToMany(targetEntity="Country", mappedBy="language")
      */
     protected $countries;
+
+    /**
+     * To String
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->name;
+    }
 
     /**
      * Constructor
@@ -83,7 +93,7 @@ class Language extends EduAbstract
     /**
      * Get flag
      *
-     * @return Image
+     * @return Media
      */
     public function getFlag()
     {
@@ -93,9 +103,9 @@ class Language extends EduAbstract
     /**
      * Set flag
      *
-     * @param Image $flag
+     * @param Media $flag
      */
-    public function setFlag(Image $flag)
+    public function setFlag(Media $flag)
     {
         $this->flag = $flag;
     }

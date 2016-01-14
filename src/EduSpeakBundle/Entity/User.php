@@ -67,22 +67,21 @@ class User extends BaseUser
      */
     protected $userLanguages;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Expertise", mappedBy="user")
+     */
+    protected $expertises;
+
     /** @ORM\Column(name="facebook_id", type="string", length=255, nullable=true) */
     protected $facebook_id;
 
     /** @ORM\Column(name="facebook_access_token", type="string", length=255, nullable=true) */
     protected $facebook_access_token;
 
-
     /**
      * @ORM\Column(type="string", name="facebook_picture", length=255, unique=false, nullable=true)
      */
     protected $facebook_picture;
-
-    /**
-     * @ORM\OneToMany(targetEntity="Expertise", mappedBy="expert")
-     */
-    protected $expertises;
 
     /**
      * Constructor
@@ -126,6 +125,77 @@ class User extends BaseUser
     public function setCity(City $city)
     {
         $this->city = $city;
+    }
+
+    /**
+     * Set facebookId
+     *
+     * @param integer $facebookId
+     *
+     * @return User
+     */
+    public function setFacebookId($facebookId)
+    {
+        $this->facebook_id = $facebookId;
+        return $this;
+    }
+
+    /**
+     * Get facebookId
+     *
+     * @return integer
+     */
+    public function getFacebookId()
+    {
+        return $this->facebook_id;
+    }
+
+    /**
+     * Set facebookPicture
+     *
+     * @param string $facebookPicture
+     *
+     * @return User
+     */
+    public function setFacebookPicture($facebookPicture)
+    {
+        $this->facebook_picture = $facebookPicture;
+
+        return $this;
+    }
+
+    /**
+     * Get facebookPicture
+     *
+     * @return string
+     */
+    public function getFacebookPicture()
+    {
+        return $this->facebook_picture;
+    }
+
+    /**
+     * Set facebookAccessToken
+     *
+     * @param string $facebookAccessToken
+     *
+     * @return User
+     */
+    public function setFacebookAccessToken($facebookAccessToken)
+    {
+        $this->facebook_access_token = $facebookAccessToken;
+
+        return $this;
+    }
+
+    /**
+     * Get facebookAccessToken
+     *
+     * @return string
+     */
+    public function getFacebookAccessToken()
+    {
+        return $this->facebook_access_token;
     }
 
     /**
@@ -389,81 +459,39 @@ class User extends BaseUser
     }
 
     /**
-     * Set facebookId
-     *
-     * @param integer $facebookId
-     *
-     * @return User
-     */
-    public function setFacebookId($facebookId)
-    {
-        $this->facebookId = $facebookId;
-
-        return $this;
-    }
-
-    /**
-     * Get facebookId
-     *
-     * @return integer
-     */
-    public function getFacebookId()
-    {
-        return $this->facebookId;
-    }
-
-    /**
-     * Set facebookPicture
-     *
-     * @param string $facebookPicture
-     *
-     * @return User
-     */
-    public function setFacebookPicture($facebookPicture)
-    {
-        $this->facebook_picture = $facebookPicture;
-
-        return $this;
-    }
-
-    /**
-     * Get facebookPicture
-     *
-     * @return string
-     */
-    public function getFacebookPicture()
-    {
-        return $this->facebook_picture;
-    }
-
-    /**
      * Add expertise
      *
-     * @param \EduSpeakBundle\Entity\Expertise $expertise
+     * @param Expertise $expertise
      *
      * @return User
      */
-    public function addExpertise(\EduSpeakBundle\Entity\Expertise $expertise)
+    public function addExpertise(Expertise $expertise)
     {
-        $this->expertises[] = $expertise;
-
+        if (!$this->hasExpertise($expertise)) {
+            $this->expertises->add($expertise);
+        }
         return $this;
     }
 
     /**
      * Remove expertise
      *
-     * @param \EduSpeakBundle\Entity\Expertise $expertise
+     * @param Expertise $expertise
+     *
+     * @return User
      */
-    public function removeExpertise(\EduSpeakBundle\Entity\Expertise $expertise)
+    public function removeExpertise(Expertise $expertise)
     {
-        $this->expertises->removeElement($expertise);
+        if ($this->hasExpertise($expertise)) {
+            $this->expertises->removeElement($expertise);
+        }
+        return $this;
     }
 
     /**
      * Get expertises
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Collection Expertise
      */
     public function getExpertises()
     {
@@ -471,26 +499,14 @@ class User extends BaseUser
     }
 
     /**
-     * Set facebookAccessToken
+     * Has expertise
      *
-     * @param string $facebookAccessToken
+     * @param Expertise $expertise
      *
-     * @return User
+     * @return boolean
      */
-    public function setFacebookAccessToken($facebookAccessToken)
+    public function hasExpertise(Expertise $expertise)
     {
-        $this->facebook_access_token = $facebookAccessToken;
-
-        return $this;
-    }
-
-    /**
-     * Get facebookAccessToken
-     *
-     * @return string
-     */
-    public function getFacebookAccessToken()
-    {
-        return $this->facebook_access_token;
+        return $this->expertises->contains($expertise);
     }
 }
