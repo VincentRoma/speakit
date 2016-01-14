@@ -5,12 +5,15 @@ namespace GeoBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use ContentBundle\Entity\Image as Image;
+use EduSpeakBundle\Entity\EduAbstract as EduAbstract;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="language")
+ * @ORM\HasLifecycleCallbacks
  */
-class Language
+class Language extends EduAbstract
 {
     /**
      * @ORM\Column(type="integer")
@@ -25,9 +28,19 @@ class Language
     protected $name;
 
     /**
+     * @ORM\OneToOne(targetEntity="ContentBundle\Entity\Image")
+     */
+    private $flag;
+
+    /**
      * @ORM\OneToMany(targetEntity="UserLanguage", mappedBy="language")
      */
     protected $userLanguages;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Country", mappedBy="language")
+     */
+    protected $countries;
 
     /**
      * Constructor
@@ -65,6 +78,26 @@ class Language
     public function setName($name)
     {
         $this->name = $name;
+    }
+
+    /**
+     * Get flag
+     *
+     * @return Image
+     */
+    public function getFlag()
+    {
+        return $this->flag;
+    }
+
+    /**
+     * Set flag
+     *
+     * @param Image $flag
+     */
+    public function setFlag(Image $flag)
+    {
+        $this->flag = $flag;
     }
 
     /**

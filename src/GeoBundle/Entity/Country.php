@@ -5,12 +5,14 @@ namespace GeoBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use EduSpeakBundle\Entity\EduAbstract as EduAbstract;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="country")
+ * @ORM\HasLifecycleCallbacks
  */
-class Country
+class Country extends EduAbstract
 {
     /**
      * @ORM\Column(type="integer")
@@ -28,6 +30,22 @@ class Country
      * @ORM\OneToMany(targetEntity="City", mappedBy="country")
      */
     protected $cities;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Language", inversedBy="countries")
+     * @ORM\JoinColumn(name="language_id", referencedColumnName="id")
+     */
+    protected $language;
+
+    /**
+     * To String
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->name;
+    }
 
     /**
      * Constructor
