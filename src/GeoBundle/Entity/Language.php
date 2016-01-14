@@ -38,6 +38,11 @@ class Language extends EduAbstract
     protected $userLanguages;
 
     /**
+     * @ORM\OneToMany(targetEntity="Country", mappedBy="language")
+     */
+    protected $countries;
+
+    /**
      * Constructor
      */
     public function __construct()
