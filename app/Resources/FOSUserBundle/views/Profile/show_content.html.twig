@@ -1,125 +1,133 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 <div id="edu-profile" class="fos_user_user_show full-height">
-    <div id="edu-profile-row" class="row full-height">
-        <div id="edu-profile-section-up" class="col-md-12 mid-height">
-            <div id="edu-profile-general" class="col-md-2 full-height">
-                <div class="panel panel-primary full-height">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">{{ user.username }}</h3>
-                    </div>
-                    <div class="panel-body">
-                        <img src="{{ asset('image/kevin_lebre_big.jpg') }}" alt="Profil" />
-                        <div>
-                            <i class="fa fa-envelope-o fa-2x col-md-6"></i>
-                            <i class="fa fa-user-plus fa-2x col-md-6"></i>
-                        </div>
-                        <a href="{{ path('fos_user_profile_edit') }}" class="btn btn-default btn-xs col-md-12 btn-edu">Modifier mon profil</a>
-                    </div>
+    <div class="row profil-banner">
+        <div class="col-md-12">
+            <img src="http://1010uk.a.cdnify.io/cdn/farfuture/b4EDw936Zxf-JgbAyWkDWT052-ildkqGN03gc7CD4fQ/mtime:1433946444/sites/default/files/eiffel-tower-cameron-wears-BY-NC-banner.jpg"/>
+        </div>
+    </div>
+    <div id="edu-profile-top" class="row">
+        <div class="col-md-3">
+            <img src="{{user.facebookPicture}}" alt="Profil" />
+            <div class="profil-contact container">
+                <div class="row">
+                    <h3 class="profil-name">{{ user.username }}</h3>
+                </div>
+                    <hr >
+                <div class="row profil-icon">
+                    <i class="fa fa-envelope-o fa-2x col-md-6"></i>
+                    <i class="fa fa-user-plus fa-2x col-md-6"></i>
+                </div>
+                <hr>
+                <div class="row">
+                    <a class="btn btn-default" href="{{ path('fos_user_profile_edit') }}">Modifier mon profil</a>
                 </div>
             </div>
-            <div id="edu-profile-languages" class="col-md-10 full-height">
-                <div id="edu-profile-languages-mylanguage" class="col-md-2 full-height">
-                    <div class="panel panel-primary full-height">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Je parle :</h3>
-                        </div>
-                        <div class="panel-body">
-                            <div>
-                                <img src="{{ asset('image/kevin_lebre_small.jpg') }}" alt="Français" />
-                                <button type="button" class="btn btn-default btn-xs">Français</button>
-                            </div>
-                        </div>
+        </div>
+        <div class="col-md-9 profil-listing">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 profil-language">
+                        <h4>I can speak</h4>
+                        <ul>
+                            <li>
+                                <div class="country-snippet">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Civil_and_Naval_Ensign_of_France.svg/2000px-Civil_and_Naval_Ensign_of_France.svg.png" alt="Français" />
+                                </div>
+                            </li>
+                        </ul>
                     </div>
-                </div>
-                <div id="edu-profile-languages-wantedlanguages" class="col-md-10 full-height">
-                    <div class="panel panel-primary full-height">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Je veux parler :</h3>
-                        </div>
-                        <div class="panel-body">
-                            <div class="col-md-2">
-                                <img src="{{ asset('image/kevin_lebre_small.jpg') }}" alt="Anglais" />
-                                <button type="button" class="btn btn-default btn-xs">Anglais</button>
-                            </div>
-                            <div class="col-md-2">
-                                <img src="{{ asset('image/kevin_lebre_small.jpg') }}" alt="Espagnol" />
-                                <button type="button" class="btn btn-default btn-xs">Espagnol</button>
-                            </div>
-                            <div class="col-md-2">
-                                <img src="{{ asset('image/kevin_lebre_small.jpg') }}" alt="Italien" />
-                                <button type="button" class="btn btn-default btn-xs">Italien</button>
-                            </div>
-                            <div class="col-md-2">
-                                <img src="{{ asset('image/kevin_lebre_small.jpg') }}" alt="Allemand" />
-                                <button type="button" class="btn btn-default btn-xs">Allemand</button>
-                            </div>
+                    <div class="col-md-12 profil-language">
+                        <h4>I wish to speak</h4>
+                        <ul>
+                            <li>
+                                <div class="country-snippet">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Union_flag_1606_(Kings_Colors).svg/2000px-Union_flag_1606_(Kings_Colors).svg.png" alt="Français" />
+                                </div>
+                            </li>
+                            <li>
+                                <div class="country-snippet">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Flag_of_Spain_(1785-1873_and_1875-1931).svg/2000px-Flag_of_Spain_(1785-1873_and_1875-1931).svg.png" alt="Français" />
+                                </div>
+                            </li>
+                        </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div id="edu-profile-section-down" class="col-md-12 mid-height">
-            <div id="edu-profile-infos-left" class="col-md-4 full-height">
-                <div class="panel panel-primary">
-                    <div class="panel-heading col-md-6">
-                        <h3 class="panel-title">Age :</h3>
-                    </div>
-                    <div class="panel-body col-md-6">
-                        <p>23</p>
-                    </div>
-                </div>
-                <div class="panel panel-primary">
-                    <div class="panel-heading col-md-6">
-                        <h3 class="panel-title">Ville :</h3>
-                    </div>
-                    <div class="panel-body col-md-6">
-                        <p>Paris</p>
-                    </div>
-                </div>
-                <div class="panel panel-primary">
-                    <div class="panel-heading col-md-6">
-                        <h3 class="panel-title">Pays :</h3>
-                    </div>
-                    <div class="panel-body col-md-6">
-                        <p>France</p>
-                    </div>
+    </div>
+    <div id="edu-profile-row" class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="profil-details">
+                    <ul>
+                        <li>
+                            <h4>Age</h4>
+                            <i>23</i>
+                        </li>
+                        <li>
+                            <h4>City</h4>
+                            <i>Paris</i>
+                        </li>
+                        <li>
+                            <h4>Country</h4>
+                            <i>France</i>
+                        </li>
+                    </ul>
                 </div>
             </div>
-            <div id="edu-profile-infos-mid" class="col-md-4 full-height">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Description :</h3>
-                    </div>
-                    <div class="panel-body">
-                        <p>Venu de Paris, j’aime plein de choses, viens faire connaissance en français ou en anglais !</p>
-                    </div>
-                </div>
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Centres d’Intérêts :</h3>
-                    </div>
-                    <div class="panel-body">
-                        <p>Voyages, photos, sports, nouvelles technologies</p>
-                    </div>
+            <div class="col-md-4">
+                <div class="profil-details">
+                    <ul>
+                        <li>
+                            <h4>Description</h4>
+                            <p style="text-align: justify">
+                                <i>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                </i>
+                            </p>
+                        </li>
+                        <li>
+                            <h4>Interests</h4>
+                            <i>Sports, Cinema, Girls</i>
+                        </li>
+                    </ul>
                 </div>
             </div>
-            <div id="edu-profile-infos-right" class="col-md-4 full-height">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Mes trophées :</h3>
-                    </div>
-                    <div class="panel-body">
+            <div class="col-md-4">
+                <div class="profil-details">
+                <h4>Reward</h4>
+                    <ul>
+                        <li>
+                            <i>Expert Mahattan!</i>
+                        </li>
+                        <li>
+                            <i>First Conversation!</i>
+                        </li>
+                        <li>
+                            <i>Reach 20 Friends!</i>
+                        </li>
+                        <li>
+                            <i>Work with Duch!</i>
+                        </li>
+                    </ul>
 
-                    </div>
-                </div>
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Mes comptes :</h3>
-                    </div>
-                    <div class="panel-body">
-
-                    </div>
+                    <h4>Visited Countries</h4>
+                    <ul class="visited-list">
+                        <li>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Civil_and_Naval_Ensign_of_France.svg/2000px-Civil_and_Naval_Ensign_of_France.svg.png" />
+                            France
+                        </li>
+                        <li>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Union_flag_1606_(Kings_Colors).svg/2000px-Union_flag_1606_(Kings_Colors).svg.png" alt="Français" />
+                            England
+                        </li>
+                        <li>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Flag_of_Spain_(1785-1873_and_1875-1931).svg/2000px-Flag_of_Spain_(1785-1873_and_1875-1931).svg.png" alt="Français" />
+                            Spain
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
