@@ -8,7 +8,7 @@
             <ul>
                 {% for participant in discussion.participants %}
                     <li>
-                       {{ participant.username }}
+                       {{ participant.username }} <a href="{{path('edu_speak_add_friend',{'id':participant.id})}}">Add as a friend</a>
                     </li>
                 {% endfor %}
             </ul>
