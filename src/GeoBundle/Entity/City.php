@@ -6,6 +6,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use EduSpeakBundle\Entity\User as User;
+use EduSpeakBundle\Entity\Expertise as Expertise;
+use ChatBundle\Entity\Discussion as Discussion;
 use EduSpeakBundle\Entity\EduAbstract as EduAbstract;
 
 /**
@@ -39,9 +41,24 @@ class City extends EduAbstract
     protected $residents;
 
     /**
+     * @ORM\OneToMany(targetEntity="EduSpeakBundle\Entity\Expertise", mappedBy="city")
+     */
+    protected $expertises;
+
+    /**
      * @ORM\OneToMany(targetEntity="ChatBundle\Entity\Discussion", mappedBy="city")
      */
     protected $discussions;
+
+    /**
+     * To String
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->name;
+    }
 
     /**
      * Constructor
@@ -49,6 +66,8 @@ class City extends EduAbstract
     public function __construct()
     {
         $this->residents = new ArrayCollection();
+        $this->discussions = new ArrayCollection();
+        $this->expertises = new ArrayCollection();
     }
 
     /**
@@ -156,34 +175,104 @@ class City extends EduAbstract
     /**
      * Add discussion
      *
-     * @param \ChatBundle\Entity\Discussion $discussion
+     * @param Discussion $discussion
      *
      * @return City
      */
-    public function addDiscussion(\ChatBundle\Entity\Discussion $discussion)
+    public function addDiscussion(Discussion $discussion)
     {
-        $this->discussions[] = $discussion;
-
+        if (!$this->hasDiscussion($discussion)) {
+            $this->discussions->add($discussion);
+        }
         return $this;
     }
 
     /**
      * Remove discussion
      *
-     * @param \ChatBundle\Entity\Discussion $discussion
+     * @param Discussion $discussion
+     *
+     * @return City
      */
-    public function removeDiscussion(\ChatBundle\Entity\Discussion $discussion)
+    public function removeDiscussion(Discussion $discussion)
     {
-        $this->discussions->removeElement($discussion);
+        if ($this->hasDiscussion($discussion)) {
+            $this->discussions->removeElement($discussion);
+        }
+        return $this;
     }
 
     /**
      * Get discussions
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Collection Discussion
      */
     public function getDiscussions()
     {
         return $this->discussions;
+    }
+
+    /**
+     * Has discussion
+     *
+     * @param Discussion $discussion
+     *
+     * @return boolean
+     */
+    public function hasDiscussion(Discussion $discussion)
+    {
+        return $this->discussions->contains($discussion);
+    }
+
+    /**
+     * Add expertise
+     *
+     * @param Expertise $expertise
+     *
+     * @return City
+     */
+    public function addExpertise(Expertise $expertise)
+    {
+        if (!$this->hasExpertise($expertise)) {
+            $this->expertises->add($expertise);
+        }
+        return $this;
+    }
+
+    /**
+     * Remove expertise
+     *
+     * @param Expertise $expertise
+     *
+     * @return City
+     */
+    public function removeExpertise(Expertise $expertise)
+    {
+        if ($this->hasExpertise($expertise)) {
+            $this->expertises->removeElement($expertise);
+        }
+        return $this;
+    }
+
+    /**
+     * Get expertises
+     *
+     * @return Collection Expertise
+     */
+    public function getExpertises()
+    {
+        return $this->expertises;
+    }
+
+    /**
+     * Has expertise
+     *
+     * @param Expertise $expertise
+     *
+     * @return boolean
+     */
+    public function hasExpertise(Expertise $expertise)
+    {
+        return $this->expertises->contains($expertise);
     }
 }
