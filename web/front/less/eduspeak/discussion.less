@@ -1,18 +1,66 @@
-.participants{
-    li{
-        list-style: none;
+#edu-discussions {
+    height: @page-row-height;
+    .list-discussions {
+        height: @full-height;
+        max-height: @full-height;
+        overflow-y: auto;
+        padding: 0;
+        background-color: @gray-lighter;
+        h2 {
+            text-align: center;
+        }
+        .list-group {
+            border-radius: 0;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+            .list-group-item {
+                max-height: 8.5vh;
+                overflow: hidden;
+                white-space: nowrap;
+                border-radius: 0;
+                border: @gray-border;
+                background: transparent;
+                padding: 0;
+                img {
+                    margin-bottom: 0;
+                }
+                a {
+                    padding: 17px 167px 20px 0;
+                    color: @gray;
+                    text-decoration: none;
+                }
+                a:hover{
+                    background-color: @eduspeak-base-purple;
+                    color: white;
+                }
+            }
+        }
+    }
+
+    .selected-discussions {
+        height: @full-height;
+        padding: 0;
+        background-image: url("../../../image/paris.jpg");
+        background-size: cover;
+        .panel-chat {
+            min-height: 80vh;
+            max-height: 80vh;
+            overflow-y: auto;
+            background: transparent;
+            border: none;
+            .panel-body {
+                #chat_room {
+                    li {
+                        text-decoration: none;
+                        list-style: none;
+                        background-image: url("../../../image/kevin_lebre_small.jpg");
+                        background-repeat: no-repeat;
+                        padding-left: 8%;
+                    }
+                }
+            }
+        }
     }
 }
 
 
-.panel-chat{
-    min-height: 80vh;
-}
-
-
-#chat_room{
-    li{
-        text-decoration: none;
-        list-style: none;
-    }
-}
