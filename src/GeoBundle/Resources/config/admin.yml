@@ -29,3 +29,13 @@ services:
             - ~
         calls:
             - [ setTranslationDomain, [GeoBundle]]
+    sonata.admin.user_language:
+            class: GeoBundle\Admin\UserLanguageAdmin
+            tags:
+                - { name: sonata.admin, manager_type: orm, group: "User", label: "User Language" }
+            arguments:
+                - ~
+                - GeoBundle\Entity\UserLanguage
+                - ~
+            calls:
+                - [ setTranslationDomain, [GeoBundle]]

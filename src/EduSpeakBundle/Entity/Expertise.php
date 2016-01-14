@@ -3,9 +3,8 @@
 namespace EduSpeakBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use EduSpeakBundle\Entity\EduAbstract as EduAbstract;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use GeoBundle\Entity\Country as Country;
+use GeoBundle\Entity\City as City;
 
 /**
  * @ORM\Entity
@@ -22,36 +21,34 @@ class Expertise extends EduAbstract
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="GeoBundle\Entity\Country", inversedBy="experts")
+     * @ORM\Column(type="integer")
+     */
+    protected $score;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="GeoBundle\Entity\Country", inversedBy="expertises")
      * @ORM\JoinColumn(name="country_id", referencedColumnName="id")
      */
     protected $country;
 
     /**
-     * @ORM\ManyToOne(targetEntity="GeoBundle\Entity\City", inversedBy="experts")
+     * @ORM\ManyToOne(targetEntity="GeoBundle\Entity\City", inversedBy="expertises")
      * @ORM\JoinColumn(name="city_id", referencedColumnName="id")
      */
     protected $city;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="expertise")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="expertises")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
-    protected $expert;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    protected $score;
+    protected $user;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        parent::__construct();
-        $this->$country = new ArrayCollection();
-        $this->$city = new ArrayCollection();
+        $this->score = 0;
     }
 
     /**
@@ -65,20 +62,6 @@ class Expertise extends EduAbstract
     }
 
     /**
-     * Set score
-     *
-     * @param integer $score
-     *
-     * @return Expertise
-     */
-    public function setScore($score)
-    {
-        $this->score = $score;
-
-        return $this;
-    }
-
-    /**
      * Get score
      *
      * @return integer
@@ -89,23 +72,19 @@ class Expertise extends EduAbstract
     }
 
     /**
-     * Set country
+     * Set score
      *
-     * @param \GeoBundle\Entity\Country $country
-     *
-     * @return Expertise
+     * @param integer $score
      */
-    public function setCountry(\GeoBundle\Entity\Country $country = null)
+    public function setScore($score)
     {
-        $this->country = $country;
-
-        return $this;
+        $this->score = $score;
     }
 
     /**
      * Get country
      *
-     * @return \GeoBundle\Entity\Country
+     * @return Country
      */
     public function getCountry()
     {
@@ -113,23 +92,19 @@ class Expertise extends EduAbstract
     }
 
     /**
-     * Set city
+     * Set country
      *
-     * @param \GeoBundle\Entity\City $city
-     *
-     * @return Expertise
+     * @param Country $country
      */
-    public function setCity(\GeoBundle\Entity\City $city = null)
+    public function setCountry(Country $country)
     {
-        $this->city = $city;
-
-        return $this;
+        $this->country = $country;
     }
 
     /**
      * Get city
      *
-     * @return \GeoBundle\Entity\City
+     * @return City
      */
     public function getCity()
     {
@@ -137,26 +112,32 @@ class Expertise extends EduAbstract
     }
 
     /**
-     * Set expert
+     * Set city
      *
-     * @param \EduSpeakBundle\Entity\User $expert
-     *
-     * @return Expertise
+     * @param City $city
      */
-    public function setExpert(\EduSpeakBundle\Entity\User $expert = null)
+    public function setCity(City $city)
     {
-        $this->expert = $expert;
-
-        return $this;
+        $this->city = $city;
     }
 
     /**
-     * Get expert
+     * Get user
      *
-     * @return \EduSpeakBundle\Entity\User
+     * @return User
      */
-    public function getExpert()
+    public function getUser()
     {
-        return $this->expert;
+        return $this->user;
+    }
+
+    /**
+     * Set user
+     *
+     * @param User $user
+     */
+    public function setUser(User $user)
+    {
+        $this->user = $user;
     }
 }

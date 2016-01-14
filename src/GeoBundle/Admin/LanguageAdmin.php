@@ -14,6 +14,13 @@ class LanguageAdmin extends Admin
     {
         $formMapper
             ->add('name', 'text', array('label' => 'Name'))
+            ->add('flag', 'sonata_type_model_list', array(
+                'btn_add'       => 'Add Flag',
+                'btn_list'      => 'Flag list',
+                'btn_delete'    => false,
+            ), array(
+                'placeholder' => 'No flag selected'
+            ))
         ;
     }
 
@@ -32,6 +39,7 @@ class LanguageAdmin extends Admin
         $listMapper
             ->addIdentifier('id')
             ->add('name')
+            ->add('flag')
         ;
     }
 }

@@ -23,6 +23,7 @@ class AppKernel extends Kernel
             new Sonata\CoreBundle\SonataCoreBundle(),
             new Sonata\BlockBundle\SonataBlockBundle(),
             new Sonata\MediaBundle\SonataMediaBundle(),
+            new Sonata\IntlBundle\SonataIntlBundle(),
             new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
             new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
             new Doctrine\Bundle\PHPCRBundle\DoctrinePHPCRBundle(),
