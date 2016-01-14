@@ -8,7 +8,7 @@
     {% if app.security.token is not null and is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 
 
-        {#____________________________Carousel___________________________________#}
+    {#____________________________Carousel___________________________________#}
       <div id="myCarousel" class="row carousel slide" data-ride="carousel">
         <!-- Indicators -->
         <ol class="carousel-indicators">
@@ -53,17 +53,33 @@
         </div>
       </div>
 
+    {#____________________Affichage des langues avec pays____________________#}
       <div id="BodyPageAcceuilLogge" class="row">
         {#*** Pour chaque langues de l'utilisateur connecté ***#}
-      {#{% for %}#}
-      {#  $em = $this->getDoctrine()->getManager();#}
-      {#  $invited = $em->getRepository('EduSpeakBundle:User')->findOneById($id);#}
-          <div class="col-md-2">
-            {#**** Pour chaque Pays de langues précédent****#}
-            {# {% for %}#}
-              <a href="#" class="thumbnail">
-                <img src="..." alt="...">
-              </a>
+      {% Languages=app.user.getUserLanguages() %}
+      {% for langage in Languages %}
+      <div class="row col-md-offset-2 col-md-8">
+          <h4>{{Languages}}</h4>
+          {% set count= Languages|length %}
+          {% AllCountry= langage.getCountry() %}
+              {% for country in langage.getcountry() %}
+                {% if count==1 %}
+                  <div class="row col-md-6">
+                    <a href="#" class="thumbnail">
+                      <img src="..." alt="...">
+                    </a>
+                  </div>
+                {% else%}
+                  <div class="row col-md-4">
+                    <a href="#" class="thumbnail">
+                      <img src="..." alt="...">
+                    </a>
+                    <div class="thumbnail-caption">
+                      <h3>{{country}}</h3>
+                    </div>
+                  </div>
+                  {% set count = count-1 %}
+                {% end if %}
             {# {% endfor %}#}
           </div>
       {#   {% endfor %}#}
@@ -123,36 +139,42 @@
     </div>
     <div class="col-md-12">
         <div class="col-md-3">
+          <div class="col-md-6">
                 <i class="fa fa-keyboard-o fa-5x"></i>
                 <h4>Partager</h4>
+          </div>
+          <div class="col-md-6">
+                  <p class="edu-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+          </div>
         </div>
         <div class="col-md-3">
+            <div class="col-md-6">
                 <i class="fa fa-microphone fa-5x"></i>
                 <h4>Rencontrer</h4>
-        </div>
-        <div class="col-md-3">
-                <i class="fa fa-microphone fa-5x"></i>
-                <h4>Rencontrer</h4>
-        </div>
-        <div class="col-md-3">
-                <i class="fa fa-microphone fa-5x"></i>
-                <h4>Rencontrer</h4>
-        </div>
-    </div>
-
-    <div class="col-md-12">
-        <div class="col-md-3">
-                <p class="edu-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        </div>
-        <div class="col-md-3">
-                <p class="edu-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
             </div>
-        <div class="col-md-3">
-                <p class="edu-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+            <div class="col-md-6">
+                    <p class="edu-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </div>
         </div>
         <div class="col-md-3">
-                <p class="edu-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+          <div class="col-md-6">
+                <i class="fa fa-microphone fa-5x"></i>
+                <h4>Rencontrer</h4>
+              </div>
+          <div class="col-md-6">
+                      <p class="edu-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+          </div>
         </div>
+        <div class="col-md-3">
+          <div class="col-md-6">
+                <i class="fa fa-microphone fa-5x"></i>
+                <h4>Rencontrer</h4>
+            </div>
+            <div class="col-md-6">
+                    <p class="edu-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </div>
+        </div>
+
     </div>
 
   </div>

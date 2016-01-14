@@ -6,6 +6,9 @@
 // Mixin and adjust the regular image class
 .thumbnail {
   display: block;
+  //AJOUTER PAR ANTOINE
+  position: relative;
+  //Fin de L'ajout
   padding: @thumbnail-padding;
   margin-bottom: @line-height-computed;
   line-height: @line-height-base;
@@ -32,5 +35,11 @@
   .caption {
     padding: @thumbnail-caption-padding;
     color: @thumbnail-caption-color;
+
+    //AJOUTER PAR ANTOINE
+    top:0;
+    left:0;
+    position: absolute;
+    //Fin de l'ajout
   }
 }
