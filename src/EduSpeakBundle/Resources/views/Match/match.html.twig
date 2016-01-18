@@ -1,16 +1,166 @@
 {% extends 'base.html.twig' %}
-
 {% block body %}
-    <div class="row">
-        <div class="col-md-2 participants">
-            <h2>Matched Persons</h2>
-            <ul>
-                {% for matchedUser in matchedUsers %}
-                    <li>
-                       {{ matchedUser.username }} <a href="{{path('chat_create',{'id':matchedUser.id})}}">Discuss</a>
-                    </li>
-                {% endfor %}
-            </ul>
+<div class="content">
+    <!------------ FILTRES -------------->
+    <div class="row filtres">
+        <form >
+            <div class="col-md-2">
+                <select class="form-control" name="Langues">
+                    <option>Langues</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+            </div> <div class="col-md-2">
+                <select class="form-control" placeholder="Age min">
+                    <option>Age min</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+            </div> <div class="col-md-2">
+                <select class="form-control" placeholder="Age min">
+                    <option>Age max</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+            </div> <div class="col-md-3">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox"> Correspondants connectés
+                    </label>
+                </div>
+            </div> <div class="col-md-1">
+                <button class="btn btn-default" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    <i class="fa fa-chevron-down"></i>
+                </button>
+            </div> <div class="col-md-2">
+                <button type="submit" class="btn btn-default">Appliquer les filtres</button>
+            </div>
+            <div class="collapse" id="collapseExample">
+
+                extension filtre
+                <!--<div class="checkbox">
+                    <label>
+                        <input type="checkbox" value="">
+                        Option one is this and that&mdash;be sure to include why it's great
+                    </label>
+                </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="">
+                            Option one is this and that&mdash;be sure to include why it's great
+                        </label>
+                    </div>-->
+            </div>
+        </form>
+    </div>
+
+
+    <!------------ MATCHING -------------->
+    <div class="matching">
+        {% for matchedUser in matchedUsers %}
+        <div class="row">
+            <div class="col-md-2 col-md-offset-2 col-xs-2 col-sm-2 ">
+                <a class="btn" href="{{path('edu_speak_profil',{'id':matchedUser.id})}}">
+                    <img src="https://jeunes-ca.fr/main/wp-content/uploads/2014/03/Mutuelle-%C3%A9tudiante-358x240.jpg" alt="image" class="img-circle" height="100px" width="100px">
+                </a>
+            </div>
+            <div class="col-md-4 col-xs-6 col-sm-6"><h2>{{ matchedUser.username }}</h2>
+                <h3>Paris, France<!--{ article.ville}}--></h3>
+                <button type="button" class="btn btn-default btn-xs">Musique</button>
+                <button type="button" class="btn btn-default btn-xs">Couture</button>
+            </div>
+            <!--{ for article in articles %}
+            <button type="button" class="btn btn-default btn-xs">{ loisirs.name}}-</button>
+            { endfor %}-->
+            <div class="col-md-1 col-xs-2 col-sm-2">
+                <a class="btn" href="{{path('chat_create',{'id':matchedUser.id})}}"><i class="fa fa-envelope-o fa-4x"></i></a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+
+    <!--
+            <div class="col-md-12 text-center">
+                <div class="carousel slide" data-ride="carousel" data-type="multi" data-interval="3000" id="myCarousel">
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="http://placehold.it/500/e499e4/fff&amp;text=1" class="img-responsive"></a></div>
+                        </div>
+                        <div class="item">
+                            <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="http://placehold.it/500/e477e4/fff&amp;text=2" class="img-responsive"></a></div>
+                        </div>
+                        <div class="item">
+                            <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="http://placehold.it/500/eeeeee&amp;text=3" class="img-responsive"></a></div>
+                        </div>
+                        <div class="item">
+                            <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="http://placehold.it/500/f4f4f4&amp;text=4" class="img-responsive"></a></div>
+                        </div>
+                        <div class="item">
+                            <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="http://placehold.it/500/f566f5/333&amp;text=5" class="img-responsive"></a></div>
+                        </div>
+                        <div class="item">
+                            <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="http://placehold.it/500/f477f4/fff&amp;text=6" class="img-responsive"></a></div>
+                        </div>
+                        <div class="item">
+                            <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="http://placehold.it/500/eeeeee&amp;text=7" class="img-responsive"></a></div>
+                        </div>
+                        <div class="item">
+                            <div class="col-md-3 col-sm-6 col-xs-12"><a href="#"><img src="http://placehold.it/500/fcfcfc/333&amp;text=8" class="img-responsive"></a></div>
+                        </div>
+                    </div>
+                    <a class="left carousel-control" href="#myCarousel" data-slide="prev"><i class="fa fa-chevron-left"></i></a>
+                    <a class="right carousel-control" href="#myCarousel" data-slide="next"><i class="fa fa-chevron-right"></i></a>
+                </div>
+            </div>-->
+
+</div>
+
+
+<!------------ ACTUALITES -------------->
+<div class="actus" >
+
+    <!--{ for article in articles %}
+      <div class="col-md-3 col-xs-3 col-sm-3">
+        <div class="test">
+            <img src="http://olapaella.fr/images/4eab1e_ec576404d1cf47c6bd1e0dd243cfcd4d.jpg" alt="image" height="110px" width="100%">
+            <div class="like">
+                <div class="">
+                    <button type="submit" class="btn btn-link"><i class="fa fa-heart fa-3x fa-inverse "></i></button>
+                    <button type="submit" class="btn btn-link"><i class="fa fa-times fa-3x fa-inverse"></i></button>
+                </div></div>
+
+
         </div>
     </div>
-{%  endblock %}
+      { endfor %}-->
+
+
+    <div class="col-md-3 col-xs-3 col-sm-3">
+        <div class="test">
+            <img src="http://olapaella.fr/images/4eab1e_ec576404d1cf47c6bd1e0dd243cfcd4d.jpg" alt="image" height="110px" width="100%">
+            <div class="like">
+                <div class="">
+                    <button type="submit" class="btn btn-link"><i class="fa fa-heart fa-3x fa-inverse "></i></button>
+                    <button type="submit" class="btn btn-link"><i class="fa fa-times fa-3x fa-inverse"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 col-xs-3 col-sm-3">
+        <img src="https://i.ytimg.com/vi/KKUeZegmFRI/maxresdefault.jpg" alt="image" height="110px" width="100%">
+    </div>
+    <div class="col-md-3 col-xs-3 col-sm-3">
+        <img src="http://img0.ndsstatic.com/wallpapers/cb278f0eb987d32045e94097bb69ce45_large.jpeg" alt="image" height="110px" width="100%">
+    </div>
+    <div class="col-md-3 col-xs-3 col-sm-3">
+        <img src="http://www.realmadrid.com/cs/Satellite?blobcol=urldata&blobheader=image%2Fjpeg&blobkey=id&blobtable=MungoBlobs&blobwhere=1203345194876&ssbinary=true" alt="image" height="110px" width="100%">
+    </div>
+</div>
+{% endblock %}
