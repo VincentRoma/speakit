@@ -53,15 +53,17 @@ class DiscussionController extends Controller
     {
         $user = $this->getUser();
         $discussions = $user->getDiscussions()->toArray();
-        return $this->render('ChatBundle:Discussion:discussions.html.twig', array('discussions' => $discussions));
+        return $this->render('ChatBundle:Discussion:discussion.html.twig', array('discussions' => $discussions));
     }
 
     public function displayAction($id)
     {
         $em = $this->getDoctrine()->getManager();
         $discussion = $em->getRepository('ChatBundle:Discussion')->findOneById($id);
+        $user = $this->getUser();
+        $discussions = $user->getDiscussions()->toArray();
         if($discussion){
-            return $this->render('ChatBundle:Discussion:discussion.html.twig', array('discussion' => $discussion));
+            return $this->render('ChatBundle:Discussion:discussion.html.twig', array('discussion' => $discussion, 'discussions' => $discussions));
         }else{
             return $this->render('ChatBundle:Discussion:discussion_fail.html.twig');
         }
