@@ -5,12 +5,15 @@ namespace GeoBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Application\Sonata\MediaBundle\Entity\Media as Media;
+use EduSpeakBundle\Entity\EduAbstract as EduAbstract;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="language")
+ * @ORM\HasLifecycleCallbacks
  */
-class Language
+class Language extends EduAbstract
 {
     /**
      * @ORM\Column(type="integer")
@@ -25,9 +28,29 @@ class Language
     protected $name;
 
     /**
+     * @ORM\OneToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media")
+     */
+    private $flag;
+
+    /**
      * @ORM\OneToMany(targetEntity="UserLanguage", mappedBy="language")
      */
     protected $userLanguages;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Country", mappedBy="language")
+     */
+    protected $countries;
+
+    /**
+     * To String
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->name;
+    }
 
     /**
      * Constructor
@@ -65,6 +88,26 @@ class Language
     public function setName($name)
     {
         $this->name = $name;
+    }
+
+    /**
+     * Get flag
+     *
+     * @return Media
+     */
+    public function getFlag()
+    {
+        return $this->flag;
+    }
+
+    /**
+     * Set flag
+     *
+     * @param Media $flag
+     */
+    public function setFlag(Media $flag)
+    {
+        $this->flag = $flag;
     }
 
     /**

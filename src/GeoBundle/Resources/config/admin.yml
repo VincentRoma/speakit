@@ -1,0 +1,41 @@
+services:
+    sonata.admin.country:
+        class: GeoBundle\Admin\CountryAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Geo", label: "Country" }
+        arguments:
+            - ~
+            - GeoBundle\Entity\Country
+            - ~
+        calls:
+            - [ setTranslationDomain, [GeoBundle]]
+    sonata.admin.city:
+        class: GeoBundle\Admin\CityAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Geo", label: "City" }
+        arguments:
+            - ~
+            - GeoBundle\Entity\City
+            - ~
+        calls:
+            - [ setTranslationDomain, [GeoBundle]]
+    sonata.admin.language:
+        class: GeoBundle\Admin\LanguageAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Geo", label: "Language" }
+        arguments:
+            - ~
+            - GeoBundle\Entity\Language
+            - ~
+        calls:
+            - [ setTranslationDomain, [GeoBundle]]
+    sonata.admin.user_language:
+            class: GeoBundle\Admin\UserLanguageAdmin
+            tags:
+                - { name: sonata.admin, manager_type: orm, group: "User", label: "User Language" }
+            arguments:
+                - ~
+                - GeoBundle\Entity\UserLanguage
+                - ~
+            calls:
+                - [ setTranslationDomain, [GeoBundle]]

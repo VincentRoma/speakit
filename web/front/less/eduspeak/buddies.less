@@ -1,0 +1,70 @@
+.carousel-control 			 { width:  4%; }
+.carousel-control.left,.carousel-control.right {margin-left:15px;background-image:none;}
+@media (max-width: 767px) {
+  .carousel-inner .active.left { left: -100%; }
+  .carousel-inner .next        { left:  100%; }
+  .carousel-inner .prev		 { left: -100%; }
+  .active > div { display:none; }
+  .active > div:first-child { display:block; }
+
+}
+@media (min-width: 767px) and (max-width: 992px ) {
+  .carousel-inner .active.left { left: -50%; }
+  .carousel-inner .next        { left:  50%; }
+  .carousel-inner .prev		 { left: -50%; }
+  .active > div { display:none; }
+  .active > div:first-child { display:block; }
+  .active > div:first-child + div { display:block; }
+}
+@media (min-width: 992px ) {
+  .carousel-inner .active.left { left: -25%; }
+  .carousel-inner .next        { left:  25%; }
+  .carousel-inner .prev		 { left: -25%; }
+}
+
+
+.filtres{
+  background: #DDDBDB;
+  padding: 10px;
+
+}
+
+.matching{
+  padding: 10px;  margin: 5px;
+
+}
+
+.content{
+  margin-bottom:180px;
+
+}
+.actus{
+  background: #77114B;
+  width:100%;
+  padding:
+        20px;
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+}
+
+.test:hover img{
+  opacity: 0.65;
+
+
+
+}
+
+.like{
+  display:none;
+
+}
+
+
+.test:hover .like{
+display:inline;
+  position: absolute;
+  top: 30%;
+  right: 25%;
+}
+

@@ -2,18 +2,21 @@
 
 {% block body %}
     {{ ws_client() }}
-    <div class="row">
-        <div class="col-md-2 participants">
-            <h2>Participants</h2>
-            <ul>
-                {% for participant in discussion.participants %}
-                    <li>
-                       {{ participant.username }}
+    <div id="edu-discussions" class="row">
+        <div class="col-md-2 list-discussions">
+            <h2>Discussions</h2>
+            <ul class="list-group">
+                {% for discussion in discussions %}
+                    <li class="list-group-item">
+                        <a href="{{ path('chat_display',{'id': discussion.id}) }}">
+                            <img src="{{ asset('image/kevin_lebre_small.jpg') }}" alt="Profil" />
+                            Discussion N°{{ discussion.id }} - Adrien
+                        </a>
                     </li>
                 {% endfor %}
             </ul>
         </div>
-        <div class="col-md-10">
+        <div class="col-md-10 selected-discussions">
             <div class="panel panel-default panel-chat">
                 <div class="panel-body">
                     <ul id="chat_room">
@@ -21,11 +24,7 @@
                     </ul>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-10 col-md-offset-2">
-            <div class="input-group">
+            <div class="input-group col-md-10 col-md-offset-1">
                 <input type="text" class="form-control" id="chat_input" placeholder="Type text...">
                 <span class="input-group-btn">
                     <button class="btn btn-default" id="btn_send" type="submit">Send!</button>
@@ -33,15 +32,14 @@
             </div>
         </div>
     </div>
-
     <script type="text/javascript">
         var websocket = WS.connect("ws://127.0.0.1:8080");
         websocket.on("socket/connect", function(session){
             var insert_message = function(message){
                 if(message.msg) {
-                    $("#chat_room").append('<li class="alert alert-info">' + message.msg + '</li>');
+                    $("#chat_room").append('<li class="alert alert-edu-invert">' + message.msg + '</li>');
                 }else{
-                    $("#chat_room").append('<li class="alert alert-warning">' + message + '</li>');
+                    $("#chat_room").append('<li class="alert alert-edu">' + message + '</li>');
                 }
             };
             session.subscribe("chat/channel", function(uri, payload){
