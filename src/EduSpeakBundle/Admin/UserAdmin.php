@@ -9,14 +9,6 @@ use Sonata\AdminBundle\Form\FormMapper;
 
 class UserAdmin extends Admin
 {
-    // Fields to be shown on create/edit forms
-    protected function configureFormFields(FormMapper $formMapper)
-    {
-        $formMapper
-            ->add('username', 'text', array('label' => 'Username'))
-        ;
-    }
-
     // Fields to be shown on filter forms
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
@@ -24,6 +16,14 @@ class UserAdmin extends Admin
             ->add('id')
             ->add('username')
             ->add('email')
+        ;
+    }
+
+    // Fields to be shown on create/edit forms
+    protected function configureFormFields(FormMapper $formMapper)
+    {
+        $formMapper
+            ->add('username', 'text', array('label' => 'Username'))
         ;
     }
 

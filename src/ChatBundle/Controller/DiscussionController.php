@@ -4,7 +4,6 @@ namespace ChatBundle\Controller;
 
 use ChatBundle\Entity\Discussion;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Response;
 
 class DiscussionController extends Controller
 {
@@ -19,7 +18,7 @@ class DiscussionController extends Controller
         // Get requested user
         $em = $this->getDoctrine()->getManager();
         $invited = $em->getRepository('EduSpeakBundle:User')->findOneById($id);
-        if($invited){
+        if($invited && $user){
             $discussion = false;
             // Check for existing discussion
             foreach($user->getDiscussions() as $d){
@@ -52,19 +51,19 @@ class DiscussionController extends Controller
 
     public function showAction()
     {
-        //$em = $this->getDoctrine()->getManager();
-        //$user = $em->getRepository('EduSpeakBundle:User')->find($usr->getId());
         $user = $this->getUser();
         $discussions = $user->getDiscussions()->toArray();
-        return $this->render('ChatBundle:Discussion:discussions.html.twig', array('discussions' => $discussions));
+        return $this->render('ChatBundle:Discussion:discussion.html.twig', array('discussions' => $discussions));
     }
 
     public function displayAction($id)
     {
         $em = $this->getDoctrine()->getManager();
         $discussion = $em->getRepository('ChatBundle:Discussion')->findOneById($id);
+        $user = $this->getUser();
+        $discussions = $user->getDiscussions()->toArray();
         if($discussion){
-            return $this->render('ChatBundle:Discussion:discussion.html.twig', array('discussion' => $discussion));
+            return $this->render('ChatBundle:Discussion:discussion.html.twig', array('discussion' => $discussion, 'discussions' => $discussions));
         }else{
             return $this->render('ChatBundle:Discussion:discussion_fail.html.twig');
         }

@@ -1,17 +1,33 @@
 //EDUSPEAK Button definition
 
-a{
+a, button{
     &.btn-edu{
-        background-color: @eduspeak-base;
+        background-color: @eduspeak-base-purple;
         background-image: none;
         border-color: white;
         color: white;
+        text-shadow: none;
+        margin: @size-px-5 0;
+    }
+
+    &.btn-edu:hover{
+        background-color: white;
+        border-color: @eduspeak-base-purple;
+        color: @eduspeak-base-purple;
     }
 
     &.btn-edu-invert{
         background-color: white;
         background-image: none;
-        border-color: @eduspeak-base;
-        color: @eduspeak-base;
+        border-color: @eduspeak-base-purple;
+        color: @eduspeak-base-purple;
+        text-shadow: none;
+        margin: @size-px-5 0;
+    }
+
+    &.btn-edu-invert:hover{
+        background-color: @eduspeak-base-purple;
+        border-color: white;
+        color: white;
     }
 }

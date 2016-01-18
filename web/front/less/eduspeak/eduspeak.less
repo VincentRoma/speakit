@@ -1,36 +1,92 @@
 //MAIN CLASSEs
 
-.welcome-panel{
+// BALISES
+img {
+  margin-bottom: @size-px-5;
+}
+
+// NAVBAR ---------------------------------------------------------------------------
+
+.profile-picture {
+    border-radius: @size-px-30;
+    margin-right: @size-px-10;
+    width: 4em;
+
+}
+
+// AUTRES ----------------------------------------------------------------------------
+
+.eduspeak-logo {
+    float:left;
+}
+
+.edu-nav {
+    color: @eduspeak-base-pink;
+}
+
+.welcome-panel {
     min-height: 25rem;
-    background-color: @eduspeak-base;
+    background-color: @eduspeak-base-pink;
     color: white;
     text-align: center;
     padding-top: 5rem;
-}
-
-.home-row{
-    border-bottom: solid 3px;
-    text-align: center;
-    color: @gray-light;
     >div{
         margin-top: 4rem;
     }
 }
 
-.edu-nav{
-    color: @eduspeak-base;
-    
+.home-row {
+    border-bottom: solid 3px;
+    text-align: center;
+    color: white;
+    >div{
+        margin-top: 4rem;
+    }
 }
 
-.edu-justify{
+.edu-nav {
+    color: @eduspeak-base;
+}
+
+//NAVBAR POUR QUE CELA RECOUVRE L'IMAGE PRINCIPALE
+.edu-nav .overheader{
+    z-index: 10;
+    /* background: #fff; */
+    width: 100%;
+    position: absolute;
+    /* opacity: 0.5;*/
+}
+
+.edu-justify {
     text-align: justify;
 }
 
-.home-link{
+.home-link {
     text-decoration: none;
     color: #ff5050;
     &:hover{
         text-decoration: none;
         color: #ff5050;
+    }
+}
+
+.accueil{
+  #choixDestination{
+    .thumbnail {
+      &:hover{
+      img{
+
+          opacity: 0.7;
+          }
+      }
+    }
+  }
+
+    .carousel {
+      &:hover{
+      img{
+          opacity: 0.7;
+          }
+      }
     }
 }

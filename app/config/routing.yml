@@ -1,18 +1,14 @@
 content:
     resource: "@ContentBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /content
 
 geo:
     resource: "@GeoBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /geo
 
 chat:
     resource: "@ChatBundle/Resources/config/routing.yml"
     prefix:   /discussion
-
-edu_speak:
-    resource: "@EduSpeakBundle/Resources/config/routing.yml"
-    prefix:   /
 
 app:
     resource: "@AppBundle/Controller/"
@@ -30,6 +26,14 @@ _sonata_admin:
     type: sonata_admin
     prefix: /admin
 
+gallery:
+    resource: '@SonataMediaBundle/Resources/config/routing/gallery.xml'
+    prefix: /media/gallery
+
+media:
+    resource: '@SonataMediaBundle/Resources/config/routing/media.xml'
+    prefix: /media
+
 users:
     type: rest
     prefix: /api
@@ -44,3 +48,23 @@ fos_oauth_server_token:
 
 fos_oauth_server_authorize:
     resource: "@FOSOAuthServerBundle/Resources/config/routing/authorize.xml"
+
+#HWIOAuthBundle routes
+hwi_oauth_security:
+    resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
+    prefix: /login
+
+hwi_oauth_connect:
+    resource: "@HWIOAuthBundle/Resources/config/routing/connect.xml"
+    prefix: /login
+
+hwi_oauth_redirect:
+    resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
+    prefix:   /login
+
+facebook_login:
+    pattern: /login/check-facebook
+
+edu_speak:
+    resource: "@EduSpeakBundle/Resources/config/routing.yml"
+    prefix:   /
