@@ -14,6 +14,13 @@ class CountryAdmin extends Admin
     {
         $formMapper
             ->add('name', 'text', array('label' => 'Name'))
+            ->add('language', 'sonata_type_model_list', array(
+                'btn_add'       => 'Add Language',
+                'btn_list'      => 'Language list',
+                'btn_delete'    => false,
+            ), array(
+                'placeholder' => 'No language selected'
+            ))
         ;
     }
 
@@ -23,6 +30,7 @@ class CountryAdmin extends Admin
         $datagridMapper
             ->add('id')
             ->add('name')
+            ->add('language')
         ;
     }
 
@@ -32,6 +40,7 @@ class CountryAdmin extends Admin
         $listMapper
             ->addIdentifier('id')
             ->add('name')
+            ->add('language.name')
         ;
     }
 }

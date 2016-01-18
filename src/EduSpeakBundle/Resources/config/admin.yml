@@ -9,3 +9,13 @@ services:
             - ~
         calls:
             - [ setTranslationDomain, [EduSpeakBundle]]
+    sonata.admin.expertise:
+            class: EduSpeakBundle\Admin\ExpertiseAdmin
+            tags:
+                - { name: sonata.admin, manager_type: orm, group: "User", label: "Expertise" }
+            arguments:
+                - ~
+                - EduSpeakBundle\Entity\Expertise
+                - ~
+            calls:
+                - [ setTranslationDomain, [EduSpeakBundle]]

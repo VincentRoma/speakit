@@ -30,7 +30,7 @@ class CityAdmin extends Admin
         $datagridMapper
             ->add('id')
             ->add('name')
-            ->add('country.name')
+            ->add('country')
         ;
     }
 
