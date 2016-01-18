@@ -1,6 +1,4 @@
-<<<<<<< HEAD
 EduSpeak
-========================
 
 Description Needed Guys
 
@@ -70,4 +68,3 @@ Enjoy!
 [13]: https://symfony.com/doc/2.7/bundles/SensioGeneratorBundle/index.html
 =======
 # speakit
->>>>>>> 66b79d3264f656c6f216c12aa6b80ea67f8331a2
