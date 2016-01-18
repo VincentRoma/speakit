@@ -5,6 +5,7 @@ namespace GeoBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Application\Sonata\MediaBundle\Entity\Media as Media;
 use EduSpeakBundle\Entity\Expertise as Expertise;
 use EduSpeakBundle\Entity\EduAbstract as EduAbstract;
 
@@ -42,6 +43,16 @@ class Country extends EduAbstract
      * @ORM\OneToMany(targetEntity="EduSpeakBundle\Entity\Expertise", mappedBy="country")
      */
     protected $expertises;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media")
+     */
+    private $flag;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media")
+     */
+    private $picture;
 
     /**
      * To String
@@ -90,6 +101,46 @@ class Country extends EduAbstract
     public function setName($name)
     {
         $this->name = $name;
+    }
+
+    /**
+     * Get flag
+     *
+     * @return Media
+     */
+    public function getFlag()
+    {
+        return $this->flag;
+    }
+
+    /**
+     * Set flag
+     *
+     * @param Media $flag
+     */
+    public function setFlag(Media $flag)
+    {
+        $this->flag = $flag;
+    }
+
+    /**
+     * Get picture
+     *
+     * @return Media
+     */
+    public function getPicture()
+    {
+        return $this->picture;
+    }
+
+    /**
+     * Set picture
+     *
+     * @param Media $picture
+     */
+    public function setPicture(Media $picture)
+    {
+        $this->picture = $picture;
     }
 
     /**

@@ -58,6 +58,7 @@ class Language extends EduAbstract
     public function __construct()
     {
         $this->userLanguages = new ArrayCollection();
+        $this->countries = new ArrayCollection();
     }
 
     /**
@@ -160,5 +161,57 @@ class Language extends EduAbstract
     public function hasUserLanguage(UserLanguage $userLanguage)
     {
         return $this->userLanguages->contains($userLanguage);
+    }
+
+    /**
+     * Add country
+     *
+     * @param Country $country
+     *
+     * @return Language
+     */
+    public function addCountry(Country $country)
+    {
+        if (!$this->hasCountry($country)) {
+            $this->countries->add($country);
+        }
+        return $this;
+    }
+
+    /**
+     * Remove country
+     *
+     * @param Country $country
+     *
+     * @return Language
+     */
+    public function removeCountry(Country $country)
+    {
+        if ($this->hasCountry($country)) {
+            $this->countries->removeElement($country);
+        }
+        return $this;
+    }
+
+    /**
+     * Get countries
+     *
+     * @return Collection Country
+     */
+    public function getCountries()
+    {
+        return $this->countries;
+    }
+
+    /**
+     * Has country
+     *
+     * @param Country $country
+     *
+     * @return boolean
+     */
+    public function hasCountry(Country $country)
+    {
+        return $this->countries->contains($country);
     }
 }
