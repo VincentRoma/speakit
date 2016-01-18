@@ -70,18 +70,18 @@ img {
     }
 }
 
+///CUSTOMISATION DE LA PAGE DACCUEIL
 .accueil{
   #choixDestination{
     .thumbnail {
       &:hover{
       img{
-
           opacity: 0.7;
           }
       }
     }
   }
-
+    //block noir pour le caroussel
     .monopacite{
       background-color: black;
       z-index: 7;
@@ -91,4 +91,21 @@ img {
       opacity: 0.4;
       top: 0;
     }
+}
+
+///CUSTOMISATION DE LA NAVBAR PAR ANTOINE
+.navbar-default .navbar-nav > li{
+
+  > a{
+    color:white;
+    &:hover{
+      color: white;
+    }
+  }
+
+  &:hover{
+    border-style: solid;
+    border-color:white;
+    border-width: 1px;
+  }
 }
