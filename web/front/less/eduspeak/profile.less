@@ -1,6 +1,56 @@
 // PROFILE ---------------------------------------------------------------------------
-#edu-profile {
 
+#edu-profile {
+	.profil-banner {
+		> div {
+			padding: 0;
+		}
+		img {
+			width: 100%;
+			min-height: 32em;
+		}
+	}
+	#edu-profile-top{
+		position: absolute;
+		top: 6em;
+		left: 4em;
+		width: 90%;
+		.profil-name{
+			text-align: center;
+		}
+		.profil-contact{
+			background-color: white;
+			opacity: 0.8;
+			width: 20rem;
+			margin: 0;
+		}
+		.btn{
+			width: 100%;
+		}
+		.profil-icon{
+			text-align: center;
+		}
+		img{
+			margin-bottom: 0;
+			width: 20rem;
+		}
+		.profil-listing{
+			ul{
+				padding: 0;
+				list-style: none;
+				li{
+					float: left;
+					margin-right: 4rem;
+				}
+			}
+			img{
+				width: 8rem;
+			}
+			.profil-language{
+				margin-top: 4rem;
+			}
+		}
+	}
 }
 
 #edu-profile-row {
@@ -8,105 +58,26 @@
 	.profil-details{
 		background-color: white;
 		opacity: 0.9;
-		box-shadow: grey 2px 2px 2px 2px;
+		box-shadow: @gray-border 1px 1px 1px 1px;
 		margin-bottom: 5em;
 		padding: 1em;
 		ul{
 			list-style: none;
 			padding: 0;
 		}
+		p{
+			text-align: justify;
+		}
+		h4{
+			overflow: hidden;
+		}
+		i{
+			overflow: hidden;
+		}
 	}
 	.visited-list{
 		img{
 			width: 3em;
-		}
-	}
-}
-
-#edu-profile-section-up, #edu-profile-section-down {
-	padding-top: @size-px-5;
-	padding-bottom: @size-px-5;
-}
-
-#edu-profile-section-up {
-	//-webkit-background-size: cover; /* pour anciens Chrome et Safari */
-	//background-size: cover; /* version standardisée */
-	border-bottom: @gray-border;
-}
-
-#edu-profile-section-up div {
-	background: transparent;
-}
-
-#edu-profile .panel {
-	border: none;
-	box-shadow: none;
-}
-
-#edu-profile .panel-heading {
-	background: none;
-	border: none;
-}
-
-#edu-profile .panel-title {
-	color: @panel-title-color;
-	font-weight: bold;
-}
-
-#edu-profile-general h3.panel-title {
-	text-align: center;
-	color: @gray;
-}
-
-
-.profil-banner{
-	>div{
-		padding: 0;
-	}
-	img{
-		width: 100%;
-		min-height: 32em;
-	}
-}
-
-#edu-profile-top{
-	position: absolute;
-	top: 6em;
-	left: 4em;
-	width: 90%;
-	.profil-name{
-		text-align: center;
-	}
-	.profil-contact{
-		background-color: white;
-		opacity: 0.8;
-		width: 20rem;
-		margin: 0;
-	}
-	.btn{
-		width: 100%;
-	}
-	.profil-icon{
-		text-align: center;
-	}
-	img{
-		margin-bottom: 0;
-		width: 20rem;
-	}
-	.profil-listing{
-		ul{
-			padding: 0;
-			list-style: none;
-			li{
-				float: left;
-				margin-right: 4rem;
-			}
-		}
-		img{
-			width: 8rem;
-		}
-		.profil-language{
-			margin-top: 4rem;
 		}
 	}
 }
