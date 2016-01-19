@@ -6,6 +6,8 @@
         secret_key: 'sec-c-YzZhYjVmMTgtYjJmZS00ZTVlLTkwMTMtNWVhZTgyYWEzOTY0'
     });
 
+    var id_user = Math.floor((Math.random() * 100000) + 1000);
+
     PUBNUB_demo.subscribe({
         channel: 'speak_it',
         message: function(m){
@@ -14,18 +16,22 @@
     });
 
     var display_message = function(m){
-        $("#chat_room").append('<li>'+ m.text +'</li>');
+        if(m.user == id_user){
+            $("#chat_room").append('<li class="mine alert">'+ m.text +'</li>');
+        }else{
+            $("#chat_room").append('<li class="his alert alert-info">'+ m.text +'</li>');
+        }
     };
 
     var send_message = function(){
         var message = $("#chat_input").val();
+        $("#chat_input").val('');
         PUBNUB_demo.publish({
             channel: 'speak_it',
-            message: {"text": message},
+            message: {"text": message, "user": id_user},
             callback : function(m){console.log(m)}
         });
     };
-
     $("#btn_send").click(send_message());
 
     $(document).keypress(function(e) {
