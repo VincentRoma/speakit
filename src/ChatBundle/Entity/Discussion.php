@@ -38,6 +38,11 @@ class Discussion extends EduAbstract
      */
     protected $city;
 
+    /**
+     * @ORM\Column(type="text")
+     */
+    protected $token;
+
 
     /**
      * Constructor
@@ -184,5 +189,29 @@ class Discussion extends EduAbstract
     public function getCity()
     {
         return $this->city;
+    }
+
+    /**
+     * Set token
+     *
+     * @param string $token
+     *
+     * @return Discussion
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
+
+        return $this;
+    }
+
+    /**
+     * Get token
+     *
+     * @return string
+     */
+    public function getToken()
+    {
+        return $this->token;
     }
 }

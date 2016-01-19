@@ -40,27 +40,33 @@
     .selected-discussions {
         height: @full-height;
         padding: 0;
-        background-image: url("../../../image/paris.jpg");
-        background-size: cover;
         .panel-chat {
-            min-height: 80vh;
-            max-height: 80vh;
             overflow-y: auto;
             background: transparent;
             border: none;
+            min-height: 80vh;
+            padding: 0 7em 0 7em;
             .panel-body {
                 #chat_room {
                     li {
                         text-decoration: none;
                         list-style: none;
-                        background-image: url("../../../image/kevin_lebre_small.jpg");
                         background-repeat: no-repeat;
-                        padding-left: 8%;
                     }
                 }
+            }
+
+            .mine{
+                background-color: green;
+                color: white;
+                text-align: right;
+                margin-left: 50%;
+                margin-right: 17em;
+            }
+
+            .his{
+                margin-right: 50%;
             }
         }
     }
 }
-
-
