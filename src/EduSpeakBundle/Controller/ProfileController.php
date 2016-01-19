@@ -105,7 +105,7 @@ class ProfileController extends BaseController
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
-            return $this->render('FOSUserBundle:Profile:show.html.twig', array(
+            return $this->redirectToRoute('fos_user_profile_show', array(
                 'user' => $user
             ));
             /*$userManager = $this->get('fos_user.user_manager');
