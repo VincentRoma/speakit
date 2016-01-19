@@ -2,10 +2,20 @@ services:
     sonata.admin.user:
         class: EduSpeakBundle\Admin\UserAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: "Content", label: "User" }
+            - { name: sonata.admin, manager_type: orm, group: "User", label: "User" }
         arguments:
             - ~
             - EduSpeakBundle\Entity\User
             - ~
         calls:
             - [ setTranslationDomain, [EduSpeakBundle]]
+    sonata.admin.expertise:
+            class: EduSpeakBundle\Admin\ExpertiseAdmin
+            tags:
+                - { name: sonata.admin, manager_type: orm, group: "User", label: "Expertise" }
+            arguments:
+                - ~
+                - EduSpeakBundle\Entity\Expertise
+                - ~
+            calls:
+                - [ setTranslationDomain, [EduSpeakBundle]]

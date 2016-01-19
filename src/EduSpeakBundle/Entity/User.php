@@ -19,8 +19,8 @@ use JMS\Serializer\Annotation\VirtualProperty;
 /**
  * @ORM\Entity
  * @ORM\Table(name="users")
- *
  * @ExclusionPolicy("all")
+ * @ORM\Entity(repositoryClass="EduSpeakBundle\Entity\UserRepository")
  */
 class User extends BaseUser
 {
@@ -68,6 +68,22 @@ class User extends BaseUser
     protected $userLanguages;
 
     /**
+     * @ORM\OneToMany(targetEntity="Expertise", mappedBy="user")
+     */
+    protected $expertises;
+
+    /** @ORM\Column(name="facebook_id", type="string", length=255, nullable=true) */
+    protected $facebook_id;
+
+    /** @ORM\Column(name="facebook_access_token", type="string", length=255, nullable=true) */
+    protected $facebook_access_token;
+
+    /**
+     * @ORM\Column(type="string", name="facebook_picture", length=255, unique=false, nullable=true)
+     */
+    protected $facebook_picture;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -78,6 +94,7 @@ class User extends BaseUser
         $this->actualities = new ArrayCollection();
         $this->interests = new ArrayCollection();
         $this->userLanguages = new ArrayCollection();
+        $this->expertises = new ArrayCollection();
     }
 
     /**
@@ -108,6 +125,77 @@ class User extends BaseUser
     public function setCity(City $city)
     {
         $this->city = $city;
+    }
+
+    /**
+     * Set facebookId
+     *
+     * @param integer $facebookId
+     *
+     * @return User
+     */
+    public function setFacebookId($facebookId)
+    {
+        $this->facebook_id = $facebookId;
+        return $this;
+    }
+
+    /**
+     * Get facebookId
+     *
+     * @return integer
+     */
+    public function getFacebookId()
+    {
+        return $this->facebook_id;
+    }
+
+    /**
+     * Set facebookPicture
+     *
+     * @param string $facebookPicture
+     *
+     * @return User
+     */
+    public function setFacebookPicture($facebookPicture)
+    {
+        $this->facebook_picture = $facebookPicture;
+
+        return $this;
+    }
+
+    /**
+     * Get facebookPicture
+     *
+     * @return string
+     */
+    public function getFacebookPicture()
+    {
+        return $this->facebook_picture;
+    }
+
+    /**
+     * Set facebookAccessToken
+     *
+     * @param string $facebookAccessToken
+     *
+     * @return User
+     */
+    public function setFacebookAccessToken($facebookAccessToken)
+    {
+        $this->facebook_access_token = $facebookAccessToken;
+
+        return $this;
+    }
+
+    /**
+     * Get facebookAccessToken
+     *
+     * @return string
+     */
+    public function getFacebookAccessToken()
+    {
+        return $this->facebook_access_token;
     }
 
     /**
@@ -317,7 +405,7 @@ class User extends BaseUser
     {
         return $this->friendships->contains($friendship);
     }
-    
+
     /**
      * Add discussion
      *
@@ -368,5 +456,57 @@ class User extends BaseUser
     public function hasDiscussion(Discussion $discussion)
     {
         return $this->discussions->contains($discussion);
+    }
+
+    /**
+     * Add expertise
+     *
+     * @param Expertise $expertise
+     *
+     * @return User
+     */
+    public function addExpertise(Expertise $expertise)
+    {
+        if (!$this->hasExpertise($expertise)) {
+            $this->expertises->add($expertise);
+        }
+        return $this;
+    }
+
+    /**
+     * Remove expertise
+     *
+     * @param Expertise $expertise
+     *
+     * @return User
+     */
+    public function removeExpertise(Expertise $expertise)
+    {
+        if ($this->hasExpertise($expertise)) {
+            $this->expertises->removeElement($expertise);
+        }
+        return $this;
+    }
+
+    /**
+     * Get expertises
+     *
+     * @return Collection Expertise
+     */
+    public function getExpertises()
+    {
+        return $this->expertises;
+    }
+
+    /**
+     * Has expertise
+     *
+     * @param Expertise $expertise
+     *
+     * @return boolean
+     */
+    public function hasExpertise(Expertise $expertise)
+    {
+        return $this->expertises->contains($expertise);
     }
 }

@@ -4,12 +4,14 @@ namespace GeoBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use EduSpeakBundle\Entity\User as User;
+use EduSpeakBundle\Entity\EduAbstract as EduAbstract;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="userLanguage")
+ * @ORM\HasLifecycleCallbacks
  */
-class UserLanguage
+class UserLanguage extends EduAbstract
 {
     /**
      * @ORM\Column(type="integer")

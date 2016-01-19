@@ -1,0 +1,21 @@
+services:
+    sonata.admin.interest:
+        class: ContentBundle\Admin\InterestAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Interest" }
+        arguments:
+            - ~
+            - ContentBundle\Entity\Interest
+            - ~
+        calls:
+            - [ setTranslationDomain, [ContentBundle]]
+    sonata.admin.actuality:
+            class: ContentBundle\Admin\ActualityAdmin
+            tags:
+                - { name: sonata.admin, manager_type: orm, group: "Content", label: "Actuality" }
+            arguments:
+                - ~
+                - ContentBundle\Entity\Actuality
+                - ~
+            calls:
+                - [ setTranslationDomain, [ContentBundle]]
