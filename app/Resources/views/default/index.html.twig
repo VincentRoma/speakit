@@ -10,6 +10,7 @@
 
     {#____________________________Carousel___________________________________#}
       <div id="myCarousel" class="row carousel slide" data-ride="carousel">
+        <div class="monopacite"></div>
         <!-- Indicators -->
         <ol class="carousel-indicators">
             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -49,7 +50,7 @@
                   <a href="{{ path('edu_speak_search')}}"><button class="btn btn-default" type="button">Go!</button></a>
               </span>
           </div>
-          <p>"pratiquez comme si vous y étiez"</p>
+          <p class="slogan">"pratiquez comme si vous y étiez"</p>
         </div>
       </div>
 
@@ -159,6 +160,7 @@
 
     {#____________________________Carousel___________________________________#}
   <div id="myCarousel" class="row carousel slide" data-ride="carousel">
+    <div class="monopacite"></div>
     <!-- Indicators -->
     <ol class="carousel-indicators">
       <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -190,10 +192,9 @@
         </div>
     </div>
     <div class="carousel-caption">
+      <p class="slogan">Pratiquez comme si vous y étiez</p>
           <a class="btn btn-default btn-edu" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
-          <a class="btn btn-default btn-edu-invert" href="{{ path('fos_user_registration_register') }}" role="button">Register</a>
-
-      <p>pratiquez comme si vous y étiez</p>
+          <a class="btn btn-default btn-edu" href="{{ path('fos_user_registration_register') }}" role="button">Register</a>
     </div>
   </div>
 
