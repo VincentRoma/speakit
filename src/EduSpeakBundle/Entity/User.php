@@ -8,6 +8,8 @@ use GeoBundle\Entity\City as City;
 use GeoBundle\Entity\UserLanguage as UserLanguage;
 use ChatBundle\Entity\Discussion as Discussion;
 use ContentBundle\Entity\Interest as Interest;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints as Assert;
 use ContentBundle\Entity\Actuality as Actuality;
 use FOS\UserBundle\Model\User as BaseUser;
 use \DateTime;
@@ -20,6 +22,7 @@ use JMS\Serializer\Annotation\VirtualProperty;
 /**
  * @ORM\Entity
  * @ORM\Table(name="users")
+ * @ORM\HasLifecycleCallbacks
  * @ExclusionPolicy("all")
  * @ORM\Entity(repositoryClass="EduSpeakBundle\Entity\UserRepository")
  */
@@ -34,14 +37,19 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="date", nullable=true)
      */
     protected $birthday;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=100, nullable=true)
      */
     protected $cityPrecision;
+
+    /**
+     * @ORM\Column(type="string", length=500, nullable=true)
+     */
+    protected $description;
 
     /**
      * @ORM\ManyToOne(targetEntity="GeoBundle\Entity\City", inversedBy="residents")
@@ -95,6 +103,18 @@ class User extends BaseUser
     protected $facebook_picture;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    public $path;
+
+    /**
+     * @Assert\File(maxSize="6000000")
+     */
+    private $file;
+
+    private $temp;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -106,6 +126,98 @@ class User extends BaseUser
         $this->interests = new ArrayCollection();
         $this->userLanguages = new ArrayCollection();
         $this->expertises = new ArrayCollection();
+    }
+
+    /**
+     * Sets file.
+     *
+     * @param UploadedFile $file
+     */
+    public function setFile(UploadedFile $file = null)
+    {
+        $this->file = $file;
+        if (isset($this->path)) {
+            $this->temp = $this->path;
+            $this->path = null;
+        } else {
+            $this->path = 'initial';
+        }
+    }
+
+    /**
+     * Get file.
+     *
+     * @return UploadedFile
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function preUpload()
+    {
+        if (null !== $this->getFile()) {
+            $filename = sha1(uniqid(mt_rand(), true));
+            $this->path = $filename.'.'.$this->getFile()->guessExtension();
+        }
+    }
+
+    /**
+     * @ORM\PostRemove()
+     */
+    public function removeUpload()
+    {
+        $file = $this->getAbsolutePath();
+        if ($file) {
+            unlink($file);
+        }
+    }
+
+    /**
+     * @ORM\PostPersist()
+     * @ORM\PostUpdate()
+     */
+    public function upload()
+    {
+        if (null === $this->getFile()) {
+            return;
+        }
+
+        $this->getFile()->move($this->getUploadRootDir(), $this->path);
+
+        if (isset($this->temp)) {
+            unlink($this->getUploadRootDir().'/'.$this->temp);
+            $this->temp = null;
+        }
+        $this->file = null;
+    }
+
+    public function getAbsolutePath()
+    {
+        return null === $this->path
+            ? null
+            : $this->getUploadRootDir().'/'.$this->path;
+    }
+
+    public function getWebPath()
+    {
+        return null === $this->path
+            ? null
+            : $this->getUploadDir().'/'.$this->path;
+    }
+
+    protected function getUploadRootDir()
+    {
+        return __DIR__.'/../../../web/'.$this->getUploadDir();
+    }
+
+    protected function getUploadDir()
+    {
+        return 'uploads/user';
     }
 
     /**
@@ -176,6 +288,26 @@ class User extends BaseUser
     public function setCityPrecision($cityPrecision)
     {
         $this->cityPrecision = $cityPrecision;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
     }
 
     /**
