@@ -1,5 +1,4 @@
 Speak It
-========================
 
 What's inside?
 --------------
@@ -17,7 +16,7 @@ Our Speak It Application uses the following:
 
   * Less;
 
-  * Composer 
+  * Composer
 
 Our Bundles:
 
@@ -33,8 +32,3 @@ Our Bundles:
 
 All libraries and bundles included in the Symfony Standard Edition are
 released under the MIT or BSD license.
-
-Enjoy!
-=======
-# speakit
-

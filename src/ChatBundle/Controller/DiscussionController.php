@@ -33,10 +33,14 @@ class DiscussionController extends Controller
             }else {
                 // Create new discussion
                 $discussion = new Discussion();
-
+                $token1 = rand(1000,9999);
+                $token2 = rand(1000,9999);
+                $token3 = rand(1000,9999);
+                $token = $token1.'-'.$token2.'-'.$token3;
                 //Add Participants
                 $discussion = $discussion->addParticipant($user);
                 $discussion = $discussion->addParticipant($invited);
+                $discussion->setToken($token);
                 $invited->addDiscussion($discussion);
                 $user->addDiscussion($discussion);
                 $em->persist($discussion);

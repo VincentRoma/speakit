@@ -10,6 +10,7 @@ use ChatBundle\Entity\Discussion as Discussion;
 use ContentBundle\Entity\Interest as Interest;
 use ContentBundle\Entity\Actuality as Actuality;
 use FOS\UserBundle\Model\User as BaseUser;
+use \DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
@@ -31,6 +32,16 @@ class User extends BaseUser
      * @Expose
      */
     protected $id;
+
+    /**
+     * @ORM\Column(type="date")
+     */
+    protected $birthday;
+
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    protected $cityPrecision;
 
     /**
      * @ORM\ManyToOne(targetEntity="GeoBundle\Entity\City", inversedBy="residents")
@@ -125,6 +136,46 @@ class User extends BaseUser
     public function setCity(City $city)
     {
         $this->city = $city;
+    }
+
+    /**
+     * Get birthday
+     *
+     * @return DateTime
+     */
+    public function getBirthday()
+    {
+        return $this->birthday;
+    }
+
+    /**
+     * Set birthday
+     *
+     * @param DateTime $birthday
+     */
+    public function setBirthday(DateTime $birthday)
+    {
+        $this->birthday = $birthday;
+    }
+
+    /**
+     * Get cityPrecision
+     *
+     * @return string
+     */
+    public function getCityPrecision()
+    {
+        return $this->cityPrecision;
+    }
+
+    /**
+     * Set cityPrecision
+     *
+     * @param string $cityPrecision
+     */
+    public function setCityPrecision($cityPrecision)
+    {
+        $this->cityPrecision = $cityPrecision;
     }
 
     /**
