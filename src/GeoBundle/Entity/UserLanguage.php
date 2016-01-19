@@ -26,6 +26,11 @@ class UserLanguage extends EduAbstract
     protected $score;
 
     /**
+     * @ORM\Column(type="boolean", name="spoken")
+     */
+    protected $spoken;
+
+    /**
      * @ORM\ManyToOne(targetEntity="EduSpeakBundle\Entity\User", inversedBy="userLanguages")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
@@ -73,6 +78,26 @@ class UserLanguage extends EduAbstract
     public function setScore($score)
     {
         $this->score = $score;
+    }
+
+    /**
+     * Get spoken
+     *
+     * @return boolean
+     */
+    public function getSpoken()
+    {
+        return $this->spoken;
+    }
+
+    /**
+     * Set spoken
+     *
+     * @param boolean $spoken
+     */
+    public function setSpoken($spoken)
+    {
+        $this->spoken = $spoken;
     }
 
     /**
