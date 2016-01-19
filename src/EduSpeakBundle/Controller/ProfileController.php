@@ -95,7 +95,6 @@ class ProfileController extends BaseController
 
         $form = $this->createFormBuilder($user)
             ->add('username')
-            ->add('name')
             ->add('file')
             ->add('save', 'submit', array('label' => 'Modify Profile'))
             ->getForm();

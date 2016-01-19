@@ -103,12 +103,6 @@ class User extends BaseUser
     protected $facebook_picture;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank
-     */
-    public $name;
-
-    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     public $path;
