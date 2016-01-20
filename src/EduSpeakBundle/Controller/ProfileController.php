@@ -19,9 +19,9 @@ class ProfileController extends BaseController
     public function showAction()
     {
         $user = $this->getUser();
-        $discussions = $this->getUser()->getDiscussions();
-        $interests = $this->getUser()->getInterests();
-        $friendships = $this->getUser()->getFriendships();
+        $discussions = $user->getDiscussions();
+        $interests = $user->getInterests();
+        $friendships = $user->getFriendships();
 
         return $this->render('FOSUserBundle:Profile:show.html.twig', array(
             'user' => $user,
@@ -44,17 +44,29 @@ class ProfileController extends BaseController
             return $event->getResponse();
         }
 
+        $hasFile = false;
+        if (null !== $user->getPath()) {
+            $hasFile = true;
+        }
+
         $this->getDoctrine()->getManager()->getRepository('ContentBundle:Interest')->findAll();
         $form = $this->createFormBuilder($user)
             ->add('username', 'text', array('required' => true))
-            ->add('birthday', 'date', array('required' => true))
+            ->add('birthday', 'date', array(
+                'widget' => 'choice',
+                'input' => 'datetime',
+                'format' => 'd/M/y',
+                'years' => range(1950,2005),
+                'empty_value' => array('year' => 'Year', 'month' => 'Month', 'day' => 'Day'),
+                'pattern' => "{{ day }}/{{ month }}/{{ year }}"
+            ))
             ->add('cityPrecision', 'text', array('required' => true))
             ->add('description', 'textarea', array('required' => true))
             // city a supprimer quand google donne la city la plus proche
             ->add('city', 'entity', array(
                 'class' => 'GeoBundle:City',
                 'property' => 'name',
-                'required' => true,
+                'required' => true
             ))
             ->add('interests', 'entity', array(
                 'class' => 'ContentBundle:Interest',
@@ -62,7 +74,7 @@ class ProfileController extends BaseController
                 'property' => 'name',
                 'multiple' => true,
                 'expanded' => true,
-                'required' => true,
+                'required' => true
             ))
             //todo complex
             /*->add('userLanguages', 'entity', array(
@@ -71,9 +83,9 @@ class ProfileController extends BaseController
                 'property' => 'name',
                 'multiple' => true,
                 'expanded' => true,
-                'required' => true,
+                'required' => true
             ))*/
-            ->add('file', 'file', array('required' => true))
+            ->add('file', 'file', array('required' => !$hasFile))
             ->add('save', 'submit', array('label' => 'Modify Profile'))
             ->getForm();
         $form->handleRequest($request);
