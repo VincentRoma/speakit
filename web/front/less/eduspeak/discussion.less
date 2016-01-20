@@ -6,30 +6,49 @@
         overflow-y: auto;
         padding: 0;
         background-color: @gray-lighter;
-        h2 {
+        h1, h2, h3, h4, h5, h6 {
             text-align: center;
+            text-transform: uppercase;
         }
         .list-group {
             border-radius: 0;
             -webkit-box-shadow: none;
             box-shadow: none;
             .list-group-item {
+                min-height: 4em;
                 max-height: 8.5vh;
                 overflow: hidden;
                 white-space: nowrap;
                 border-radius: 0;
-                border: @gray-border;
                 background: transparent;
                 padding: 0;
-                img {
-                    margin-bottom: 0;
+                a.list-group-item-search {
+                    padding: 20px 167px 20px 20px;
+                    color: @gray;
+                    background: white;
+                    text-decoration: none;
+                    i {
+                        vertical-align: middle;
+                        padding: 13px;
+                    }
                 }
-                a {
-                    padding: 17px 167px 20px 0;
+                a.list-group-item-picture {
+                    padding: 0;
+                    color: @eduspeak-base-purple;
+                    img {
+                        margin-bottom: 0;
+                    }
+                }
+                a.list-group-item-picture:hover {
+
+                }
+                a.list-group-item-user {
+                    vertical-align: super;
+                    padding: 20px 167px 20px 20px;
                     color: @gray;
                     text-decoration: none;
                 }
-                a:hover{
+                a.list-group-item-user:hover {
                     background-color: @eduspeak-base-purple;
                     color: white;
                 }
@@ -45,6 +64,7 @@
             background: transparent;
             border: none;
             min-height: 80vh;
+            max-height: 80vh;
             padding: 0 7em 0 7em;
             .panel-body {
                 #chat_room {
@@ -52,23 +72,17 @@
                         text-decoration: none;
                         list-style: none;
                         background-repeat: no-repeat;
+                        white-space: nowrap;
                     }
                 }
             }
-
-            .mine{
-                background-color: green;
-                color: white;
-                text-align: right;
-                margin-left: 50%;
-                margin-right: 17em;
-            }
-
-            .his{
-                margin-right: 50%;
+        }
+        .input-group {
+            .btn-edu {
+                box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+                border: 1px solid #cccccc;
             }
         }
-
         .discussion-empty{
             margin-top: 22%;
             text-align: center;
