@@ -14,6 +14,10 @@ class CountryAdmin extends Admin
     {
         $formMapper
             ->add('name', 'text', array('label' => 'Name'))
+            ->add('slider', 'choice', array(
+                'choices' => array('yes' => true, 'no' => false),
+                'choices_as_values' => true,
+            ))
             ->add('language', 'sonata_type_model_list', array(
                 'btn_add'       => 'Add Language',
                 'btn_list'      => 'Language list',
@@ -44,6 +48,9 @@ class CountryAdmin extends Admin
         $datagridMapper
             ->add('id')
             ->add('name')
+            ->add('slider', null, array(
+                'operator_type' => 'sonata_type_boolean'
+            ))
             ->add('language')
         ;
     }
@@ -54,6 +61,7 @@ class CountryAdmin extends Admin
         $listMapper
             ->addIdentifier('id')
             ->add('name')
+            ->add('slider', 'boolean')
             ->add('language.name')
             ->add('flag')
             ->add('picture')
