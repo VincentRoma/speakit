@@ -3,9 +3,11 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block fos_user_content %}
-
+<div id="login">
     <div class="container">
-        <form action="{{ path("fos_user_security_check") }}" method="post" class="form-signin">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3 text-center jumbotron">
+          <form action="{{ path("fos_user_security_check") }}" method="post" class="form-signin">
             <h2 class="form-signin-heading">Please sign in</h2>
             {% if error %}
                 <div class="form-signin-heading">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -23,19 +25,14 @@
                     <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
                 </label>
             </div>
-            <input type="submit" class="btn btn-lg btn-primary btn-block" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
-        </form>
-        <div class="row" style="margin-top: 2em;">
-            <div class="col-md-2 col-md-offset-5" style="text-align:center;">
-                <h3>Or</h3>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2 col-md-offset-5">
-                <a class="btn btn-default" href="/app.php/login/facebook" id="facebook-login">
-                    <i class="fa fa-facebook-official"></i> Login with Facebook
+            <input type="submit" class="btn btn-block btn-lg btn-default btn-edu" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+
+          <p>Or</p>
+                <a class="btn btn-default btn-block btn-lg btn-edu btn-facebook" href="/app.php/login/facebook" id="facebook-login">
+                    <i class="fa fa-facebook-official"></i> LOGIN WITH FACEBOOK
                 </a>
-            </div>
-        </div>
+          </form>
+      </div>
     </div> <!-- /container -->
+  </div>
 {% endblock fos_user_content %}

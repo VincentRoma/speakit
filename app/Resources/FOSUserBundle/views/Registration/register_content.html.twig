@@ -6,13 +6,14 @@
           <form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="form-signin">
           {{ form_widget(form) }}
           <div>
-            <input  class="btn-default btn btn-edu" type="submit" value="{{ 'registration.submit'|trans }}" />
+            <input  class="btn-default btn btn-edu btn-block btn-lg btn-lg" type="submit" value="{{ 'registration.submit'|trans }}" />
           </div>
-        </form>
+
         <p> Or</p>
-        <a class="btn btn-default btn-edu btn-facebook" href="/app.php/login/facebook">
+        <a class="btn btn-default btn-block btn-lg btn-edu btn-facebook" href="/app.php/login/facebook">
           <i class="fa fa-facebook-official"></i> REGISTER WITH FACEBOOK
         </a>
+      </form>
       </div>
     </div>
   </div>
