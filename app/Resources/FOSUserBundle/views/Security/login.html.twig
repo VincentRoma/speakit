@@ -5,8 +5,9 @@
 {% block fos_user_content %}
 <div id="login">
     <div class="container">
+        <img class="img-responsive center-block" src="{{ asset('image/register.jpg') }}" alt="Paris">
       <div class="row">
-        <div class="col-md-6 col-md-offset-3 text-center jumbotron">
+        <div class="col-md-6 col-md-offset-3 text-center jumbotron" id="myjumbotron">
           <form action="{{ path("fos_user_security_check") }}" method="post" class="form-signin">
             <h2 class="form-signin-heading">Please sign in</h2>
             {% if error %}
