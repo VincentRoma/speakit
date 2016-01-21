@@ -6,29 +6,22 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class UserLanguageType extends AbstractType
+class LanguageType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('id');
-        $builder->add('languages', "collection", array(
-                'type' => new LanguageType(),
-                'allow_add' => true,
-                'allow_delete' => true,
-                'by_reference' => false
-            )
-        );
+        $builder->add('name');
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'GeoBundle\Entity\UserLanguage',
+            'data_class' => 'GeoBundle\Entity\Language',
         ));
     }
 
     public function getName()
     {
-        return 'userlanguage';
+        return 'language';
     }
 }
