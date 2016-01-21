@@ -10,6 +10,7 @@ use FOS\UserBundle\Event\FilterUserResponseEvent;
 use FOS\UserBundle\Event\GetResponseUserEvent;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use EduSpeakBundle\Form\Type\UserType as UserType;
 
 class ProfileController extends BaseController
 {
@@ -36,9 +37,13 @@ class ProfileController extends BaseController
      */
     public function editAction(Request $request)
     {
+        //Declarations
         $user = $this->getUser();
         $dispatcher = $this->get('event_dispatcher');
         $event = new GetResponseUserEvent($user, $request);
+        $em = $this->getDoctrine()->getManager();
+        $interests = $em->getRepository('ContentBundle:Interest')->findAll();
+
         $dispatcher->dispatch(FOSUserEvents::PROFILE_EDIT_INITIALIZE, $event);
         if (null !== $event->getResponse()) {
             return $event->getResponse();
@@ -49,49 +54,11 @@ class ProfileController extends BaseController
             $hasFile = true;
         }
 
-        $this->getDoctrine()->getManager()->getRepository('ContentBundle:Interest')->findAll();
-        $form = $this->createFormBuilder($user)
-            ->add('username', 'text', array('required' => true))
-            ->add('birthday', 'date', array(
-                'widget' => 'choice',
-                'input' => 'datetime',
-                'format' => 'd/M/y',
-                'years' => range(1950,2005),
-                'empty_value' => array('year' => 'Year', 'month' => 'Month', 'day' => 'Day'),
-                'pattern' => "{{ day }}/{{ month }}/{{ year }}"
-            ))
-            ->add('cityPrecision', 'text', array('required' => true))
-            ->add('description', 'textarea', array('required' => true))
-            // city a supprimer quand google donne la city la plus proche
-            ->add('city', 'entity', array(
-                'class' => 'GeoBundle:City',
-                'property' => 'name',
-                'required' => true
-            ))
-            ->add('interests', 'entity', array(
-                'class' => 'ContentBundle:Interest',
-                'choices' => $this->getDoctrine()->getManager()->getRepository('ContentBundle:Interest')->findAll(),
-                'property' => 'name',
-                'multiple' => true,
-                'expanded' => true,
-                'required' => true
-            ))
-            //todo complex
-            /*->add('userLanguages', 'entity', array(
-                'class' => 'GeoBundle:UserLanguage',
-                'choices' => $this->getDoctrine()->getManager()->getRepository('GeoBundle:Language')->findAll(),
-                'property' => 'name',
-                'multiple' => true,
-                'expanded' => true,
-                'required' => true
-            ))*/
-            ->add('file', 'file', array('required' => !$hasFile))
-            ->add('save', 'submit', array('label' => 'Modify Profile'))
-            ->getForm();
+        $form = $this->createForm(new UserType($hasFile, $interests) , $user);
+
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
             // mettre comme id_city la city la plus proche grace a google de celle qu'il a donné
