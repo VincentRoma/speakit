@@ -26,16 +26,16 @@ class Message extends EduAbstract
     protected $content;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Session", inversedBy="session")
+     * @ORM\ManyToOne(targetEntity="GeoBundle\Entity\Language", inversedBy="messages")
      * @ORM\JoinColumn(name="message_id", referencedColumnName="id")
      */
     protected $language;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Session", inversedBy="session")
+     * @ORM\ManyToOne(targetEntity="Discussion", inversedBy="messages")
      * @ORM\JoinColumn(name="message_id", referencedColumnName="id")
      */
-    protected $session;
+    protected $discussion;
 
     /**
      * Constructor
@@ -43,7 +43,7 @@ class Message extends EduAbstract
     public function __construct()
     {
         $this->language = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->session = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->discussion = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -105,26 +105,26 @@ class Message extends EduAbstract
     }
 
     /**
-     * Set session
+     * Set discussion
      *
-     * @param \ChatBundle\Entity\Session $session
+     * @param \ChatBundle\Entity\Discussion $discussion
      *
      * @return Message
      */
-    public function setSession(\ChatBundle\Entity\Session $session = null)
+    public function setDiscussion(\ChatBundle\Entity\Discussion $discussion = null)
     {
-        $this->session = $session;
+        $this->discussion = $discussion;
 
         return $this;
     }
 
     /**
-     * Get session
+     * Get discussion
      *
-     * @return \ChatBundle\Entity\Session
+     * @return \ChatBundle\Entity\Discussion
      */
-    public function getSession()
+    public function getDiscussion()
     {
-        return $this->session;
+        return $this->discussion;
     }
 }

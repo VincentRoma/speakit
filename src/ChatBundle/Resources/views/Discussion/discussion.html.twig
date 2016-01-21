@@ -6,19 +6,27 @@
         <div class="col-md-2 list-discussions">
             <h2>Discussions</h2>
             <ul class="list-group">
-                {% for discussion in discussions %}
-                    <li class="list-group-item" style="min-height: 4em;">
-                        <a href="{{ path('chat_display',{'id': discussion.id}) }}">
-                            {% if discussion.participants[1].facebookPicture %}
-                                <img class="profile-picture" src="{{ app.user.facebookPicture }}" alt="Profil" />
-                            {% elseif discussion.participants[1].file %}
-                                <img class="profile-picture" src="{{ app.user.file }}" alt="Profil" />
-                            {% else %}
-                                <i class="fa fa-user fa-3x" style="margin-right: 3rem;"></i>
-                            {% endif %}
-                            <span>{{discussion.participants[1]}}</span>
-                        </a>
-                    </li>
+                {% for discus in discussions %}
+                    {% if discussion is defined and discussion.id == discus.id %}
+                        <li class="list-group-item selected" style="min-height: 4em;">
+                    {% else %}
+                        <li class="list-group-item" style="min-height: 4em;">
+                    {% endif %}
+                            <a href="{{ path('chat_display',{'id': discus.id}) }}" class="participant-snippet">
+                                {% for participant in discus.participants %}
+                                    {% if participant.username != app.user.username %}
+                                        {% if participant.facebookPicture %}
+                                            <img class="profile-picture" src="{{ participant.facebookPicture }}" alt="Profil" />
+                                        {% elseif participant.file %}
+                                            <img class="profile-picture" src="{{ participant.file }}" alt="Profil" />
+                                        {% else %}
+                                            <i class="fa fa-user fa-3x" style="margin-right: 3rem;"></i>
+                                        {% endif %}
+                                        <span>{{participant.username}}</span>
+                                    {% endif %}
+                                {% endfor %}
+                            </a>
+                        </li>
                 {% endfor %}
                 <li class="list-group-item" style="min-height: 4em;">
                     <a href="{{ path('edu_speak_search') }}" style="padding-left: 3em;">
@@ -30,7 +38,24 @@
     {% if discussion is defined %}
         <div class="col-md-10 selected-discussions">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-12 discussion-status">
+                    <div>
+                        <i class="fa fa-circle-o fa-2x"></i>
+                        <a class="participant-snippet">
+                            {% for participant in discussion.participants %}
+                                {% if participant.username != app.user.username %}
+                                    {% if participant.facebookPicture %}
+                                        <img class="profile-picture" src="{{ participant.facebookPicture }}" alt="Profil" />
+                                    {% elseif participant.file %}
+                                        <img class="profile-picture" src="{{ participant.file }}" alt="Profil" />
+                                    {% else %}
+                                        <i class="fa fa-user fa-3x"></i>
+                                    {% endif %}
+                                    <span>{{participant.username}}</span>
+                                {% endif %}
+                            {% endfor %}
+                        </a>
+                    </div>
                 </div>
                 <div class="col-md-12">
                     <div class="panel panel-default panel-chat">
@@ -42,9 +67,6 @@
                     </div>
                     <div class="input-group col-md-10 col-md-offset-1">
                         <input type="text" class="form-control" id="chat_input" placeholder="Type text...">
-                        <span class="input-group-btn">
-                            <a class="btn btn-default" id="btn_send">Send!</a>
-                        </span>
                     </div>
                 </div>
             </div>
@@ -63,10 +85,19 @@
 
         var id_user = Math.floor((Math.random() * 100000) + 1000);
         var channel = '{{discussion.token}}';
+        var connected = false;
+
         PUBNUB_demo.subscribe({
             channel: channel,
             message: function(m){
+                console.log(m);
+                if(m.connected){
+                    connected = true;
+                    console.log(m);
+                    $('.fa-circle-o').removeClass("fa-circle-o").addClass("fa-circle");
+                }
                 display_message(m);
+                notify_connection();
             }
         });
 
@@ -84,10 +115,19 @@
             PUBNUB_demo.publish({
                 channel: channel,
                 message: {"text": message, "user": id_user},
-                callback : function(m){console.log(m)}
+                callback : function(m){
+                }
             });
         };
-        $("#btn_send").click(send_message());
+
+        var notify_connection = function(){
+            PUBNUB_demo.publish({
+                channel: channel,
+                message: {"connected": true, "user": id_user},
+                callback : function(m){
+                }
+            });
+        };
 
         $(document).keypress(function(e) {
             if(e.which == 13) {
