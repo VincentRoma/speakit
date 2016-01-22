@@ -31,10 +31,14 @@
         border-style: solid;
         border-color:white;
         border-width: 1px;
+        &.dropdown{
+          padding-bottom:9px;
+        }
       }
      >a{
            color: white!important;
      }
+
     }
   }
 
@@ -47,7 +51,12 @@
         border-bottom: none!important;
         border-right: @gray-light!important;
         border-width: 1px!important;
-        //LA BARRE DOIT FAIT 58px au lieu de 50
+        //barre de séparation
+        padding-bottom:9px;
+
+        &.dropdown{
+          padding-bottom:17px;
+        }
     }
 }
 

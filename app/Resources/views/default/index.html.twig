@@ -42,12 +42,22 @@
               </a>
             </div>
         </div>
+        {#____________________CAPTION DU CAROUSSEL____________________#}
         <div class="carousel-caption">
           <h4>Bonjour {{  app.user.username }}</h4>
           <h4>Où voulez vous parler aujourd'hui?</h4>
           <div class="input-group">
             <input type="text" class="form-control" placeholder="Partir en...">
               <span class="input-group-btn">
+                <!--FILTER-->
+                <div class="btn-group">
+                      <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Large button <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu">
+                        ...
+                      </ul>
+                      </div>
                   <a href="{{ path('edu_speak_search')}}"><button class="btn btn-default" type="button">Go!</button></a>
               </span>
           </div>
