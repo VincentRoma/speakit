@@ -39,6 +39,16 @@ users:
     prefix: /api
     resource: "@EduSpeakBundle/Resources/config/routing.yml"
 
+chat_rest:
+    type:     rest
+    prefix: /api
+    resource: ChatBundle\Controller\ChatController
+
+message_rest:
+    type:     rest
+    prefix: /api
+    resource: ChatBundle\Controller\MessageController
+
 NelmioApiDocBundle:
     resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
     prefix:   /api/doc

@@ -7,27 +7,29 @@
         </div>
     </div>
     <div id="edu-profile-top" class="row">
-        <div class="col-md-3">
-            <img src="{{user.facebookPicture}}" alt="Profil" />
+        <div class="col-md-3 col-xs-3">
             <div class="profil-contact container">
+                <div class="row">
+                    <img src="{{ asset('image/kevin_lebre_big.jpg') }}" alt="Profil" />
+                </div>
                 <div class="row">
                     <h3 class="profil-name">{{ user.username }}</h3>
                 </div>
-                    <hr >
+                <hr>
                 <div class="row profil-icon">
                     <i class="fa fa-envelope-o fa-2x col-md-6"></i>
-                    <i class="fa fa-user-plus fa-2x col-md-6"></i>
+                    <a href="{{ path('edu_speak_add_friend',{'id':user.id})}}"><i class="fa fa-user-plus fa-2x col-md-6"></i></a>
                 </div>
                 <hr>
                 <div class="row">
-                    <a class="btn btn-default" href="{{ path('fos_user_profile_edit') }}">Modifier mon profil</a>
+                    <a class="btn btn-default btn-edu" href="{{ path('fos_user_profile_edit') }}">Modifier mon profil</a>
                 </div>
             </div>
         </div>
-        <div class="col-md-9 profil-listing">
+        <div class="col-md-8 col-md-offset-1 col-xs-6 col-xs-offset-3 profil-listing">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-12 profil-language">
+                    <div class="col-md-12 col-xs-12 profil-language">
                         <h4>I can speak</h4>
                         <ul>
                             <li>
@@ -37,7 +39,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="col-md-12 profil-language">
+                    <div class="col-md-12 col-xs-12 profil-language">
                         <h4>I wish to speak</h4>
                         <ul>
                             <li>
@@ -59,7 +61,7 @@
     </div>
     <div id="edu-profile-row" class="container">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-2 col-xs-2">
                 <div class="profil-details">
                     <ul>
                         <li>
@@ -77,12 +79,12 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-5 col-xs-5">
                 <div class="profil-details">
                     <ul>
                         <li>
                             <h4>Description</h4>
-                            <p style="text-align: justify">
+                            <p>
                                 <i>
                                     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                                 </i>
@@ -95,37 +97,42 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="profil-details">
-                <h4>Reward</h4>
+            <div class="col-md-5 col-xs-5">
+                <div class="profil-details row">
                     <ul>
-                        <li>
-                            <i>Expert Mahattan!</i>
+                        <li class="col-md-6 col-xs-6">
+                            <h4>Reward</h4>
+                            <ul>
+                                <li>
+                                    <i>Expert Mahattan!</i>
+                                </li>
+                                <li>
+                                    <i>First Conversation!</i>
+                                </li>
+                                <li>
+                                    <i>Reach 20 Friends!</i>
+                                </li>
+                                <li>
+                                    <i>Work with Duch!</i>
+                                </li>
+                            </ul>
                         </li>
-                        <li>
-                            <i>First Conversation!</i>
-                        </li>
-                        <li>
-                            <i>Reach 20 Friends!</i>
-                        </li>
-                        <li>
-                            <i>Work with Duch!</i>
-                        </li>
-                    </ul>
-
-                    <h4>Visited Countries</h4>
-                    <ul class="visited-list">
-                        <li>
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Civil_and_Naval_Ensign_of_France.svg/2000px-Civil_and_Naval_Ensign_of_France.svg.png" />
-                            France
-                        </li>
-                        <li>
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Union_flag_1606_(Kings_Colors).svg/2000px-Union_flag_1606_(Kings_Colors).svg.png" alt="Français" />
-                            England
-                        </li>
-                        <li>
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Flag_of_Spain_(1785-1873_and_1875-1931).svg/2000px-Flag_of_Spain_(1785-1873_and_1875-1931).svg.png" alt="Français" />
-                            Spain
+                        <li class="col-md-6 col-xs-6">
+                            <h4>Visited Countries</h4>
+                            <ul class="visited-list">
+                                <li>
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Civil_and_Naval_Ensign_of_France.svg/2000px-Civil_and_Naval_Ensign_of_France.svg.png" />
+                                    France
+                                </li>
+                                <li>
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Union_flag_1606_(Kings_Colors).svg/2000px-Union_flag_1606_(Kings_Colors).svg.png" alt="Français" />
+                                    England
+                                </li>
+                                <li>
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Flag_of_Spain_(1785-1873_and_1875-1931).svg/2000px-Flag_of_Spain_(1785-1873_and_1875-1931).svg.png" alt="Français" />
+                                    Spain
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </div>
