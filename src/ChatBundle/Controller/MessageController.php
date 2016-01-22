@@ -4,6 +4,8 @@ namespace ChatBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use FOS\RestBundle\Controller\FOSRestController;
+use Symfony\Component\HttpFoundation\Request;
+use FOS\RestBundle\Request\ParamFetcherInterface;
 
 class MessageController extends FOSRestController
 {
@@ -15,19 +17,6 @@ class MessageController extends FOSRestController
 
     /**
      * Create new Message.
-     *
-     * @ApiDoc(
-     *   resource = true,
-     *   statusCodes = {
-     *     201 = "Returned when created"
-     *   }
-     * )
-     *
-     * @Annotations\QueryParam(name="discussion", requirements="\d+", description="id of the discussion to add the message")
-     * @Annotations\QueryParam(name="text", requirements="\d+", description="Actual text of the message")
-     *
-     * @Annotations\View()
-     *
      * @param Request               $request      the request object
      * @param ParamFetcherInterface $paramFetcher param fetcher service
      *
@@ -40,7 +29,7 @@ class MessageController extends FOSRestController
         $em = $this->getDoctrine()->getManager();
         $discussion = $em->getRepository('ChatBundle:Discussion')->find($discussion_id);
         if($discussion){
-            
+
             $statusCode = 201;
             $view = $this->view($messages, $statusCode);
             return $this->handleView($view);

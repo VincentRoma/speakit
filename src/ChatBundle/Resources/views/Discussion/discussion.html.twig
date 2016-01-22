@@ -3,8 +3,8 @@
 {% block body %}
     {{ ws_client() }}
     <div id="edu-discussions" class="row">
-        <div class="col-md-2 list-discussions">
-            <h2>Discussions</h2>
+        <div class="col-md-2 col-xs-2 list-discussions">
+            <h5>Discussions</h5>
             <ul class="list-group">
                 {% for discus in discussions %}
                     {% if discussion is defined and discussion.id == discus.id %}
@@ -28,17 +28,12 @@
                             </a>
                         </li>
                 {% endfor %}
-                <li class="list-group-item" style="min-height: 4em;">
-                    <a href="{{ path('edu_speak_search') }}" style="padding-left: 3em;">
-                        <i class="fa fa-weixin fa-2x"></i> Find Someone
-                    </a>
-                </li>
             </ul>
         </div>
     {% if discussion is defined %}
-        <div class="col-md-10 selected-discussions">
+        <div class="col-md-10 col-xs-10 selected-discussions">
             <div class="row">
-                <div class="col-md-12 discussion-status">
+                <div class="col-md-12 col-xs-12 discussion-status">
                     <div>
                         <i class="fa fa-circle-o fa-2x"></i>
                         <a class="participant-snippet">
@@ -57,16 +52,16 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-12 col-xs-12">
                     <div class="panel panel-default panel-chat">
-                        <div class="panel-body">
+                        <div class="panel-body" style="height: 70vh;">
                             <ul id="chat_room">
 
                             </ul>
                         </div>
                     </div>
-                    <div class="input-group col-md-10 col-md-offset-1">
-                        <input type="text" class="form-control" id="chat_input" placeholder="Type text...">
+                    <div class="input-group col-md-10 col-md-offset-1 col-xs-10 col-xs-offset-1">
+                        <input type="text" class="form-control" id="chat_input" placeholder="Type a message...">
                     </div>
                 </div>
             </div>
@@ -97,15 +92,15 @@
                     $('.fa-circle-o').removeClass("fa-circle-o").addClass("fa-circle");
                 }
                 display_message(m);
-                notify_connection();
+                // notify_connection();
             }
         });
 
         var display_message = function(m){
             if(m.user == id_user){
-                $("#chat_room").append('<li class="mine alert">'+ m.text +'</li>');
+                $("#chat_room").append('<li class="alert alert-edu-invert">'+ m.text +'</li>');
             }else{
-                $("#chat_room").append('<li class="his alert alert-info">'+ m.text +'</li>');
+                $("#chat_room").append('<li class="alert alert-edu">'+ m.text +'</li>');
             }
         };
 
@@ -138,9 +133,9 @@
 
     </script>
     {% else %}
-        <div class="col-md-10 selected-discussions">
+        <div class="col-md-10 col-xs-10 selected-discussions">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-12 col-xs-12">
                     <h3 class="discussion-empty">Select a discussion</h3>
                 </div>
             </div>
