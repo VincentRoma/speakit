@@ -8,8 +8,10 @@
         background-color: @gray-lighter;
         h1, h2, h3, h4, h5, h6 {
             text-align: center;
+            margin-bottom: 4rem;
             text-transform: uppercase;
         }
+
         .list-group {
             border-radius: 0;
             -webkit-box-shadow: none;
@@ -42,6 +44,7 @@
                 a.list-group-item-picture:hover {
 
                 }
+                &.selected{
                 a.list-group-item-user {
                     vertical-align: super;
                     padding: 20px 167px 20px 20px;
@@ -50,23 +53,24 @@
                 }
                 a.list-group-item-user:hover {
                     background-color: @eduspeak-base-purple;
-                    color: white;
+                    a{
+                        color: white;
+                    }
                 }
             }
         }
     }
 
     .selected-discussions {
-        height: @full-height;
         padding: 0;
         .panel-chat {
             overflow-y: auto;
             background: transparent;
             border: none;
-            min-height: 80vh;
-            max-height: 80vh;
+            height: 70vh;
             padding: 0 7em 0 7em;
             .panel-body {
+                height: 70vh;
                 #chat_room {
                     li {
                         text-decoration: none;
@@ -87,5 +91,20 @@
             margin-top: 22%;
             text-align: center;
         }
+
+        .discussion-status{
+            >div{
+                min-height: 4em;
+                border-bottom: 0.2rem solid @gray-lighter;
+            }
+            i{
+                vertical-align: 0.5rem;
+                margin-left: 3rem;
+
+                &.fa-circle{
+                    color: green;
+                }
+            }
+        }
     }
-}
+}}
