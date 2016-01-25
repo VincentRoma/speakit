@@ -8,7 +8,7 @@ use EduSpeakBundle\Entity\EduAbstract as EduAbstract;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="userLanguage")
+ * @ORM\Table(name="users_languages")
  * @ORM\HasLifecycleCallbacks
  */
 class UserLanguage extends EduAbstract
@@ -24,11 +24,6 @@ class UserLanguage extends EduAbstract
      * @ORM\Column(type="integer")
      */
     protected $score;
-
-    /**
-     * @ORM\Column(type="boolean", name="spoken")
-     */
-    protected $spoken;
 
     /**
      * @ORM\ManyToOne(targetEntity="EduSpeakBundle\Entity\User", inversedBy="userLanguages")
@@ -78,26 +73,6 @@ class UserLanguage extends EduAbstract
     public function setScore($score)
     {
         $this->score = $score;
-    }
-
-    /**
-     * Get spoken
-     *
-     * @return boolean
-     */
-    public function getSpoken()
-    {
-        return $this->spoken;
-    }
-
-    /**
-     * Set spoken
-     *
-     * @param boolean $spoken
-     */
-    public function setSpoken($spoken)
-    {
-        $this->spoken = $spoken;
     }
 
     /**

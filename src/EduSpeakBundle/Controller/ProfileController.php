@@ -42,20 +42,20 @@ class ProfileController extends BaseController
         $dispatcher = $this->get('event_dispatcher');
         $event = new GetResponseUserEvent($user, $request);
         $em = $this->getDoctrine()->getManager();
-        $interests = $em->getRepository('ContentBundle:Interest')->findAll();
 
         $dispatcher->dispatch(FOSUserEvents::PROFILE_EDIT_INITIALIZE, $event);
         if (null !== $event->getResponse()) {
             return $event->getResponse();
         }
 
+        $interests = $em->getRepository('ContentBundle:Interest')->findAll();
+        $languages = $em->getRepository('GeoBundle:Language')->findAll();
         $hasFile = false;
         if (null !== $user->getPath()) {
             $hasFile = true;
         }
 
-        $form = $this->createForm(new UserType($hasFile, $interests) , $user);
-
+        $form = $this->createForm(new UserType($hasFile, $interests, $languages) , $user);
         $form->handleRequest($request);
 
         if ($form->isValid()) {

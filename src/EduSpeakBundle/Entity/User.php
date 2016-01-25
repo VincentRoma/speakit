@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use GeoBundle\Entity\City as City;
 use GeoBundle\Entity\UserLanguage as UserLanguage;
+use GeoBundle\Entity\Language as Language;
 use ChatBundle\Entity\Discussion as Discussion;
 use ContentBundle\Entity\Interest as Interest;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -76,6 +77,18 @@ class User extends BaseUser
     protected $interests;
 
     /**
+     * @ORM\ManyToMany(targetEntity="GeoBundle\Entity\Language", inversedBy="languageSpokenUsers")
+     * @ORM\JoinTable(name="users_spoken_languages")
+     */
+    protected $spokenLanguages;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="GeoBundle\Entity\Language", inversedBy="languageLearnUsers")
+     * @ORM\JoinTable(name="users_learn_languages")
+     */
+    protected $learnLanguages;
+
+    /**
      * @ORM\ManyToMany(targetEntity="ContentBundle\Entity\Actuality", inversedBy="actuality_users")
      * @ORM\JoinTable(name="users_actualities")
      */
@@ -126,6 +139,8 @@ class User extends BaseUser
         $this->interests = new ArrayCollection();
         $this->userLanguages = new ArrayCollection();
         $this->expertises = new ArrayCollection();
+        $this->spokenLanguages = new ArrayCollection();
+        $this->learnLanguages = new ArrayCollection();
     }
 
     /**
@@ -701,5 +716,109 @@ class User extends BaseUser
     public function hasExpertise(Expertise $expertise)
     {
         return $this->expertises->contains($expertise);
+    }
+
+    /**
+     * Add spoken language
+     *
+     * @param Language $language
+     *
+     * @return User
+     */
+    public function addSpokenLanguage(Language $language)
+    {
+        if (!$this->hasSpokenLanguage($language)) {
+            $this->spokenLanguages->add($language);
+        }
+        return $this;
+    }
+
+    /**
+     * Remove spoken language
+     *
+     * @param Language $language
+     *
+     * @return User
+     */
+    public function removeSpokenLanguage(Language $language)
+    {
+        if ($this->hasSpokenLanguage($language)) {
+            $this->spokenLanguages->removeElement($language);
+        }
+        return $this;
+    }
+
+    /**
+     * Get spoken languages
+     *
+     * @return Collection Language
+     */
+    public function getSpokenLanguages()
+    {
+        return $this->spokenLanguages;
+    }
+
+    /**
+     * Has spoken language
+     *
+     * @param Language $language
+     *
+     * @return boolean
+     */
+    public function hasSpokenLanguage(Language $language)
+    {
+        return $this->spokenLanguages->contains($language);
+    }
+
+    /**
+     * Add learn language
+     *
+     * @param Language $language
+     *
+     * @return User
+     */
+    public function addLearnLanguage(Language $language)
+    {
+        if (!$this->hasLearnLanguage($language)) {
+            $this->learnLanguages->add($language);
+        }
+        return $this;
+    }
+
+    /**
+     * Remove learn language
+     *
+     * @param Language $language
+     *
+     * @return User
+     */
+    public function removeLearnLanguage(Language $language)
+    {
+        if ($this->hasLearnLanguage($language)) {
+            $this->learnLanguages->removeElement($language);
+        }
+        return $this;
+    }
+
+    /**
+     * Get learn languages
+     *
+     * @return Collection Language
+     */
+    public function getLearnLanguages()
+    {
+        return $this->learnLanguages;
+    }
+
+    /**
+     * Has learn language
+     *
+     * @param Language $language
+     *
+     * @return boolean
+     */
+    public function hasLearnLanguage(Language $language)
+    {
+        return $this->learnLanguages->contains($language);
     }
 }

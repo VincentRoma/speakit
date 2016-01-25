@@ -14,10 +14,6 @@ class UserLanguageAdmin extends Admin
     {
         $formMapper
             ->add('score', 'text', array('label' => 'Score'))
-            ->add('spoken', 'choice', array(
-                'choices' => array('yes' => true, 'no' => false),
-                'choices_as_values' => true,
-            ))
             ->add('user', 'sonata_type_model_list', array(
                 'btn_add'       => 'Add User',
                 'btn_list'      => 'User list',
@@ -44,9 +40,6 @@ class UserLanguageAdmin extends Admin
             ->add('user.email')
             ->add('language')
             ->add('score')
-            ->add('spoken', null, array(
-                'operator_type' => 'sonata_type_boolean'
-            ))
         ;
     }
 
@@ -59,7 +52,6 @@ class UserLanguageAdmin extends Admin
             ->add('user.email')
             ->add('language.name')
             ->add('score')
-            ->add('spoken', 'boolean')
         ;
     }
 }

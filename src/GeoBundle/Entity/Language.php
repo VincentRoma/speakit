@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Application\Sonata\MediaBundle\Entity\Media as Media;
 use EduSpeakBundle\Entity\EduAbstract as EduAbstract;
+use EduSpeakBundle\Entity\User as User;
 
 /**
  * @ORM\Entity
@@ -43,6 +44,16 @@ class Language extends EduAbstract
     protected $countries;
 
     /**
+     * @ORM\ManyToMany(targetEntity="EduSpeakBundle\Entity\User", mappedBy="spokenLanguages")
+     */
+    protected $languageSpokenUsers;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="EduSpeakBundle\Entity\User", mappedBy="learnLanguages")
+     */
+    protected $languageLearnUsers;
+
+    /**
      * To String
      *
      * @return string
@@ -59,6 +70,8 @@ class Language extends EduAbstract
     {
         $this->userLanguages = new ArrayCollection();
         $this->countries = new ArrayCollection();
+        $this->languageSpokenUsers = new ArrayCollection();
+        $this->languageLearnUsers = new ArrayCollection();
     }
 
     /**
@@ -213,5 +226,109 @@ class Language extends EduAbstract
     public function hasCountry(Country $country)
     {
         return $this->countries->contains($country);
+    }
+
+    /**
+     * Add language spoken user
+     *
+     * @param User $user
+     *
+     * @return Language
+     */
+    public function addLanguageSpokenUser(User $user)
+    {
+        if (!$this->hasLanguageSpokenUser($user)) {
+            $this->languageSpokenUsers->add($user);
+        }
+        return $this;
+    }
+
+    /**
+     * Remove language spoken user
+     *
+     * @param User $user
+     *
+     * @return Language
+     */
+    public function removeLanguageSpokenUser(User $user)
+    {
+        if ($this->hasLanguageSpokenUser($user)) {
+            $this->languageSpokenUsers->removeElement($user);
+        }
+        return $this;
+    }
+
+    /**
+     * Get language spoken users
+     *
+     * @return Collection User
+     */
+    public function getLanguageSpokenUsers()
+    {
+        return $this->languageSpokenUsers;
+    }
+
+    /**
+     * Has language spoken user
+     *
+     * @param User $user
+     *
+     * @return boolean
+     */
+    public function hasLanguageSpokenUser(User $user)
+    {
+        return $this->languageSpokenUsers->contains($user);
+    }
+
+    /**
+     * Add language learn user
+     *
+     * @param User $user
+     *
+     * @return Language
+     */
+    public function addLanguageLearnUser(User $user)
+    {
+        if (!$this->hasLanguageLearnUser($user)) {
+            $this->languageLearnUsers->add($user);
+        }
+        return $this;
+    }
+
+    /**
+     * Remove language learn user
+     *
+     * @param User $user
+     *
+     * @return Language
+     */
+    public function removeLanguageLearnUser(User $user)
+    {
+        if ($this->hasLanguageLearnUser($user)) {
+            $this->languageLearnUsers->removeElement($user);
+        }
+        return $this;
+    }
+
+    /**
+     * Get language learn users
+     *
+     * @return Collection User
+     */
+    public function getLanguageLearnUsers()
+    {
+        return $this->languageLearnUsers;
+    }
+
+    /**
+     * Has language learn user
+     *
+     * @param User $user
+     *
+     * @return boolean
+     */
+    public function hasLanguageLearnUser(User $user)
+    {
+        return $this->languageLearnUsers->contains($user);
     }
 }
