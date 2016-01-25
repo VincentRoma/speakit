@@ -1,5 +1,5 @@
 #edu-discussions {
-    height: @page-row-height;
+    height: @page-row-content-height;
     .list-discussions {
         height: @full-height;
         max-height: @full-height;
@@ -24,38 +24,22 @@
                 border-radius: 0;
                 background: transparent;
                 padding: 0;
-                a.list-group-item-search {
-                    padding: 20px 167px 20px 20px;
-                    color: @gray;
-                    background: white;
-                    text-decoration: none;
-                    i {
-                        vertical-align: middle;
-                        padding: 13px;
-                    }
-                }
-                a.list-group-item-picture {
-                    padding: 0;
-                    color: @eduspeak-base-purple;
+                a {
+                    padding: 28px 167px 10px 20px;
+                    color: gray;
                     img {
                         margin-bottom: 0;
                     }
                 }
-                a.list-group-item-picture:hover {
-
-                }
-                &.selected{
-                a.list-group-item-user {
-                    vertical-align: super;
-                    padding: 20px 167px 20px 20px;
-                    color: @gray;
+                a:hover {
+                    color: white;
+                    background-color: @eduspeak-base-purple;
                     text-decoration: none;
                 }
-                a.list-group-item-user:hover {
+                a:active {
+                    color: white;
                     background-color: @eduspeak-base-purple;
-                    a{
-                        color: white;
-                    }
+                    text-decoration: none;
                 }
             }
         }
@@ -71,6 +55,7 @@
             padding: 0 7em 0 7em;
             .panel-body {
                 height: 70vh;
+                overflow-y: auto;
                 #chat_room {
                     li {
                         text-decoration: none;
@@ -95,16 +80,22 @@
         .discussion-status{
             >div{
                 min-height: 4em;
-                border-bottom: 0.2rem solid @gray-lighter;
             }
             i{
                 vertical-align: 0.5rem;
-                margin-left: 3rem;
+                margin: 0 3rem;
 
                 &.fa-circle{
                     color: green;
                 }
             }
+            a {
+                color: @eduspeak-base-purple;
+            }
+            a:hover{
+                cursor: pointer;
+                text-decoration: none;
+            }
         }
     }
-}}
+}
