@@ -23,9 +23,9 @@ class Discussion extends EduAbstract
     protected $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="ChatBundle\Entity\Session", mappedBy="discussion")
+     * @ORM\OneToMany(targetEntity="ChatBundle\Entity\Discussion", mappedBy="discussion")
      */
-    protected $sessions;
+    protected $messages;
 
     /**
      * @ORM\ManyToMany(targetEntity="EduSpeakBundle\Entity\User", mappedBy="discussions")
@@ -38,6 +38,11 @@ class Discussion extends EduAbstract
      */
     protected $city;
 
+    /**
+     * @ORM\Column(type="text")
+     */
+    protected $token;
+
 
     /**
      * Constructor
@@ -45,7 +50,15 @@ class Discussion extends EduAbstract
     public function __construct()
     {
         $this->participants = new ArrayCollection();
-        $this->sessions = new ArrayCollection();
+        $this->messages = new ArrayCollection();
+    }
+
+    /**
+     * Constructor
+     */
+    public function toArray()
+    {
+        return 'bite';
     }
 
     /**
@@ -59,55 +72,55 @@ class Discussion extends EduAbstract
     }
 
     /**
-     * Add session
+     * Add message
      *
-     * @param Session $session
+     * @param Message $message
      *
      * @return Discussion
      */
-    public function addSession(Session $session)
+    public function addMessage(Message $message)
     {
-        if (!$this->hasSession($session)) {
-            $this->sessions->add($session);
+        if (!$this->hasSession($message)) {
+            $this->messages->add($message);
         }
         return $this;
     }
 
     /**
-     * Remove session
+     * Remove message
      *
-     * @param Session $session
+     * @param Message $message
      *
      * @return Discussion
      */
-    public function removeSession(Session $session)
+    public function removeMessage(Message $message)
     {
-        if ($this->hasSession($session)) {
-            $this->sessions->removeElement($session);
+        if ($this->hasSession($message)) {
+            $this->messages->removeElement($message);
         }
         return $this;
     }
 
     /**
-     * Get sessions
+     * Get messages
      *
-     * @return Collection Session
+     * @return Collection Message
      */
-    public function getSessions()
+    public function getMessages()
     {
-        return $this->sessions;
+        return $this->messages;
     }
 
     /**
-     * Has session
+     * Has message
      *
-     * @param Session $session
+     * @param Message $message
      *
      * @return boolean
      */
-    public function hasSession(Session $session)
+    public function hasSession(Message $message)
     {
-        return $this->sessions->contains($session);
+        return $this->messages->contains($message);
     }
 
     /**
@@ -184,5 +197,29 @@ class Discussion extends EduAbstract
     public function getCity()
     {
         return $this->city;
+    }
+
+    /**
+     * Set token
+     *
+     * @param string $token
+     *
+     * @return Discussion
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
+
+        return $this;
+    }
+
+    /**
+     * Get token
+     *
+     * @return string
+     */
+    public function getToken()
+    {
+        return $this->token;
     }
 }

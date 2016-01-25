@@ -10,15 +10,20 @@
 
         <!-- Optional theme -->
         <link rel="stylesheet" href="{{ asset('front/dist/css/bootstrap-theme.css') }}">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.xx.x/css/uikit.min.css" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.xx.x/js/uikit.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     </head>
     <body style="padding: 0;">
         <div class="container">
             {% if app.security.token is not null and is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                 <div class="row">
-                    <nav class="navbar navbar-default">
+                  {% if app.request.attributes.get('_route') == 'homepage' %}
+                    <nav class="navbar navbar-default navbar-accueil">
+                      {% else %}
+                      <nav class="navbar navbar-default navbar-autre-page">
+                        {% endif %}
                         <div class="container-fluid">
                             <!-- Brand and toggle get grouped for better mobile display -->
                             <div class="navbar-header">
@@ -36,14 +41,20 @@
                                 <ul class="nav navbar-nav navbar-right">
                                     <li><a href="#">Choisir une destination</a></li>
                                     <li><a href="{{ path('chat_list') }}">Mes lettres</a></li>
-                                    <li><a href="#">Mes compagnons</a></li>
+                                    <li><a href="{{ path('edu_speak_friend_list') }}">Mes compagnons</a></li>
                                     <li class="dropdown">
                                         <a href="#" class="dropdown-toggle no-padding-vertical" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                            <img class="profile-picture" src="{{ app.user.facebookPicture }}" alt="Profil" />
+                                            {% if app.user.facebookPicture %}
+                                                <img class="profile-picture" src="{{ app.user.facebookPicture }}" alt="Profil" />
+                                            {% elseif app.user.file %}
+                                                <img class="profile-picture" src="{{ app.user.file }}" alt="Profil" />
+                                            {% else %}
+                                                <i class="fa fa-user fa-3x"></i>
+                                            {% endif %}
                                             {{ app.user.username }}<span class="caret"></span>
                                         </a>
                                         <ul class="dropdown-menu">
-                                            <li><a href="{{ path('fos_user_profile_show') }}"><div class="hover-item__content">Mon passeport</div></a></li>
+                                            <li><a href="{{ path('fos_user_profile_show')}}"><div class="hover-item__content">Mon passeport</div></a></li>
                                             <li><a href="#"><div class="hover-item__content">Paramètres</div></a></li>
                                             <li><a href="#"><div class="hover-item__content">F.A.Q</div></a></li>
                                             <li><a href="#"><div class="hover-item__content">Contactez-nous</div></a></li>
@@ -57,7 +68,7 @@
                 </div>
             {% else %}
                 <div class="row">
-                    <div class="navbar navbar-default">
+                    <div class="navbar navbar-default navbar-accueil">
                         <div class="container-fluid">
                             <img class="eduspeak-logo" src="{{ asset('image/speakit.png') }}" alt="SpeakIt!" />
                             <a class="navbar-brand" href="/">SpeakIt!</a>
@@ -69,7 +80,6 @@
             {% block body %}{% endblock %}
             {% block javascripts %}{% endblock %}
         </div>
-
         <div class="footer">
             <div class="row row-condensed">
                 <div class="col-sm-12 space-4 space-top-4">
@@ -88,35 +98,34 @@
                         <li>
                             <a href="https://www.facebook.com/speakit" class="link-contrast footer-icon-container" itemprop="sameAs" target="_blank">
                         <span class="fa-stack fa-lg">
-  <i class="fa fa-circle fa-stack-2x icircle"></i>
-  <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-</span>
+                            <i class="fa fa-circle fa-stack-2x icircle"></i>
+                            <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                        </span>
                             </a>
                         </li>
                         <li>
                             <a href="https://twitter.com/speakit" class="link-contrast footer-icon-container" itemprop="sameAs" target="_blank">
-                                 <span class="fa-stack fa-lg">
-  <i class="fa fa-circle fa-stack-2x icircle"></i>
-  <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-</span>
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x icircle"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
                             </a>
                         </li>
                         <li>
                             <a href="https://www.linkedin.com/company/speakit" class="link-contrast footer-icon-container" itemprop="sameAs" target="_blank">
-                                 <span class="fa-stack fa-lg">
-  <i class="fa fa-circle  fa-stack-2x icircle"></i>
-  <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
-</span>
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle  fa-stack-2x icircle"></i>
+                                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                                </span>
                             </a>
                         </li>
 
                         <li>
                             <a href="https://instagram.com/speakit" class="link-contrast footer-icon-container" itemprop="sameAs" target="_blank">
-
-                                  <span class="fa-stack fa-lg">
-  <i class="fa fa-circle fa-stack-2x icircle"></i>
-  <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
-</span>
+                               <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x icircle"></i>
+                                    <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+                                </span>
                             </a>
 
                         </li>
@@ -128,10 +137,6 @@
                 </div>
             </div>
         </div>
-
-
-
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
         <script src="{{ asset('front/js/eduspeak/morescroll.js') }}"></script>

@@ -56,7 +56,6 @@ class ProfileController extends BaseController
             throw new AccessDeniedException('This user does not have access to this section.');
         }
 
-        /** @var $dispatcher \Symfony\Component\EventDispatcher\EventDispatcherInterface */
         $dispatcher = $this->get('event_dispatcher');
 
         $event = new GetResponseUserEvent($user, $request);
@@ -65,6 +64,7 @@ class ProfileController extends BaseController
         if (null !== $event->getResponse()) {
             return $event->getResponse();
         }
+
         //
         // /** @var $formFactory \FOS\UserBundle\Form\Factory\FactoryInterface */
         // $formFactory = $this->get('fos_user.profile.form.factory');
@@ -94,15 +94,22 @@ class ProfileController extends BaseController
         // }
 
         $form = $this->createFormBuilder($user)
-            ->add('username', 'text')
-            ->add('email', 'text')
+            ->add('username')
+            ->add('file')
+            //->add('birthday', 'date', array('required' => true))
+            ->add('save', 'submit', array('label' => 'Modify Profile'))
             ->getForm();
 
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            /** @var $userManager \FOS\UserBundle\Model\UserManagerInterface */
-            $userManager = $this->get('fos_user.user_manager');
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+            return $this->redirectToRoute('fos_user_profile_show', array(
+                'user' => $user
+            ));
+            /*$userManager = $this->get('fos_user.user_manager');
 
             $event = new FormEvent($form, $request);
             $dispatcher->dispatch(FOSUserEvents::PROFILE_EDIT_SUCCESS, $event);
@@ -116,7 +123,7 @@ class ProfileController extends BaseController
 
             $dispatcher->dispatch(FOSUserEvents::PROFILE_EDIT_COMPLETED, new FilterUserResponseEvent($user, $request, $response));
 
-            return $response;
+            return $response;*/
         }
 
         return $this->render('FOSUserBundle:Profile:edit.html.twig', array(

@@ -26,7 +26,7 @@
       &:extend(.img-responsive);
       line-height: 1;
       width: 100vw;
-      height: 56.25vw;
+      height: 54.75vw;
     }
 
     // WebKit CSS3 transforms for supported devices
@@ -269,11 +269,14 @@
     bottom: 20px;
   }
 
+
+}
+
+
   //More Scroll
 .more-scroll{
 border: none;
-bottom: 0;
-color: inherit;
+bottom: 5em;
 font-size: 0.8em;
 height: 8.5em;
 left: 50%;
@@ -284,9 +287,12 @@ outline: 0;
 padding-left: 0.225em;
 position: absolute;
 text-align: center;
+color: white;
 text-transform: uppercase;
 width: 16em;
-z-index: 1;
+z-index: 10;
+&:hover,&:visited, &:focus, &:active{
+  color: white;
+  text-decoration: none;
 }
-
 }

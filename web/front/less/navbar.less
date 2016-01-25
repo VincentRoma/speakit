@@ -8,18 +8,70 @@
 // Provide a static navbar from which we expand to create full-width, fixed, and
 // other navbar variations.
 
+///CUSTOMISATION DE LA NAVBAR PAR ANTOINE pour l'accueil
+.navbar-accueil{
+
+    //decalage de la barre nav en dessous du carousel
+    background: transparent!important;
+    z-index: 1000!important;
+    width: 100%!important;
+    position: absolute!important;
+
+
+    //Suppression de la box shadow
+    box-shadow: 0 5px 15px rgba(0,0,0,0)!important;
+    border-top: none!important;
+    border-left: none!important;
+    border-right: none!important;
+    border-bottom: white!important;
+
+    //cadre blanc autour des links
+    .navbar-nav > li{
+      &:hover{
+        border-style: solid;
+        border-color:white;
+        border-width: 1px;
+        &.dropdown{
+            padding-bottom:9px;
+        }
+    }
+        >a{
+            color: white!important;
+        }
+
+    }
+}
+
+.navbar-autre-page{
+
+  .navbar-nav > li{
+        border-style: solid!important;
+        border-color: @gray-light!important;
+        border-top: none!important;
+        border-bottom: none!important;
+        border-right: @gray-light!important;
+        border-width: 1px!important;
+        //barre de séparation
+        padding-bottom:9px;
+
+        &.dropdown{
+          padding-bottom:17px;
+        }
+    }
+}
+
 .navbar {
-  position: relative;
-  min-height: @navbar-height; // Ensure a navbar always shows (e.g., without a .navbar-brand in collapsed mode)
-  margin-bottom: @navbar-margin-bottom;
-  border: 1px solid transparent;
+    position: relative;
+    min-height: @navbar-height; // Ensure a navbar always shows (e.g., without a .navbar-brand in collapsed mode)
+    margin-bottom: @navbar-margin-bottom;
+    border: 1px solid transparent;
 
-  // Prevent floats from breaking the navbar
-  &:extend(.clearfix all);
+    // Prevent floats from breaking the navbar
+    &:extend(.clearfix all);
 
-  @media (min-width: @grid-float-breakpoint) {
-    border-radius: @navbar-border-radius;
-  }
+    @media (min-width: @grid-float-breakpoint) {
+        border-radius: @navbar-border-radius;
+    }
 }
 
 
@@ -29,11 +81,11 @@
 // styling of responsive aspects.
 
 .navbar-header {
-  &:extend(.clearfix all);
+    &:extend(.clearfix all);
 
-  @media (min-width: @grid-float-breakpoint) {
-    float: left;
-  }
+    @media (min-width: @grid-float-breakpoint) {
+        float: left;
+    }
 }
 
 

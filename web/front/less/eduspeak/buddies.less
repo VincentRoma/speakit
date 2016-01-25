@@ -29,8 +29,21 @@
 
 }
 
-.matching{
+.matching {
   padding: 10px;  margin: 5px;
+    li{
+        list-style: none;
+    }
+    li:nth-child(odd){
+        background-color: #efefef;
+    }
+    .btn, h4, .start-conversation{
+        display: inline-block;
+    }
+    .start-conversation{
+        padding: 1rem;
+        float: right;
+    }
 
 }
 
@@ -50,21 +63,15 @@
 
 .test:hover img{
   opacity: 0.65;
-
-
-
 }
 
 .like{
   display:none;
-
 }
 
-
 .test:hover .like{
-display:inline;
+  display:inline;
   position: absolute;
   top: 30%;
   right: 25%;
 }
-

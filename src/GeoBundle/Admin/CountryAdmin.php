@@ -21,6 +21,20 @@ class CountryAdmin extends Admin
             ), array(
                 'placeholder' => 'No language selected'
             ))
+            ->add('flag', 'sonata_type_model_list', array(
+                'btn_add'       => 'Add Flag',
+                'btn_list'      => 'Flag list',
+                'btn_delete'    => false,
+            ), array(
+                'placeholder' => 'No flag selected'
+            ))
+            ->add('picture', 'sonata_type_model_list', array(
+                'btn_add'       => 'Add Picture',
+                'btn_list'      => 'Picture list',
+                'btn_delete'    => false,
+            ), array(
+                'placeholder' => 'No picture selected'
+            ))
         ;
     }
 
@@ -41,6 +55,8 @@ class CountryAdmin extends Admin
             ->addIdentifier('id')
             ->add('name')
             ->add('language.name')
+            ->add('flag')
+            ->add('picture')
         ;
     }
 }

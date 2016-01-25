@@ -1,13 +1,23 @@
 //EDUSPEAK Button definition
 
-a, button{
+a, button, input{
     &.btn-edu{
         background-color: @eduspeak-base-purple;
         background-image: none;
-        border-color: white;
+        border: none;
         color: white;
         text-shadow: none;
-        margin: @size-px-5 0;
+
+        &.btn-accueil{
+          margin: @size-px-10 @size-px-10 @size-px-10 @size-px-10;
+          padding: 15px 32px;
+          text-align: center;
+          font-size: 150%;
+        }
+
+        &.btn-facebook{
+          background-color: #3b5998;
+        }
     }
 
     &.btn-edu:hover{
@@ -29,5 +39,11 @@ a, button{
         background-color: @eduspeak-base-purple;
         border-color: white;
         color: white;
+    }
+
+    &.btn-facebook:hover{
+      background-color: white;
+      border-color: #3b5998;
+      color: #3b5998;
     }
 }

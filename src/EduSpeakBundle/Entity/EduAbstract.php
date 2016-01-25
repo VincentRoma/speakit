@@ -1,6 +1,5 @@
 <?php
 
-// src/EduSpeakBundle/Entity/EduAbstract.php
 namespace EduSpeakBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;

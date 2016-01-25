@@ -10,6 +10,7 @@
 
     {#____________________________Carousel___________________________________#}
       <div id="myCarousel" class="row carousel slide" data-ride="carousel">
+        <div class="monopacite"></div>
         <!-- Indicators -->
         <ol class="carousel-indicators">
             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -37,19 +38,30 @@
             </div>
             <div>
               <a class="more-scroll" href="#choixDestination">"Découvrir de nouveau horizons?!"
+                <br><span style="font-size:3em;" class="glyphicon glyphicon-chevron-down text-align" aria-hidden="true"></span>
               </a>
             </div>
         </div>
+        {#____________________CAPTION DU CAROUSSEL____________________#}
         <div class="carousel-caption">
           <h4>Bonjour {{  app.user.username }}</h4>
           <h4>Où voulez vous parler aujourd'hui?</h4>
           <div class="input-group">
             <input type="text" class="form-control" placeholder="Partir en...">
               <span class="input-group-btn">
+                <!--FILTER-->
+                <div class="btn-group">
+                      <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Large button <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu">
+                        ...
+                      </ul>
+                      </div>
                   <a href="{{ path('edu_speak_search')}}"><button class="btn btn-default" type="button">Go!</button></a>
               </span>
           </div>
-          <p>"pratiquez comme si vous y étiez"</p>
+          <p class="slogan">"pratiquez comme si vous y étiez"</p>
         </div>
       </div>
 
@@ -159,6 +171,7 @@
 
     {#____________________________Carousel___________________________________#}
   <div id="myCarousel" class="row carousel slide" data-ride="carousel">
+    <div class="monopacite"></div>
     <!-- Indicators -->
     <ol class="carousel-indicators">
       <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -186,14 +199,14 @@
         </div>
         <div>
           <a class="more-scroll" href="#Presentation">"Découvrir SpeakIt!"
+            <br><span style="font-size:3em;" class="glyphicon glyphicon-chevron-down text-align" aria-hidden="true"></span>
           </a>
         </div>
     </div>
     <div class="carousel-caption">
-          <a class="btn btn-default btn-edu" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
-          <a class="btn btn-default btn-edu-invert" href="{{ path('fos_user_registration_register') }}" role="button">Register</a>
-
-      <p>pratiquez comme si vous y étiez</p>
+      <p class="slogan">Pratiquez comme si vous y étiez</p>
+          <a class="btn btn-default btn-edu btn-accueil" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+          <a class="btn btn-default btn-edu btn-accueil" href="{{ path('fos_user_registration_register') }}" role="button">Register</a>
     </div>
   </div>
 

@@ -3,60 +3,143 @@
 {% block body %}
     {{ ws_client() }}
     <div id="edu-discussions" class="row">
-        <div class="col-md-2 list-discussions">
-            <h2>Discussions</h2>
+        <div class="col-md-2 col-xs-2 list-discussions">
+            <h5>Discussions</h5>
             <ul class="list-group">
-                {% for discussion in discussions %}
-                    <li class="list-group-item">
-                        <a href="{{ path('chat_display',{'id': discussion.id}) }}">
-                            <img src="{{ asset('image/kevin_lebre_small.jpg') }}" alt="Profil" />
-                            Discussion N°{{ discussion.id }} - Adrien
-                        </a>
-                    </li>
+                {% for discus in discussions %}
+                    {% if discussion is defined and discussion.id == discus.id %}
+                        <li class="list-group-item selected" style="min-height: 4em;">
+                    {% else %}
+                        <li class="list-group-item" style="min-height: 4em;">
+                    {% endif %}
+                            <a href="{{ path('chat_display',{'id': discus.id}) }}" class="participant-snippet">
+                                {% for participant in discus.participants %}
+                                    {% if participant.username != app.user.username %}
+                                        {% if participant.facebookPicture %}
+                                            <img class="profile-picture" src="{{ participant.facebookPicture }}" alt="Profil" />
+                                        {% elseif participant.file %}
+                                            <img class="profile-picture" src="{{ participant.file }}" alt="Profil" />
+                                        {% else %}
+                                            <i class="fa fa-user fa-3x" style="margin-right: 3rem;"></i>
+                                        {% endif %}
+                                        <span>{{participant.username}}</span>
+                                    {% endif %}
+                                {% endfor %}
+                            </a>
+                        </li>
                 {% endfor %}
             </ul>
         </div>
-        <div class="col-md-10 selected-discussions">
-            <div class="panel panel-default panel-chat">
-                <div class="panel-body">
-                    <ul id="chat_room">
-
-                    </ul>
+    {% if discussion is defined %}
+        <div class="col-md-10 col-xs-10 selected-discussions">
+            <div class="row">
+                <div class="col-md-12 col-xs-12 discussion-status">
+                    <div>
+                        <i class="fa fa-circle-o fa-2x"></i>
+                        <a class="participant-snippet">
+                            {% for participant in discussion.participants %}
+                                {% if participant.username != app.user.username %}
+                                    {% if participant.facebookPicture %}
+                                        <img class="profile-picture" src="{{ participant.facebookPicture }}" alt="Profil" />
+                                    {% elseif participant.file %}
+                                        <img class="profile-picture" src="{{ participant.file }}" alt="Profil" />
+                                    {% else %}
+                                        <i class="fa fa-user fa-3x"></i>
+                                    {% endif %}
+                                    <span>{{participant.username}}</span>
+                                {% endif %}
+                            {% endfor %}
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <div class="input-group col-md-10 col-md-offset-1">
-                <input type="text" class="form-control" id="chat_input" placeholder="Type text...">
-                <span class="input-group-btn">
-                    <button class="btn btn-default" id="btn_send" type="submit">Send!</button>
-                </span>
+                <div class="col-md-12 col-xs-12">
+                    <div class="panel panel-default panel-chat">
+                        <div class="panel-body" style="height: 70vh;">
+                            <ul id="chat_room">
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="input-group col-md-10 col-md-offset-1 col-xs-10 col-xs-offset-1">
+                        <input type="text" class="form-control" id="chat_input" placeholder="Type a message...">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <script type="text/javascript">
-        var websocket = WS.connect("ws://127.0.0.1:8080");
-        websocket.on("socket/connect", function(session){
-            var insert_message = function(message){
-                if(message.msg) {
-                    $("#chat_room").append('<li class="alert alert-edu-invert">' + message.msg + '</li>');
-                }else{
-                    $("#chat_room").append('<li class="alert alert-edu">' + message + '</li>');
+    <script src="https://cdn.pubnub.com/pubnub-dev.js"></script>
+    <!-- <script src="{{asset('front/js/eduspeak/chat.js')}}"></script> -->
+    <script>
+    (function(){
+        "use strict";
+        var PUBNUB_demo = PUBNUB.init({
+            publish_key: 'pub-c-43fee2d2-8fc4-4b00-b424-dd315210e2c2',
+            subscribe_key: 'sub-c-aca4aeda-be98-11e5-8408-0619f8945a4f',
+            secret_key: 'sec-c-YzZhYjVmMTgtYjJmZS00ZTVlLTkwMTMtNWVhZTgyYWEzOTY0'
+        });
+
+        var id_user = Math.floor((Math.random() * 100000) + 1000);
+        var channel = '{{discussion.token}}';
+        var connected = false;
+
+        PUBNUB_demo.subscribe({
+            channel: channel,
+            message: function(m){
+                console.log(m);
+                if(m.connected){
+                    connected = true;
+                    console.log(m);
+                    $('.fa-circle-o').removeClass("fa-circle-o").addClass("fa-circle");
                 }
-            };
-            session.subscribe("chat/channel", function(uri, payload){
-                insert_message(payload.msg);
-                console.log(payload)
-            });
-            var send_message= function(message){
-                session.publish("chat/channel", {msg: message});
-            };
-            $("#btn_send").click(function(){
-                send_message($("#chat_input").val());
-                $("#chat_input").val('');
-            });
+                display_message(m);
+                // notify_connection();
+            }
         });
-        websocket.on("socket/disconnect", function(error){
-            //error provides us with some insight into the disconnection: error.reason and error.code
-            console.log("Disconnected for " + error.reason + " with code " + error.code);
+
+        var display_message = function(m){
+            if(m.user == id_user){
+                $("#chat_room").append('<li class="alert alert-edu-invert">'+ m.text +'</li>');
+            }else{
+                $("#chat_room").append('<li class="alert alert-edu">'+ m.text +'</li>');
+            }
+        };
+
+        var send_message = function(){
+            var message = $("#chat_input").val();
+            $("#chat_input").val('');
+            PUBNUB_demo.publish({
+                channel: channel,
+                message: {"text": message, "user": id_user},
+                callback : function(m){
+                }
+            });
+        };
+
+        var notify_connection = function(){
+            PUBNUB_demo.publish({
+                channel: channel,
+                message: {"connected": true, "user": id_user},
+                callback : function(m){
+                }
+            });
+        };
+
+        $(document).keypress(function(e) {
+            if(e.which == 13) {
+                send_message();
+            }
         });
+    })();
+
     </script>
+    {% else %}
+        <div class="col-md-10 col-xs-10 selected-discussions">
+            <div class="row">
+                <div class="col-md-12 col-xs-12">
+                    <h3 class="discussion-empty">Select a discussion</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
 {%  endblock %}

@@ -43,6 +43,11 @@ class Language extends EduAbstract
     protected $countries;
 
     /**
+     * @ORM\OneToMany(targetEntity="ChatBundle\Entity\Message", mappedBy="language")
+     */
+    protected $messages;
+
+    /**
      * To String
      *
      * @return string
@@ -58,6 +63,7 @@ class Language extends EduAbstract
     public function __construct()
     {
         $this->userLanguages = new ArrayCollection();
+        $this->countries = new ArrayCollection();
     }
 
     /**
@@ -160,5 +166,91 @@ class Language extends EduAbstract
     public function hasUserLanguage(UserLanguage $userLanguage)
     {
         return $this->userLanguages->contains($userLanguage);
+    }
+
+    /**
+     * Add country
+     *
+     * @param Country $country
+     *
+     * @return Language
+     */
+    public function addCountry(Country $country)
+    {
+        if (!$this->hasCountry($country)) {
+            $this->countries->add($country);
+        }
+        return $this;
+    }
+
+    /**
+     * Remove country
+     *
+     * @param Country $country
+     *
+     * @return Language
+     */
+    public function removeCountry(Country $country)
+    {
+        if ($this->hasCountry($country)) {
+            $this->countries->removeElement($country);
+        }
+        return $this;
+    }
+
+    /**
+     * Get countries
+     *
+     * @return Collection Country
+     */
+    public function getCountries()
+    {
+        return $this->countries;
+    }
+
+    /**
+     * Has country
+     *
+     * @param Country $country
+     *
+     * @return boolean
+     */
+    public function hasCountry(Country $country)
+    {
+        return $this->countries->contains($country);
+    }
+
+    /**
+     * Add message
+     *
+     * @param \ChatBundle\Entity\Message $message
+     *
+     * @return Language
+     */
+    public function addMessage(\ChatBundle\Entity\Message $message)
+    {
+        $this->messages[] = $message;
+
+        return $this;
+    }
+
+    /**
+     * Remove message
+     *
+     * @param \ChatBundle\Entity\Message $message
+     */
+    public function removeMessage(\ChatBundle\Entity\Message $message)
+    {
+        $this->messages->removeElement($message);
+    }
+
+    /**
+     * Get messages
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMessages()
+    {
+        return $this->messages;
     }
 }

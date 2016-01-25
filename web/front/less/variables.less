@@ -7,6 +7,7 @@
 @mid-width:             50%;
 @mid-height:            50%;
 @page-row-height:       90.7%;
+@page-row-content-height: 90%;
 
 //== Sizes
 //
@@ -39,7 +40,8 @@
 @brand-warning:         #f0ad4e;
 @brand-danger:          #d9534f;
 
-@gray-border:           #dce0e0 solid 1px;
+@gray-border:           #dce0e0;
+@eduspeak-gray-border:  @gray-border solid 1px;
 
 //## Site colors
 @eduspeak-base: white;
@@ -303,6 +305,7 @@
 @zindex-navbar-fixed:      1030;
 @zindex-modal-background:  1040;
 @zindex-modal:             1050;
+@z-index-font-noir-caroussel: 7;
 
 
 //== Media queries breakpoints
@@ -319,7 +322,7 @@
 
 // Small screen / tablet
 //** Deprecated `@screen-sm` as of v3.0.1
-@screen-sm:                  768px;
+@screen-sm:                  800px;//768px;
 @screen-sm-min:              @screen-sm;
 //** Deprecated `@screen-tablet` as of v3.0.1
 @screen-tablet:              @screen-sm-min;
@@ -396,8 +399,8 @@
 @navbar-default-border:            darken(@navbar-default-bg, 6.5%);
 
 // Navbar links
-@navbar-default-link-color:                #514d4d;
-@navbar-default-link-hover-color:          #514d4d;
+@navbar-default-link-color:                grey;
+@navbar-default-link-hover-color:          none;
 @navbar-default-link-hover-bg:             transparent;
 @navbar-default-link-active-color:         #3d3030;
 @navbar-default-link-active-bg:            #edefed;
