@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Application\Sonata\MediaBundle\Entity\Media as Media;
 use EduSpeakBundle\Entity\EduAbstract as EduAbstract;
 use EduSpeakBundle\Entity\User as User;
+use ChatBundle\Entity\Message as Message;
 
 /**
  * @ORM\Entity
@@ -52,6 +53,10 @@ class Language extends EduAbstract
      * @ORM\ManyToMany(targetEntity="EduSpeakBundle\Entity\User", mappedBy="learnLanguages")
      */
     protected $languageLearnUsers;
+    /**
+     * @ORM\OneToMany(targetEntity="ChatBundle\Entity\Message", mappedBy="language")
+     */
+    protected $messages;
 
     /**
      * To String
@@ -72,6 +77,7 @@ class Language extends EduAbstract
         $this->countries = new ArrayCollection();
         $this->languageSpokenUsers = new ArrayCollection();
         $this->languageLearnUsers = new ArrayCollection();
+        $this->messages = new ArrayCollection();
     }
 
     /**
@@ -330,5 +336,57 @@ class Language extends EduAbstract
     public function hasLanguageLearnUser(User $user)
     {
         return $this->languageLearnUsers->contains($user);
+    }
+
+    /**
+     * Add message
+     *
+     * @param Message $message
+     *
+     * @return Language
+     */
+    public function addMessage(Message $message)
+    {
+        if (!$this->hasMessage($message)) {
+            $this->messages->add($message);
+        }
+        return $this;
+    }
+
+    /**
+     * Remove message
+     *
+     * @param Message $message
+     *
+     * @return Language
+     */
+    public function removeMessage(Message $message)
+    {
+        if ($this->hasMessage($message)) {
+            $this->messages->removeElement($message);
+        }
+        return $this;
+    }
+
+    /**
+     * Get messages
+     *
+     * @return Collection Message
+     */
+    public function getMessages()
+    {
+        return $this->messages;
+    }
+
+    /**
+     * Has message
+     *
+     * @param Message $message
+     *
+     * @return boolean
+     */
+    public function hasMessage(Message $message)
+    {
+        return $this->messages->contains($message);
     }
 }

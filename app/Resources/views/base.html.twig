@@ -39,7 +39,7 @@
                                 <ul class="nav navbar-nav navbar-right">
                                     <li><a href="#">Choisir une destination</a></li>
                                     <li><a href="{{ path('chat_list') }}">Mes lettres</a></li>
-                                    <li><a href="#">Mes compagnons</a></li>
+                                    <li><a href="{{ path('edu_speak_friend_list') }}">Mes compagnons</a></li>
                                     <li class="dropdown">
                                         <a href="#" class="dropdown-toggle no-padding-vertical" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                             {% if app.user.facebookPicture %}
@@ -52,7 +52,7 @@
                                             {{ app.user.username }}<span class="caret"></span>
                                         </a>
                                         <ul class="dropdown-menu">
-                                            <li><a href="{{ path('fos_user_profile_show') }}"><div class="hover-item__content">Mon passeport</div></a></li>
+                                            <li><a href="{{ path('fos_user_profile_show')}}"><div class="hover-item__content">Mon passeport</div></a></li>
                                             <li><a href="#"><div class="hover-item__content">Paramètres</div></a></li>
                                             <li><a href="#"><div class="hover-item__content">F.A.Q</div></a></li>
                                             <li><a href="#"><div class="hover-item__content">Contactez-nous</div></a></li>
@@ -78,51 +78,55 @@
             {% block body %}{% endblock %}
             {% block javascripts %}{% endblock %}
         </div>
-        <!-- Latest compiled and minified JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-        <script src="{{ asset('front/js/eduspeak/morescroll.js') }}"></script>
-        <!-- <footer>
-            <div class="row row-condensed">
-                <div class="col-sm-12 space-4 space-top-4">
-                    <ul class="list-layout list-inline text-center h5">
-                        <li><a href="/about/about-us" class="link-contrast">À propos</a></li>
-                        <li><a href="http://blog.airbnb.com" class="link-contrast">Blog</a></li>
-                        <li><a href="/terms" class="link-contrast">Conditions générales et confidentialité</a></li>
-                    </ul>
-                </div>
-
-                <hr class="footer-divider space-top-8 space-4 hide-sm">
-
-                <div class="text-center">
-                    <h2 class="h5 space-4 hide-sm">Rejoignez-nous sur</h2>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h2 class="h5 space-4 hide-sm hlink">Rejoignez-nous sur</h2>
                     <ul class="list-layout list-inline" itemscope="" itemtype="http://schema.org/Organization">
                         <li>
                             <a href="https://www.facebook.com/speakit" class="link-contrast footer-icon-container" itemprop="sameAs" target="_blank">
-                                <i class="fa fa-lg fa-facebook"></i>
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x icircle"></i>
+                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                </span>
                             </a>
                         </li>
                         <li>
                             <a href="https://twitter.com/speakit" class="link-contrast footer-icon-container" itemprop="sameAs" target="_blank">
-                                <i class="fa fa-lg fa-twitter"></i>
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x icircle"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
                             </a>
                         </li>
                         <li>
                             <a href="https://www.linkedin.com/company/speakit" class="link-contrast footer-icon-container" itemprop="sameAs" target="_blank">
-                                <i class="fa fa-lg fa-linkedin"></i>
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle  fa-stack-2x icircle"></i>
+                                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                                </span>
                             </a>
                         </li>
 
                         <li>
                             <a href="https://instagram.com/speakit" class="link-contrast footer-icon-container" itemprop="sameAs" target="_blank">
-                                <i class="fa fa-lg fa-instagram"></i>
+                               <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x icircle"></i>
+                                    <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+                                </span>
                             </a>
+
                         </li>
                     </ul>
-                </div>
-                <div class="space-top-2 text-muted">
-                    © Speakit, Inc.
+
+                    <div class="space-top-2 text-muted">
+                        © Speakit, Inc.
+                    </div>
                 </div>
             </div>
-        </footer> -->
+        </div>
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+        <script src="{{ asset('front/js/eduspeak/morescroll.js') }}"></script>
     </body>
 </html>

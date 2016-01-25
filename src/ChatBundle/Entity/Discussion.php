@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use EduSpeakBundle\Entity\User as User;
+use GeoBundle\Entity\City as City;
 use EduSpeakBundle\Entity\EduAbstract as EduAbstract;
 
 /**
@@ -23,9 +24,9 @@ class Discussion extends EduAbstract
     protected $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="ChatBundle\Entity\Session", mappedBy="discussion")
+     * @ORM\OneToMany(targetEntity="Message", mappedBy="discussion")
      */
-    protected $sessions;
+    protected $messages;
 
     /**
      * @ORM\ManyToMany(targetEntity="EduSpeakBundle\Entity\User", mappedBy="discussions")
@@ -50,7 +51,15 @@ class Discussion extends EduAbstract
     public function __construct()
     {
         $this->participants = new ArrayCollection();
-        $this->sessions = new ArrayCollection();
+        $this->messages = new ArrayCollection();
+    }
+
+    /**
+     * to Array
+     */
+    public function toArray()
+    {
+        return 'bite';
     }
 
     /**
@@ -64,55 +73,95 @@ class Discussion extends EduAbstract
     }
 
     /**
-     * Add session
+     * Set city
      *
-     * @param Session $session
+     * @param City $city
+     */
+    public function setCity(City $city = null)
+    {
+        $this->city = $city;
+    }
+
+    /**
+     * Get city
+     *
+     * @return City
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * Set token
+     *
+     * @param string $token
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
+    }
+
+    /**
+     * Get token
+     *
+     * @return string
+     */
+    public function getToken()
+    {
+        return $this->token;
+    }
+
+    /**
+     * Add message
+     *
+     * @param Message $message
      *
      * @return Discussion
      */
-    public function addSession(Session $session)
+    public function addMessage(Message $message)
     {
-        if (!$this->hasSession($session)) {
-            $this->sessions->add($session);
+        if (!$this->hasMessage($message)) {
+            $this->messages->add($message);
         }
         return $this;
     }
 
     /**
-     * Remove session
+     * Remove message
      *
-     * @param Session $session
+     * @param Message $message
      *
      * @return Discussion
      */
-    public function removeSession(Session $session)
+    public function removeMessage(Message $message)
     {
-        if ($this->hasSession($session)) {
-            $this->sessions->removeElement($session);
+        if ($this->hasMessage($message)) {
+            $this->messages->removeElement($message);
         }
         return $this;
     }
 
     /**
-     * Get sessions
+     * Get messages
      *
-     * @return Collection Session
+     * @return Collection Message
      */
-    public function getSessions()
+    public function getMessages()
     {
-        return $this->sessions;
+        return $this->messages;
     }
 
     /**
-     * Has session
+     * Has message
      *
-     * @param Session $session
+     * @param Message $message
      *
      * @return boolean
      */
-    public function hasSession(Session $session)
+    public function hasMessage(Message $message)
     {
-        return $this->sessions->contains($session);
+        return $this->messages->contains($message);
     }
 
     /**
@@ -165,53 +214,5 @@ class Discussion extends EduAbstract
     public function hasParticipant(User $participant)
     {
         return $this->participants->contains($participant);
-    }
-
-    /**
-     * Set city
-     *
-     * @param \GeoBundle\Entity\City $city
-     *
-     * @return Discussion
-     */
-    public function setCity(\GeoBundle\Entity\City $city = null)
-    {
-        $this->city = $city;
-
-        return $this;
-    }
-
-    /**
-     * Get city
-     *
-     * @return \GeoBundle\Entity\City
-     */
-    public function getCity()
-    {
-        return $this->city;
-    }
-
-    /**
-     * Set token
-     *
-     * @param string $token
-     *
-     * @return Discussion
-     */
-    public function setToken($token)
-    {
-        $this->token = $token;
-
-        return $this;
-    }
-
-    /**
-     * Get token
-     *
-     * @return string
-     */
-    public function getToken()
-    {
-        return $this->token;
     }
 }
