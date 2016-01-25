@@ -7,6 +7,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Application\Sonata\MediaBundle\Entity\Media as Media;
 use EduSpeakBundle\Entity\EduAbstract as EduAbstract;
+use EduSpeakBundle\Entity\User as User;
+use ChatBundle\Entity\Message as Message;
 
 /**
  * @ORM\Entity
@@ -43,6 +45,15 @@ class Language extends EduAbstract
     protected $countries;
 
     /**
+     * @ORM\ManyToMany(targetEntity="EduSpeakBundle\Entity\User", mappedBy="spokenLanguages")
+     */
+    protected $languageSpokenUsers;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="EduSpeakBundle\Entity\User", mappedBy="learnLanguages")
+     */
+    protected $languageLearnUsers;
+    /**
      * @ORM\OneToMany(targetEntity="ChatBundle\Entity\Message", mappedBy="language")
      */
     protected $messages;
@@ -64,6 +75,9 @@ class Language extends EduAbstract
     {
         $this->userLanguages = new ArrayCollection();
         $this->countries = new ArrayCollection();
+        $this->languageSpokenUsers = new ArrayCollection();
+        $this->languageLearnUsers = new ArrayCollection();
+        $this->messages = new ArrayCollection();
     }
 
     /**
@@ -221,36 +235,158 @@ class Language extends EduAbstract
     }
 
     /**
-     * Add message
+     * Add language spoken user
      *
-     * @param \ChatBundle\Entity\Message $message
+     * @param User $user
      *
      * @return Language
      */
-    public function addMessage(\ChatBundle\Entity\Message $message)
+    public function addLanguageSpokenUser(User $user)
     {
-        $this->messages[] = $message;
+        if (!$this->hasLanguageSpokenUser($user)) {
+            $this->languageSpokenUsers->add($user);
+        }
+        return $this;
+    }
 
+    /**
+     * Remove language spoken user
+     *
+     * @param User $user
+     *
+     * @return Language
+     */
+    public function removeLanguageSpokenUser(User $user)
+    {
+        if ($this->hasLanguageSpokenUser($user)) {
+            $this->languageSpokenUsers->removeElement($user);
+        }
+        return $this;
+    }
+
+    /**
+     * Get language spoken users
+     *
+     * @return Collection User
+     */
+    public function getLanguageSpokenUsers()
+    {
+        return $this->languageSpokenUsers;
+    }
+
+    /**
+     * Has language spoken user
+     *
+     * @param User $user
+     *
+     * @return boolean
+     */
+    public function hasLanguageSpokenUser(User $user)
+    {
+        return $this->languageSpokenUsers->contains($user);
+    }
+
+    /**
+     * Add language learn user
+     *
+     * @param User $user
+     *
+     * @return Language
+     */
+    public function addLanguageLearnUser(User $user)
+    {
+        if (!$this->hasLanguageLearnUser($user)) {
+            $this->languageLearnUsers->add($user);
+        }
+        return $this;
+    }
+
+    /**
+     * Remove language learn user
+     *
+     * @param User $user
+     *
+     * @return Language
+     */
+    public function removeLanguageLearnUser(User $user)
+    {
+        if ($this->hasLanguageLearnUser($user)) {
+            $this->languageLearnUsers->removeElement($user);
+        }
+        return $this;
+    }
+
+    /**
+     * Get language learn users
+     *
+     * @return Collection User
+     */
+    public function getLanguageLearnUsers()
+    {
+        return $this->languageLearnUsers;
+    }
+
+    /**
+     * Has language learn user
+     *
+     * @param User $user
+     *
+     * @return boolean
+     */
+    public function hasLanguageLearnUser(User $user)
+    {
+        return $this->languageLearnUsers->contains($user);
+    }
+
+    /**
+     * Add message
+     *
+     * @param Message $message
+     *
+     * @return Language
+     */
+    public function addMessage(Message $message)
+    {
+        if (!$this->hasMessage($message)) {
+            $this->messages->add($message);
+        }
         return $this;
     }
 
     /**
      * Remove message
      *
-     * @param \ChatBundle\Entity\Message $message
+     * @param Message $message
+     *
+     * @return Language
      */
-    public function removeMessage(\ChatBundle\Entity\Message $message)
+    public function removeMessage(Message $message)
     {
-        $this->messages->removeElement($message);
+        if ($this->hasMessage($message)) {
+            $this->messages->removeElement($message);
+        }
+        return $this;
     }
 
     /**
      * Get messages
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Collection Message
      */
     public function getMessages()
     {
         return $this->messages;
+    }
+
+    /**
+     * Has message
+     *
+     * @param Message $message
+     *
+     * @return boolean
+     */
+    public function hasMessage(Message $message)
+    {
+        return $this->messages->contains($message);
     }
 }

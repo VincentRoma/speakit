@@ -55,6 +55,11 @@ class Country extends EduAbstract
     private $picture;
 
     /**
+     * @ORM\Column(type="boolean", name="slider")
+     */
+    protected $slider;
+
+    /**
      * To String
      *
      * @return string
@@ -71,6 +76,7 @@ class Country extends EduAbstract
     {
         $this->cities = new ArrayCollection();
         $this->expertises = new ArrayCollection();
+        $this->slider = false;
     }
 
     /**
@@ -101,6 +107,26 @@ class Country extends EduAbstract
     public function setName($name)
     {
         $this->name = $name;
+    }
+
+    /**
+     * Get slider
+     *
+     * @return boolean
+     */
+    public function getSlider()
+    {
+        return $this->slider;
+    }
+
+    /**
+     * Set slider
+     *
+     * @param boolean $slider
+     */
+    public function setSlider($slider)
+    {
+        $this->slider = $slider;
     }
 
     /**

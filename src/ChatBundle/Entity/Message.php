@@ -1,9 +1,10 @@
 <?php
 
-// src/ChatBundle/Entity/Message.php
 namespace ChatBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use GeoBundle\Entity\Language as Language;
 use EduSpeakBundle\Entity\EduAbstract as EduAbstract;
 
 /**
@@ -42,8 +43,8 @@ class Message extends EduAbstract
      */
     public function __construct()
     {
-        $this->language = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->discussion = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->language = new ArrayCollection();
+        $this->discussion = new ArrayCollection();
     }
 
     /**
@@ -60,14 +61,10 @@ class Message extends EduAbstract
      * Set content
      *
      * @param string $content
-     *
-     * @return Message
      */
     public function setContent($content)
     {
         $this->content = $content;
-
-        return $this;
     }
 
     /**
@@ -83,21 +80,17 @@ class Message extends EduAbstract
     /**
      * Set language
      *
-     * @param \ChatBundle\Entity\Session $language
-     *
-     * @return Message
+     * @param Language $language
      */
-    public function setLanguage(\ChatBundle\Entity\Session $language = null)
+    public function setLanguage(Language $language)
     {
         $this->language = $language;
-
-        return $this;
     }
 
     /**
      * Get language
      *
-     * @return \ChatBundle\Entity\Session
+     * @return Language
      */
     public function getLanguage()
     {
@@ -107,21 +100,17 @@ class Message extends EduAbstract
     /**
      * Set discussion
      *
-     * @param \ChatBundle\Entity\Discussion $discussion
-     *
-     * @return Message
+     * @param Discussion $discussion
      */
-    public function setDiscussion(\ChatBundle\Entity\Discussion $discussion = null)
+    public function setDiscussion(Discussion $discussion = null)
     {
         $this->discussion = $discussion;
-
-        return $this;
     }
 
     /**
      * Get discussion
      *
-     * @return \ChatBundle\Entity\Discussion
+     * @return Discussion
      */
     public function getDiscussion()
     {
