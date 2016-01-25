@@ -160,10 +160,10 @@ class User extends BaseUser
     }
 
     /**
- * Get file.
- *
- * @return UploadedFile
- */
+     * Get file.
+     *
+     * @return UploadedFile
+     */
     public function getFile()
     {
         return $this->file;
