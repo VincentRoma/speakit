@@ -3,17 +3,18 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block fos_user_content %}
-<div id="login">
-    <div class="container">
-        <img class="img-responsive center-block" src="{{ asset('image/register.jpg') }}" alt="Paris">
-      <div class="row">
-        <div class="col-md-6 col-md-offset-3 text-center jumbotron" id="myjumbotron">
-          <form action="{{ path("fos_user_security_check") }}" method="post" class="form-signin">
-            <h2 class="form-signin-heading">Please sign in</h2>
+  <div id="login">
+    <div class="container jumbotron">
+      <img class="img-responsive center-block" src="{{ asset('image/register.jpg') }}" alt="Paris">
+        <div class="row">
+          <div class="col-md-6 col-md-offset-3 text-center jumbotron" id="myjumbotron">
+        <form action="{{ path("fos_user_security_check") }}" method="post" class="form-signin">
+            <h2 class="form-signin-heading ">Please sign in</h2>
             {% if error %}
                 <div class="form-signin-heading">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
             {% endif %}
             <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+
             <label for="username" class="sr-only">{{ 'security.login.username'|trans }}</label>
             <input type="text" class="form-control" id="username" name="_username" value="{{ last_username }}" required="required" />
 
@@ -25,14 +26,17 @@
                     <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
                 </label>
             </div>
-            <input type="submit" class="btn btn-block btn-lg btn-default btn-edu" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+            <input type="submit" class="btn btn-default btn-block btn-lg btn-edu" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
 
-          <p>Or</p>
+          <h3>Or</h3>
                 <a class="btn btn-default btn-block btn-lg btn-edu btn-facebook" href="/app.php/login/facebook" id="facebook-login">
-                    <i class="fa fa-facebook-official"></i> LOGIN WITH FACEBOOK
+                    <i class="fa fa-facebook-official"></i> Login with Facebook
                 </a>
-          </form>
+
+                  </form>
+        </div>
       </div>
     </div> <!-- /container -->
-  </div>
+
+</div>
 {% endblock fos_user_content %}

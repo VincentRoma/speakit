@@ -6,12 +6,16 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use EduSpeakBundle\Entity\User as User;
+use GeoBundle\Entity\City as City;
 use EduSpeakBundle\Entity\EduAbstract as EduAbstract;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="discussion")
  * @ORM\HasLifecycleCallbacks
+ * @ExclusionPolicy("all")
  */
 class Discussion extends EduAbstract
 {
@@ -19,11 +23,13 @@ class Discussion extends EduAbstract
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Expose
      */
     protected $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="ChatBundle\Entity\Discussion", mappedBy="discussion")
+     * @ORM\OneToMany(targetEntity="Message", mappedBy="discussion")
+     * @Expose
      */
     protected $messages;
 
@@ -35,6 +41,7 @@ class Discussion extends EduAbstract
     /**
      * @ORM\ManyToOne(targetEntity="GeoBundle\Entity\City", inversedBy="discussions")
      * @ORM\JoinColumn(name="city_id", referencedColumnName="id")
+     * @Expose
      */
     protected $city;
 
@@ -54,7 +61,7 @@ class Discussion extends EduAbstract
     }
 
     /**
-     * Constructor
+     * to Array
      */
     public function toArray()
     {
@@ -72,6 +79,46 @@ class Discussion extends EduAbstract
     }
 
     /**
+     * Set city
+     *
+     * @param City $city
+     */
+    public function setCity(City $city = null)
+    {
+        $this->city = $city;
+    }
+
+    /**
+     * Get city
+     *
+     * @return City
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * Set token
+     *
+     * @param string $token
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
+    }
+
+    /**
+     * Get token
+     *
+     * @return string
+     */
+    public function getToken()
+    {
+        return $this->token;
+    }
+
+    /**
      * Add message
      *
      * @param Message $message
@@ -80,7 +127,7 @@ class Discussion extends EduAbstract
      */
     public function addMessage(Message $message)
     {
-        if (!$this->hasSession($message)) {
+        if (!$this->hasMessage($message)) {
             $this->messages->add($message);
         }
         return $this;
@@ -95,7 +142,7 @@ class Discussion extends EduAbstract
      */
     public function removeMessage(Message $message)
     {
-        if ($this->hasSession($message)) {
+        if ($this->hasMessage($message)) {
             $this->messages->removeElement($message);
         }
         return $this;
@@ -118,7 +165,7 @@ class Discussion extends EduAbstract
      *
      * @return boolean
      */
-    public function hasSession(Message $message)
+    public function hasMessage(Message $message)
     {
         return $this->messages->contains($message);
     }
@@ -173,53 +220,5 @@ class Discussion extends EduAbstract
     public function hasParticipant(User $participant)
     {
         return $this->participants->contains($participant);
-    }
-
-    /**
-     * Set city
-     *
-     * @param \GeoBundle\Entity\City $city
-     *
-     * @return Discussion
-     */
-    public function setCity(\GeoBundle\Entity\City $city = null)
-    {
-        $this->city = $city;
-
-        return $this;
-    }
-
-    /**
-     * Get city
-     *
-     * @return \GeoBundle\Entity\City
-     */
-    public function getCity()
-    {
-        return $this->city;
-    }
-
-    /**
-     * Set token
-     *
-     * @param string $token
-     *
-     * @return Discussion
-     */
-    public function setToken($token)
-    {
-        $this->token = $token;
-
-        return $this;
-    }
-
-    /**
-     * Get token
-     *
-     * @return string
-     */
-    public function getToken()
-    {
-        return $this->token;
     }
 }

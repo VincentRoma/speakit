@@ -1,15 +1,20 @@
 <?php
 
-// src/ChatBundle/Entity/Message.php
 namespace ChatBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use GeoBundle\Entity\Language as Language;
 use EduSpeakBundle\Entity\EduAbstract as EduAbstract;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use EduSpeakBundle\Entity\User as User;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="message")
  * @ORM\HasLifecycleCallbacks
+ * @ExclusionPolicy("all")
  */
 class Message extends EduAbstract
 {
@@ -17,33 +22,42 @@ class Message extends EduAbstract
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Expose
      */
     protected $id;
 
     /**
      * @ORM\Column(type="text")
+     * @Expose
      */
     protected $content;
 
     /**
      * @ORM\ManyToOne(targetEntity="GeoBundle\Entity\Language", inversedBy="messages")
-     * @ORM\JoinColumn(name="message_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="language_id", referencedColumnName="id")
+     * @Expose
      */
     protected $language;
 
     /**
      * @ORM\ManyToOne(targetEntity="Discussion", inversedBy="messages")
-     * @ORM\JoinColumn(name="message_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="discussion_id", referencedColumnName="id")
      */
     protected $discussion;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="EduSpeakBundle\Entity\User", inversedBy="messages")
+     * @ORM\JoinColumn(name="author", referencedColumnName="id")
+     * @Expose
+     */
+    protected $author;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->language = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->discussion = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->discussion = new ArrayCollection();
     }
 
     /**
@@ -60,14 +74,10 @@ class Message extends EduAbstract
      * Set content
      *
      * @param string $content
-     *
-     * @return Message
      */
     public function setContent($content)
     {
         $this->content = $content;
-
-        return $this;
     }
 
     /**
@@ -83,21 +93,17 @@ class Message extends EduAbstract
     /**
      * Set language
      *
-     * @param \ChatBundle\Entity\Session $language
-     *
-     * @return Message
+     * @param Language $language
      */
-    public function setLanguage(\ChatBundle\Entity\Session $language = null)
+    public function setLanguage(Language $language)
     {
         $this->language = $language;
-
-        return $this;
     }
 
     /**
      * Get language
      *
-     * @return \ChatBundle\Entity\Session
+     * @return Language
      */
     public function getLanguage()
     {
@@ -107,24 +113,40 @@ class Message extends EduAbstract
     /**
      * Set discussion
      *
-     * @param \ChatBundle\Entity\Discussion $discussion
-     *
-     * @return Message
+     * @param Discussion $discussion
      */
-    public function setDiscussion(\ChatBundle\Entity\Discussion $discussion = null)
+    public function setDiscussion(Discussion $discussion = null)
     {
         $this->discussion = $discussion;
-
-        return $this;
     }
 
     /**
      * Get discussion
      *
-     * @return \ChatBundle\Entity\Discussion
+     * @return Discussion
      */
     public function getDiscussion()
     {
         return $this->discussion;
+    }
+
+    /**
+     * Set author
+     *
+     * @param User $author
+     */
+    public function setAuthor(User $author = null)
+    {
+        $this->author = $author;
+    }
+
+    /**
+     * Get author
+     *
+     * @return User
+     */
+    public function getAuthor()
+    {
+        return $this->author;
     }
 }

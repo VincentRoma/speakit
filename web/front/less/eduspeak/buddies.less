@@ -22,56 +22,88 @@
   .carousel-inner .prev		 { left: -25%; }
 }
 
+#edu-match {
+  height: @page-row-height;
+  .content {
+    height: @page-row-content-height;
+    margin-bottom: 0;
+    .list-actus {
+      height: @full-height;
+      max-height: @full-height;
+      overflow-y: auto;
+      padding: 0;
+      background-color: @gray-lighter;
+      h1, h2, h3, h4, h5, h6 {
+        text-align: center;
+        text-transform: uppercase;
+      }
+      .list-group {
+        border-radius: 0;
+        box-shadow: none;
+        .list-group-item {
+          min-height: 4em;
+          max-height: 18vh;
+          overflow: hidden;
+          white-space: nowrap;
+          border-radius: 0;
+          background: transparent;
+          padding: 0;
+          .actu {
 
-.filtres{
-  background: #DDDBDB;
-  padding: 10px;
-
-}
-
-.matching {
-  padding: 10px;  margin: 5px;
-    li{
-        list-style: none;
+          }
+          .actu:hover img{
+            opacity: 0.65;
+          }
+          .like {
+            display:none;
+          }
+          .actu:hover .like{
+            display:inline;
+            position: absolute;
+            top: 30%;
+            right: 30%;
+          }
+        }
+      }
     }
-    li:nth-child(odd){
-        background-color: #efefef;
+
+    .list-friends {
+      height: @full-height;
+      padding: 0;
+      ul {
+        margin-top: 30px;
+        li {
+          list-style: none;
+          height: 17vh;
+          border-bottom: @eduspeak-gray-border;
+        }
+        .user-picture, .user-infos, .start-conversation {
+          display: inline-block;
+          height: @full-height;
+        }
+        .user-picture, .start-conversation {
+          a {
+            color: @eduspeak-base-purple;
+          }
+        }
+        .user-picture {
+          float: left;
+          padding: 1rem;
+        }
+        .user-infos {
+          padding: 0 1rem;
+        }
+        .start-conversation {
+          float: right;
+          padding: 3rem 1rem;
+        }
+      }
+
+      .friends-empty{
+        margin-top: 22%;
+        text-align: center;
+      }
     }
-    .btn, h4, .start-conversation{
-        display: inline-block;
-    }
-    .start-conversation{
-        padding: 1rem;
-        float: right;
-    }
-
+  }
 }
 
-.content{
-  margin-bottom:180px;
-
-}
-.actus{
-  background: #77114B;
-  width:100%;
-  padding:
-        20px;
-  position: fixed;
-  left: 0px;
-  bottom: 0px;
-}
-
-.test:hover img{
-  opacity: 0.65;
-}
-
-.like{
-  display:none;
-}
-
-.test:hover .like{
-  display:inline;
-  position: absolute;
-  top: 30%;
-  right: 25%;
-}

@@ -8,7 +8,7 @@ use EduSpeakBundle\Entity\EduAbstract as EduAbstract;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="userLanguage")
+ * @ORM\Table(name="users_languages")
  * @ORM\HasLifecycleCallbacks
  */
 class UserLanguage extends EduAbstract

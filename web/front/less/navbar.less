@@ -7,6 +7,9 @@
 //
 // Provide a static navbar from which we expand to create full-width, fixed, and
 // other navbar variations.
+//Toutes les navbar
+
+
 
 ///CUSTOMISATION DE LA NAVBAR PAR ANTOINE pour l'accueil
 .navbar-accueil{
@@ -27,12 +30,16 @@
 
     //cadre blanc autour des links
     .navbar-nav > li{
+      &.dropdown{
+        padding-bottom:10px;
+      }
       &:hover{
         border-style: solid;
         border-color:white;
         border-width: 1px;
         &.dropdown{
             padding-bottom:9px;
+
         }
     }
         >a{
@@ -52,11 +59,11 @@
         border-right: @gray-light!important;
         border-width: 1px!important;
         //barre de séparation
-        padding-bottom:9px;
+    padding-bottom:9px;
 
-        &.dropdown{
-          padding-bottom:17px;
-        }
+    &.dropdown{
+      padding-bottom:17px;
+    }
     }
 }
 
@@ -469,7 +476,7 @@
       &:hover,
       &:focus {
         color: @navbar-default-link-hover-color;
-        background-color: @navbar-default-link-hover-bg;
+        background-color: transparent; //@navbar-default-link-hover-bg;
       }
     }
     > .active > a {
@@ -477,7 +484,7 @@
       &:hover,
       &:focus {
         color: @navbar-default-link-active-color;
-        background-color: @navbar-default-link-active-bg;
+        background-color: transparent; //@navbar-default-link-active-bg;
       }
     }
     > .disabled > a {
@@ -485,7 +492,7 @@
       &:hover,
       &:focus {
         color: @navbar-default-link-disabled-color;
-        background-color: @navbar-default-link-disabled-bg;
+        background-color: transparent; //@navbar-default-link-disabled-bg;
       }
     }
   }
@@ -494,10 +501,10 @@
     border-color: @navbar-default-toggle-border-color;
     &:hover,
     &:focus {
-      background-color: @navbar-default-toggle-hover-bg;
+      background-color: transparent; //@navbar-default-toggle-hover-bg;
     }
     .icon-bar {
-      background-color: @navbar-default-toggle-icon-bar-bg;
+      background-color: transparent; //@navbar-default-toggle-icon-bar-bg;
     }
   }
 
@@ -507,14 +514,15 @@
   }
 
   // Dropdown menu items
-  .navbar-nav {
+  .navbar-dropdown-profil {
     // Remove background color from open dropdown
     > .open > a {
       &,
       &:hover,
       &:focus {
-        background-color: @navbar-default-link-active-bg;
-        color: @navbar-default-link-active-color;
+        background-color: transparent; //@navbar-default-link-active-bg;
+        //color: @navbar-default-link-active-color;
+        background-image: none !important;
       }
     }
 
@@ -526,7 +534,7 @@
           &:hover,
           &:focus {
             color: @navbar-default-link-hover-color;
-            background-color: @navbar-default-link-hover-bg;
+            background-color: transparent; //@navbar-default-link-hover-bg;
           }
         }
         > .active > a {
@@ -534,7 +542,7 @@
           &:hover,
           &:focus {
             color: @navbar-default-link-active-color;
-            background-color: @navbar-default-link-active-bg;
+            background-color: transparent; //@navbar-default-link-active-bg;
           }
         }
         > .disabled > a {
@@ -542,7 +550,7 @@
           &:hover,
           &:focus {
             color: @navbar-default-link-disabled-color;
-            background-color: @navbar-default-link-disabled-bg;
+            background-color: transparent; //@navbar-default-link-disabled-bg;
           }
         }
       }
