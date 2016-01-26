@@ -126,12 +126,17 @@
         };
 
         var persist_message = function(message){
-            $.get( URL+"/api/messages/new?token="+channel+"&message="+message, function( data ) {
+            $.ajax({
+                url: URL+"/api/messages/new?token="+channel+"&message="+message,
+                headers: {"Access-Control-Allow-Origin": "*"}
             });
         };
 
         var load_archives = function(){
-            $.get( URL+"/api/messages/"+channel, function( data ) {
+            $.ajax({
+                url: URL+"/api/messages/"+channel,
+                headers: {"Access-Control-Allow-Origin": "*"}
+            }).done(function( data ) {
                 for (var i = 0; i < data.length; i++) {
                     var message = {
                         'text': data[i].content,
