@@ -2,7 +2,7 @@
 
 namespace EduSpeakBundle\Controller;
 
-use FOS\UserBundle\Controller\RegistrationController as BaseController;
+use FOS\UserBundle\Controller\ProfileController as BaseController;
 use FOS\UserBundle\FOSUserEvents;
 use EduSpeakBundle\Entity\Category as Category;
 use FOS\UserBundle\Event\FormEvent;
