@@ -8,11 +8,14 @@ use Doctrine\Common\Collections\Collection;
 use EduSpeakBundle\Entity\User as User;
 use GeoBundle\Entity\City as City;
 use EduSpeakBundle\Entity\EduAbstract as EduAbstract;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="discussion")
  * @ORM\HasLifecycleCallbacks
+ * @ExclusionPolicy("all")
  */
 class Discussion extends EduAbstract
 {
@@ -20,11 +23,13 @@ class Discussion extends EduAbstract
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Expose
      */
     protected $id;
 
     /**
      * @ORM\OneToMany(targetEntity="Message", mappedBy="discussion")
+     * @Expose
      */
     protected $messages;
 
@@ -36,6 +41,7 @@ class Discussion extends EduAbstract
     /**
      * @ORM\ManyToOne(targetEntity="GeoBundle\Entity\City", inversedBy="discussions")
      * @ORM\JoinColumn(name="city_id", referencedColumnName="id")
+     * @Expose
      */
     protected $city;
 

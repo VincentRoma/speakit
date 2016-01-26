@@ -78,9 +78,10 @@
             secret_key: 'sec-c-YzZhYjVmMTgtYjJmZS00ZTVlLTkwMTMtNWVhZTgyYWEzOTY0'
         });
 
-        var id_user = Math.floor((Math.random() * 100000) + 1000);
+        var id_user = {{ app.user.id }};
         var channel = '{{discussion.token}}';
         var connected = false;
+        var URL = 'http://localhost:8000/app_dev.php';
 
         PUBNUB_demo.subscribe({
             channel: channel,
@@ -88,7 +89,6 @@
                 console.log(m);
                 if(m.connected){
                     connected = true;
-                    console.log(m);
                     $('.fa-circle-o').removeClass("fa-circle-o").addClass("fa-circle");
                 }
                 display_message(m);
@@ -113,6 +113,7 @@
                 callback : function(m){
                 }
             });
+            persist_message(message);
         };
 
         var notify_connection = function(){
@@ -124,11 +125,30 @@
             });
         };
 
+        var persist_message = function(message){
+            $.get( URL+"/api/messages/new?token="+channel+"&message="+message, function( data ) {
+            });
+        };
+
+        var load_archives = function(){
+            $.get( URL+"/api/messages/"+channel, function( data ) {
+                for (var i = 0; i < data.length; i++) {
+                    var message = {
+                        'text': data[i].content,
+                        'user': data[i].author.id
+                    };
+                    display_message(message);
+                }
+            });
+        };
+
         $(document).keypress(function(e) {
             if(e.which == 13) {
                 send_message();
             }
         });
+
+        load_archives();
     })();
 
     </script>
