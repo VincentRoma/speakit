@@ -3,51 +3,13 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block fos_user_content %}
-    <style>
-        body {
-            padding-top: 40px;
-            padding-bottom: 40px;
-            background-color: #eee;
-        }
-
-        .form-signin {
-            max-width: 330px;
-            padding: 15px;
-            margin: 0 auto;
-        }
-        .form-signin .form-signin-heading,
-        .form-signin .checkbox {
-            margin-bottom: 10px;
-        }
-        .form-signin .checkbox {
-            font-weight: normal;
-        }
-        .form-signin .form-control {
-            position: relative;
-            height: auto;
-            -webkit-box-sizing: border-box;
-            -moz-box-sizing: border-box;
-            box-sizing: border-box;
-            padding: 10px;
-            font-size: 16px;
-        }
-        .form-signin .form-control:focus {
-            z-index: 2;
-        }
-        .form-signin input[type="email"] {
-            margin-bottom: -1px;
-            border-bottom-right-radius: 0;
-            border-bottom-left-radius: 0;
-        }
-        .form-signin input[type="password"] {
-            margin-bottom: 10px;
-            border-top-left-radius: 0;
-            border-top-right-radius: 0;
-        }
-    </style>
-    <div class="container">
+  <div id="login">
+    <div class="container jumbotron">
+      <img class="img-responsive center-block" src="{{ asset('image/register.jpg') }}" alt="Paris">
+        <div class="row">
+          <div class="col-md-6 col-md-offset-3 text-center jumbotron" id="myjumbotron">
         <form action="{{ path("fos_user_security_check") }}" method="post" class="form-signin">
-            <h2 class="form-signin-heading">Please sign in</h2>
+            <h2 class="form-signin-heading ">Please sign in</h2>
             {% if error %}
                 <div class="form-signin-heading">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
             {% endif %}
@@ -64,19 +26,17 @@
                     <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
                 </label>
             </div>
-            <input type="submit" class="btn btn-lg btn-primary btn-block" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
-        </form>
-        <div class="row" style="margin-top: 2em;">
-            <div class="col-md-2 col-md-offset-5" style="text-align:center;">
-                <h3>Or</h3>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2 col-md-offset-5">
-                <a class="btn btn-default" href="/app.php/login/facebook" id="facebook-login">
+            <input type="submit" class="btn btn-default btn-block btn-lg btn-edu" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+
+          <h3>Or</h3>
+                <a class="btn btn-default btn-block btn-lg btn-edu btn-facebook" href="/app.php/login/facebook" id="facebook-login">
                     <i class="fa fa-facebook-official"></i> Login with Facebook
                 </a>
-            </div>
+
+                  </form>
         </div>
+      </div>
     </div> <!-- /container -->
+
+</div>
 {% endblock fos_user_content %}
