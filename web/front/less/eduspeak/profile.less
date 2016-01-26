@@ -48,7 +48,15 @@
 			}
 			.profil-language{
 				margin-top: 4rem;
+				#user_spokenLanguages, #user_learnLanguages {
+					label {
+						padding: 0 @size-px-15 0 @size-px-5;
+					}
+				}
 			}
+		}
+		#user_username, #user_file {
+			width: 100%;
 		}
 	}
 }
@@ -73,6 +81,14 @@
 		}
 		i{
 			overflow: hidden;
+		}
+		#user_cityPrecision, #user_city, #user_description {
+			width: 100%;
+		}
+		#user_interests {
+			label {
+				padding: 0 @size-px-15 0 @size-px-5;
+			}
 		}
 	}
 	.visited-list{

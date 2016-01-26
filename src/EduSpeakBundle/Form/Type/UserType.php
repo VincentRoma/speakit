@@ -19,13 +19,14 @@ class UserType extends AbstractType
         ->add('birthday', 'date', array(
             'widget' => 'choice',
             'input' => 'datetime',
-            'format' => 'd/M/y',
-            'years' => range(1950,2005),
+            'format' => 'd M y',
+            'years' => range(1900,2010),
             'empty_value' => array('year' => 'Year', 'month' => 'Month', 'day' => 'Day'),
-            'pattern' => "{{ day }}/{{ month }}/{{ year }}"
+            'pattern' => "{{ day }} {{ month }} {{ year }}"
         ))
         ->add('cityPrecision', 'text', array('required' => false))
-        ->add('description', 'textarea', array('required' => true))
+        ->add('description', 'textarea', array('required' => true,
+            'attr'   =>  array('cols'   => '50', 'rows' => '5')))
         // city a supprimer quand google donne la city la plus proche
         ->add('city', 'entity', array(
             'class' => 'GeoBundle:City',
@@ -57,7 +58,11 @@ class UserType extends AbstractType
             'required' => true
         ))
         ->add('file', 'file', array('required' => !$this->hasFile))
-        ->add('save', 'submit', array('label' => 'Modify Profile'));
+        ->add('save', 'submit', array(
+            'label' => 'Enregistrer mon profil',
+            'attr'   =>  array('class'   => 'btn btn-edu')
+            )
+        );
     }
 
     public function configureOptions(OptionsResolver $resolver)
