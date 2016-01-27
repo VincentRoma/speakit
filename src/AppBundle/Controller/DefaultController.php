@@ -19,12 +19,12 @@ class DefaultController extends Controller
         );
 
         if($this->getUser()){
-            $languages = $this->getUser()->getLearnLanguages();
-            $countriesSuggested = $em->getRepository('GeoBundle:Country')->findByLanguage($languages->get(0));
+            $language = $this->getUser()->getLearnLanguage();
+            $countriesSuggested = $em->getRepository('GeoBundle:Country')->findByLanguage($language);
 
             return $this->render('default/index.html.twig', array(
                 'countries' => $countries,
-                'language' => $languages->get(0),
+                'language' => $language,
                 'countriesSuggested' => $countriesSuggested,
                 'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
             ));

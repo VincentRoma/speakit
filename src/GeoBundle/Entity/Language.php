@@ -50,9 +50,10 @@ class Language extends EduAbstract
     protected $languageSpokenUsers;
 
     /**
-     * @ORM\ManyToMany(targetEntity="EduSpeakBundle\Entity\User", mappedBy="learnLanguages")
+     * @ORM\OneToMany(targetEntity="EduSpeakBundle\Entity\User", mappedBy="learnLanguage")
      */
     protected $languageLearnUsers;
+
     /**
      * @ORM\OneToMany(targetEntity="ChatBundle\Entity\Message", mappedBy="language")
      */

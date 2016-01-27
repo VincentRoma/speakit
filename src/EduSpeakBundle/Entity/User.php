@@ -43,11 +43,6 @@ class User extends BaseUser
     protected $birthday;
 
     /**
-     * @ORM\Column(type="string", length=100, nullable=true)
-     */
-    protected $cityPrecision;
-
-    /**
      * @ORM\Column(type="string", length=500, nullable=true)
      */
     protected $description;
@@ -83,10 +78,10 @@ class User extends BaseUser
     protected $spokenLanguages;
 
     /**
-     * @ORM\ManyToMany(targetEntity="GeoBundle\Entity\Language", inversedBy="languageLearnUsers")
-     * @ORM\JoinTable(name="users_learn_languages")
+     * @ORM\ManyToOne(targetEntity="GeoBundle\Entity\Language", inversedBy="languageLearnUsers")
+     * @ORM\JoinColumn(name="language_learn_id", referencedColumnName="id")
      */
-    protected $learnLanguages;
+    protected $learnLanguage;
 
     /**
      * @ORM\ManyToMany(targetEntity="ContentBundle\Entity\Actuality", inversedBy="actuality_users")
@@ -145,7 +140,6 @@ class User extends BaseUser
         $this->userLanguages = new ArrayCollection();
         $this->expertises = new ArrayCollection();
         $this->spokenLanguages = new ArrayCollection();
-        $this->learnLanguages = new ArrayCollection();
         $this->messages = new ArrayCollection();
     }
 
@@ -282,6 +276,26 @@ class User extends BaseUser
     }
 
     /**
+     * Get learn language
+     *
+     * @return Language
+     */
+    public function getLearnLanguage()
+    {
+        return $this->learnLanguage;
+    }
+
+    /**
+     * Set learn language
+     *
+     * @param Language $language
+     */
+    public function setLearnLanguage(Language $language)
+    {
+        $this->learnLanguage = $language;
+    }
+
+    /**
      * Get birthday
      *
      * @return DateTime
@@ -299,26 +313,6 @@ class User extends BaseUser
     public function setBirthday(DateTime $birthday)
     {
         $this->birthday = $birthday;
-    }
-
-    /**
-     * Get cityPrecision
-     *
-     * @return string
-     */
-    public function getCityPrecision()
-    {
-        return $this->cityPrecision;
-    }
-
-    /**
-     * Set cityPrecision
-     *
-     * @param string $cityPrecision
-     */
-    public function setCityPrecision($cityPrecision)
-    {
-        $this->cityPrecision = $cityPrecision;
     }
 
     /**
@@ -774,58 +768,6 @@ class User extends BaseUser
     public function hasSpokenLanguage(Language $language)
     {
         return $this->spokenLanguages->contains($language);
-    }
-
-    /**
-     * Add learn language
-     *
-     * @param Language $language
-     *
-     * @return User
-     */
-    public function addLearnLanguage(Language $language)
-    {
-        if (!$this->hasLearnLanguage($language)) {
-            $this->learnLanguages->add($language);
-        }
-        return $this;
-    }
-
-    /**
-     * Remove learn language
-     *
-     * @param Language $language
-     *
-     * @return User
-     */
-    public function removeLearnLanguage(Language $language)
-    {
-        if ($this->hasLearnLanguage($language)) {
-            $this->learnLanguages->removeElement($language);
-        }
-        return $this;
-    }
-
-    /**
-     * Get learn languages
-     *
-     * @return Collection Language
-     */
-    public function getLearnLanguages()
-    {
-        return $this->learnLanguages;
-    }
-
-    /**
-     * Has learn language
-     *
-     * @param Language $language
-     *
-     * @return boolean
-     */
-    public function hasLearnLanguage(Language $language)
-    {
-        return $this->learnLanguages->contains($language);
     }
 
     /**
