@@ -13,8 +13,24 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        // replace this example code with whatever you need
+        $em = $this->getDoctrine()->getManager();
+        $countries = $em->getRepository('GeoBundle:Country')->findBy(
+            array('slider' => true)
+        );
+
+        if($this->getUser()){
+            $language = $this->getUser()->getLearnLanguage();
+            $countriesSuggested = $em->getRepository('GeoBundle:Country')->findByLanguage($language);
+
+            return $this->render('default/index.html.twig', array(
+                'countries' => $countries,
+                'language' => $language,
+                'countriesSuggested' => $countriesSuggested,
+                'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
+            ));
+        }
         return $this->render('default/index.html.twig', array(
+            'countries' => $countries,
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
         ));
     }

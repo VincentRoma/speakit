@@ -19,14 +19,15 @@ class UserType extends AbstractType
         ->add('birthday', 'date', array(
             'widget' => 'choice',
             'input' => 'datetime',
-            'format' => 'd/M/y',
-            'years' => range(1950,2005),
+            'format' => 'd M y',
+            'years' => range(1900,2010),
             'empty_value' => array('year' => 'Year', 'month' => 'Month', 'day' => 'Day'),
-            'pattern' => "{{ day }}/{{ month }}/{{ year }}"
+            'pattern' => "{{ day }} {{ month }} {{ year }}"
         ))
-        ->add('cityPrecision', 'text', array('required' => false))
-        ->add('description', 'textarea', array('required' => true))
-        // city a supprimer quand google donne la city la plus proche
+        ->add('description', 'textarea', array(
+            'required' => true,
+            'attr'   =>  array('cols'   => '50', 'rows' => '5')
+        ))
         ->add('city', 'entity', array(
             'class' => 'GeoBundle:City',
             'property' => 'name',
@@ -48,16 +49,17 @@ class UserType extends AbstractType
             'expanded' => true,
             'required' => true
         ))
-        ->add('learnLanguages', 'entity', array(
+        ->add('learnLanguage', 'entity', array(
             'class' => 'GeoBundle:Language',
-            'choices' => $this->languages,
             'property' => 'name',
-            'multiple' => true,
-            'expanded' => true,
             'required' => true
         ))
         ->add('file', 'file', array('required' => !$this->hasFile))
-        ->add('save', 'submit', array('label' => 'Modify Profile'));
+        ->add('save', 'submit', array(
+            'label' => 'Enregistrer mon profil',
+            'attr'   =>  array('class'   => 'btn btn-edu')
+            )
+        );
     }
 
     public function configureOptions(OptionsResolver $resolver)
