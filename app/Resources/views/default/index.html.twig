@@ -118,7 +118,7 @@
 
                   <div class="row col-md-12 center-block">
                       <a class="thumbnail text-center">
-                          <img class="img-responsive center-block" src="{% path country.picture, 'big' %}" alt="Paris">
+                          <img class="img-responsive center-block" src="{% path country.picture, 'big' %}">
 
                           <div class="caption">
                               <h3>{{ country.name }}</h3>
@@ -128,7 +128,7 @@
                  {% else%}
                     <div class="row col-md-6 center-block">
                         <a class="thumbnail text-center">
-                            <img class="img-responsive center-block" src="{% path country.picture, 'big' %}" alt="Paris">
+                            <img class="img-responsive center-block" src="{% path country.picture, 'big' %}">
 
                             <div class="caption">
                                 <h3>{{ country.name }}</h3>
@@ -155,8 +155,19 @@
       </div>
     <div class="carousel-caption">
       <p class="slogan">Pratiquez comme si vous y étiez</p>
-          <a class="btn btn-default btn-edu btn-accueil" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
-          <a class="btn btn-default btn-edu btn-accueil" href="{{ path('fos_user_registration_register') }}" role="button">Register</a>
+      <div class="col-md-12">
+        <div class="col-md-6 col-md-offset-3">
+      <a class="btn btn-default btn-block btn-lg btn-edu btn-facebook" href="/app.php/login/facebook">
+        <i class="fa fa-facebook-official"></i> Login with facebook
+      </a>
+      </div>
+      <div class="col-md-3 col-md-offset-3">
+          <a class="btn-default btn btn-edu btn-block btn-lg btn-accueil" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+</div>
+      <div class="col-md-3">
+          <a class="btn-default btn btn-edu btn-block btn-lg btn-accueil btn-accueil-2" href="{{ path('fos_user_registration_register') }}" role="button">Register</a>
+          </div>
+      </div>
     </div>
   </div>
 
