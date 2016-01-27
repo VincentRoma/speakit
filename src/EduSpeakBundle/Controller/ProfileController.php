@@ -61,10 +61,6 @@ class ProfileController extends BaseController
         if ($form->isValid()) {
             $em->persist($user);
             $em->flush();
-            // mettre comme id_city la city la plus proche grace a google de celle qu'il a donné
-            /*$user->setDateInscrip(new \DateTime());
-            $userManager = $this->get('fos_user.user_manager');
-            $userManager->updateUser($user);*/
 
             $event = new FormEvent($form, $request);
             $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);

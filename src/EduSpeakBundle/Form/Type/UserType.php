@@ -24,10 +24,10 @@ class UserType extends AbstractType
             'empty_value' => array('year' => 'Year', 'month' => 'Month', 'day' => 'Day'),
             'pattern' => "{{ day }} {{ month }} {{ year }}"
         ))
-        ->add('cityPrecision', 'text', array('required' => false))
-        ->add('description', 'textarea', array('required' => true,
-            'attr'   =>  array('cols'   => '50', 'rows' => '5')))
-        // city a supprimer quand google donne la city la plus proche
+        ->add('description', 'textarea', array(
+            'required' => true,
+            'attr'   =>  array('cols'   => '50', 'rows' => '5')
+        ))
         ->add('city', 'entity', array(
             'class' => 'GeoBundle:City',
             'property' => 'name',
@@ -49,12 +49,9 @@ class UserType extends AbstractType
             'expanded' => true,
             'required' => true
         ))
-        ->add('learnLanguages', 'entity', array(
+        ->add('learnLanguage', 'entity', array(
             'class' => 'GeoBundle:Language',
-            'choices' => $this->languages,
             'property' => 'name',
-            'multiple' => true,
-            'expanded' => true,
             'required' => true
         ))
         ->add('file', 'file', array('required' => !$this->hasFile))
