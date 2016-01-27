@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use EduSpeakBundle\Entity\User as User;
+use Application\Sonata\MediaBundle\Entity\Media as Media;
 use EduSpeakBundle\Entity\Expertise as Expertise;
 use ChatBundle\Entity\Discussion as Discussion;
 use EduSpeakBundle\Entity\EduAbstract as EduAbstract;
@@ -51,6 +52,16 @@ class City extends EduAbstract
     protected $discussions;
 
     /**
+     * @ORM\OneToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media")
+     */
+    private $picture;
+
+    /**
+     * @ORM\Column(type="boolean", name="slider")
+     */
+    protected $slider;
+
+    /**
      * To String
      *
      * @return string
@@ -68,6 +79,7 @@ class City extends EduAbstract
         $this->residents = new ArrayCollection();
         $this->discussions = new ArrayCollection();
         $this->expertises = new ArrayCollection();
+        $this->slider = false;
     }
 
     /**
@@ -118,6 +130,46 @@ class City extends EduAbstract
     public function setCountry(Country $country)
     {
         $this->country = $country;
+    }
+
+    /**
+     * Get picture
+     *
+     * @return Media
+     */
+    public function getPicture()
+    {
+        return $this->picture;
+    }
+
+    /**
+     * Set picture
+     *
+     * @param Media $picture
+     */
+    public function setPicture(Media $picture)
+    {
+        $this->picture = $picture;
+    }
+
+    /**
+     * Get slider
+     *
+     * @return boolean
+     */
+    public function getSlider()
+    {
+        return $this->slider;
+    }
+
+    /**
+     * Set slider
+     *
+     * @param boolean $slider
+     */
+    public function setSlider($slider)
+    {
+        $this->slider = $slider;
     }
 
     /**
