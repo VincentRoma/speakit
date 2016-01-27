@@ -8,6 +8,7 @@ use GeoBundle\Entity\City as City;
 use GeoBundle\Entity\UserLanguage as UserLanguage;
 use GeoBundle\Entity\Language as Language;
 use ChatBundle\Entity\Discussion as Discussion;
+use ChatBundle\Entity\Message as Message;
 use ContentBundle\Entity\Interest as Interest;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -18,14 +19,13 @@ use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Groups;
-use JMS\Serializer\Annotation\VirtualProperty;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="users")
  * @ORM\HasLifecycleCallbacks
- * @ExclusionPolicy("all")
  * @ORM\Entity(repositoryClass="EduSpeakBundle\Entity\UserRepository")
+ * @ExclusionPolicy("all")
  */
 class User extends BaseUser
 {
@@ -116,6 +116,11 @@ class User extends BaseUser
     protected $facebook_picture;
 
     /**
+     * @ORM\OneToMany(targetEntity="ChatBundle\Entity\Message", mappedBy="author")
+     */
+    protected $messages;
+
+    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     public $path;
@@ -141,6 +146,7 @@ class User extends BaseUser
         $this->expertises = new ArrayCollection();
         $this->spokenLanguages = new ArrayCollection();
         $this->learnLanguages = new ArrayCollection();
+        $this->messages = new ArrayCollection();
     }
 
     /**
@@ -820,5 +826,57 @@ class User extends BaseUser
     public function hasLearnLanguage(Language $language)
     {
         return $this->learnLanguages->contains($language);
+    }
+
+    /**
+     * Add message
+     *
+     * @param Message $message
+     *
+     * @return User
+     */
+    public function addMessage(Message $message)
+    {
+        if (!$this->hasMessage($message)) {
+            $this->messages->add($message);
+        }
+        return $this;
+    }
+
+    /**
+     * Remove message
+     *
+     * @param Message $message
+     *
+     * @return User
+     */
+    public function removeMessage(Message $message)
+    {
+        if ($this->hasMessage($message)) {
+            $this->messages->removeElement($message);
+        }
+        return $this;
+    }
+
+    /**
+     * Get messages
+     *
+     * @return Collection Message
+     */
+    public function getMessages()
+    {
+        return $this->messages;
+    }
+
+    /**
+     * Has message
+     *
+     * @param Message $message
+     *
+     * @return boolean
+     */
+    public function hasMessage(Message $message)
+    {
+        return $this->messages->contains($message);
     }
 }

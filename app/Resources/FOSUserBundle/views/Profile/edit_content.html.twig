@@ -1,4 +1,136 @@
 {% trans_default_domain 'FOSUserBundle' %}
 {{ form_start(form) }}
-{{ form_widget(form) }}
+<div id="edu-profile" class="fos_user_user_show full-height">
+    <div class="row profil-banner">
+        <div class="col-md-12">
+            <img src="http://1010uk.a.cdnify.io/cdn/farfuture/b4EDw936Zxf-JgbAyWkDWT052-ildkqGN03gc7CD4fQ/mtime:1433946444/sites/default/files/eiffel-tower-cameron-wears-BY-NC-banner.jpg"/>
+        </div>
+    </div>
+    <div id="edu-profile-top" class="row">
+        <div class="col-md-3 col-xs-3">
+            <div class="profil-contact container">
+                <div class="row">
+                    <img src="{{ asset('image/kevin_lebre_big.jpg') }}" alt="Profil"> {{ form_widget(form.file) }} <img/>
+                </div>
+                <div class="row">
+                    <h3 class="profil-name" style="margin: 0">{{ form_widget(form.username) }}</h3>
+                </div>
+                <hr>
+                <div class="row profil-icon">
+                    <i class="fa fa-envelope-o fa-2x col-md-6"></i>
+                    <a href="#"><i class="fa fa-user-plus fa-2x col-md-6"></i></a>
+                </div>
+                <hr>
+                <div class="row">
+                    {{ form_widget(form.save) }}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-1 col-xs-6 col-xs-offset-3 profil-listing">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-xs-12 profil-language">
+                        <h4>I can speak</h4>
+                        <ul>
+                            <li>
+                                <div class="country-snippet">
+                                    {{ form_widget(form.spokenLanguages) }}
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-12 col-xs-12 profil-language">
+                        <h4>I wish to speak</h4>
+                        {{ form_widget(form.learnLanguages) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="edu-profile-row" class="container">
+    <div class="row">
+        <div class="col-md-3 col-xs-3">
+            <div class="profil-details">
+                <ul>
+                    <li>
+                        <h4>Age</h4>
+                        <i>{{ form_widget(form.birthday) }}</i>
+                    </li>
+                    <li>
+                        <h4>Living City</h4>
+                        <i>{{ form_widget(form.cityPrecision) }}</i>
+                    </li>
+                    <li>
+                        <h4>City</h4>
+                        <i>{{ form_widget(form.city) }}</i>
+                    </li>
+                    <li>
+                        <h4>Country</h4>
+                        <i>France</i>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-4 col-xs-4">
+            <div class="profil-details">
+                <ul>
+                    <li>
+                        <h4>Description</h4>
+                        <p>
+                            <i>
+                                {{ form_widget(form.description) }}
+                            </i>
+                        </p>
+                    </li>
+                    <li>
+                        <h4>Interests</h4>
+                        <i>{{ form_widget(form.interests) }}</i>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-5 col-xs-5">
+            <div class="profil-details row">
+                <ul>
+                    <li class="col-md-6 col-xs-6">
+                        <h4>Reward</h4>
+                        <ul>
+                            <li>
+                                <i>Expert Mahattan!</i>
+                            </li>
+                            <li>
+                                <i>First Conversation!</i>
+                            </li>
+                            <li>
+                                <i>Reach 20 Friends!</i>
+                            </li>
+                            <li>
+                                <i>Work with Duch!</i>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="col-md-6 col-xs-6">
+                        <h4>Visited Countries</h4>
+                        <ul class="visited-list">
+                            <li>
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Civil_and_Naval_Ensign_of_France.svg/2000px-Civil_and_Naval_Ensign_of_France.svg.png" />
+                                France
+                            </li>
+                            <li>
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Union_flag_1606_(Kings_Colors).svg/2000px-Union_flag_1606_(Kings_Colors).svg.png" alt="Français" />
+                                England
+                            </li>
+                            <li>
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Flag_of_Spain_(1785-1873_and_1875-1931).svg/2000px-Flag_of_Spain_(1785-1873_and_1875-1931).svg.png" alt="Français" />
+                                Spain
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
 {{ form_end(form) }}
