@@ -112,7 +112,7 @@ sonata_media:
 
             formats:
                 small: { width: 100 , quality: 70}
-                big:   { width: 800 , quality: 90}
+                big:   { width: 1920 , quality: 100}
 
     cdn:
         server:
