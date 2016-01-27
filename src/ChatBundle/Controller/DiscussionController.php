@@ -46,6 +46,20 @@ class DiscussionController extends Controller
                 $em->persist($discussion);
                 $em->flush();
 
+                // Send Email
+                $message = \Swift_Message::newInstance()
+                    ->setSubject('[Speakit]'.$user->getUsername().' wants to chat with you!')
+                    ->setFrom('team@speakit.fr')
+                    ->setTo($invited->getEmail())
+                    ->setBody(
+                        $this->renderView(
+                            'EduSpeakBundle:Emails:chat_invite.html.twig',
+                            array('name' => $invited->getUsername())
+                        ),
+                        'text/html'
+                    );
+                $this->get('mailer')->send($message);
+
                 return $this->redirectToRoute('chat_display', array('id'=>$discussion->getId()));
             }
         }else{
