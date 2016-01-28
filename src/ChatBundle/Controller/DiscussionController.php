@@ -79,9 +79,15 @@ class DiscussionController extends Controller
         $em = $this->getDoctrine()->getManager();
         $discussion = $em->getRepository('ChatBundle:Discussion')->findOneById($id);
         $user = $this->getUser();
+        $receiver = null;
         $discussions = $user->getDiscussions()->toArray();
+        foreach ($discussion->getParticipants() as $participant) {
+            if($participant->getId() !== $user->getId()){
+                $receiver = $participant;
+            }
+        }
         if($discussion){
-            return $this->render('ChatBundle:Discussion:discussion.html.twig', array('discussion' => $discussion, 'discussions' => $discussions));
+            return $this->render('ChatBundle:Discussion:discussion.html.twig', array('discussion' => $discussion, 'discussions' => $discussions, 'receiver' => $receiver));
         }else{
             return $this->render('ChatBundle:Discussion:discussion_fail.html.twig');
         }

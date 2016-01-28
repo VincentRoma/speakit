@@ -53,21 +53,34 @@
                     </div>
                 </div>
                 <div class="col-md-12 col-xs-12">
-                    <div class="panel panel-default panel-chat">
-                        <div class="panel-body" style="height: 70vh;">
-                            <ul id="chat_room">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div id="video-out">
 
-                            </ul>
+                            </div>
+                            <div id="display-div">
+
+                            </div>
                         </div>
-                    </div>
-                    <div class="input-group col-md-10 col-md-offset-1 col-xs-10 col-xs-offset-1">
-                        <input type="text" class="form-control" id="chat_input" placeholder="Type a message...">
+                        <div class="col-md-4">
+                            <div class="panel panel-default panel-chat">
+                                <div class="panel-body" style="height: 70vh;">
+                                    <ul id="chat_room">
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="input-group col-md-10 col-md-offset-1 col-xs-10 col-xs-offset-1">
+                                <input type="text" class="form-control" id="chat_input" placeholder="Type a message...">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script src="https://cdn.pubnub.com/pubnub-dev.js"></script>
+    <script src="https://cdn.pubnub.com/pubnub.min.js"></script>
+    <script src="https://stephenlb.github.io/webrtc-sdk/js/webrtc.js"></script>
     <!-- <script src="{{asset('front/js/eduspeak/chat.js')}}"></script> -->
     <script>
     (function(){
@@ -82,6 +95,35 @@
         var channel = '{{discussion.token}}';
         var connected = false;
         var URL = 'http://localhost:8000/app_dev.php';
+        console.log({{receiver.id}});
+        var phone = PHONE({
+            number        : channel+'-'+{{app.user.id}},
+            publish_key   : 'pub-c-43fee2d2-8fc4-4b00-b424-dd315210e2c2',
+            subscribe_key : 'sub-c-aca4aeda-be98-11e5-8408-0619f8945a4f',
+            secret_key: 'sec-c-YzZhYjVmMTgtYjJmZS00ZTVlLTkwMTMtNWVhZTgyYWEzOTY0',
+            media         : { audio : true, video : true },
+            ssl           : true
+        });
+
+        // As soon as the phone is ready we can make calls
+        phone.ready(function(){
+
+            // Dial a Number and get the Call Session
+            // For simplicity the phone number is the same for both caller/receiver.
+            // you should use different phone numbers for each user.
+            var session = phone.dial(channel+'-'+{{receiver.id}});
+
+        });
+
+        // When Call Comes In or is to be Connected
+        phone.receive(function(session){
+
+            // Display Your Friend's Live Video
+            session.connected(function(session){
+                $('#video-out').append(session.video);
+            });
+            $('#display-div').append(phone.video);
+        });
 
         PUBNUB_demo.subscribe({
             channel: channel,
@@ -91,7 +133,9 @@
                     connected = true;
                     $('.fa-circle-o').removeClass("fa-circle-o").addClass("fa-circle");
                 }
-                display_message(m);
+                if(m.text){
+                    display_message(m);
+                }
                 // notify_connection();
             }
         });
