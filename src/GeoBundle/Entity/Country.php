@@ -50,16 +50,6 @@ class Country extends EduAbstract
     private $flag;
 
     /**
-     * @ORM\OneToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media")
-     */
-    private $picture;
-
-    /**
-     * @ORM\Column(type="boolean", name="slider")
-     */
-    protected $slider;
-
-    /**
      * To String
      *
      * @return string
@@ -76,7 +66,6 @@ class Country extends EduAbstract
     {
         $this->cities = new ArrayCollection();
         $this->expertises = new ArrayCollection();
-        $this->slider = false;
     }
 
     /**
@@ -110,26 +99,6 @@ class Country extends EduAbstract
     }
 
     /**
-     * Get slider
-     *
-     * @return boolean
-     */
-    public function getSlider()
-    {
-        return $this->slider;
-    }
-
-    /**
-     * Set slider
-     *
-     * @param boolean $slider
-     */
-    public function setSlider($slider)
-    {
-        $this->slider = $slider;
-    }
-
-    /**
      * Get flag
      *
      * @return Media
@@ -147,26 +116,6 @@ class Country extends EduAbstract
     public function setFlag(Media $flag)
     {
         $this->flag = $flag;
-    }
-
-    /**
-     * Get picture
-     *
-     * @return Media
-     */
-    public function getPicture()
-    {
-        return $this->picture;
-    }
-
-    /**
-     * Set picture
-     *
-     * @param Media $picture
-     */
-    public function setPicture(Media $picture)
-    {
-        $this->picture = $picture;
     }
 
     /**

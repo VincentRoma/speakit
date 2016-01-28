@@ -14,12 +14,23 @@ class CityAdmin extends Admin
     {
         $formMapper
             ->add('name', 'text', array('label' => 'Name'))
+            ->add('slider', 'choice', array(
+                'choices' => array('yes' => true, 'no' => false),
+                'choices_as_values' => true,
+            ))
             ->add('country', 'sonata_type_model_list', array(
                 'btn_add'       => 'Add Country',
                 'btn_list'      => 'Country list',
                 'btn_delete'    => false,
             ), array(
                 'placeholder' => 'No country selected'
+            ))
+            ->add('picture', 'sonata_type_model_list', array(
+                'btn_add'       => 'Add Picture',
+                'btn_list'      => 'Picture list',
+                'btn_delete'    => false,
+            ), array(
+                'placeholder' => 'No picture selected'
             ))
         ;
     }
@@ -30,6 +41,9 @@ class CityAdmin extends Admin
         $datagridMapper
             ->add('id')
             ->add('name')
+            ->add('slider', null, array(
+                'operator_type' => 'sonata_type_boolean'
+            ))
             ->add('country')
         ;
     }
@@ -40,7 +54,9 @@ class CityAdmin extends Admin
         $listMapper
             ->addIdentifier('id')
             ->add('name')
+            ->add('slider', 'boolean')
             ->add('country.name')
+            ->add('picture')
         ;
     }
 }
