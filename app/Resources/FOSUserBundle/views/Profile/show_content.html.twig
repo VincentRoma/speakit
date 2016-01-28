@@ -10,7 +10,7 @@
         <div class="col-md-3 col-xs-3">
             <div class="profil-contact container">
                 <div class="row">
-                    <img src="{{ asset('image/kevin_lebre_big.jpg') }}" alt="Profil" />
+                    <img src="{{ image }}" alt="Photo" />
                 </div>
                 <div class="row">
                     <h3 class="profil-name">{{ user.username }}</h3>
@@ -66,15 +66,15 @@
                     <ul>
                         <li>
                             <h4>Age</h4>
-                            <i>23</i>
+                            <i>{{ user.age }}</i>
                         </li>
                         <li>
                             <h4>City</h4>
-                            <i>Paris</i>
+                            <i>{{ user.city }}</i>
                         </li>
                         <li>
                             <h4>Country</h4>
-                            <i>France</i>
+                            <i>{{ user.country }}</i>
                         </li>
                     </ul>
                 </div>

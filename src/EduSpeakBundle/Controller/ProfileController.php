@@ -20,15 +20,13 @@ class ProfileController extends BaseController
     public function showAction()
     {
         $user = $this->getUser();
-        $discussions = $user->getDiscussions();
+        $image = $user->getWebPath();
         $interests = $user->getInterests();
-        $friendships = $user->getFriendships();
 
         return $this->render('FOSUserBundle:Profile:show.html.twig', array(
             'user' => $user,
-            'discussions' => $discussions,
             'interests' => $interests,
-            'friendships' => $friendships
+            'image' => $image
         ));
     }
 
@@ -74,8 +72,10 @@ class ProfileController extends BaseController
             return $response;
         }
 
+        $image = $user->getWebPath();
         return $this->render('FOSUserBundle:Profile:edit.html.twig', array(
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'image' => $image
         ));
     }
 }

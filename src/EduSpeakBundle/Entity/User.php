@@ -232,7 +232,7 @@ class User extends BaseUser
     {
         return null === $this->path
             ? null
-            : $this->getUploadDir().'/'.$this->path;
+            : '/'.$this->getUploadDir().'/'.$this->path;
     }
 
     protected function getUploadRootDir()
@@ -276,6 +276,16 @@ class User extends BaseUser
     }
 
     /**
+     * Get city
+     *
+     * @return City
+     */
+    public function getCountry()
+    {
+        return $this->city->getCountry();
+    }
+
+    /**
      * Get learn language
      *
      * @return Language
@@ -313,6 +323,20 @@ class User extends BaseUser
     public function setBirthday(DateTime $birthday)
     {
         $this->birthday = $birthday;
+    }
+
+    /**
+     * Get age
+     *
+     * @return string
+     */
+    public function getAge()
+    {
+        $birthDate = explode("/", date_format($this->birthday,"m/d/Y"));
+        $age = (date("md", date("U", mktime(0, 0, 0, $birthDate[0], $birthDate[1], $birthDate[2]))) > date("md")
+            ? ((date("Y") - $birthDate[2]) - 1)
+            : (date("Y") - $birthDate[2]));
+        return $age;
     }
 
     /**
