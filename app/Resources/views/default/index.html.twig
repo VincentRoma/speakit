@@ -8,7 +8,7 @@
         <div class="monopacite"></div>
         <!-- Indicators -->
         <ol class="carousel-indicators">
-        {% for country in countries %}
+        {% for city in cities %}
             {% if loop.first %}
             <li data-target="#myCarousel" data-slide-to="{{ loop.index0 }}" class="active"></li>
             {% else %}
@@ -19,13 +19,13 @@
 
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
-        {% for country in countries %}
+        {% for city in cities %}
           {% if loop.first %}
           <div class="item active">
           {% else %}
           <div class="item">
           {% endif %}
-            <img class="img-responsive center-block" src="{% path country.picture, 'big' %}" alt="{{ country.name }}">
+            <img class="img-responsive center-block" src="{% path city.picture, 'big' %}" alt="{{ city.name }}">
           </div>
         {% endfor %}
         </div>
@@ -111,27 +111,24 @@
       {% if language %}
       <div id="choixDestination" class="row">
           <div class="row col-md-offset-2 col-md-8 text-center">
-            {% set count = countriesSuggested|length %}
-              <h2>Suggestions de pays qui parlent {{ language.name }}</h2>
-              {% for country in countriesSuggested %}
-                  {% if loop.index % count == 0  and count%2!=0 %}
-
+            {% set count = citiesSuggested|length %}
+              <h2>Suggestions de villes qui parlent {{ language.name }}</h2>
+              {% for city in citiesSuggested %}
+                  {% if loop.index % count == 0  and count % 2 != 0 %}
                   <div class="row col-md-12 center-block">
                       <a class="thumbnail text-center">
-                          <img class="img-responsive center-block" src="{% path country.picture, 'big' %}">
-
+                          <img class="img-responsive center-block" src="{% path city.picture, 'big' %}" alt="{{ city.name }}">
                           <div class="caption">
-                              <h3>{{ country.name }}</h3>
+                              <h3>{{ city.name }}</h3>
                           </div>
                       </a>
                   </div>
                  {% else%}
                     <div class="row col-md-6 center-block">
                         <a class="thumbnail text-center">
-                            <img class="img-responsive center-block" src="{% path country.picture, 'big' %}">
-
+                            <img class="img-responsive center-block" src="{% path city.picture, 'big' %}" alt="{{ city.name }}">
                             <div class="caption">
-                                <h3>{{ country.name }}</h3>
+                                <h3>{{ city.name }}</h3>
                             </div>
                         </a>
                     </div>
