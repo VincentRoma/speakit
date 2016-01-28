@@ -9,10 +9,13 @@ a, button, input{
         text-shadow: none;
 
         &.btn-accueil{
-          margin: @size-px-10 @size-px-10 @size-px-10 @size-px-10;
-          padding: 15px 32px;
+          margin: @size-px-10 0px 0px 0px;
+          //padding: 15px 32px;
           text-align: center;
           font-size: 150%;
+          &.btn-accueil-2{
+            margin: @size-px-10 0px 0px @size-px-10;
+          }
         }
 
         &.btn-facebook{
@@ -39,11 +42,13 @@ a, button, input{
         background-color: @eduspeak-base-purple;
         border-color: white;
         color: white;
+
     }
 
     &.btn-facebook:hover{
       background-color: white;
       border-color: #3b5998;
       color: #3b5998;
+
     }
 }

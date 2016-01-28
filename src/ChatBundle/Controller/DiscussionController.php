@@ -46,6 +46,20 @@ class DiscussionController extends Controller
                 $em->persist($discussion);
                 $em->flush();
 
+                // Send Email
+                $message = \Swift_Message::newInstance()
+                    ->setSubject('[Speakit]'.$user->getUsername().' wants to chat with you!')
+                    ->setFrom('team@speakit.fr')
+                    ->setTo($invited->getEmail())
+                    ->setBody(
+                        $this->renderView(
+                            'EduSpeakBundle:Emails:chat_invite.html.twig',
+                            array('name' => $invited->getUsername())
+                        ),
+                        'text/html'
+                    );
+                $this->get('mailer')->send($message);
+
                 return $this->redirectToRoute('chat_display', array('id'=>$discussion->getId()));
             }
         }else{
@@ -65,9 +79,15 @@ class DiscussionController extends Controller
         $em = $this->getDoctrine()->getManager();
         $discussion = $em->getRepository('ChatBundle:Discussion')->findOneById($id);
         $user = $this->getUser();
+        $receiver = null;
         $discussions = $user->getDiscussions()->toArray();
+        foreach ($discussion->getParticipants() as $participant) {
+            if($participant->getId() !== $user->getId()){
+                $receiver = $participant;
+            }
+        }
         if($discussion){
-            return $this->render('ChatBundle:Discussion:discussion.html.twig', array('discussion' => $discussion, 'discussions' => $discussions));
+            return $this->render('ChatBundle:Discussion:discussion.html.twig', array('discussion' => $discussion, 'discussions' => $discussions, 'receiver' => $receiver));
         }else{
             return $this->render('ChatBundle:Discussion:discussion_fail.html.twig');
         }

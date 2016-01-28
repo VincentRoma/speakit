@@ -44,5 +44,10 @@ monolog:
 assetic:
     use_controller: true
 
+swiftmailer:
+    transport: gmail
+    username:  team@speakit.fr
+    password:  AZ3.daz3.
+
 #swiftmailer:
 #    delivery_address: me@example.com

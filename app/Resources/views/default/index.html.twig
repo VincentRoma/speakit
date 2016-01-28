@@ -8,7 +8,7 @@
         <div class="monopacite"></div>
         <!-- Indicators -->
         <ol class="carousel-indicators">
-        {% for country in countries %}
+        {% for city in cities %}
             {% if loop.first %}
             <li data-target="#myCarousel" data-slide-to="{{ loop.index0 }}" class="active"></li>
             {% else %}
@@ -19,13 +19,13 @@
 
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
-        {% for country in countries %}
+        {% for city in cities %}
           {% if loop.first %}
           <div class="item active">
           {% else %}
           <div class="item">
           {% endif %}
-            <img class="img-responsive center-block" src="{% path country.picture, 'big' %}" alt="{{ country.name }}">
+            <img class="img-responsive center-block" src="{% path city.picture, 'big' %}" alt="{{ city.name }}">
           </div>
         {% endfor %}
         </div>
@@ -111,71 +111,34 @@
       {% if language %}
       <div id="choixDestination" class="row">
           <div class="row col-md-offset-2 col-md-8 text-center">
-              <h2>Suggestions de pays qui parlent {{ language.name }}</h2>
-              {% for country in countriesSuggested %}
-                  <div class="row col-md-6 center-block">
+            {% set count = citiesSuggested|length %}
+              <h2>Suggestions de villes qui parlent {{ language.name }}</h2>
+              {% for city in citiesSuggested %}
+                  {% if loop.index % count == 0  and count % 2 != 0 %}
+                  <div class="row col-md-12 center-block">
                       <a class="thumbnail text-center">
-                          <img class="img-responsive center-block" src="{% path country.picture, 'big' %}" alt="Paris">
-
+                          <img class="img-responsive center-block" src="{% path city.picture, 'big' %}" alt="{{ city.name }}">
                           <div class="caption">
-                              <h3>{{ country.name }}</h3>
+                              <h3>{{ city.name }}</h3>
                           </div>
                       </a>
                   </div>
+                 {% else%}
+                    <div class="row col-md-6 center-block">
+                        <a class="thumbnail text-center">
+                            <img class="img-responsive center-block" src="{% path city.picture, 'big' %}" alt="{{ city.name }}">
+                            <div class="caption">
+                                <h3>{{ city.name }}</h3>
+                            </div>
+                        </a>
+                    </div>
+                    {% endif %}
               {% endfor %}
           </div>
       </div>
       {% else %}
       Pas de language choisi
       {% endif %}
-
-      {#____________________TEST WIHTOUT THE FUNCTIONS____________________#}
-          {#<div class="row col-md-offset-2 col-md-8 text-center">
-              <h2>Anglais</h2>
-              {% set count = 3 %}
-              {% set isEven = count %}
-              {% for i in 1..count %}
-                {% if isEven is odd %}
-                    {% if count == 1 %}
-                      <div class="row col-md-12 center-block">
-                        <a class="thumbnail text-center">
-                          <img class="img-responsive center-block" src="{{ asset('image/paris.jpg') }}" alt="Paris">
-                        <div class="caption">
-                          <h3>Angleterre</h3>
-                        </div>
-                        </a>
-                      </div>
-
-                    {% else%}
-                      <div class="row col-md-6 center-block">
-                        <a class="thumbnail text-center">
-                          <img class="img-responsive center-block" src="{{ asset('image/paris.jpg') }}" alt="Paris">
-
-                        <div class="caption">
-                          <h3>Angleterre</h3>
-                        </div>
-                      </a>
-                      </div>
-                      {% set count = count-1 %}
-                    {% endif %}
-                  {% else%}
-                    <div class="row col-md-6 center-block">
-                      <a class="thumbnail text-center">
-                        <img class="img-responsive center-block" src="{{ asset('image/paris.jpg') }}" alt="Paris">
-                      <div class="caption">
-                        <h3>Angleterre</h3>
-                      </div>
-                      </a>
-                    </div>
-                    {% set count = count-1 %}
-                  {% endif %}
-                  {% endfor %}
-              </div>
-            </div>#}
-       {#____________________TEST WIHTOUT THE FUNCTIONS____________________#}
-
-
-    {#-------------------UTILISTAEUR NON CONNECTE----------------------------#}
 
     {% else %}
 
@@ -189,8 +152,19 @@
       </div>
     <div class="carousel-caption">
       <p class="slogan">Pratiquez comme si vous y étiez</p>
-          <a class="btn btn-default btn-edu btn-accueil" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
-          <a class="btn btn-default btn-edu btn-accueil" href="{{ path('fos_user_registration_register') }}" role="button">Register</a>
+      <div class="col-md-12">
+        <div class="col-md-6 col-xs-6 col-md-offset-3 col-xs-offset-3">
+      <a class="btn btn-default btn-block btn-lg btn-edu btn-facebook" href="/app.php/login/facebook">
+        <i class="fa fa-facebook-official"></i> Login with facebook
+      </a>
+      </div>
+      <div class="col-md-3 col-xs-3 col-md-offset-3 col-xs-offset-3">
+          <a class="btn-default btn btn-edu btn-block btn-lg btn-accueil" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+</div>
+      <div class="col-md-3 col-xs-3">
+          <a class="btn-default btn btn-edu btn-block btn-lg btn-accueil btn-accueil-2" href="{{ path('fos_user_registration_register') }}" role="button">Register</a>
+          </div>
+      </div>
     </div>
   </div>
 
@@ -242,7 +216,9 @@
 
   </div>
   {% endif %}
-
+  <script>
+    mixpanel.track("Homepage");
+  </script>
 </div>
 
 {% endblock %}

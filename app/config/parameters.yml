@@ -5,8 +5,8 @@ parameters:
     database_name: eduspeak
     database_user: root
     database_password: null
-    mailer_transport: smtp
-    mailer_host: 127.0.0.1
-    mailer_user: null
-    mailer_password: null
+    mailer_transport: gmail
+    mailer_host:      ~
+    mailer_user:      team@speakit.fr
+    mailer_password:  AZ3.daz3.
     secret: 228de499e2c307869dfa162ff92a994aca872474
