@@ -1,177 +1,121 @@
 {% extends 'base.html.twig' %}
-
 {% block body %}
-<div class="row accueil">
-
-    {#____________________________Carousel___________________________________#}
-      <div id="myCarousel" class="row carousel slide" data-ride="carousel">
-        <div class="monopacite"></div>
-        <!-- Indicators -->
-        <ol class="carousel-indicators">
-        {% for city in cities %}
-            {% if loop.first %}
-            <li data-target="#myCarousel" data-slide-to="{{ loop.index0 }}" class="active"></li>
-            {% else %}
-            <li data-target="#myCarousel" data-slide-to="{{ loop.index0 }}"></li>
-            {% endif %}
-        {% endfor %}
-        </ol>
-
-        <!-- Wrapper for slides -->
-        <div class="carousel-inner" role="listbox">
-        {% for city in cities %}
-          {% if loop.first %}
-          <div class="item active">
-          {% else %}
-          <div class="item">
-          {% endif %}
-            <img class="img-responsive center-block" src="{% path city.picture, 'big' %}" alt="{{ city.name }}">
-          </div>
-        {% endfor %}
-        </div>
-
-          {#-------------------UTILISTAEUR CONNECTE--------------------------------#}
-
-          {% if app.security.token is not null and is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-
-          {#-------------------UTILISTAEUR CONNECTE--------------------------------#}
-
-        <div>
-          <a class="more-scroll" href="#choixDestination">"Découvrir de nouveau horizons?!"
-            <br><span style="font-size:3em;" class="glyphicon glyphicon-chevron-down text-align" aria-hidden="true"></span>
-          </a>
-        </div>
-
-        {#____________________CAPTION DU CAROUSSEL____________________#}
-        <div class="carousel-caption">
-          <p class="slogan">Pratiquez comme si vous y étiez</p>
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Où voulez vous parler ?">
-              <span class="input-group-btn">
-                  <a href="{{ path('edu_speak_search')}}">
-                  <button class="btn-default btn btn-edu btn-block" type="button">Partir</button>
+    <div class="row accueil">
+        <div id="myCarousel" class="row carousel slide" data-ride="carousel">
+            <div class="monopacite"></div>
+            <ol class="carousel-indicators">
+            {% for city in cities %}
+                {% if loop.first %}
+                <li data-target="#myCarousel" data-slide-to="{{ loop.index0 }}" class="active"></li>
+                {% else %}
+                <li data-target="#myCarousel" data-slide-to="{{ loop.index0 }}"></li>
+                {% endif %}
+            {% endfor %}
+            </ol>
+            <div class="carousel-inner" role="listbox">
+            {% for city in cities %}
+                {% if loop.first %}
+                <div class="item active">
+                {% else %}
+                <div class="item">
+                {% endif %}
+                    <img class="img-responsive center-block" src="{% path city.picture, 'big' %}" alt="{{ city.name }}">
+                </div>
+            {% endfor %}
+            </div>
+            {% if app.security.token is not null and is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            {#-------------------UTILISTAEUR CONNECTE--------------------------------#}
+            {% if language %}
+            <div>
+                <a class="more-scroll" href="#choixDestination">"Découvrir de nouveau horizons?!"
+                    <br><span style="font-size:3em;" class="glyphicon glyphicon-chevron-down text-align" aria-hidden="true"></span>
                 </a>
-              </span>
-          </div>
+            </div>
+            {% endif %}
+            <div class="carousel-caption">
+                <p class="slogan">Pratiquez comme si vous y étiez</p>
+                <div class="input-group">
+                    <input type="text" id="search-input" class="form-control" placeholder="Où voulez vous parler ?"/>
+                    <script src="//cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+                    <script src="//cdn.jsdelivr.net/autocomplete.js/0/autocomplete.min.js"></script>
+                    <script>
+                        var client = algoliasearch("K8XZDO6Z0L", "3c7b64217eed0504d70c7aefc36f880b")
+                        var index = client.initIndex('City_dev');
+                        autocomplete('#search-input', { hint: false }, [
+                            {
+                                source: autocomplete.sources.hits(index, { hitsPerPage: 5 }),
+                                displayKey: 'countryCity',
+                                templates: {
+                                    suggestion: function(suggestion) {
+                                        return suggestion._highlightResult.countryCity.value;
+                                    }
+                                }
+                            }
+                        ]).on('autocomplete:selected', function(event, suggestion, dataset) {
+                            console.log(suggestion, dataset);
+                        });
+                    </script>
+                    <span class="input-group-btn">
+                        <a href="{{path('edu_speak_search',{'id':2})}}">
+                            <button class="btn-default btn btn-edu btn-block" type="button">Partir</button>
+                        </a>
+                    </span>
+                </div>
+            </div>
         </div>
-      </div>
-
-    {#____________________Affichage des langues avec pays____________________#}
-      {% if language %}
-      <div id="choixDestination" class="row">
-          <div class="row col-md-offset-2 col-md-8 text-center">
-            {% set count = citiesSuggested|length %}
-              <h2>Suggestions de villes qui parlent {{ language.name }}</h2>
-              {% for city in citiesSuggested %}
-                  {% if loop.index % count == 0  and count % 2 != 0 %}
-                  <div class="row col-md-12 center-block">
-                      <a class="thumbnail text-center">
-                          <img class="img-responsive center-block" src="{% path city.picture, 'big' %}" alt="{{ city.name }}">
-                          <div class="caption">
-                              <h3>{{ city.name }}</h3>
-                          </div>
-                      </a>
-                  </div>
-                 {% else%}
-                    <div class="row col-md-6 center-block">
-                        <a class="thumbnail text-center">
-                            <img class="img-responsive center-block" src="{% path city.picture, 'big' %}" alt="{{ city.name }}">
-                            <div class="caption">
-                                <h3>{{ city.name }}</h3>
-                            </div>
+        {% if language %}
+        <div id="choixDestination" class="row">
+            <div class="row col-md-offset-2 col-md-8 text-center">
+                {% set count = citiesSuggested|length %}
+                <h2>Suggestions de villes qui parlent {{ language.name }}</h2>
+                {% for city in citiesSuggested %}
+                {% if loop.index % count == 0  and count % 2 != 0 %}
+                <div class="row col-md-12 center-block">
+                    <a class="thumbnail text-center" href="{{path('edu_speak_search',{'id':city.id})}}">
+                        <img class="img-responsive center-block" src="{% path city.picture, 'big' %}" alt="{{ city.name }}">
+                        <div class="caption">
+                            <h3>{{ city.name }}</h3>
+                        </div>
+                    </a>
+                </div>
+                {% else%}
+                <div class="row col-md-6 center-block">
+                    <a class="thumbnail text-center" href="{{path('edu_speak_search',{'id':city.id})}}">
+                        <img class="img-responsive center-block" src="{% path city.picture, 'big' %}" alt="{{ city.name }}">
+                        <div class="caption">
+                            <h3>{{ city.name }}</h3>
+                        </div>
+                    </a>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+            {% else %}
+            {#-------------------UTILISTAEUR NON CONNECTE----------------------------#}
+            <div class="carousel-caption">
+                <p class="slogan">Pratiquez comme si vous y étiez</p>
+                <div class="col-md-12">
+                    <div class="col-md-6 col-xs-6 col-md-offset-3 col-xs-offset-3">
+                        <a class="btn btn-default btn-block btn-lg btn-edu btn-facebook" href="/app.php/login/facebook">
+                            <i class="fa fa-facebook-official"></i> Login with facebook
                         </a>
                     </div>
-                    {% endif %}
-              {% endfor %}
-          </div>
-      </div>
-      {% else %}
-      Pas de language choisi
-      {% endif %}
-
-    {% else %}
-
-    {#-------------------UTILISTAEUR NON CONNECTE----------------------------#}
-
-    {#____________________________Carousel___________________________________#}
-      <div>
-          <a class="more-scroll" href="#Presentation">"Découvrir SpeakIt!"
-              <br><span style="font-size:3em;" class="glyphicon glyphicon-chevron-down text-align" aria-hidden="true"></span>
-          </a>
-      </div>
-    <div class="carousel-caption">
-      <p class="slogan">Pratiquez comme si vous y étiez</p>
-      <div class="col-md-12">
-        <div class="col-md-6 col-xs-6 col-md-offset-3 col-xs-offset-3">
-      <a class="btn btn-default btn-block btn-lg btn-edu btn-facebook" href="/app.php/login/facebook">
-        <i class="fa fa-facebook-official"></i> Login with facebook
-      </a>
-      </div>
-      <div class="col-md-3 col-xs-3 col-md-offset-3 col-xs-offset-3">
-          <a class="btn-default btn btn-edu btn-block btn-lg btn-accueil" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
-</div>
-      <div class="col-md-3 col-xs-3">
-          <a class="btn-default btn btn-edu btn-block btn-lg btn-accueil" href="{{ path('fos_user_registration_register') }}" role="button">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a>
-      </div>
-      </div>
+                    <div class="col-md-3 col-xs-3 col-md-offset-3 col-xs-offset-3">
+                        <a class="btn-default btn btn-edu btn-block btn-lg btn-accueil" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                    </div>
+                    <div class="col-md-3 col-xs-3">
+                        <a class="btn-default btn btn-edu btn-block btn-lg btn-accueil" href="{{ path('fos_user_registration_register') }}" role="button">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+            {% endif %}
+        <script>
+            mixpanel.track("Homepage");
+        </script>
     </div>
-  </div>
-
-  {#_________________________Presentation SpeakIt!___________________________#}
-
-  <div id="Presentation" class="row welcome-panel">
-    <div class="col-md-12 home-row">
-        <h2>Une nouvelle façon d'apprendre</h2>
-    </div>
-    <div class="col-md-12">
-        <div class="col-md-3">
-          <div class="col-md-6">
-                <i class="fa fa-keyboard-o fa-5x"></i>
-                <h4>Partager</h4>
-          </div>
-          <div class="col-md-6">
-                  <p class="edu-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-          </div>
-        </div>
-        <div class="col-md-3">
-            <div class="col-md-6">
-                <i class="fa fa-microphone fa-5x"></i>
-                <h4>Rencontrer</h4>
-            </div>
-            <div class="col-md-6">
-                    <p class="edu-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            </div>
-        </div>
-        <div class="col-md-3">
-          <div class="col-md-6">
-                <i class="fa fa-microphone fa-5x"></i>
-                <h4>Rencontrer</h4>
-              </div>
-          <div class="col-md-6">
-                      <p class="edu-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="col-md-6">
-                <i class="fa fa-microphone fa-5x"></i>
-                <h4>Rencontrer</h4>
-            </div>
-            <div class="col-md-6">
-                    <p class="edu-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            </div>
-        </div>
-
-    </div>
-
-  </div>
-  {% endif %}
-  <script>
-    mixpanel.track("Homepage");
-  </script>
-</div>
-
 {% endblock %}
-
 {% block stylesheets %}
-
 {% endblock %}
