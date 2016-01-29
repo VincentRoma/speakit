@@ -44,65 +44,14 @@
 
         {#____________________CAPTION DU CAROUSSEL____________________#}
         <div class="carousel-caption">
-          <h4>Bonjour {{  app.user.username }}</h4>
-          <h4>Où voulez vous parler aujourd'hui?</h4>
-          <p class="slogan">"pratiquez comme si vous y étiez"</p>
+          <p class="slogan">Pratiquez comme si vous y étiez</p>
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="Partir en...">
+            <input type="text" class="form-control" placeholder="Où voulez vous parler ?">
               <span class="input-group-btn">
-                <button id="porte-button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-down text-align" aria-hidden="true"></span></button>
                   <a href="{{ path('edu_speak_search')}}">
-                  <button class="btn btn-default" type="button">Go!</button>
+                  <button class="btn-default btn btn-edu btn-block" type="button">Partir</button>
                 </a>
               </span>
-          </div>
-          <div id="porte" class="porte">
-            <div class="content">
-              <div class="row filtres">
-                  <form >
-                      <div class="col-md-2 col-xs-2">
-                          <select class="form-control" name="Langues">
-                              <option>Langues</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
-                          </select>
-                      </div>
-                      <div class="col-md-2 col-xs-2">
-                          <select class="form-control" placeholder="Age min">
-                              <option>Age min</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
-                          </select>
-                      </div> <div class="col-md-2 col-xs-2">
-                          <select class="form-control" placeholder="Age min">
-                              <option>Age max</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
-                          </select>
-                      </div>
-                      <div class="col-md-3 col-xs-3">
-                          <div class="checkbox">
-                              <label>
-                                  <input type="checkbox"> Correspondants connectés
-                              </label>
-                          </div>
-                      </div>
-                      <div class="col-md-2 col-xs-2">
-                          <button type="submit" class="btn btn-edu">Appliquer</button>
-                      </div>
-                      <div class="collapse" id="collapseExample">
-                          extension filtre
-                      </div>
-                  </form>
-              </div>
-
-            </div>
           </div>
         </div>
       </div>
@@ -162,8 +111,8 @@
           <a class="btn-default btn btn-edu btn-block btn-lg btn-accueil" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
 </div>
       <div class="col-md-3 col-xs-3">
-          <a class="btn-default btn btn-edu btn-block btn-lg btn-accueil btn-accueil-2" href="{{ path('fos_user_registration_register') }}" role="button">Register</a>
-          </div>
+          <a class="btn-default btn btn-edu btn-block btn-lg btn-accueil" href="{{ path('fos_user_registration_register') }}" role="button">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a>
+      </div>
       </div>
     </div>
   </div>
