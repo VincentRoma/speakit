@@ -3,7 +3,7 @@ edu_speak_profil:
     defaults: { _controller: EduSpeakBundle:Default:profil }
 
 edu_speak_search:
-    path:     /search
+    path:     /search/{id}
     defaults: { _controller: EduSpeakBundle:Match:search }
 
 edu_speak_friend_list:

@@ -11,7 +11,7 @@ class MatchController extends Controller
         return $this->render('EduSpeakBundle:Match:index.html.twig');
     }
 
-    public function searchAction()
+    public function searchAction($id)
     {
         // TODO match with all users
 

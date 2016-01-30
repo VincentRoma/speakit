@@ -9,6 +9,7 @@ use EduSpeakBundle\Entity\User as User;
 use Application\Sonata\MediaBundle\Entity\Media as Media;
 use EduSpeakBundle\Entity\Expertise as Expertise;
 use ChatBundle\Entity\Discussion as Discussion;
+use Algolia\AlgoliaSearchBundle\Mapping\Annotation as Algolia;
 use EduSpeakBundle\Entity\EduAbstract as EduAbstract;
 
 /**
@@ -22,6 +23,8 @@ class City extends EduAbstract
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Algolia\Id
+     * @Algolia\Attribute
      */
     protected $id;
 
@@ -130,6 +133,14 @@ class City extends EduAbstract
     public function setCountry(Country $country)
     {
         $this->country = $country;
+    }
+
+    /**
+     * @Algolia\Attribute
+     */
+    public function getCountryCity()
+    {
+        return $this->getCountry()->getName() . ", " . $this->name;
     }
 
     /**

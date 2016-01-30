@@ -93,6 +93,11 @@ doctrine_phpcr:
             username: admin
             password: admin
 
+# Algolia Configuration
+algolia:
+    application_id: K8XZDO6Z0L
+    api_key: 3c7b64217eed0504d70c7aefc36f880b
+
 # Sonata Media Configuration
 sonata_media:
     # if you don't use default namespace configuration
