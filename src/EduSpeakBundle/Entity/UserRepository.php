@@ -16,13 +16,16 @@ class UserRepository extends EntityRepository
             ->getResult();
     }
 
-    public function findUsersExceptMe($id)
+    public function findUsersCityExceptMe($id, $idCity)
     {
         return $this->getEntityManager()
             ->createQuery(
-                'SELECT u FROM EduSpeakBundle:User u WHERE u.id<>:id'
+                'SELECT u FROM EduSpeakBundle:User u, GeoBundle:City c WHERE u.city=:idCity AND u.id<>:id'
             )
-            ->setParameters(array('id'=>$id))
+            ->setParameters(array(
+                'id'=>$id,
+                'idCity'=>$idCity
+            ))
             ->getResult();
     }
 }
