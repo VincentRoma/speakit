@@ -52,11 +52,12 @@
                                 }
                             }
                         ]).on('autocomplete:selected', function(event, suggestion, dataset) {
+                            $("#btnCity").attr("href", "search/"+suggestion.id);
                             console.log(suggestion, dataset);
                         });
                     </script>
                     <span class="input-group-btn">
-                        <a href="{{path('edu_speak_search',{'id':2})}}">
+                        <a id="btnCity" href="">
                             <button class="btn-default btn btn-edu btn-block" type="button">Partir</button>
                         </a>
                     </span>
