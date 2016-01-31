@@ -85,14 +85,12 @@
                         <li>
                             <h4>Description</h4>
                             <p>
-                                <i>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                </i>
+                                <i>{{ user.description }}</i>
                             </p>
                         </li>
                         <li>
                             <h4>Interests</h4>
-                            <i>Sports, Cinema, Girls</i>
+                            <i>{% for interest in user.interests %}{% if loop.last %}{{ interest.name }}{% else %}{{ interest.name }}, {% endif %}{% endfor %}</i>
                         </li>
                     </ul>
                 </div>
