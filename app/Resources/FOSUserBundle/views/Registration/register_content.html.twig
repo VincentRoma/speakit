@@ -17,5 +17,9 @@
 </div>
 
 <script>
-  mixpanel.track("Register Start");
+    if(window.location.hostname !== 'localhost'){
+        mixpanel.track("Register Start");
+    }else{
+        console.log("fake mixpanel localhost");
+    }
 </script>

@@ -6,7 +6,7 @@ parameters:
     database_user: root
     database_password: null
     mailer_transport: gmail
-    mailer_host:      ~
-    mailer_user:      team@speakit.fr
-    mailer_password:  AZ3.daz3.
+    mailer_host: null
+    mailer_user: team@speakit.fr
+    mailer_password: AZ3.daz3.
     secret: 228de499e2c307869dfa162ff92a994aca872474
