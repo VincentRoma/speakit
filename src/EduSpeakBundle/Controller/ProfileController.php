@@ -22,7 +22,7 @@ class ProfileController extends BaseController
         $user = $this->getUser();
         $image = $user->getWebPath();
         $interests = $user->getInterests();
-
+        $this->accountCompletion();
         return $this->render('FOSUserBundle:Profile:show.html.twig', array(
             'user' => $user,
             'interests' => $interests,
@@ -77,5 +77,21 @@ class ProfileController extends BaseController
             'form' => $form->createView(),
             'image' => $image
         ));
+    }
+
+    /**
+    *  Verify account completion
+    **/
+    public function accountCompletion()
+    {
+        $user = $this->getUser();
+        $image = $user->getWebPath();
+        $interests = $user->getInterests();
+        if(!$image && count($interests)>0){
+            $this->addFlash(
+                'complete',
+                "Your profile isn't complete, you can update it "
+            );
+        }
     }
 }
