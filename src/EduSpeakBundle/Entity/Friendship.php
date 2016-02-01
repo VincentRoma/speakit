@@ -5,8 +5,6 @@ namespace EduSpeakBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use \DateTime;
-use EduSpeakBundle\Entity\EduAbstract as EduAbstract;
 
 /**
  * @ORM\Entity
@@ -28,11 +26,6 @@ class Friendship extends EduAbstract
     protected $friends;
 
     /**
-     * @ORM\Column(type="datetime", name="added_at")
-     */
-    protected $addedAt;
-
-    /**
      * @ORM\Column(type="boolean", name="accepted")
      */
     protected $accepted;
@@ -48,7 +41,6 @@ class Friendship extends EduAbstract
     public function __construct()
     {
         $this->friends = new ArrayCollection();
-        $this->addedAt = new DateTime();
         $this->accepted = false;
         $this->blocked = false;
     }
@@ -61,16 +53,6 @@ class Friendship extends EduAbstract
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Get added at
-     *
-     * @return datetime
-     */
-    public function getAddedAt()
-    {
-        return $this->addedAt;
     }
 
     /**
@@ -163,19 +145,5 @@ class Friendship extends EduAbstract
     public function hasFriend(User $friend)
     {
         return $this->friends->contains($friend);
-    }
-
-    /**
-     * Set addedAt
-     *
-     * @param \DateTime $addedAt
-     *
-     * @return Friendship
-     */
-    public function setAddedAt($addedAt)
-    {
-        $this->addedAt = $addedAt;
-
-        return $this;
     }
 }

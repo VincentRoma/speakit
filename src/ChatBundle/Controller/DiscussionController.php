@@ -15,31 +15,21 @@ class DiscussionController extends Controller
     public function createAction($id)
     {
         $user = $this->getUser();
-        // Get requested user
         $em = $this->getDoctrine()->getManager();
         $invited = $em->getRepository('EduSpeakBundle:User')->findOneById($id);
-        if($invited && $user){
-            $discussion = false;
-            // Check for existing discussion
-            foreach($user->getDiscussions() as $d){
-                foreach($d->getParticipants() as $p) {
-                    if ($invited->getId() == $p->getId()) {
-                        $discussion = $d;
-                    }
-                }
-            }
+        if($invited){
+            $discussion = $user->getDiscussion($invited);
             if($discussion){
                 return $this->redirectToRoute('chat_display', array('id'=>$discussion->getId()));
             }else {
-                // Create new discussion
                 $discussion = new Discussion();
                 $token1 = rand(1000,9999);
                 $token2 = rand(1000,9999);
                 $token3 = rand(1000,9999);
                 $token = $token1.'-'.$token2.'-'.$token3;
-                //Add Participants
                 $discussion = $discussion->addParticipant($user);
                 $discussion = $discussion->addParticipant($invited);
+                $discussion->setCity($invited->getCity());
                 $discussion->setToken($token);
                 $invited->addDiscussion($discussion);
                 $user->addDiscussion($discussion);
