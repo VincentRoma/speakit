@@ -1,20 +1,22 @@
 {% extends 'base.html.twig' %}
 {% block body %}
 <div id="edu-match" class="content">
-    <!------------ FILTRES -------------->
+    {% if matchedUsers is defined %}
     <div class="row filtres">
         <form >
             <div class="col-md-2 col-xs-2">
-                <select class="form-control" name="learnLanguages">
-                    {% for learnLanguage in learnLanguages %}
-                    <option value="{{ learnLanguage.id }}">{{ learnLanguage.name }}</option>
+                langues parlées
+                <select class="form-control" name="spokenLanguages">
+                    {% for spokenLanguage in spokenLanguages %}
+                        <option value="{{ spokenLanguage.id }}">{{ spokenLanguage.name }}</option>
                     {% endfor %}
                 </select>
             </div>
             <div class="col-md-2 col-xs-2">
-                <select class="form-control" name="spokenLanguages">
-                    {% for spokenLanguage in spokenLanguages %}
-                    <option value="{{ spokenLanguage.id }}">{{ spokenLanguage.name }}</option>
+                langues à apprendre
+                <select class="form-control" name="learnLanguages">
+                    {% for learnLanguage in learnLanguages %}
+                    <option value="{{ learnLanguage.id }}">{{ learnLanguage.name }}</option>
                     {% endfor %}
                 </select>
             </div>
@@ -39,9 +41,8 @@
         </form>
     </div>
 
-    <div class="row content">
-        <h1 style="text-align: center">{{ city.countryCity }}</h1>
-        {% if matchedUsers is defined %}
+    <div id="match-background" class="row content">
+        <h1 class="title">{{ city.countryCity }}</h1>
         <div class="col-md-9 col-xs-8 list-friends">
             <div class="row">
                 <div class="col-md-12 col-xs-12">
@@ -74,15 +75,16 @@
             </div>
         </div>
         {% else %}
-            <div class="col-md-9 col-xs-9 list-friends">
-                <div class="row">
-                    <div class="col-md-12 col-xs-12">
-                        <h3 class="friends-empty">No one suits your request</h3>
-                    </div>
-                </div>
-            </div>
+        <div class="row content">
+            <h1 class="title">{{ city.countryCity }}</h1>
+            <h3 class="title friends-empty">No one suits your request</h3>
         </div>
         {% endif %}
+        <script>
+            $( document ).ready(function() {
+                $("#match-background").css("background-image", "url({% path city.picture, 'big' %})");
+            });
+        </script>
     </div>
 </div>
 {% endblock %}

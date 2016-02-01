@@ -639,6 +639,62 @@ class User extends BaseUser
     }
 
     /**
+     * Has friend
+     *
+     * @param User $user
+     *
+     * @return bool
+     */
+    public function hasFriend(User $user)
+    {
+        $bool = false;
+        foreach($this->getFriendships() as $friendships){
+            foreach($friendships->getFriends() as $friend) {
+                if ($user->getId() == $friend->getId()) {
+                    $bool = true;
+                }
+            }
+        }
+        return $bool;
+    }
+
+    /**
+     * get discussion
+     *
+     * @param User $user
+     *
+     * @return bool
+     */
+    public function getDiscussion(User $user)
+    {
+        foreach($this->getDiscussions() as $discussion){
+            foreach($discussion->getParticipants() as $participant) {
+                if ($user->getId() == $participant->getId()) {
+                    return $discussion;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Get visited cities
+     *
+     * @return Collection City
+     */
+    public function getVisitedCities()
+    {
+        $visitedCities = new ArrayCollection();
+        foreach($this->getDiscussions() as $discussion){
+            $city = $discussion->getCity();
+            if ($city != $this->getCity()) {
+                $visitedCities->add($city);
+            }
+        }
+        return $visitedCities;
+    }
+
+    /**
      * Add discussion
      *
      * @param Discussion $discussion
