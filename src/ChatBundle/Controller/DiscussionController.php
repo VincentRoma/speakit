@@ -33,10 +33,13 @@ class DiscussionController extends Controller
             }else {
                 // Create new discussion
                 $discussion = new Discussion();
-                $token1 = rand(1000,9999);
-                $token2 = rand(1000,9999);
-                $token3 = rand(1000,9999);
-                $token = $token1.'-'.$token2.'-'.$token3;
+
+                // Verify Token Unicity
+                $token = $this->generateToken();
+                while(!$this->verifyToken($token)){
+                    $token = $this->generateToken();
+                }
+
                 //Add Participants
                 $discussion = $discussion->addParticipant($user);
                 $discussion = $discussion->addParticipant($invited);
@@ -91,5 +94,23 @@ class DiscussionController extends Controller
         }else{
             return $this->render('ChatBundle:Discussion:discussion_fail.html.twig');
         }
+    }
+
+    private function generateToken()
+    {
+        $token1 = rand(1000,9999);
+        $token2 = rand(1000,9999);
+        $token3 = rand(1000,9999);
+        $token = md5($token1.'-'.$token2.'-'.$token3);
+        return $token;
+    }
+
+    private function verifyToken($token)
+    {
+        $em = $this->getDoctrine()->getManager();
+        if(!$em->getRepository('ChatBundle:Discussion')->findByToken($token)){
+            return true;
+        }
+        return false;
     }
 }

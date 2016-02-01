@@ -114,7 +114,11 @@
         </div>
             {% endif %}
         <script>
-            mixpanel.track("Homepage");
+            if(window.location.hostname !== 'localhost'){
+                mixpanel.track("Homepage");
+            }else{
+                console.log("fake mixpanel localhost");
+            }
         </script>
     </div>
 {% endblock %}
