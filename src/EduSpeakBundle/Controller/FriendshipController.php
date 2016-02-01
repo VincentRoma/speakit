@@ -16,33 +16,20 @@ class FriendshipController extends Controller
     public function createAction($id)
     {
         $user = $this->getUser();
-        // Get requested user
         $em = $this->getDoctrine()->getManager();
         $invited = $em->getRepository('EduSpeakBundle:User')->findOneById($id);
         if($invited){
-            $friendship = false;
-            // Check for existing discussion
-            foreach($user->getFriendships() as $d){
-                foreach($d->getFriends() as $p) {
-                    if ($invited->getId() == $p->getId()) {
-                        $friendship = $d;
-                    }
-                }
-            }
-            if($friendship){
+            if($user->hasFriend($invited)){
                 return $this->redirectToRoute('edu_speak_friend_list');
             }else {
-                // Create new friendship
                 $friendship = new Friendship();
-
-                //Add Friends
                 $friendship = $friendship->addFriend($user);
                 $friendship = $friendship->addFriend($invited);
                 $invited->addFriendship($friendship);
                 $user->addFriendship($friendship);
                 $em->persist($friendship);
                 $em->flush();
-
+                // ne pas retourner sur la liste d'amis
                 return $this->redirectToRoute('edu_speak_friend_list');
             }
         }else{

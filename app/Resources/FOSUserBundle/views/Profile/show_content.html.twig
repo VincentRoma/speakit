@@ -15,126 +15,119 @@
                 <div class="row">
                     <h3 class="profil-name">{{ user.username }}</h3>
                 </div>
-                <hr>
-                <div class="row profil-icon">
-                    <i class="fa fa-envelope-o fa-2x col-md-6"></i>
-                    <a href="{{ path('edu_speak_add_friend',{'id':user.id})}}"><i class="fa fa-user-plus fa-2x col-md-6"></i></a>
-                </div>
-                <hr>
+                {% if app.user.id == user.id %}
                 <div class="row">
                     <a class="btn btn-default btn-edu" href="{{ path('fos_user_profile_edit') }}">Modifier mon profil</a>
                 </div>
+                {% else %}
+                <div class="row profil-icon">
+                    {% if isFriend %}
+                    <a href="{{path('chat_create',{'id':user.id})}}"><i class="fa fa-envelope-o fa-2x col-md-12"></i></a>
+                    {% else %}
+                    <a href="{{path('chat_create',{'id':user.id})}}"><i class="fa fa-envelope-o fa-2x col-md-6"></i></a>
+                    <a href="{{ path('edu_speak_add_friend',{'id':user.id})}}"><i class="fa fa-user-plus fa-2x col-md-6"></i></a>
+                    {% endif %}
+                </div>
+                {% endif %}
             </div>
         </div>
         <div class="col-md-8 col-md-offset-1 col-xs-6 col-xs-offset-3 profil-listing">
             <div class="container">
                 <div class="row">
+                    {% if user.spokenLanguages is not empty %}
                     <div class="col-md-12 col-xs-12 profil-language">
                         <h4>I can speak</h4>
                         <ul>
+                            {% for spokenLanguage in user.spokenLanguages %}
                             <li>
                                 <div class="country-snippet">
-                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Civil_and_Naval_Ensign_of_France.svg/2000px-Civil_and_Naval_Ensign_of_France.svg.png" alt="Français" />
+                                    <img src="{% path spokenLanguage.flag, 'small' %}" alt="{{ spokenLanguage.name }}">
                                 </div>
+                                {{ spokenLanguage.name }}
                             </li>
+                            {% endfor %}
                         </ul>
                     </div>
+                    {% endif %}
+                    {% if user.learnLanguage is not null %}
                     <div class="col-md-12 col-xs-12 profil-language">
                         <h4>I wish to speak</h4>
                         <ul>
                             <li>
                                 <div class="country-snippet">
-                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Union_flag_1606_(Kings_Colors).svg/2000px-Union_flag_1606_(Kings_Colors).svg.png" alt="Français" />
+                                    <img src="{% path user.learnLanguage.flag, 'small' %}" alt="{{ user.learnLanguage.name }}">
                                 </div>
-                            </li>
-                            <li>
-                                <div class="country-snippet">
-                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Flag_of_Spain_(1785-1873_and_1875-1931).svg/2000px-Flag_of_Spain_(1785-1873_and_1875-1931).svg.png" alt="Français" />
-                                </div>
+                                {{ user.learnLanguage.name }}
                             </li>
                         </ul>
-                        </div>
                     </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
     </div>
     <div id="edu-profile-row" class="container">
         <div class="row">
+            {% if user.city is not null and user.birthday is not null %}
             <div class="col-md-2 col-xs-2">
                 <div class="profil-details">
                     <ul>
+                        {% if user.birthday %}
                         <li>
                             <h4>Age</h4>
                             <i>{{ user.age }}</i>
                         </li>
+                        {% endif %}
+                        {% if user.city %}
                         <li>
                             <h4>City</h4>
-                            <i>{{ user.city }}</i>
+                            <i>{{ user.city.countryCity }}</i>
                         </li>
-                        <li>
-                            <h4>Country</h4>
-                            <i>{{ user.country }}</i>
-                        </li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
+            {% endif %}
+            {% if user.interests is not empty and user.description is not null %}
             <div class="col-md-5 col-xs-5">
                 <div class="profil-details">
                     <ul>
+                        {% if user.description %}
                         <li>
                             <h4>Description</h4>
                             <p>
                                 <i>{{ user.description }}</i>
                             </p>
                         </li>
+                        {% endif %}
+                        {% if user.interests is not empty %}
                         <li>
                             <h4>Interests</h4>
                             <i>{% for interest in user.interests %}{% if loop.last %}{{ interest.name }}{% else %}{{ interest.name }}, {% endif %}{% endfor %}</i>
                         </li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
+            {% endif %}
+            {% if user.visitedCities is not empty %}
             <div class="col-md-5 col-xs-5">
                 <div class="profil-details row">
                     <ul>
                         <li class="col-md-6 col-xs-6">
-                            <h4>Reward</h4>
-                            <ul>
-                                <li>
-                                    <i>Expert Mahattan!</i>
-                                </li>
-                                <li>
-                                    <i>First Conversation!</i>
-                                </li>
-                                <li>
-                                    <i>Reach 20 Friends!</i>
-                                </li>
-                                <li>
-                                    <i>Work with Duch!</i>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="col-md-6 col-xs-6">
-                            <h4>Visited Countries</h4>
+                            <h4>Visited Cities</h4>
                             <ul class="visited-list">
+                                {% for city in user.visitedCities %}
                                 <li>
-                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Civil_and_Naval_Ensign_of_France.svg/2000px-Civil_and_Naval_Ensign_of_France.svg.png" />
-                                    France
+                                    <img src="{% path city.country.flag, 'small' %}" alt="{{ city.countryCity }}"> {{ city.countryCity }}
                                 </li>
-                                <li>
-                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Union_flag_1606_(Kings_Colors).svg/2000px-Union_flag_1606_(Kings_Colors).svg.png" alt="Français" />
-                                    England
-                                </li>
-                                <li>
-                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Flag_of_Spain_(1785-1873_and_1875-1931).svg/2000px-Flag_of_Spain_(1785-1873_and_1875-1931).svg.png" alt="Français" />
-                                    Spain
-                                </li>
+                                {% endfor %}
                             </ul>
                         </li>
                     </ul>
                 </div>
             </div>
+            {% endif %}
         </div>
     </div>
 </div>
