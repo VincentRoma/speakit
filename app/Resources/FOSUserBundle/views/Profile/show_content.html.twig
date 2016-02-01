@@ -131,3 +131,10 @@
         </div>
     </div>
 </div>
+<script>
+    if(window.location.hostname !== 'localhost'){
+        mixpanel.track("Profile "+{{user.username}});
+    }else{
+        console.log("fake mixpanel localhost");
+    }
+</script>
