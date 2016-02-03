@@ -100,7 +100,13 @@
         var id_user = {{ app.user.id }};
         var channel = '{{discussion.token}}';
         var connected = false;
-        var URL = 'http://localhost:8000/app_dev.php';
+        if(window.location.hostname === 'localhost'){
+            var URL = 'http://localhost:8000/app_dev.php';
+        }else if(window.location.hostname === 'beta.speakit.fr'){
+            var URL = 'https://beta.speakit.fr/app.php'
+        }else if(window.location.hostname === 'speakit.fr'){
+            var URL = 'http://speakit.fr/app.php'
+        }
 
         var phone = PHONE({
             number        : channel+'-'+{{app.user.id}},
