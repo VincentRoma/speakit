@@ -4,7 +4,7 @@
     {% if matchedUsers is defined %}
     <div class="row filtres">
         <form >
-            <div class="col-md-2 col-xs-2">
+            {#<div class="col-md-2 col-xs-2">
                 langues parlées
                 <select class="form-control" name="spokenLanguages">
                     {% for spokenLanguage in spokenLanguages %}
@@ -15,34 +15,44 @@
                     {% endif %}
                     {% endfor %}
                 </select>
+            </div>#}
+            <div class="col-md-2 col-xs-2">
+                langues parlées
+                <select class="form-control" name="spokenLanguages">
+                    <option value="">All</option>
+                    {% for spokenLanguage in spokenLanguages %}
+                        <option value="{{ spokenLanguage.id }}">{{ spokenLanguage.name }}</option>
+                    {% endfor %}
+                </select>
             </div>
             <div class="col-md-2 col-xs-2">
                 langues à apprendre
                 <select class="form-control" name="learnLanguages">
-                    <option disabled selected="selected"></option>
+                    <option value="">All</option>
                     {% for learnLanguage in learnLanguages %}
                     <option value="{{ learnLanguage.id }}">{{ learnLanguage.name }}</option>
                     {% endfor %}
                 </select>
             </div>
             <div class="col-md-2 col-xs-2">
-                Age <b>{{ ageMin }}</b>
-                <input id="age" type="text" class="span2" value="" data-slider-min="{{ ageMin }}" data-slider-max="{{ ageMax }}" data-slider-step="1" data-slider-value="[{{ ageMin }},{{ ageMax }}]"/>
-                <b>{{ ageMax }}</b>
+                age
+                <select class="form-control" name="learnLanguages">
+                    <option value="">All</option>
+                    {% for age in ageMin..ageMax %}
+                        <option value="{{ age }}">{{ age }}</option>
+                    {% endfor %}
+                </select>
             </div>
-            <div class="col-md-3 col-xs-3">
+            <div class="col-md-2 col-xs-2">
+                <button type="submit" class="btn btn-edu">Appliquer les filtres</button>
+            </div>
+            {#<div class="col-md-3 col-xs-3">
                 <div class="checkbox">
                     <label>
                         <input type="checkbox"> Correspondants connectés
                     </label>
                 </div>
-            </div>
-            <div class="col-md-2 col-xs-2">
-                <button type="submit" class="btn btn-edu">Appliquer les filtres</button>
-            </div>
-            <div class="collapse" id="collapseExample">
-                extension filtre
-            </div>
+            </div>#}
         </form>
     </div>
 
