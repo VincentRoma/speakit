@@ -84,7 +84,8 @@
 {{ form_end(form) }}
 <script>
     if(window.location.hostname !== 'localhost'){
-        mixpanel.track("Profile Edit "+{{user.username}});
+        console.log(window.location.hostname)
+        mixpanel.track("Profile Edit "+{{app.user.username}});
     }else{
         console.log("fake mixpanel localhost");
     }
