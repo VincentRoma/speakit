@@ -23,10 +23,12 @@ class ProfileController extends BaseController
         $image = $user->getWebPath();
         $interests = $user->getInterests();
         $this->accountCompletion();
+        $news = $this->getCurrentActivity();
         return $this->render('FOSUserBundle:Profile:show.html.twig', array(
             'user' => $user,
             'interests' => $interests,
-            'image' => $image
+            'image' => $image,
+            'news' => $news
         ));
     }
 
@@ -93,5 +95,10 @@ class ProfileController extends BaseController
                 "Your profile isn't complete, you can update it "
             );
         }
+    }
+
+    public function getCurrentActivity()
+    {
+        $user = $this->getUser();
     }
 }
