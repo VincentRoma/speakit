@@ -90,9 +90,11 @@
     (function(){
         "use strict";
         var PUBNUB_demo = PUBNUB.init({
-            publish_key: 'pub-c-43fee2d2-8fc4-4b00-b424-dd315210e2c2',
-            subscribe_key: 'sub-c-aca4aeda-be98-11e5-8408-0619f8945a4f',
-            secret_key: 'sec-c-YzZhYjVmMTgtYjJmZS00ZTVlLTkwMTMtNWVhZTgyYWEzOTY0'
+            publish_key   : 'pub-c-43fee2d2-8fc4-4b00-b424-dd315210e2c2',
+            subscribe_key : 'sub-c-aca4aeda-be98-11e5-8408-0619f8945a4f',
+            secret_key    : 'sec-c-YzZhYjVmMTgtYjJmZS00ZTVlLTkwMTMtNWVhZTgyYWEzOTY0',
+            media         : { audio : true, video : true },
+            ssl           : true
         });
 
         var id_user = {{ app.user.id }};
@@ -104,7 +106,7 @@
             number        : channel+'-'+{{app.user.id}},
             publish_key   : 'pub-c-43fee2d2-8fc4-4b00-b424-dd315210e2c2',
             subscribe_key : 'sub-c-aca4aeda-be98-11e5-8408-0619f8945a4f',
-            secret_key: 'sec-c-YzZhYjVmMTgtYjJmZS00ZTVlLTkwMTMtNWVhZTgyYWEzOTY0',
+            secret_key    : 'sec-c-YzZhYjVmMTgtYjJmZS00ZTVlLTkwMTMtNWVhZTgyYWEzOTY0',
             media         : { audio : true, video : true },
             ssl           : true
         });
@@ -132,7 +134,6 @@
         PUBNUB_demo.subscribe({
             channel: channel,
             message: function(m){
-                console.log(m);
                 if(m.connected){
                     connected = true;
                     $('.fa-circle-o').removeClass("fa-circle-o").addClass("fa-circle");
