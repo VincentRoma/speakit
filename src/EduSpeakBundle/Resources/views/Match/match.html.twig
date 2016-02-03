@@ -8,13 +8,18 @@
                 langues parlées
                 <select class="form-control" name="spokenLanguages">
                     {% for spokenLanguage in spokenLanguages %}
-                        <option value="{{ spokenLanguage.id }}">{{ spokenLanguage.name }}</option>
+                    {% if city.country.language == spokenLanguage %}
+                    <option value="{{ spokenLanguage.id }}" selected="selected">{{ spokenLanguage.name }}</option>
+                    {% else %}
+                    <option value="{{ spokenLanguage.id }}">{{ spokenLanguage.name }}</option>
+                    {% endif %}
                     {% endfor %}
                 </select>
             </div>
             <div class="col-md-2 col-xs-2">
                 langues à apprendre
                 <select class="form-control" name="learnLanguages">
+                    <option disabled selected="selected"></option>
                     {% for learnLanguage in learnLanguages %}
                     <option value="{{ learnLanguage.id }}">{{ learnLanguage.name }}</option>
                     {% endfor %}
