@@ -53,6 +53,7 @@
                             }
                         ]).on('autocomplete:selected', function(event, suggestion, dataset) {
                             $("#btnCity").attr("href", "search/"+suggestion.id);
+                            $('#btnCity')[0].click();
                             console.log(suggestion, dataset);
                         });
                     </script>
