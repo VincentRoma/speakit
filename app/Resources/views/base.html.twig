@@ -45,7 +45,7 @@
                             <!-- Collect the nav links, forms, and other content for toggling -->
                             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                                 <ul class="nav navbar-nav navbar-right navbar-dropdown-profil">
-                                    <li><a href="#">Choisir une destination</a></li>
+                                    <li><a href="/">Choisir une destination</a></li>
                                     <li><a href="{{ path('chat_list') }}">Mes lettres</a></li>
                                     <li><a href="{{ path('edu_speak_friend_list') }}">Mes compagnons</a></li>
                                     <li class="dropdown">
@@ -61,9 +61,6 @@
                                         </a>
                                         <ul class="dropdown-menu">
                                             <li><a href="{{ path('fos_user_profile_show')}}"><div class="hover-item__content">Mon passeport</div></a></li>
-                                            <li><a href="#"><div class="hover-item__content">Paramètres</div></a></li>
-                                            <li><a href="#"><div class="hover-item__content">F.A.Q</div></a></li>
-                                            <li><a href="#"><div class="hover-item__content">Contactez-nous</div></a></li>
                                             <li><a href="{{ path('fos_user_security_logout') }}"><div class="hover-item__content">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</div></a></li>
                                         </ul>
                                     </li>
