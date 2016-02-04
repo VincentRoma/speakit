@@ -81,6 +81,19 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                {% for result in news %}
+                <div class="col-md-3">
+                    <div class="thumbnail">
+                        <img src="{{result.image.url}}" alt="{{result.title}}">
+                        <div class="caption">
+                            <h3>{{result.title | raw}}</h3>
+                            <p>{{result.content | raw}}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
     <script src="https://cdn.pubnub.com/pubnub.min.js"></script>

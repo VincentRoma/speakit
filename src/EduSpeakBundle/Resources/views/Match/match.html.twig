@@ -39,7 +39,9 @@
     </div>
 
     <div id="match-background" class="row content">
-        <h1 class="title">{{ city.countryCity }}</h1>
+        <div class="col-md-12">
+            <h1 class="title">{{ city.countryCity }}</h1>
+        </div>
         <div class="col-md-9 col-xs-8 list-friends">
             <div class="row">
                 <div class="col-md-12 col-xs-12">
@@ -71,17 +73,30 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-3">
+            {% for result in news %}
+            <div class="col-md-12">
+                <div class="thumbnail">
+                    <img src="{{result.image.url}}" alt="{{result.title}}">
+                    <div class="caption">
+                        <h3>{{result.title | raw}}</h3>
+                        <p>{{result.content | raw}}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
         {% else %}
         <div class="row content">
             <h1 class="title">{{ city.countryCity }}</h1>
             <h3 class="title friends-empty">Personne dans cette ville</h3>
         </div>
         {% endif %}
-        <script>
+        {# <script>
             $( document ).ready(function() {
                 $("#match-background").css("background-image", "url({% path city.picture, 'big' %})");
             });
-        </script>
+        </script>#}
     </div>
 </div>
 {% endblock %}

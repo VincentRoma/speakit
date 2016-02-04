@@ -47,10 +47,10 @@ class UserProvider extends FOSUBUserProvider
      */
     public function loadUserByOAuthUserResponse(UserResponseInterface $response)
     {
-        $username = $response->getUsername();
+        $username = $response->getAccessToken();
         $user = $this->userManager->findUserBy(array("username" => $username));
         //when the user is registrating
-        if (null === $user) {
+        if (!$user) {
             $service = $response->getResourceOwner()->getName();
             $setter = 'set'.ucfirst($service);
             $setter_id = $setter.'Id';
@@ -61,9 +61,9 @@ class UserProvider extends FOSUBUserProvider
             $user->$setter_token($response->getAccessToken());
             //I have set all requested data with the user's username
             //modify here with relevant data
-            $user->setUsername($username);
-            $user->setEmail($username);
-            $user->setPassword($username);
+            $user->setUsername("temp".rand());
+            $user->setEmail("temp".rand());
+            $user->setPassword("");
             $user->setEnabled(true);
             $this->userManager->updateUser($user);
             return $user;
