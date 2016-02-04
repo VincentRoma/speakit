@@ -44,7 +44,7 @@ class MatchController extends Controller
                     }
                 }
             }
-            $news = get_news($city);
+            $news = $this->get_news($city);
             return $this->render('EduSpeakBundle:Match:match.html.twig', array(
                 'matchedUsers' => $matchedUsers,
                 'city' => $city,
@@ -68,13 +68,14 @@ class MatchController extends Controller
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_REFERER, /* Enter the URL of your site here */);
+        curl_setopt($ch, CURLOPT_REFERER, "beta.speakit.fr");
         $body = curl_exec($ch);
         curl_close($ch);
 
         // now, process the JSON string
+        //["GsearchResultClass"]=> string(11) "GnewsSearch" ["clusterUrl"]=> string(80) "http://news.google.com/news/story?ncl=dai0V4L4QeRy4wMQLml1SerFDLW9M&hl=en&ned=us" ["content"]=
         $json = json_decode($body);
-        // now have some fun with the results...
-        return $json;
+
+        return $json->responseData->results;
     }
 }

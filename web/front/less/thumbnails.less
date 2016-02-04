@@ -6,9 +6,6 @@
 // Mixin and adjust the regular image class
 .thumbnail {
   display: block;
-  //AJOUTER PAR ANTOINE
-  position: relative;
-  //Fin de L'ajout
   padding: @thumbnail-padding;
   margin-bottom: @line-height-computed;
   line-height: @line-height-base;
@@ -30,13 +27,4 @@
   a&.active {
     border-color: @link-color;
   }
-  // Image captions
-  .caption {
-    color: white;
-    position: absolute;
-    top: 45%;
-    left: 0;
-    width: 100%;
-  }
-
 }
