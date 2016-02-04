@@ -30,6 +30,11 @@ class Language extends EduAbstract
     protected $name;
 
     /**
+     * @ORM\Column(type="string", length=10)
+     */
+    protected $zone;
+
+    /**
      * @ORM\OneToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media")
      */
     private $flag;
@@ -109,6 +114,26 @@ class Language extends EduAbstract
     public function setName($name)
     {
         $this->name = $name;
+    }
+
+    /**
+     * Get zone
+     *
+     * @return string
+     */
+    public function getZone()
+    {
+        return $this->zone;
+    }
+
+    /**
+     * Set zone
+     *
+     * @param string $zone
+     */
+    public function setZone($zone)
+    {
+        $this->zone = $zone;
     }
 
     /**

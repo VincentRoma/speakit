@@ -14,6 +14,10 @@ edu_speak_add_friend:
     path:     /friend/{id}
     defaults: { _controller: EduSpeakBundle:Friendship:create }
 
+edu_speak_premium:
+    path:     /premium
+    defaults: { _controller: EduSpeakBundle:Default:premium }
+
 edu_speak_homepage:
     path:     /
     defaults: { _controller: EduSpeakBundle:Default:index }

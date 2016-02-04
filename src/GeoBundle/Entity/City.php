@@ -126,6 +126,16 @@ class City extends EduAbstract
     }
 
     /**
+     * Get zone
+     *
+     * @return string
+     */
+    public function getZone()
+    {
+        return $this->country->getLanguage()->getZone();
+    }
+
+    /**
      * Set country
      *
      * @param Country $country
