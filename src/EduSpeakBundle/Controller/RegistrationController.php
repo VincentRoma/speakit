@@ -45,7 +45,7 @@ class RegistrationController extends BaseController
             $userManager->updateUser($user);
 
             if (null === $response = $event->getResponse()) {
-                $url = $this->generateUrl('fos_user_registration_confirmed');
+                $url = $this->generateUrl('fos_user_profile_edit');
                 $response = new RedirectResponse($url);
             }
 
@@ -63,6 +63,6 @@ class RegistrationController extends BaseController
      */
     public function confirmedAction()
     {
-        return $this->redirectToRoute('fos_user_profile_show');
+        return $this->redirectToRoute('fos_user_profile_edit');
     }
 }
