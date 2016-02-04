@@ -2,41 +2,38 @@
 {% block body %}
 <div id="edu-match" class="content">
     {% if matchedUsers is defined %}
-    <div class="row filtres">
-        <form >
-            <div class="col-md-2 col-xs-2">
-                langues parlées
+    <div class="row filter">
+        <form>
+            <div class="col-md-4 filter-label">
+                <label>Langues parlées</label>
                 <select class="form-control" name="spokenLanguages">
+                    <option value="">All</option>
                     {% for spokenLanguage in spokenLanguages %}
-                        <option value="{{ spokenLanguage.id }}">{{ spokenLanguage.name }}</option>
+                    {% if city.country.language == spokenLanguage %}
+                    <option value="{{ spokenLanguage.id }}" selected="selected">{{ spokenLanguage.name }}</option>
+                    {% else %}
+                    <option value="{{ spokenLanguage.id }}">{{ spokenLanguage.name }}</option>
+                    {% endif %}
                     {% endfor %}
                 </select>
             </div>
-            <div class="col-md-2 col-xs-2">
-                langues à apprendre
+            <div class="col-md-4 filter-label">
+                <label>Langues à apprendre</label>
                 <select class="form-control" name="learnLanguages">
+                    <option value="">All</option>
                     {% for learnLanguage in learnLanguages %}
                     <option value="{{ learnLanguage.id }}">{{ learnLanguage.name }}</option>
                     {% endfor %}
                 </select>
             </div>
-            <div class="col-md-2 col-xs-2">
-                Age <b>{{ ageMin }}</b>
-                <input id="age" type="text" class="span2" value="" data-slider-min="{{ ageMin }}" data-slider-max="{{ ageMax }}" data-slider-step="1" data-slider-value="[{{ ageMin }},{{ ageMax }}]"/>
-                <b>{{ ageMax }}</b>
-            </div>
-            <div class="col-md-3 col-xs-3">
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox"> Correspondants connectés
-                    </label>
-                </div>
-            </div>
-            <div class="col-md-2 col-xs-2">
-                <button type="submit" class="btn btn-edu">Appliquer les filtres</button>
-            </div>
-            <div class="collapse" id="collapseExample">
-                extension filtre
+            <div class="col-md-4 filter-label">
+                <label>Age</label>
+                <select class="form-control" name="learnLanguages">
+                    <option value="">All</option>
+                    {% for age in ageMin..ageMax %}
+                        <option value="{{ age }}">{{ age }}</option>
+                    {% endfor %}
+                </select>
             </div>
         </form>
     </div>
