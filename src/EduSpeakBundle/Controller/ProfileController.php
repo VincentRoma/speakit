@@ -101,9 +101,5 @@ class ProfileController extends BaseController
     {
         $news = array();
         $user = $this->getUser();
-        if($user->getLastLogin())
-        {
-            array_push($news, 'Last activity:'.$user->getLastLogin());
-        }
     }
 }

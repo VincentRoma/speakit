@@ -42,6 +42,16 @@ class FriendshipController extends Controller
         $user = $this->getUser();
         $friends = new ArrayCollection();
         $friendships = $user->getFriendships()->toArray();
+        $citiesSuggested = new ArrayCollection();
+        $em = $this->getDoctrine()->getManager();
+        $countrySuggested = $em->getRepository('GeoBundle:Country')->findByLanguage($this->getUser()->getLearnLanguage());
+
+        foreach($countrySuggested as $country){
+            foreach($country->getCities() as $city){
+                $citiesSuggested->add($city);
+            }
+        }
+
         foreach($friendships as $friendship){
             foreach($friendship->getFriends() as $friend) {
                 if ($friend->getId() != $user->getId()) {
@@ -49,7 +59,7 @@ class FriendshipController extends Controller
                 }
             }
         }
-        return $this->render('EduSpeakBundle:Friendship:friends.html.twig', array('friends' => $friends));
+        return $this->render('EduSpeakBundle:Friendship:friends.html.twig', array('friends' => $friends, 'citiesSuggested'=>$citiesSuggested));
     }
 
     public function displayAction($id)

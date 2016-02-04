@@ -75,13 +75,20 @@ class DiscussionController extends Controller
         $user = $this->getUser();
         $receiver = null;
         $discussions = $user->getDiscussions()->toArray();
-        foreach ($discussion->getParticipants() as $participant) {
-            if($participant->getId() !== $user->getId()){
-                $receiver = $participant;
-            }
-        }
         if($discussion){
-            return $this->render('ChatBundle:Discussion:discussion.html.twig', array('discussion' => $discussion, 'discussions' => $discussions, 'receiver' => $receiver));
+            foreach ($discussion->getParticipants() as $participant) {
+                if($participant->getId() !== $user->getId()){
+                    $receiver = $participant;
+                }
+            }
+            $news = $this->get_news($discussion->getCity());
+
+            return $this->render('ChatBundle:Discussion:discussion.html.twig', array(
+                'discussion' => $discussion,
+                'discussions' => $discussions,
+                'receiver' => $receiver,
+                'news' => $news
+            ));
         }else{
             return $this->render('ChatBundle:Discussion:discussion_fail.html.twig');
         }
@@ -103,5 +110,24 @@ class DiscussionController extends Controller
             return true;
         }
         return false;
+    }
+
+    public function get_news($city){
+        $url = "https://ajax.googleapis.com/ajax/services/search/news?v=1.0&q=".$city->getName()."&hl=".$city->getZone();
+
+        // sendRequest
+        // note how referer is set manually
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_REFERER, "beta.speakit.fr");
+        $body = curl_exec($ch);
+        curl_close($ch);
+
+        // now, process the JSON string
+        //["GsearchResultClass"]=> string(11) "GnewsSearch" ["clusterUrl"]=> string(80) "http://news.google.com/news/story?ncl=dai0V4L4QeRy4wMQLml1SerFDLW9M&hl=en&ned=us" ["content"]=
+        $json = json_decode($body);
+
+        return $json->responseData->results;
     }
 }

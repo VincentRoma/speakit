@@ -28,6 +28,11 @@ class Interest extends EduAbstract
     protected $name;
 
     /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    protected $icon;
+
+    /**
      * @ORM\ManyToMany(targetEntity="EduSpeakBundle\Entity\User", mappedBy="interests")
      */
     protected $interested_users;
@@ -120,5 +125,29 @@ class Interest extends EduAbstract
     public function hasInterestedUser(User $interested_user)
     {
         return $this->interested_users->contains($interested_user);
+    }
+
+    /**
+     * Set icon
+     *
+     * @param string $icon
+     *
+     * @return Interest
+     */
+    public function setIcon($icon)
+    {
+        $this->icon = $icon;
+
+        return $this;
+    }
+
+    /**
+     * Get icon
+     *
+     * @return string
+     */
+    public function getIcon()
+    {
+        return $this->icon;
     }
 }

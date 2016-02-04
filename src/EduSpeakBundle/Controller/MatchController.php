@@ -44,18 +44,38 @@ class MatchController extends Controller
                     }
                 }
             }
-
+            $news = $this->get_news($city);
             return $this->render('EduSpeakBundle:Match:match.html.twig', array(
                 'matchedUsers' => $matchedUsers,
                 'city' => $city,
                 'ageMax' => $ageMax,
                 'ageMin' => $ageMin,
                 'learnLanguages' => $learnLanguages,
-                'spokenLanguages' => $spokenLanguages
+                'spokenLanguages' => $spokenLanguages,
+                'news' => $news
             ));
         }
         return $this->render('EduSpeakBundle:Match:match.html.twig', array(
             'city' => $city
         ));
+    }
+
+    public function get_news($city){
+        $url = "https://ajax.googleapis.com/ajax/services/search/news?v=1.0&q=".$city->getName()."&hl=".$city->getZone();
+
+        // sendRequest
+        // note how referer is set manually
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_REFERER, "beta.speakit.fr");
+        $body = curl_exec($ch);
+        curl_close($ch);
+
+        // now, process the JSON string
+        //["GsearchResultClass"]=> string(11) "GnewsSearch" ["clusterUrl"]=> string(80) "http://news.google.com/news/story?ncl=dai0V4L4QeRy4wMQLml1SerFDLW9M&hl=en&ned=us" ["content"]=
+        $json = json_decode($body);
+
+        return $json->responseData->results;
     }
 }
