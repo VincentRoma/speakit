@@ -38,40 +38,10 @@
         </form>
     </div>
 
-    <div id="match-background" class="row content">
-        <div class="col-md-12">
+    <div class="row content">
+        <div class="col-md-12" id="match-background">
+            <img src="{% path city.picture, 'big' %}" alt="{{city.name}}"/>
             <h1 class="title">{{ city.countryCity }}</h1>
-        </div>
-        <div class="col-md-9 col-xs-8 list-friends">
-            <div class="row">
-                <div class="col-md-12 col-xs-12">
-                    <ul class="col-md-8 col-xs-10 col-md-offset-2 col-xs-offset-1">
-                        {% for matchedUser in matchedUsers %}
-                            <li class="row">
-                                <div class="user-picture col-md-1 col-xs-2">
-                                    <a href="{{path('edu_speak_profil',{'id':matchedUser.id})}}">
-                                    {% if app.user.facebookPicture %}
-                                        <img class="profile-picture" src="{{ app.user.facebookPicture }}" alt="Profil" />
-                                    {% elseif app.user.file %}
-                                        <img class="profile-picture" src="{{ app.user.file }}" alt="Profil" />
-                                    {% else %}
-                                        <i class="fa fa-user fa-3x"></i>
-                                    {% endif %}
-                                    </a>
-                                </div>
-                                <div class="user-infos col-md-10 col-xs-8">
-                                    <h4>{{ matchedUser.username }}</h4>
-                                    <h5>{{ matchedUser.email }}</h5>
-                                    <h5>{{ matchedUser.email }}</h5>
-                                </div>
-                                <div class="start-conversation col-md-1 col-xs-2">
-                                    <a href="{{path('chat_create',{'id':matchedUser.id})}}"><i class="fa fa-weixin fa-3x"></i></a>
-                                </div>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            </div>
         </div>
         <div class="col-md-3">
             {% for result in news %}
@@ -85,6 +55,25 @@
                 </div>
             </div>
             {% endfor %}
+        </div>
+        <div class="col-md-9 list-friends">
+            <ul>
+                {% for matchedUser in matchedUsers %}
+                    <li class="col-md-12">
+                        <a href="{{path('edu_speak_profil',{'id':matchedUser.id})}}">
+                        {% if matchedUser.facebookPicture %}
+                            <img class="profile-picture" src="{{ matchedUser.facebookPicture }}" alt="Profil" />
+                        {% elseif matchedUser.getWebPath %}
+                            <img class="profile-picture" src="{{ matchedUser.getWebPath }}" alt="Profil" />
+                        {% else %}
+                            <i class="fa fa-user fa-3x"></i>
+                        {% endif %}
+                        </a>
+                        <span>{{ matchedUser.username }}</span>
+                        <a class="start-conversation" href="{{path('chat_create',{'id':matchedUser.id})}}"><i class="fa fa-weixin fa-3x"></i></a>
+                    </li>
+                {% endfor %}
+            </ul>
         </div>
         {% else %}
         <div class="row content">

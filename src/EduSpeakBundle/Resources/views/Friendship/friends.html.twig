@@ -1,151 +1,74 @@
 {% extends 'base.html.twig' %}
 {% block body %}
     <div id="edu-friends">
-        <!------------ FILTRES -------------->
-        <div class="row filtres">
-            <form >
-                <div class="col-md-2 col-xs-2">
-                    <select class="form-control" name="Langues">
-                        <option>Langues</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select>
-                </div>
-                <div class="col-md-2 col-xs-2">
-                    <select class="form-control" placeholder="Age min">
-                        <option>Age min</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select>
-                </div> <div class="col-md-2 col-xs-2">
-                    <select class="form-control" placeholder="Age min">
-                        <option>Age max</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select>
-                </div>
-                <div class="col-md-3 col-xs-3">
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox"> Correspondants connectés
-                        </label>
-                    </div>
-                </div>
-                <div class="col-md-1 col-xs-1">
-                    <button class="btn btn-default" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                        <i class="fa fa-chevron-down"></i>
-                    </button>
-                </div>
-                <div class="col-md-2 col-xs-2">
-                    <button type="submit" class="btn btn-edu">Appliquer les filtres</button>
-                </div>
-                <div class="collapse" id="collapseExample">
-                    extension filtre
-                </div>
-            </form>
-        </div>
-
-        <div class="row content">
-            <!------------ ACTUALITES -------------->
-            <div class="col-md-3 col-xs-4 list-actus">
-                <h5>Actualités</h5>
-                <ul class="list-group">
-                    <li class="list-group-item">
-                        <div class="actu">
-                            <img src="http://olapaella.fr/images/4eab1e_ec576404d1cf47c6bd1e0dd243cfcd4d.jpg" alt="image" height="110px" width="100%">
-                            <div class="like col-md-6 col-xs-10 col-md-offset-2 col-xs-offset-2">
-                                <div class="">
-                                    <button type="submit" class="btn btn-link"><i class="fa fa-heart fa-3x fa-inverse "></i></button>
-                                    <button type="submit" class="btn btn-link"><i class="fa fa-times fa-3x fa-inverse"></i></button>
+        <div class="row">
+        {% if friends is not empty %}
+            <div class="col-md-9 list-friends">
+                <ul>
+                    {% for friend in friends %}
+                        <li class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <a href="{{path('edu_speak_profil',{'id':friend.id})}}">
+                                    {% if friend.facebookPicture %}
+                                        <img class="profile-picture" src="{{ friend.facebookPicture }}" alt="Profil" />
+                                    {% elseif friend.getWebPath %}
+                                        <img class="profile-picture" src="{{ friend.getWebPath }}" alt="Profil" />
+                                    {% else %}
+                                        <i class="fa fa-user fa-3x"></i>
+                                    {% endif %}
+                                    </a>
+                                </div>
+                                <div class="col-md-8 friends-information">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <span>{{ friend.username }}</span>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <i><small>speaking: </small></i>
+                                            <span>
+                                            {% for language in friend.getSpokenLanguages %}
+                                                <img src="{% path language.flag, 'small' %}" alt="{{language.name}}" title="{{language.name}}" />
+                                            {% endfor %}
+                                            </span>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <i><small>learning: </small></i>
+                                            <span>
+                                                <small>
+                                                    <img src="{% path friend.getLearnLanguage.flag, 'small' %}" alt="{{friend.getLearnLanguage.name}}" title="{{friend.getLearnLanguage.name}}"/>
+                                                </small>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <a class="start-conversation" href="{{path('chat_create',{'id':friend.id})}}"><i class="fa fa-weixin fa-3x"></i></a>
                                 </div>
                             </div>
-                        </div>
-                    </li>
-                    <li class="list-group-item">
-                        <div class="actu">
-                            <img src="https://i.ytimg.com/vi/KKUeZegmFRI/maxresdefault.jpg" alt="image" height="110px" width="100%">
-                            <div class="like col-md-6 col-xs-10 col-md-offset-2 col-xs-offset-2">
-                                <div class="">
-                                    <button type="submit" class="btn btn-link"><i class="fa fa-heart fa-3x fa-inverse "></i></button>
-                                    <button type="submit" class="btn btn-link"><i class="fa fa-times fa-3x fa-inverse"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="list-group-item">
-                        <div class="actu">
-                            <img src="http://img0.ndsstatic.com/wallpapers/cb278f0eb987d32045e94097bb69ce45_large.jpeg" alt="image" height="110px" width="100%">
-                            <div class="like col-md-6 col-xs-10 col-md-offset-2 col-xs-offset-2">
-                                <div class="">
-                                    <button type="submit" class="btn btn-link"><i class="fa fa-heart fa-3x fa-inverse "></i></button>
-                                    <button type="submit" class="btn btn-link"><i class="fa fa-times fa-3x fa-inverse"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="list-group-item">
-                        <div class="actu">
-                            <img src="http://www.realmadrid.com/cs/Satellite?blobcol=urldata&blobheader=image%2Fjpeg&blobkey=id&blobtable=MungoBlobs&blobwhere=1203345194876&ssbinary=true" alt="image" height="110px" width="100%">
-                            <div class="like col-md-6 col-xs-10 col-md-offset-2 col-xs-offset-2">
-                                <div class="">
-                                    <button type="submit" class="btn btn-link"><i class="fa fa-heart fa-3x fa-inverse "></i></button>
-                                    <button type="submit" class="btn btn-link"><i class="fa fa-times fa-3x fa-inverse"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
+                        </li>
+                    {% endfor %}
                 </ul>
             </div>
-
-            <!------------ FRIENDS -------------->
-        {% if friends is defined %}
-            <div class="col-md-9 col-xs-8 list-friends">
+        {% else %}
+            <div class="col-md-7 col-md-offset-3">
                 <div class="row">
-                    <div class="col-md-12 col-xs-12">
-                        <ul class="col-md-8 col-xs-10 col-md-offset-2 col-xs-offset-1">
-                            {% for friend in friends %}
-                                <li class="row">
-                                    <div class="user-picture col-md-1 col-xs-2">
-                                        <a href="{{path('edu_speak_profil',{'id':friend.id})}}">
-                                        {% if app.user.facebookPicture %}
-                                            <img class="profile-picture" src="{{ app.user.facebookPicture }}" alt="Profil" />
-                                        {% elseif app.user.file %}
-                                            <img class="profile-picture" src="{{ app.user.file }}" alt="Profil" />
-                                        {% else %}
-                                            <i class="fa fa-user fa-3x"></i>
-                                        {% endif %}
-                                    </a>
-                                    </div>
-                                    <div class="user-infos col-md-10 col-xs-8">
-                                        <h4>{{ friend.username }}</h4>
-                                        <h5>{{ friend.email }}</h5>
-                                        <h5>{{ friend.email }}</h5>
-                                    </div>
-                                    <div class="start-conversation col-md-1 col-xs-2">
-                                        <a href="{{path('chat_create',{'id':friend.id})}}"><i class="fa fa-weixin fa-3x"></i></a>
-                                    </div>
-                                </li>
-                            {% endfor %}
-                        </ul>
+                    <div class="col-md-12" style="text-align: center;">
+                        {% set count = citiesSuggested|length %}
+                        <h2>Your friend list is empty</h2>
+                        <h2>meet people  from {{citiesSuggested[0].name}}</h2>
+                        {% for city in citiesSuggested %}
+                            <a class="thumbnail text-center" href="{{path('edu_speak_search',{'id':city.id})}}">
+                                <img class="img-responsive center-block" src="{% path city.picture, 'big' %}" alt="{{ city.name }}">
+                                <div class="caption">
+                                    <h3>{{ city.name }}</h3>
+                                </div>
+                            </a>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
-            {% else %}
-                <div class="col-md-9 col-xs-9 list-friends">
-                    <div class="row">
-                        <div class="col-md-12 col-xs-12">
-                            <h3 class="friends-empty">You don't have any friends yet</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {% endif %}
+        {% endif %}
         </div>
     </div>
 {% endblock %}

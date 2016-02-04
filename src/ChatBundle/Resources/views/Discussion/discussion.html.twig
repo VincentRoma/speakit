@@ -58,7 +58,7 @@
                 </div>
                 <div class="col-md-12 col-xs-12">
                     <div class="row">
-                        <div class="col-md-8">
+                        <div class="col-md-8 discussion-stream">
                             <div id="video-out">
 
                             </div>
@@ -81,16 +81,20 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <hr>
+            <h4>Relevent articles about {{discussion.getCity}}! </h4>
+            <div class="row discussion-news">
                 {% for result in news %}
                 <div class="col-md-3">
-                    <div class="thumbnail">
-                        <img src="{{result.image.url}}" alt="{{result.title}}">
-                        <div class="caption">
-                            <h3>{{result.title | raw}}</h3>
-                            <p>{{result.content | raw}}</p>
+                    <a href="{{result.unescapedUrl}}" target="_blank">
+                        <div class="thumbnail">
+                            <img src="{{result.image.url}}" alt="{{result.title}}">
+                            <div class="caption">
+                                <h3>{{result.title | raw}}</h3>
+                                <p>{{result.content | raw}}</p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 {% endfor %}
             </div>
