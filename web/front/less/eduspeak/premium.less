@@ -2,12 +2,13 @@
 .row-description{
   background-color: #eeeeee;
   text-align: center;
+  vertical-align: middle;
+  padding-top:20px;
+  padding-bottom:20px;
 }
 
 table{
   border: none;
-
-
 &.table-borderless td{
  //border: none;
  padding:30px;
@@ -30,21 +31,22 @@ table{
   background-color: #eeeeee;
   vertical-align: middle;
   i{
-    color:green;
+    &.fa-check-circle{color:green;}
+    &.fa-times{color:red;}
   }
   width:160px;
 }
 }
 
 .btn-premium{
-  background-color: #0087FF;
+  background-color: white;
   border-radius: 3px;
   width:100%;
-  color:white;
-  box-shadow: 0 6px #004981;
+  color:#0087FF;
+      border-color: #0087FF;
   &:hover{
-    box-shadow: 0 4px #004981;
-    margin-top: 2px;
+    background-color: #0087FF;
+    color:white;
   }
 
 }

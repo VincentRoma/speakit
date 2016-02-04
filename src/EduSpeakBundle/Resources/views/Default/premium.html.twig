@@ -2,16 +2,24 @@
 
 {% block body %}
 <div id="premium">
-    <div class="row row-description">
-        <div class="container">
-            <h1>Devenez Premium !</h1>
-        </div>
+    <div class="row row-description ">
+      <h1>Passez au premium</h1>
+    <div class="col-md-4">
+      <i class="fa fa-commenting fa-5x"></i>
+      <h3>Parler dans le monde entier</h3>
     </div>
+    <div class="col-md-4">
+      <i class="fa fa-globe fa-5x"></i>
+      <h3>Découvrer de nouvelle culture</h3>
+    </div>
+    <div class="col-md-4">
+      <i class="fa fa-line-chart fa-5x"></i>
+      <h3>Améliorer vous!</h3>
+    </div>
+  </div>
 
-    <div class="container">
-
-<div class="row col-md-offset-2 col-md-8">
-
+<div class="row">
+  <div class="col-md-offset-2 col-md-8">
     <table class="table table-borderless">
     <thead>
       <tr class="title">
@@ -34,12 +42,12 @@
       <tr class="fonctionnalités">
         <td class="description">Description des fonctionnalités 3</td>
         <td class="cell"><div><i class="fa fa-check-circle fa-3x"></div></td>
-        <td class="cell"><div></td>
+        <td class="cell"><div><i class="fa fa-times fa-3x"></div></td>
       </tr>
       <tr class="fonctionnalités">
         <td class="description">Description des fonctionnalités</td>
         <td class="cell"><div><i class="fa fa-check-circle fa-3x"></div></td>
-        <td class="cell"></td>
+        <td class="cell"><div><i class="fa fa-times fa-3x"></div></td>
       </tr>
       <tr class="fonctionnalités">
        <td class="txt"></td>
@@ -51,5 +59,7 @@
 
 
     </div>
+  </div>
+</div>
 </div>
 {% endblock %}
