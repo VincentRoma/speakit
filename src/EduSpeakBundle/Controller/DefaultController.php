@@ -30,4 +30,9 @@ class DefaultController extends Controller
             return $this->render('EduSpeakBundle:Default:404.html.twig');
         }
     }
+
+    public function premiumAction()
+    {
+        return $this->render('EduSpeakBundle:Default:premium.html.twig');
+    }
 }

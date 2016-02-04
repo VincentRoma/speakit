@@ -40,12 +40,12 @@
                                     <span class="icon-bar"></span>
                                 </button>
                                 <img class="eduspeak-logo" src="{{ asset('image/speakit.png') }}" alt="SpeakIt!" />
-                                <a class="navbar-brand" href="/">SpeakIt!</a>
+                                <a class="navbar-brand" href="/app.php/">SpeakIt!</a>
                             </div>
                             <!-- Collect the nav links, forms, and other content for toggling -->
                             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                                 <ul class="nav navbar-nav navbar-right navbar-dropdown-profil">
-                                    <li><a href="/">Choisir une destination</a></li>
+                                    <li><a href="{{ path('homepage')}}">Choisir une destination</a></li>
                                     <li><a href="{{ path('chat_list') }}">Mes lettres</a></li>
                                     <li><a href="{{ path('edu_speak_friend_list') }}">Mes compagnons</a></li>
                                     <li class="dropdown">
@@ -61,6 +61,7 @@
                                         </a>
                                         <ul class="dropdown-menu">
                                             <li><a href="{{ path('fos_user_profile_show')}}"><div class="hover-item__content">Mon passeport</div></a></li>
+                                            <li><a href="{{ path('edu_speak_premium')}}"><div class="hover-item__content">Premium</div></a></li>
                                             <li><a href="{{ path('fos_user_security_logout') }}"><div class="hover-item__content">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</div></a></li>
                                         </ul>
                                     </li>
@@ -134,6 +135,5 @@
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
         <script src="{{ asset('front/js/eduspeak/morescroll.js') }}"></script>
-        <script src="{{ asset('front/js/eduspeak/porte.js') }}"></script>
     </body>
 </html>

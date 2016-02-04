@@ -2,11 +2,12 @@
 {% block body %}
 <div id="edu-match" class="content">
     {% if matchedUsers is defined %}
-    <div class="row filtres">
-        <form >
-            {#<div class="col-md-2 col-xs-2">
-                langues parlées
+    <div class="row filter">
+        <form>
+            <div class="col-md-4 filter-label">
+                <label>Langues parlées</label>
                 <select class="form-control" name="spokenLanguages">
+                    <option value="">All</option>
                     {% for spokenLanguage in spokenLanguages %}
                     {% if city.country.language == spokenLanguage %}
                     <option value="{{ spokenLanguage.id }}" selected="selected">{{ spokenLanguage.name }}</option>
@@ -15,18 +16,9 @@
                     {% endif %}
                     {% endfor %}
                 </select>
-            </div>#}
-            <div class="col-md-2 col-xs-2">
-                langues parlées
-                <select class="form-control" name="spokenLanguages">
-                    <option value="">All</option>
-                    {% for spokenLanguage in spokenLanguages %}
-                        <option value="{{ spokenLanguage.id }}">{{ spokenLanguage.name }}</option>
-                    {% endfor %}
-                </select>
             </div>
-            <div class="col-md-2 col-xs-2">
-                langues à apprendre
+            <div class="col-md-4 filter-label">
+                <label>Langues à apprendre</label>
                 <select class="form-control" name="learnLanguages">
                     <option value="">All</option>
                     {% for learnLanguage in learnLanguages %}
@@ -34,8 +26,8 @@
                     {% endfor %}
                 </select>
             </div>
-            <div class="col-md-2 col-xs-2">
-                age
+            <div class="col-md-4 filter-label">
+                <label>Age</label>
                 <select class="form-control" name="learnLanguages">
                     <option value="">All</option>
                     {% for age in ageMin..ageMax %}
@@ -43,16 +35,6 @@
                     {% endfor %}
                 </select>
             </div>
-            <div class="col-md-2 col-xs-2">
-                <button type="submit" class="btn btn-edu">Appliquer les filtres</button>
-            </div>
-            {#<div class="col-md-3 col-xs-3">
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox"> Correspondants connectés
-                    </label>
-                </div>
-            </div>#}
         </form>
     </div>
 
