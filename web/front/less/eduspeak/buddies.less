@@ -23,10 +23,11 @@
 }
 
 #edu-match {
-  height: @page-row-height;
-  .content {
-    height: @page-row-content-height;
-    margin-bottom: 0;
+    height: @page-row-height;
+    .content{
+        height: @page-row-content-height;
+        margin-bottom: 0;
+    }
     .list-actus {
       height: @full-height;
       max-height: @full-height;
@@ -69,44 +70,42 @@
     .title{
       text-align: center;
     }
-
-    .list-friends {
-      height: @full-height;
-      padding: 0;
-      ul {
-        margin-top: 30px;
-        li {
-          list-style: none;
-          height: 17vh;
-          border-bottom: @eduspeak-gray-border;
+    #match-background{
+        height: 8em;
+        overflow: hidden;
+        color: white;
+        img{
+            width: 100%;
+            position: absolute;
+            bottom: -50%;
+            left: 0;
+            z-index: -100000;
+            filter: blur(10px);
+            -webkit-filter: blur(10px);
+            -moz-filter: blur(10px);
+            -o-filter: blur(10px);
+            -ms-filter: blur(10px);
         }
-        .user-picture, .user-infos, .start-conversation {
-          display: inline-block;
-          height: @full-height;
-        }
-        .user-picture, .start-conversation {
-          a {
-            color: @eduspeak-base-purple;
-          }
-        }
-        .user-picture {
-          float: left;
-          padding: 1rem;
-        }
-        .user-infos {
-          padding: 0 1rem;
-        }
-        .start-conversation {
-          float: right;
-          padding: 3rem 1rem;
-        }
-      }
-
-      .friends-empty{
-        margin-top: 22%;
-        text-align: center;
-      }
     }
-  }
 }
+.list-friends {
+    li{
+        margin-top: 2em;
+        &:hover{
+            background-color: #efefef;
+        }
+    }
+    .profile-picture{
+        width: 5em;
+        height: 5em;
 
+    }
+    span{
+        font-size: 2em;
+    }
+    .start-conversation{
+        float: right;
+        padding: 1em;
+
+    }
+}

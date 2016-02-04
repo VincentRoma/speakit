@@ -13,6 +13,8 @@
         <link rel="stylesheet" href="{{ asset('front/dist/css/bootstrap-theme.css') }}">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
         <!-- start Mixpanel -->
         <script type="text/javascript">
             (function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
@@ -40,20 +42,20 @@
                                     <span class="icon-bar"></span>
                                 </button>
                                 <img class="eduspeak-logo" src="{{ asset('image/speakit.png') }}" alt="SpeakIt!" />
-                                <a class="navbar-brand" href="/app.php/">SpeakIt!</a>
+                                <a class="navbar-brand" href="{{ path('homepage') }}">SpeakIt!</a>
                             </div>
                             <!-- Collect the nav links, forms, and other content for toggling -->
                             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                                 <ul class="nav navbar-nav navbar-right navbar-dropdown-profil">
-                                    <li><a href="{{ path('homepage')}}">Choisir une destination</a></li>
-                                    <li><a href="{{ path('chat_list') }}">Mes lettres</a></li>
-                                    <li><a href="{{ path('edu_speak_friend_list') }}">Mes compagnons</a></li>
+                                    <li><a class="btn-navbar" href="{{ path('homepage')}}">Choisir une destination</a></li>
+                                    <li><a class="btn-navbar" href="{{ path('chat_list') }}">Mes lettres</a></li>
+                                    <li><a class="btn-navbar" href="{{ path('edu_speak_friend_list') }}">Mes compagnons</a></li>
                                     <li class="dropdown">
                                         <a href="#" class="dropdown-toggle no-padding-vertical" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                             {% if app.user.facebookPicture %}
                                                 <img class="profile-picture" src="{{ app.user.facebookPicture }}" alt="Profil" />
-                                            {% elseif app.user.file %}
-                                                <img class="profile-picture" src="{{ app.user.file }}" alt="Profil" />
+                                            {% elseif app.user.getWebPath %}
+                                                <img class="profile-picture" src="{{ app.user.getWebPath }}" alt="Profil" />
                                             {% else %}
                                                 <i class="fa fa-user fa-3x"></i>
                                             {% endif %}
@@ -133,7 +135,6 @@
             </div>
         </div> -->
         <!-- Latest compiled and minified JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
         <script src="{{ asset('front/js/eduspeak/morescroll.js') }}"></script>
     </body>
 </html>
