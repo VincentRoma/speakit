@@ -53,7 +53,7 @@ class DiscussionController extends Controller
                         'text/html'
                     );
                 $this->get('mailer')->send($message);
-
+                $this->notify_invite($invited);
                 return $this->redirectToRoute('chat_display', array('id'=>$discussion->getId()));
             }
         }else{
@@ -129,5 +129,10 @@ class DiscussionController extends Controller
         $json = json_decode($body);
 
         return $json->responseData->results;
+    }
+
+    public function notify_invite($user){
+        $pubnub = new Pubnub('pub-c-43fee2d2-8fc4-4b00-b424-dd315210e2c2', 'sub-c-aca4aeda-be98-11e5-8408-0619f8945a4f');
+        $publish_result = $pubnub->publish('user/'.$user->getId(), 'Discussion');
     }
 }
