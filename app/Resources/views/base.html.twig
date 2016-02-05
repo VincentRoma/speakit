@@ -14,7 +14,8 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-
+        <script src="https://cdn.pubnub.com/pubnub.min.js"></script>
+        <script src="https://stephenlb.github.io/webrtc-sdk/js/webrtc.js"></script>
         <!-- start Mixpanel -->
         <script type="text/javascript">
             (function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
@@ -47,9 +48,9 @@
                             <!-- Collect the nav links, forms, and other content for toggling -->
                             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                                 <ul class="nav navbar-nav navbar-right navbar-dropdown-profil">
-                                    <li><a class="btn-navbar" href="{{ path('homepage')}}">Choisir une destination</a></li>
-                                    <li><a class="btn-navbar" href="{{ path('chat_list') }}">Mes lettres</a></li>
-                                    <li><a class="btn-navbar" href="{{ path('edu_speak_friend_list') }}">Mes compagnons</a></li>
+                                    <li><a class="btn-navbar" href="{{ path('homepage')}}">Fly away</a></li>
+                                    <li><a class="btn-navbar" id="chat" href="{{ path('chat_list') }}">My chats</a></li>
+                                    <li><a class="btn-navbar" id="friends" href="{{ path('edu_speak_friend_list') }}">My friends</a></li>
                                     <li class="dropdown">
                                         <a href="#" class="dropdown-toggle no-padding-vertical" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                             {% if app.user.facebookPicture %}
@@ -136,5 +137,33 @@
         </div> -->
         <!-- Latest compiled and minified JavaScript -->
         <script src="{{ asset('front/js/eduspeak/morescroll.js') }}"></script>
+        {% if app.security.token is not null and is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        <script>
+            var Notification = PUBNUB.init({
+                publish_key   : 'pub-c-43fee2d2-8fc4-4b00-b424-dd315210e2c2',
+                subscribe_key : 'sub-c-aca4aeda-be98-11e5-8408-0619f8945a4f',
+                secret_key    : 'sec-c-YzZhYjVmMTgtYjJmZS00ZTVlLTkwMTMtNWVhZTgyYWEzOTY0',
+            });
+            console.log("subscribe to user/"+{{app.user.id}});
+            Notification.subscribe({
+                channel: "user/"+{{app.user.id}},
+                message: function(m){
+                    console.log(m);
+                    if(m=="Discussion"){
+                        if($("#notification").length){
+                        }else{
+                            $( '<span id="notification" class="badge notification">1</span>' ).insertAfter( "#chat" );
+                        }
+                    }else if(m=="Invitation"){
+                        if($("#friend").length){
+
+                        }else{
+                            $( '<span id="friend" class="badge notification">1</span>' ).insertAfter( "#friends" );
+                        }
+                    }
+                }
+            });
+        </script>
+        {% endif %}
     </body>
 </html>

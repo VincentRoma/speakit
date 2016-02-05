@@ -36,7 +36,8 @@
         "jackalope/jackalope":"1.2.*",
         "jackalope/jackalope-doctrine-dbal":"1.2.*",
         "sonata-project/intl-bundle": "^2.2",
-        "algolia/algolia-search-bundle": "^1.0"
+        "algolia/algolia-search-bundle": "^1.0",
+        "pubnub/pubnub": "^3.8"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

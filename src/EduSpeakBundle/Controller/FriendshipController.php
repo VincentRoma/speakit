@@ -5,6 +5,7 @@ namespace EduSpeakBundle\Controller;
 use EduSpeakBundle\Entity\Friendship;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Doctrine\Common\Collections\ArrayCollection;
+use Pubnub\Pubnub;
 
 class FriendshipController extends Controller
 {
@@ -29,6 +30,7 @@ class FriendshipController extends Controller
                 $user->addFriendship($friendship);
                 $em->persist($friendship);
                 $em->flush();
+                $this->notify_invite($invited);
                 // ne pas retourner sur la liste d'amis
                 return $this->redirectToRoute('edu_speak_friend_list');
             }
@@ -65,5 +67,11 @@ class FriendshipController extends Controller
     public function displayAction($id)
     {
         // TODO show the friendship selectionned => redirect sur la convers ?
+    }
+
+    public function notify_invite($user){
+        $pubnub = new Pubnub('pub-c-43fee2d2-8fc4-4b00-b424-dd315210e2c2', 'sub-c-aca4aeda-be98-11e5-8408-0619f8945a4f');
+        $publish_result = $pubnub->publish('user/'.$user->getId(), 'Invitation');
+
     }
 }

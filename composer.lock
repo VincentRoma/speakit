@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a91b1e6f1d1bb34cfc9c665fb722363e",
-    "content-hash": "13b59762fd50eff7c2bce4460d4280f7",
+    "hash": "112fa33b9678a307193ed2874c635b17",
+    "content-hash": "71d13ebeda8f9df7ab8466853bb71544",
     "packages": [
         {
             "name": "algolia/algolia-search-bundle",
@@ -3437,6 +3437,54 @@
                 "psr-3"
             ],
             "time": "2012-12-21 11:40:51"
+        },
+        {
+            "name": "pubnub/pubnub",
+            "version": "3.8.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pubnub/php.git",
+                "reference": "696bc2b163dbf90b7efdfd75fec4e9a789f84380"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pubnub/php/zipball/696bc2b163dbf90b7efdfd75fec4e9a789f84380",
+                "reference": "696bc2b163dbf90b7efdfd75fec4e9a789f84380",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Pubnub\\": "composer/lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PubNub",
+                    "email": "support@pubnub.com"
+                }
+            ],
+            "description": "The Only Global Network For Real-Time Data -- PubNub!",
+            "homepage": "http://www.pubnub.com/",
+            "keywords": [
+                "ajax",
+                "api",
+                "push",
+                "real time",
+                "real-time",
+                "realtime"
+            ],
+            "time": "2016-01-20 00:36:26"
         },
         {
             "name": "react/event-loop",
