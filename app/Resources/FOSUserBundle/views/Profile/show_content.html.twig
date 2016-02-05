@@ -1,11 +1,4 @@
 {% trans_default_domain 'FOSUserBundle' %}
-{% for type, messages in app.session.flashbag.all() %}
-    {% for message in messages %}
-        <div class="flash-{{ type }}">
-            {{ message }}
-        </div>
-    {% endfor %}
-{% endfor %}
 <div id="edu-profile" class="fos_user_user_show full-height">
     <div id="edu-profile-top" class="row">
         <div class="col-md-3 col-xs-3">
